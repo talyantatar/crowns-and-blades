@@ -20,7 +20,7 @@ see [Optional Bannerlord content](../README.md#optional-bannerlord-content).
 
 ## With the installer or the zip
 
-A release built from source (see [BUILDING.md](BUILDING.md)) gives these files:
+The [releases page](https://github.com/talyantatar/crowns-and-blades/releases) has these files:
 
 | File | What it is |
 |---|---|

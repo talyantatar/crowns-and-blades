@@ -108,11 +108,12 @@ there is no need to enable it in the Bannerlord launcher.
 
 ## Install
 
-**With Melty (one click):** install Crowns & Blades in Melty and press **Play**. Melty puts the CK3 mod, the Bannerlord module
+**With Melty (one click):** install [Crowns & Blades on Melty](https://melty.gg/m/crowns-blades) and press **Play**. Melty puts the CK3 mod, the Bannerlord module
 and the bridge in place; Play starts the bridge, which enables the mod and starts CK3. If you start CK3 from the Paradox
 Launcher instead, add **"Crowns & Blades Battles"** to your playset.
 
-**With the installer:** run `CK3xBL-Setup-0.9.0-beta.exe`. It installs for your Windows user only, needs no administrator
+**With the installer:** download `CK3xBL-Setup-0.9.0-beta.exe` from the
+[releases page](https://github.com/talyantatar/crowns-and-blades/releases) and run it. It installs for your Windows user only, needs no administrator
 rights, finds both games and installs the bridge, the CK3 mod and the Bannerlord module. The exe is not code-signed, so
 Windows SmartScreen may warn you: click **More info**, then **Run anyway**. Then add **"Crowns & Blades Battles"** to your
 Paradox Launcher playset. A manual zip and every detail are in [docs/INSTALL.md](docs/INSTALL.md).
