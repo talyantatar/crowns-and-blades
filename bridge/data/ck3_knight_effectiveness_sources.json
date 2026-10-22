@@ -3,7 +3,7 @@
   "description": "Every source of CK3 knight effectiveness (knight_effectiveness_mult, knight_effectiveness_per_<skill>) and knight_limit in game/common, with the CK3 trigger that tests it from the knights' liege.",
   "generator": "tools/gen/knights/gen_knight_effectiveness.mjs",
   "game": "Crusader Kings III",
-  "game_version": "1.20.1.1",
+  "game_version": "1.20.1.2",
   "receiver": "liege: the ruler whose knights they are = the owner of the army the knight fights in (army_owner of knight_army). Knight effectiveness modifiers on the knight himself do nothing for him (game concept knight_effectiveness, accolade liege_modifier vs knight_modifier).",
   "formula": "knight_effectiveness = 1 + sum(mult x instances x scale) + sum(per_skill.value x liege skill x instances). CK3: at 100% knights fight normally, at 200% as if their prowess were doubled (game_concept_knight_effectiveness_desc).",
   "trigger_context": "Every trigger/count is written for the liege as the current scope (this). Some use saved scopes the caller sets first: scope:ck3xbl_kl = the liege (artifacts, holy sites), scope:holder = the liege (building is_enabled), scope:councillor_liege = the liege (council task scale, evaluated in the councillor scope).",
@@ -22,7 +22,7 @@
    "exclusive_group": "records of one group are mutually exclusive by construction (levels)",
    "testable": "exact | inferred (trigger follows the docs but an engine detail is unverified) | approx | no"
   },
-  "content_hash": "8c2f54527030661f"
+  "content_hash": "50fcec56da942433"
  },
  "summary": {
   "records": 355,

@@ -146,7 +146,20 @@ internal sealed class MeltyTest
         if (orchestrator.Phase != BattlePhase.Idle) return "the bridge is busy with another battle";
         orchestrator.OnCk3Event(new ChoiceMade(TestBid, Ck3Choice.Field, "FIELD"));
         _journal.Info("melty", $"test battle b{TestBid} staged");
-        if (!await orchestrator.WaitForPhaseAsync(BattlePhase.Fighting, BattleTimeout))
+        // The battle starts only from a CK3 in front (CanEnter). In a release test CK3 was started for it, so the test brings it to the
+        // front itself (live test 2026-10-23: the creator was in Chrome and the battle waited the whole run).
+        var deadline = DateTime.UtcNow + BattleTimeout;
+        var nextFocus = DateTime.UtcNow;
+        while (orchestrator.Phase != BattlePhase.Fighting && DateTime.UtcNow < deadline)
+        {
+            if (orchestrator.Phase == BattlePhase.WaitingToEnter && DateTime.UtcNow >= nextFocus)
+            {
+                _journal.Info("melty", $"bringing CK3 to the front for the test battle: {(_host.FocusCk3ForTest() ? "done" : "refused")}");
+                nextFocus = DateTime.UtcNow + TimeSpan.FromSeconds(15);
+            }
+            await Task.Delay(500);
+        }
+        if (orchestrator.Phase != BattlePhase.Fighting)
             return $"the battle did not reach the fight in {BattleTimeout.TotalMinutes:0} min (phase {orchestrator.Phase}, Bannerlord " +
                    $"{_host.Bannerlord.Status?.Status ?? "not running"}{(_host.Bannerlord.Problem is { } p ? ", " + p : "")})";
         await Task.Delay(FightFor);

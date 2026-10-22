@@ -2,7 +2,7 @@
  "meta": {
   "what": "CK3 accolade attributes (Tours & Tournaments) with their per-level effects, what to read at battle time, the Bannerlord mapping of each attribute level, and the glory write-back.",
   "generator": "tools/gen/knights/gen_ck3_accolade_types.mjs",
-  "ck3_version": "1.20.1.1",
+  "ck3_version": "1.20.1.2",
   "game_dir": "<CK3 install>/game",
   "sources": [
    "common/accolade_types/*.txt",

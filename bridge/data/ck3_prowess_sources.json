@@ -2,7 +2,7 @@
  "meta": {
   "description": "Every grant of prowess / prowess_no_portrait in game/common (informational: CK3's prowess value, logged as ck3xbl_c_prowess, is already final).",
   "generator": "tools/gen/knights/gen_knight_effectiveness.mjs --prowess",
-  "game_version": "1.20.1.1",
+  "game_version": "1.20.1.2",
   "trigger_context": "triggers are written for the holder of the prowess (the knight himself) as current scope; read scope:ck3xbl_kl / scope:holder as that holder"
  },
  "summary": {

@@ -1,7 +1,7 @@
 {
  "meta": {
   "generator": "tools/gen/knights/gen_combat_traits.mjs",
-  "ck3Version": "1.20.1.1",
+  "ck3Version": "1.20.1.2",
   "sources": [
    "common/traits/00_traits.txt",
    "common/combat_phase_events/*.txt",

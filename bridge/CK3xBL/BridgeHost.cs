@@ -221,6 +221,9 @@ internal sealed class BridgeHost : IAsyncDisposable
         return problem;
     }
 
+    /// <summary>Melty's release test only (MeltyTest): CK3 to the front even over another application.</summary>
+    public bool FocusCk3ForTest() => _ck3.Find() is { } ck3 && Foreground.Activate(ck3.Hwnd, force: true);
+
     public async Task StartBannerlordAsync()
     {
         bool reportedBefore = _bannerlord.Problem is not null;

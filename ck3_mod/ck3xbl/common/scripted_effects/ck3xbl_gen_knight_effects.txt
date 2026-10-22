@@ -3,7 +3,7 @@
 # Inputs: bridge/data/ck3_combat_traits.json, ck3_knight_effectiveness_sources.json, ck3_accolade_types.json, ck3_artifact_types.json. Regenerate: node tools/gen/gen_ck3_mod.mjs
 
 # this = the army owner (the knights' liege), before the A/J marker. ck3xbl_a_ke = knight effectiveness in permille from
-# every testable source of ck3_knight_effectiveness_sources.json (content hash 8c2f54527030661f). The effect clears its helper
+# every testable source of ck3_knight_effectiveness_sources.json (content hash 50fcec56da942433). The effect clears its helper
 # scopes and the record clears ck3xbl_a_ke right after its dump, so neither shows in the later dumps of the snapshot.
 ck3xbl_save_knight_eff_effect = {
 	save_scope_as = ck3xbl_kl
