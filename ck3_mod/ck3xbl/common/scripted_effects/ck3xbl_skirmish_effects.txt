@@ -1,0 +1,146 @@
+﻿# Skirmishes on the road in Bannerlord (docs/PROTOCOL.md 20). The vanilla travel danger events with a human foe (copied with an
+# extra option by tools/gen/skirmish/travel_hooks.mjs) offer "Fight it out in Bannerlord": the option saves scope:ck3xbl_foe and
+# scope:ck3xbl_sk_kind (1 bandits, 2 deserters, 3 assassin, 4 soldiers, 5 zealots) and opens ck3xbl_skirmish.0001, which logs
+# the skirmish like a small battle and takes it to the field at once. At most 50 fight: the foe's band (28 at most) against the
+# player's guards (10, 6 against an assassin), the player, up to four knights travelling with him and the foe's leader.
+
+# root = the player. Snapshot (B|BEGIN with ck3xbl_kind = 3), then the choice is made already: CHOICE|FIELD and the waiting event.
+ck3xbl_skirmish_begin_effect = {
+	ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_bid value = global_var:ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_parent_bid value = 0 }
+	save_scope_value_as = { name = ck3xbl_clash value = 1 }
+	save_scope_value_as = { name = ck3xbl_kind value = 3 }
+	save_scope_value_as = { name = ck3xbl_year value = current_year }
+	save_scope_value_as = { name = ck3xbl_month value = current_month }
+	save_scope_value_as = { name = ck3xbl_day value = current_day }
+	save_scope_as = ck3xbl_player
+	scope:ck3xbl_foe = { save_scope_as = ck3xbl_enemy_leader }
+	# The foe falls on the travellers: he attacks (1), the player defends (2).
+	save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+	save_scope_value_as = { name = ck3xbl_player_present value = 1 }
+	scope:ck3xbl_foe = { save_scope_as = ck3xbl_att_primary }
+	save_scope_as = ck3xbl_def_primary
+	location = {
+		save_scope_as = ck3xbl_prov
+		county ?= { save_scope_as = ck3xbl_county }
+		barony ?= { save_scope_as = ck3xbl_barony }
+	}
+	save_scope_value_as = { name = ck3xbl_sk_foes value = ck3xbl_sk_foes_value }
+	save_scope_value_as = { name = ck3xbl_sk_guards value = 10 }
+	if = {
+		limit = { scope:ck3xbl_sk_kind = 3 }
+		save_scope_value_as = { name = ck3xbl_sk_guards value = 6 }
+	}
+	info_log = "CK3XBL|B|BEGIN"
+	info_log_scopes = yes
+	scope:ck3xbl_prov = { ck3xbl_emit_location_effect = yes }
+	# The foe's side: his band as levies of his culture, and the foe himself.
+	ck3xbl_skirmish_side_effect = { CODE = 1 OWNER = scope:ck3xbl_foe MEN = scope:ck3xbl_sk_foes }
+	scope:ck3xbl_foe = { ck3xbl_skirmish_char_effect = { CODE = 1 } }
+	# The travellers: the guards, the player and up to four knights of his on the same journey.
+	ck3xbl_skirmish_side_effect = { CODE = 2 OWNER = root MEN = scope:ck3xbl_sk_guards }
+	ck3xbl_skirmish_char_effect = { CODE = 2 }
+	ordered_knight = {
+		limit = {
+			is_alive = yes
+			current_travel_plan ?= root.current_travel_plan
+		}
+		order_by = prowess
+		max = 4
+		check_range_bounds = no
+		ck3xbl_skirmish_char_effect = { CODE = 2 }
+	}
+	info_log = "CK3XBL|B|END"
+	info_log_scopes = yes
+	ck3xbl_choose_field_effect = yes
+	trigger_event = ck3xbl_skirmish.0002
+}
+
+# S and a men-only A record (+AX of the owner's culture): $MEN$ levies under $OWNER$, tagged 900000 + 2 x bid + side.
+ck3xbl_skirmish_side_effect = {
+	save_scope_value_as = { name = ck3xbl_side_code value = $CODE$ }
+	save_scope_value_as = { name = ck3xbl_s_size value = $MEN$ }
+	save_scope_value_as = { name = ck3xbl_s_has_primary value = 1 }
+	$OWNER$ = { save_scope_as = ck3xbl_s_primary }
+	if = {
+		limit = { scope:ck3xbl_my_side_code = $CODE$ }
+		save_scope_value_as = { name = ck3xbl_s_player_in value = 1 }
+	}
+	else = { save_scope_value_as = { name = ck3xbl_s_player_in value = 0 } }
+	save_scope_value_as = { name = ck3xbl_s_has_cmd value = 0 }
+	save_scope_value_as = { name = ck3xbl_s_hostility_out value = 0 }
+	if = {
+		limit = { scope:ck3xbl_side_code = 1 }
+		info_log = "CK3XBL|S|att"
+	}
+	else = { info_log = "CK3XBL|S|def" }
+	info_log_scopes = yes
+	save_scope_value_as = { name = ck3xbl_a_tag value = { value = scope:ck3xbl_bid multiply = 2 add = 900000 add = $CODE$ } }
+	save_scope_value_as = { name = ck3xbl_a_size value = $MEN$ }
+	save_scope_value_as = { name = ck3xbl_a_levies value = $MEN$ }
+	save_scope_value_as = { name = ck3xbl_a_dev value = -1 }
+	$OWNER$ = { save_scope_as = ck3xbl_a_owner }
+	save_scope_value_as = { name = ck3xbl_a_has_cmd value = 0 }
+	if = {
+		limit = { scope:ck3xbl_side_code = 1 }
+		info_log = "CK3XBL|A|att"
+	}
+	else = { info_log = "CK3XBL|A|def" }
+	info_log_scopes = yes
+	$OWNER$ = { ck3xbl_emit_ax_effect = yes }
+}
+
+# this = a fighter of side $CODE$: C|KNIGHT (+CX), present in the fight.
+ck3xbl_skirmish_char_effect = {
+	save_scope_value_as = { name = ck3xbl_side_code value = $CODE$ }
+	ck3xbl_save_char_values_effect = yes
+	save_scope_value_as = { name = ck3xbl_c_absent value = 0 }
+	if = {
+		limit = { scope:ck3xbl_side_code = 1 }
+		info_log = "CK3XBL|C|KNIGHT|att"
+	}
+	else = { info_log = "CK3XBL|C|KNIGHT|def" }
+	info_log_scopes = yes
+	ck3xbl_emit_cx_effect = yes
+}
+
+# root = the player, ck3xbl_skirmish.0004: the result is committed. Wounds, maimings and deaths of the fighters come from the
+# battle apply (character slots, CK3's own fate odds, PROTOCOL 13.5); the spoils from here: a win takes gold and prestige and,
+# half the time, one of the foe's personal artifacts; a loss costs gold.
+ck3xbl_skirmish_apply_effect = {
+	save_scope_value_as = { name = ck3xbl_sk_outcome value = var:ck3xbl_r2 }
+	ck3xbl_apply_effect = yes
+	if = {
+		limit = { scope:ck3xbl_sk_outcome = 2 }
+		add_gold = minor_gold_value
+		add_prestige = minor_prestige_gain
+		random = {
+			chance = 50
+			scope:ck3xbl_foe = {
+				random_character_artifact = {
+					limit = { category = inventory }
+					set_owner = { target = root }
+				}
+			}
+		}
+		send_interface_toast = {
+			type = msg_ck3xbl_battle_over
+			title = ck3xbl_skirmish.won
+			desc = ck3xbl_skirmish.won.desc
+			left_icon = root
+			right_icon = scope:ck3xbl_foe
+		}
+	}
+	else_if = {
+		limit = { scope:ck3xbl_sk_outcome = 1 }
+		remove_short_term_gold = medium_gold_value
+		send_interface_toast = {
+			type = msg_ck3xbl_battle_over
+			title = ck3xbl_skirmish.lost
+			desc = ck3xbl_skirmish.lost.desc
+			left_icon = root
+			right_icon = scope:ck3xbl_foe
+		}
+	}
+}

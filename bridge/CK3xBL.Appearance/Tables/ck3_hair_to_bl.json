@@ -1,0 +1,457 @@
+{
+  "status": "INFERRED keyword table (AppearanceSpec CurrentHair/CurrentBeard). CK3 accessory names + their comments in common/genes (e.g. 'male_hair_indian_01 # Short Pompadour') are matched in order (keywords against \"name comment\", exclude against the comment only) against 'keywords'; the first rule wins. 'male'/'female' list Bannerlord style tags (bridge/data/bl_skins_human.json hair_meshes/beard_meshes tags[0]) in preference order. A copy of this file in bridge/data overrides the built-in one.",
+  "hairstyle_families": {
+    "comment": "CK3 clothing_gfx -> hairstyle/beard template family (common/genes/03 and 04: <family>_hairstyles_<hair_type>, <family>_beards_<straight|curly>)",
+    "western_clothing_gfx": "western",
+    "french_clothing_gfx": "western",
+    "english_clothing_gfx": "western",
+    "norman_clothing_gfx": "western",
+    "welsh_clothing_gfx": "western",
+    "swabian_clothing_gfx": "western",
+    "pommeranian_clothing_gfx": "western",
+    "dde_hre_clothing_gfx": "western",
+    "west_slavic_clothing_gfx": "western",
+    "east_slavic_clothing_gfx": "northern",
+    "iberian_christian_clothing_gfx": "western",
+    "mena_clothing_gfx": "mena",
+    "dde_abbasid_clothing_gfx": "mena",
+    "iberian_muslim_clothing_gfx": "mena",
+    "afr_berber_clothing_gfx": "mena",
+    "iranian_clothing_gfx": "mena",
+    "turkic_clothing_gfx": "steppe",
+    "byzantine_clothing_gfx": "byzantine",
+    "african_clothing_gfx": "sub_saharan",
+    "papuan_clothing_gfx": "sub_saharan",
+    "indian_clothing_gfx": "indian",
+    "southeast_asian_clothing_gfx": "indian",
+    "malay_clothing_gfx": "indian",
+    "viet_clothing_gfx": "indian",
+    "tai_clothing_gfx": "indian",
+    "dali_clothing_gfx": "indian",
+    "northern_clothing_gfx": "northern",
+    "_norse_clothing_gfx": "northern",
+    "sami_clothing_gfx": "northern",
+    "ugro_permian_clothing_gfx": "northern",
+    "nivkh_clothing_gfx": "steppe",
+    "mongol_clothing_gfx": "steppe",
+    "chinese_clothing_gfx": "steppe",
+    "japanese_clothing_gfx": "steppe",
+    "korean_clothing_gfx": "steppe",
+    "uyghur_clothing_gfx": "steppe",
+    "tangut_clothing_gfx": "steppe",
+    "emishi_clothing_gfx": "steppe",
+    "ainu_clothing_gfx": "steppe",
+    "default": "western"
+  },
+  "beard_families": {
+    "comment": "families that have their own beard templates; others fall back to western",
+    "western": "western",
+    "mena": "mena",
+    "northern": "northern",
+    "steppe": "steppe",
+    "indian": "indian",
+    "byzantine": "byzantine",
+    "sub_saharan": "sub_saharan"
+  },
+  "hair_rules": [
+    {
+      "keywords": [
+        "bald",
+        "no_hairstyles",
+        "shaved head"
+      ],
+      "male": [
+        "Bald"
+      ],
+      "female": [
+        "VeryShort"
+      ]
+    },
+    {
+      "keywords": [
+        "tonsure",
+        "monk"
+      ],
+      "male": [
+        "Monk Hair"
+      ],
+      "female": [
+        "Bobbed"
+      ]
+    },
+    {
+      "keywords": [
+        "afro"
+      ],
+      "male": [
+        "Afro Hair 2",
+        "Afro Hair"
+      ],
+      "female": [
+        "Afro Hair 1",
+        "Afro Hair"
+      ]
+    },
+    {
+      "keywords": [
+        "dread",
+        "rasta"
+      ],
+      "male": [
+        "Bandit Hair 3",
+        "Native Braids"
+      ],
+      "female": [
+        "Cornrows",
+        "Native Braids"
+      ]
+    },
+    {
+      "keywords": [
+        "mohawk"
+      ],
+      "male": [
+        "Mohawk"
+      ],
+      "female": [
+        "CornrowMohawk"
+      ]
+    },
+    {
+      "keywords": [
+        "bowl"
+      ],
+      "male": [
+        "Bowl"
+      ],
+      "female": [
+        "Bobbed"
+      ]
+    },
+    {
+      "keywords": [
+        "buzz",
+        "fade",
+        "shaved sides",
+        "shaved back"
+      ],
+      "male": [
+        "Short"
+      ],
+      "female": [
+        "VeryShort"
+      ]
+    },
+    {
+      "keywords": [
+        "crown braid"
+      ],
+      "male": [
+        "BraidedAndLong"
+      ],
+      "female": [
+        "CrownBraid"
+      ]
+    },
+    {
+      "keywords": [
+        "twin braids",
+        "pigtail",
+        "braids",
+        "braid"
+      ],
+      "male": [
+        "BraidedAndLong",
+        "Viking Hair"
+      ],
+      "female": [
+        "BraidedInBack",
+        "CrownBraid"
+      ]
+    },
+    {
+      "keywords": [
+        "ponytail",
+        "single tail",
+        "twin tails",
+        "tail"
+      ],
+      "male": [
+        "Ponytail",
+        "HighPonytail"
+      ],
+      "female": [
+        "High Ponytail",
+        "TiedLongOverShoulder"
+      ]
+    },
+    {
+      "keywords": [
+        "bun",
+        "updo",
+        "chignon",
+        "tied",
+        "behind head"
+      ],
+      "male": [
+        "TiedAcrossBack"
+      ],
+      "female": [
+        "TiedInBack",
+        "ShoulderLengthTied"
+      ]
+    },
+    {
+      "keywords": [
+        "pompadour",
+        "kempt",
+        "pulled back",
+        "combed"
+      ],
+      "male": [
+        "PartedAndCombedBack",
+        "SlickedShort"
+      ],
+      "female": [
+        "TiedInBack"
+      ]
+    },
+    {
+      "keywords": [
+        "roman",
+        "short curly",
+        "short african",
+        "short clumpy",
+        "short"
+      ],
+      "male": [
+        "ShortWavy",
+        "Short"
+      ],
+      "female": [
+        "Short",
+        "VeryShort"
+      ]
+    },
+    {
+      "keywords": [
+        "curly",
+        "curled",
+        "curls"
+      ],
+      "male": [
+        "Tousled",
+        "ShortWavy"
+      ],
+      "female": [
+        "RestingOnShoulders"
+      ]
+    },
+    {
+      "keywords": [
+        "medium/long",
+        "medium long",
+        "medium"
+      ],
+      "male": [
+        "SlickedLong",
+        "Tousled"
+      ],
+      "female": [
+        "AboveShoulderLength"
+      ]
+    },
+    {
+      "keywords": [
+        "long",
+        "windswept",
+        "metal hair",
+        "flowy",
+        "let out"
+      ],
+      "male": [
+        "LongAndBushy",
+        "SlickedLong"
+      ],
+      "female": [
+        "LongOvershoulder"
+      ]
+    },
+    {
+      "keywords": [
+        "wavy"
+      ],
+      "male": [
+        "Tousled"
+      ],
+      "female": [
+        "RestingOnShoulders"
+      ]
+    }
+  ],
+  "hair_default": {
+    "male": [
+      "Short"
+    ],
+    "female": [
+      "TiedInBack"
+    ]
+  },
+  "beard_rules": [
+    {
+      "keywords": [
+        "no_beard",
+        "empty",
+        "clean"
+      ],
+      "male": [
+        "Cleanshaven"
+      ]
+    },
+    {
+      "keywords": [
+        "stubble"
+      ],
+      "male": [
+        "Stubble"
+      ]
+    },
+    {
+      "keywords": [
+        "big with",
+        "big bushy",
+        "big wide",
+        "bushy",
+        "thick",
+        "full african beard long"
+      ],
+      "male": [
+        "BushyFullBeard",
+        "HeavyShortBeard"
+      ]
+    },
+    {
+      "keywords": [
+        "braid",
+        "beaded",
+        "rings"
+      ],
+      "male": [
+        "BraidedAndFullBeard",
+        "LongTiedBeard"
+      ]
+    },
+    {
+      "keywords": [
+        "wizard",
+        "huge",
+        "big messy",
+        "very long",
+        "long narrow",
+        "long at chin"
+      ],
+      "male": [
+        "HeavyLongBeard",
+        "LongBeard"
+      ]
+    },
+    {
+      "keywords": [
+        "forked"
+      ],
+      "male": [
+        "FrenchForkBeard"
+      ]
+    },
+    {
+      "keywords": [
+        "chin goatee",
+        "goatee"
+      ],
+      "male": [
+        "LightGoatee",
+        "ChinGoatee"
+      ]
+    },
+    {
+      "keywords": [
+        "chin strap"
+      ],
+      "male": [
+        "CircleBeard",
+        "BeardWithShavedCheeks"
+      ]
+    },
+    {
+      "keywords": [
+        "pointy"
+      ],
+      "male": [
+        "PointedShortBeard",
+        "VanDykeBeard"
+      ]
+    },
+    {
+      "keywords": [
+        "handlebar",
+        "moustache",
+        "mustache"
+      ],
+      "male": [
+        "WaxedMustache",
+        "DroopyMustache"
+      ],
+      "exclude": [
+        "beard",
+        "goatee"
+      ]
+    },
+    {
+      "keywords": [
+        "short",
+        "low",
+        "well-kept",
+        "stylish",
+        "scholar"
+      ],
+      "male": [
+        "LightShortBeard",
+        "TrimmedDutch"
+      ]
+    },
+    {
+      "keywords": [
+        "full",
+        "standard",
+        "curly",
+        "caballero",
+        "groomed"
+      ],
+      "male": [
+        "HeavyShortBeard",
+        "MediumDutch"
+      ]
+    }
+  ],
+  "beard_default": {
+    "male": [
+      "LightShortBeard"
+    ]
+  },
+  "balding": {
+    "comment": "gene_balding_hair_effect (portraits) or gene_baldness strength vs age (derived): stage 2 = tonsure-like crown",
+    "baldness_stage_1": {
+      "male": []
+    },
+    "baldness_stage_2": {
+      "male": [
+        "Monk Hair"
+      ]
+    }
+  },
+  "beard_chance": {
+    "comment": "01_beards_base.txt: has_no_beard base 30 vs culture beard +70; no beard under 18",
+    "beard": 0.7,
+    "min_age": 18
+  }
+}

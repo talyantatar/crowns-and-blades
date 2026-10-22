@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  In-engine title card and result footer (CK3HandoffView, mission layer 300 above the black CK3Backdrop at 299). The card
+  block is the same prefab as on the loading card. The layer is faded with GauntletLayer.UIContext.ContextAlpha, which
+  text honours (TextWidget.OnRender). Nothing here accepts input. The footer sits at the bottom centre, below the
+  scoreboard's Done button (its 107 px control strip centres a 50 px button). Data source: CK3CardVM.
+-->
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" DoNotUseCustomScaleAndChildren="true">
+      <Children>
+        <CK3CardBlock />
+
+        <Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="2" Sprite="BlankWhiteSquare_9" Color="#000000FF" AlphaFactor="0.55" DoNotAcceptEvents="true" IsVisible="@IsFooterVisible">
+          <Children>
+            <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="28" MarginRight="28" MarginTop="3" MarginBottom="3" Brush="CK3.Card.Footer" Text="@Footer" />
+          </Children>
+        </Widget>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

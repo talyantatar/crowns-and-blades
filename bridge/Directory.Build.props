@@ -1,0 +1,27 @@
+<Project>
+  <!--
+    Shared by every project under bridge/. A Directory.Build.props further up (repository root) is imported first, so settings made
+    there still apply; the values below are the bridge's own.
+  -->
+  <PropertyGroup>
+    <_CK3xBLParentProps>$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..'))</_CK3xBLParentProps>
+  </PropertyGroup>
+  <Import Project="$(_CK3xBLParentProps)" Condition="'$(_CK3xBLParentProps)' != ''" />
+
+  <PropertyGroup>
+    <!-- The release version. Keep CK3xBL.Core/BridgeVersion.cs (Mod, Module), ck3_mod/ck3xbl/descriptor.mod and
+         bannerlord_module/CK3Bridge/SubModule.xml in step; the self test release.versions_agree checks them. -->
+    <VersionPrefix>0.9.0</VersionPrefix>
+    <VersionSuffix>beta</VersionSuffix>
+    <Authors>TaLyAn</Authors>
+    <Company>TaLyAn</Company>
+    <Product>Crowns &amp; Blades</Product>
+    <Copyright>Copyright (c) 2026 TaLyAn</Copyright>
+
+    <!-- Reproducible binaries that never carry the build machine's folders: the PDB path in each DLL's debug directory and the
+         source paths in the PDB become /_/... instead of the checkout location. -->
+    <Deterministic>true</Deterministic>
+    <PathMap Condition="'$(PathMap)' == ''">$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)', '..'))=/_/</PathMap>
+    <ContinuousIntegrationBuild Condition="'$(ContinuousIntegrationBuild)' == '' and '$(Configuration)' == 'Release'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+</Project>

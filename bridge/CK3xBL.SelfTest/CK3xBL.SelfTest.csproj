@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CK3xBL.SelfTest</RootNamespace>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>CS8618;CS8601;CS8602;CS8603;CS8604;CS8625</NoWarn>
+    <OutputType>Exe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CK3xBL.Core\CK3xBL.Core.csproj" />
+    <ProjectReference Include="..\CK3xBL.Mapping\CK3xBL.Mapping.csproj" />
+    <ProjectReference Include="..\CK3xBL.Appearance\CK3xBL.Appearance.csproj" />
+    <ProjectReference Include="..\CK3xBL.Ux\CK3xBL.Ux.csproj" />
+  </ItemGroup>
+</Project>

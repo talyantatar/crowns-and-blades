@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The CK3 title card: title, gold rule, subtitle, detail, flanked by the two coats of arms (player left, enemy right).
+  Embedded by CK3LoadingWindow.xml and CK3TitleCard.xml, so the loading card and the in-engine card are pixel-identical.
+  Layout in Gauntlet's 1920x1080 reference: the title's centre sits at 40% of the height (top 392 + about half of the
+  81 px Galahad line at size 72), as on the bridge's overlay card. Data source: CK3CardVM.
+  Width: the text column is 820 units (long titles wrap inside it) and each coat (190) sits 30 units from it, so the coat
+  centres are at +-(410 + 30 + 95) = +-535 units and their outer edges at +-630, clear of the Order of Battle formation lists
+  (15..315 units from each screen edge, Native OrderOfBattle.xml) and of the title (PROTOCOL.md §13.6).
+-->
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true" IsVisible="@IsCardVisible">
+      <Children>
+        <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" MarginTop="392" DoNotAcceptEvents="true" StackLayout.LayoutMethod="HorizontalLeftToRight">
+          <Children>
+
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="190" VerticalAlignment="Center" MarginRight="30" DoNotAcceptEvents="true" IsVisible="@HasCoats">
+              <Children>
+                <TextureWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true" TextureProviderName="@PlayerCoaProvider" />
+              </Children>
+            </Widget>
+
+            <ListPanel WidthSizePolicy="Fixed" HeightSizePolicy="CoverChildren" SuggestedWidth="820" VerticalAlignment="Top" DoNotAcceptEvents="true" StackLayout.LayoutMethod="VerticalTopToBottom">
+              <Children>
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Brush="CK3.Card.Title" Text="@Title" />
+                <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="560" SuggestedHeight="2" HorizontalAlignment="Center" MarginTop="14" Sprite="BlankWhiteSquare_9" Color="#D9B76BFF" AlphaFactor="0.6" />
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="16" Brush="CK3.Card.Subtitle" Text="@Subtitle" IsVisible="@HasSubtitle" />
+                <TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="8" Brush="CK3.Card.Detail" Text="@Detail" IsVisible="@HasDetail" />
+              </Children>
+            </ListPanel>
+
+            <Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="190" SuggestedHeight="190" VerticalAlignment="Center" MarginLeft="30" DoNotAcceptEvents="true" IsVisible="@HasCoats">
+              <Children>
+                <TextureWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" DoNotAcceptEvents="true" TextureProviderName="@EnemyCoaProvider" />
+              </Children>
+            </Widget>
+
+          </Children>
+        </ListPanel>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

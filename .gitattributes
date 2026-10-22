@@ -1,0 +1,7 @@
+# Store every file exactly as it is, with no line-ending conversion on any platform. The CK3 mod files are generated
+# with CRLF line endings and a UTF-8 BOM, and the generator check (node tools/gen/gen_ck3_mod.mjs --check) and several
+# tests compare exact bytes, so a checkout must be byte-identical to what was committed.
+* -text
+*.jpg binary
+*.png binary
+*.ico binary

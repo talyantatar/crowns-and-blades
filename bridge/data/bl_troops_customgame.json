@@ -1,0 +1,3966 @@
+[
+ {
+  "id": "aserai_recruit",
+  "name": "Aserai Recruit",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 6,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_tribesman",
+   "aserai_mameluke_soldier"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_tribesman",
+  "name": "Aserai Tribesman",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_skirmisher",
+   "aserai_footman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_footman",
+  "name": "Aserai Footman",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_infantry"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_skirmisher",
+  "name": "Aserai Light Archer",
+  "culture": "aserai",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_archer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_archer",
+  "name": "Aserai Archer",
+  "culture": "aserai",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_master_archer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_master_archer",
+  "name": "Aserai Master Archer",
+  "culture": "aserai",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_infantry",
+  "name": "Aserai Infantry",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_veteran_infantry"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_veteran_infantry",
+  "name": "Aserai Veteran Infantry",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_mameluke_soldier",
+  "name": "Aserai Mamluke Soldier",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_mameluke_regular",
+   "aserai_mameluke_axeman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_mameluke_regular",
+  "name": "Aserai Mamluke Regular",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_mameluke_cavalry"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_mameluke_cavalry",
+  "name": "Aserai Mamluke Cavalry",
+  "culture": "aserai",
+  "group": "horsearcher",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_mameluke_heavy_cavalry"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_mameluke_heavy_cavalry",
+  "name": "Aserai Mamluke Heavy Cavalry",
+  "culture": "aserai",
+  "group": "horsearcher",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_mameluke_axeman",
+  "name": "Aserai Mamluke Axeman",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_mameluke_guard"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_mameluke_guard",
+  "name": "Aserai Mamluke Guard",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "mamluke_palace_guard"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "mamluke_palace_guard",
+  "name": "Aserai Mamluke Palace Guard",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_youth",
+  "name": "Aserai Youth",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_tribal_horseman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_tribal_horseman",
+  "name": "Aserai Tribal Horseman",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_faris"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_faris",
+  "name": "Aserai Faris",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_veteran_faris"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_veteran_faris",
+  "name": "Aserai Veteran Faris",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "aserai_vanguard_faris"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_vanguard_faris",
+  "name": "Aserai Vanguard Faris",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 31,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_volunteer",
+  "name": "Battanian Volunteer",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 6,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_clanwarrior",
+   "battanian_woodrunner"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_clanwarrior",
+  "name": "Battanian Clan Warrior",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_trained_warrior"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_trained_warrior",
+  "name": "Battanian Trained Warrior",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_picked_warrior",
+   "battanian_scout"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_picked_warrior",
+  "name": "Battanian Picked Warrior",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_oathsworn"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_oathsworn",
+  "name": "Battanian Oathsworn",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_scout",
+  "name": "Battanian Scout",
+  "culture": "battania",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_horseman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_mounted_skirmisher",
+  "name": "Battanian Mounted Skirmisher",
+  "culture": "battania",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_horseman",
+  "name": "Battanian Horseman",
+  "culture": "battania",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_woodrunner",
+  "name": "Battanian Wood Runner",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_raider",
+   "battanian_skirmisher"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_raider",
+  "name": "Battanian Raider",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_falxman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_skirmisher",
+  "name": "Battanian Skirmisher",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_veteran_skirmisher"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_wildling",
+  "name": "Battanian Wildling",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_falxman",
+  "name": "Battanian Falxman",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_veteran_falxman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_veteran_skirmisher",
+  "name": "Battanian Veteran Skirmisher",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_wildling",
+   "battanian_mounted_skirmisher"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_veteran_falxman",
+  "name": "Battanian Veteran Falxman",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_highborn_youth",
+  "name": "Battanian Highborn Youth",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_highborn_warrior"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_highborn_warrior",
+  "name": "Battanian Highborn Warrior",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_hero"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_hero",
+  "name": "Battanian Hero",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_fian"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_fian",
+  "name": "Battanian Fian",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "battanian_fian_champion"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_fian_champion",
+  "name": "Battanian Fian Champion",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 31,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_recruit",
+  "name": "Imperial Recruit",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 6,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_infantryman",
+   "imperial_archer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_infantryman",
+  "name": "Imperial Infantryman",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_trained_infantryman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_vigla_recruit",
+  "name": "Imperial Vigla Recruit",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_equite"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_equite",
+  "name": "Imperial Equite",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_heavy_horseman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_heavy_horseman",
+  "name": "Imperial Heavy Horseman",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_cataphract"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_cataphract",
+  "name": "Imperial Cataphract",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_elite_cataphract"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_elite_cataphract",
+  "name": "Imperial Elite Cataphract",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": 31,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_trained_infantryman",
+  "name": "Imperial Trained Infantryman",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_veteran_infantryman",
+   "imperial_menavliaton"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_veteran_infantryman",
+  "name": "Imperial Veteran Infantryman",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_legionary"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_legionary",
+  "name": "Imperial Legionary",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_archer",
+  "name": "Imperial Archer",
+  "culture": "empire",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_trained_archer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "bucellarii",
+  "name": "Imperial Bucellarii",
+  "culture": "empire",
+  "group": "horsearcher",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_trained_archer",
+  "name": "Imperial Trained Archer",
+  "culture": "empire",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_veteran_archer",
+   "imperial_crossbowman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_veteran_archer",
+  "name": "Imperial Veteran Archer",
+  "culture": "empire",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_palatine_guard",
+   "bucellarii"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_palatine_guard",
+  "name": "Imperial Palatine Guard",
+  "culture": "empire",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_menavliaton",
+  "name": "Imperial Menavliaton",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_elite_menavliaton"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_elite_menavliaton",
+  "name": "Imperial Elite Menavliaton",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_crossbowman",
+  "name": "Imperial Crossbowman",
+  "culture": "empire",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "imperial_sergeant_crossbowman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_sergeant_crossbowman",
+  "name": "Imperial Sergeant Crossbowman",
+  "culture": "empire",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_nomad",
+  "name": "Khuzait Nomad",
+  "culture": "khuzait",
+  "group": "infantry",
+  "level": 6,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_tribal_warrior",
+   "khuzait_footman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_footman",
+  "name": "Khuzait Footman",
+  "culture": "khuzait",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_hunter",
+   "khuzait_spearman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_tribal_warrior",
+  "name": "Khuzait Tribal Warrior",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_raider",
+   "khuzait_horseman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_hunter",
+  "name": "Khuzait Hunter",
+  "culture": "khuzait",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_archer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_spearman",
+  "name": "Khuzait Spearman",
+  "culture": "khuzait",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_spear_infantry"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_raider",
+  "name": "Khuzait Raider",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_horse_archer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_horseman",
+  "name": "Khuzait Horseman",
+  "culture": "khuzait",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_lancer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_qanqli",
+  "name": "Khuzait Qanqli",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_torguud"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_archer",
+  "name": "Khuzait Archer",
+  "culture": "khuzait",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_marksman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_spear_infantry",
+  "name": "Khuzait Spear Infantry",
+  "culture": "khuzait",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_darkhan"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_horse_archer",
+  "name": "Khuzait Horse Archer",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_heavy_horse_archer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_lancer",
+  "name": "Khuzait Lancer",
+  "culture": "khuzait",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_heavy_lancer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_torguud",
+  "name": "Khuzait Torguud",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_kheshig"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_marksman",
+  "name": "Khuzait Marksman",
+  "culture": "khuzait",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_darkhan",
+  "name": "Khuzait Darkhan",
+  "culture": "khuzait",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_heavy_horse_archer",
+  "name": "Khuzait Heavy Horse Archer",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_heavy_lancer",
+  "name": "Khuzait Heavy Lancer",
+  "culture": "khuzait",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_kheshig",
+  "name": "Khuzait Kheshig",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "khuzait_khans_guard"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_khans_guard",
+  "name": "Khuzait Khan's Guard",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 31,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_recruit",
+  "name": "Sturgian Recruit",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 6,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_warrior",
+   "sturgian_woodsman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_warrior",
+  "name": "Sturgian Warrior",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_soldier"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_soldier",
+  "name": "Sturgian Soldier",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_spearman",
+   "sturgian_berzerker"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_shock_troop",
+  "name": "Sturgian Heavy Spearman",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_veteran_warrior",
+  "name": "Sturgian Heavy Axeman",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_warrior_son",
+  "name": "Sturgian Otrok",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "varyag"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "varyag",
+  "name": "Varyag",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "varyag_veteran"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "varyag_veteran",
+  "name": "Varyag Veteran",
+  "culture": "sturgia",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "druzhinnik"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "druzhinnik",
+  "name": "Sturgian Druzhinnik",
+  "culture": "sturgia",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "druzhinnik_champion"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "druzhinnik_champion",
+  "name": "Sturgian Druzhinnik Champion",
+  "culture": "sturgia",
+  "group": "cavalry",
+  "level": 31,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_woodsman",
+  "name": "Sturgian Woodsman",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_brigand",
+   "sturgian_hunter"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_hunter",
+  "name": "Sturgian Hunter",
+  "culture": "sturgia",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_archer"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_archer",
+  "name": "Sturgian Archer",
+  "culture": "sturgia",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_veteran_bowman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_veteran_bowman",
+  "name": "Sturgian Veteran Bowman",
+  "culture": "sturgia",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_brigand",
+  "name": "Sturgian Brigand",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_hardened_brigand"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_hardened_brigand",
+  "name": "Sturgian Hardened Brigand",
+  "culture": "sturgia",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_horse_raider"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_horse_raider",
+  "name": "Sturgian Horse Raider",
+  "culture": "sturgia",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_berzerker",
+  "name": "Sturgian Line Breaker",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_ulfhednar"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_spearman",
+  "name": "Sturgian Spearman",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sturgian_shock_troop",
+   "sturgian_veteran_warrior"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_ulfhednar",
+  "name": "Sturgian Heroic Line Breaker",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_recruit",
+  "name": "Vlandian Recruit",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 6,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_levy_crossbowman",
+   "vlandian_footman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_footman",
+  "name": "Vlandian Footman",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_spearman",
+   "vlandian_light_cavalry"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_spearman",
+  "name": "Vlandian Spearman",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_billman",
+   "vlandian_swordsman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_billman",
+  "name": "Vlandian Billman",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_voulgier",
+   "vlandian_pikeman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_voulgier",
+  "name": "Vlandian Voulgier",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_pikeman",
+  "name": "Vlandian Pikeman",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_infantry",
+  "name": "Vlandian Infantry",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_swordsman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_swordsman",
+  "name": "Vlandian Swordsman",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_sergeant"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_sergeant",
+  "name": "Vlandian Sergeant",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_light_cavalry",
+  "name": "Vlandian Light Cavalry",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_cavalry"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_cavalry",
+  "name": "Vlandian Cavalry",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_vanguard"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_vanguard",
+  "name": "Vlandian Vanguard",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_levy_crossbowman",
+  "name": "Vlandian Levy Crossbowman",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_crossbowman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_crossbowman",
+  "name": "Vlandian Crossbowman",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_hardened_crossbowman"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_hardened_crossbowman",
+  "name": "Vlandian Hardened Crossbowman",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_sharpshooter"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_sharpshooter",
+  "name": "Vlandian Sharpshooter",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_squire",
+  "name": "Vlandian Squire",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_gallant"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_gallant",
+  "name": "Vlandian Gallant",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_knight"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_knight",
+  "name": "Vlandian Knight",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_champion"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_champion",
+  "name": "Vlandian Champion",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": 26,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "vlandian_banner_knight"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_banner_knight",
+  "name": "Vlandian Banner Knight",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": 31,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "ghilman_tier_1",
+  "name": "Koleman",
+  "culture": "darshi",
+  "group": "cavalry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "ghilman_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "ghilman_tier_2",
+  "name": "Ghilman",
+  "culture": "darshi",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "ghilman_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "ghilman_tier_3",
+  "name": "Ghulam",
+  "culture": "darshi",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "legion_of_the_betrayed_tier_1",
+  "name": "Hastati",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "legion_of_the_betrayed_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "legion_of_the_betrayed_tier_2",
+  "name": "Principes",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "legion_of_the_betrayed_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "legion_of_the_betrayed_tier_3",
+  "name": "Triarii",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "skolderbrotva_tier_1",
+  "name": "Skolder Recruit",
+  "culture": "nord",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "skolderbrotva_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "skolderbrotva_tier_2",
+  "name": "Skolder Warrior Broda",
+  "culture": "nord",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "skolderbrotva_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "skolderbrotva_tier_3",
+  "name": "Skolder Veteran Broda",
+  "culture": "nord",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)",
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "company_of_the_boar_tier_1",
+  "name": "Boar Novice",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "company_of_the_boar_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "company_of_the_boar_tier_2",
+  "name": "Boar Veteran",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "company_of_the_boar_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "company_of_the_boar_tier_3",
+  "name": "Boar Champion",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "beni_zilal_tier_1",
+  "name": "Beni Zilal Recruit",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "beni_zilal_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "beni_zilal_tier_2",
+  "name": "Beni Zilal Soldier",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 5,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "beni_zilal_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "beni_zilal_tier_3",
+  "name": "Beni Zilal Royal Guard",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "wolfskins_tier_1",
+  "name": "Young Wolf",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "wolfskins_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "wolfskins_tier_2",
+  "name": "Seasoned Wolf",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "wolfskins_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "wolfskins_tier_3",
+  "name": "Chosen Wolf",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "battania_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "hidden_hand_tier_1",
+  "name": "Hidden Pawn",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [],
+  "upgrade_targets": [
+   "hidden_hand_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "hidden_hand_tier_2",
+  "name": "Hidden Soldati",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [],
+  "upgrade_targets": [
+   "hidden_hand_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "hidden_hand_tier_3",
+  "name": "Puppeteer",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "lakepike_tier_1",
+  "name": "Lake Rat Recruit",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "lakepike_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "lakepike_tier_2",
+  "name": "Lake Rat Veteran",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "lakepike_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "lakepike_tier_3",
+  "name": "Lake Rat Wrecker ",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "brotherhood_of_woods_tier_1",
+  "name": "Sprout",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "brotherhood_of_woods_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "brotherhood_of_woods_tier_2",
+  "name": "Sapling",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "brotherhood_of_woods_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "brotherhood_of_woods_tier_3",
+  "name": "Arboreal",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "embers_of_flame_tier_1",
+  "name": "Spark",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "embers_of_flame_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "embers_of_flame_tier_2",
+  "name": "Flame",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "embers_of_flame_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "embers_of_flame_tier_3",
+  "name": "Blaze",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "jawwal_tier_1",
+  "name": "Jawwal Recruit",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 5,
+  "equipment_sets": [],
+  "upgrade_targets": [
+   "jawwal_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "jawwal_tier_2",
+  "name": "Jawwal Camel Rider",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [
+   "jawwal_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "jawwal_tier_3",
+  "name": "Jawwal Bedouin",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "aserai_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "karakhuzaits_tier_1",
+  "name": "Karakhergit Nomad",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [
+   "karakhuzaits_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "karakhuzaits_tier_2",
+  "name": "Karakhergit Rider",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 2,
+  "equipment_sets": [],
+  "upgrade_targets": [
+   "karakhuzaits_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "karakhuzaits_tier_3",
+  "name": "Karakhergit Elder",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 2,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "forest_people_tier_1",
+  "name": "Recruit Forester",
+  "culture": "vakken",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "forest_people_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "forest_people_tier_2",
+  "name": "Expert Forester",
+  "culture": "vakken",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "forest_people_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "forest_people_tier_3",
+  "name": "Veteran Forester",
+  "culture": "vakken",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "eleftheroi_tier_1",
+  "name": "Recruit Eleftheroi",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 2,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t1(Civilian)"
+  ],
+  "upgrade_targets": [
+   "eleftheroi_tier_2"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "eleftheroi_tier_2",
+  "name": "Expert Eleftheroi",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "eleftheroi_tier_3"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "eleftheroi_tier_3",
+  "name": "Veteran Eleftheroi",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": 21,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sword_sisters_sister_t3",
+  "name": "Sisterhood Follower",
+  "culture": "neutral_culture",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": true,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sword_sisters_sister_t4"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sword_sisters_sister_t4",
+  "name": "Sword Sister",
+  "culture": "neutral_culture",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": true,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "sword_sisters_sister_t5",
+   "sword_sisters_sister_infantry_t5"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sword_sisters_sister_t5",
+  "name": "Gallant Sword Sister",
+  "culture": "neutral_culture",
+  "group": "horsearcher",
+  "level": 26,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": true,
+  "has_horse": true,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sword_sisters_sister_infantry_t5",
+  "name": "Veteran Sword Sister",
+  "culture": "neutral_culture",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": true,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "eastern_mercenary",
+  "name": "Sellsword",
+  "culture": "neutral_culture",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "eastern_mounted_mercenary_t4",
+   "eastern_mercenary_t4"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "eastern_mercenary_t4",
+  "name": "Mercenary Maceman",
+  "culture": "neutral_culture",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "eastern_mercenary_t5"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "eastern_mercenary_t5",
+  "name": "Elite Mercenary Maceman",
+  "culture": "neutral_culture",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "khuzait_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "eastern_mounted_mercenary_t4",
+  "name": "Outrider",
+  "culture": "neutral_culture",
+  "group": "horsearcher",
+  "level": 21,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 4,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "eastern_mounted_mercenary_t5"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "eastern_mounted_mercenary_t5",
+  "name": "Veteran Outrider",
+  "culture": "neutral_culture",
+  "group": "horsearcher",
+  "level": 26,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "sturgia_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "western_mercenary",
+  "name": "Hired Spear",
+  "culture": "neutral_culture",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "western_mercenary_t4",
+   "western_crossbow_t4"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "western_mercenary_t4",
+  "name": "Hired Pike",
+  "culture": "neutral_culture",
+  "group": "infantry",
+  "level": 21,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [
+   "western_mercenary_t5"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "western_mercenary_t5",
+  "name": "Hired Elite Pike",
+  "culture": "neutral_culture",
+  "group": "infantry",
+  "level": 26,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "vlandia_troop_civilian_template_t2(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "western_crossbow_t4",
+  "name": "Hired Crossbow",
+  "culture": "neutral_culture",
+  "group": "ranged",
+  "level": 21,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [
+   "western_crossbow_t5"
+  ],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "western_crossbow_t5",
+  "name": "Elite Hired Crossbow",
+  "culture": "neutral_culture",
+  "group": "ranged",
+  "level": 26,
+  "occupation": "Mercenary",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [
+   "empire_troop_civilian_template_t3(Civilian)"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "merchant_empire",
+  "name": "Trader",
+  "culture": "empire",
+  "group": "infantry",
+  "level": null,
+  "occupation": "GoodsTrader",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 3,
+  "equipment_sets": [
+   "npc_wanderer_equipment_template_empire"
+  ],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_militia_archer",
+  "name": "Aserai Militia Archer",
+  "culture": "aserai",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_militia_veteran_archer",
+  "name": "Aserai Militia Veteran Archer",
+  "culture": "aserai",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_militia_spearman",
+  "name": "Aserai Militia Spearman",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "aserai_militia_veteran_spearman",
+  "name": "Aserai Militia Veteran Spearman",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_militia_archer",
+  "name": "Vlandian Militia Crossbowman",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_militia_veteran_archer",
+  "name": "Vlandian Militia Veteran Crossbowman",
+  "culture": "vlandia",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_militia_spearman",
+  "name": "Vlandian Militia Spearman",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "vlandian_militia_veteran_spearman",
+  "name": "Vlandian Militia Veteran Spearman",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_militia_archer",
+  "name": "Battanian Militia Archer",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_militia_veteran_archer",
+  "name": "Battanian Militia Veteran Archer",
+  "culture": "battania",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_militia_spearman",
+  "name": "Battanian Militia Spearman",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "battanian_militia_veteran_spearman",
+  "name": "Battanian Militia Veteran Spearman",
+  "culture": "battania",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_militia_archer",
+  "name": "Imperial Militia Archer",
+  "culture": "empire",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_militia_veteran_archer",
+  "name": "Imperial Militia Veteran Archer",
+  "culture": "empire",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_militia_spearman",
+  "name": "Imperial Militia Spearman",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "imperial_militia_veteran_spearman",
+  "name": "Imperial Militia Veteran Spearman",
+  "culture": "empire",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_militia_archer",
+  "name": "Sturgian Militia Archer",
+  "culture": "sturgia",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_militia_veteran_archer",
+  "name": "Sturgian Militia Veteran Archer",
+  "culture": "sturgia",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_militia_spearman",
+  "name": "Sturgian Militia Spearman",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "sturgian_militia_veteran_spearman",
+  "name": "Sturgian Militia Veteran Spearman",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_militia_archer",
+  "name": "Khuzait Militia Archer",
+  "culture": "khuzait",
+  "group": "ranged",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_militia_veteran_archer",
+  "name": "Khuzait Militia Veteran Archer",
+  "culture": "khuzait",
+  "group": "ranged",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_militia_spearman",
+  "name": "Khuzait Militia Spearman",
+  "culture": "khuzait",
+  "group": "infantry",
+  "level": 11,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "khuzait_militia_veteran_spearman",
+  "name": "Khuzait Militia Veteran Spearman",
+  "culture": "khuzait",
+  "group": "infantry",
+  "level": 16,
+  "occupation": "Soldier",
+  "is_hero": false,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 4,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "SandBoxCore/ModuleData/spnpccharacters.xml"
+ },
+ {
+  "id": "commander_1",
+  "name": "Arcor",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_2",
+  "name": "Elthild",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": true,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_3",
+  "name": "Temun",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_4",
+  "name": "Carfyd",
+  "culture": "battania",
+  "group": "ranged",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_5",
+  "name": "Ratagost",
+  "culture": "sturgia",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_6",
+  "name": "Eren",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 2,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_7",
+  "name": "Monchug",
+  "culture": "khuzait",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_8",
+  "name": "Gastond",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_9",
+  "name": "Nuqar",
+  "culture": "aserai",
+  "group": "infantry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_10",
+  "name": "Belarn",
+  "culture": "battania",
+  "group": "infantry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_11",
+  "name": "Nylia",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": true,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_12",
+  "name": "Arentor",
+  "culture": "sturgia",
+  "group": "infantry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_13",
+  "name": "Crotor",
+  "culture": "empire",
+  "group": "horsearcher",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_14",
+  "name": "Alary",
+  "culture": "vlandia",
+  "group": "infantry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_15",
+  "name": "Gusukan",
+  "culture": "khuzait",
+  "group": "horsearcher",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_16",
+  "name": "Beathag",
+  "culture": "battania",
+  "group": "ranged",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": true,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_17",
+  "name": "Yorig",
+  "culture": "sturgia",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_18",
+  "name": "Hashan",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_19",
+  "name": "Chambui",
+  "culture": "khuzait",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": true,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_20",
+  "name": "Ecarand",
+  "culture": "vlandia",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_21",
+  "name": "Karith",
+  "culture": "aserai",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_22",
+  "name": "Fiarad",
+  "culture": "battania",
+  "group": "infantry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": false,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_23",
+  "name": "Aesos",
+  "culture": "empire",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": true,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ },
+ {
+  "id": "commander_24",
+  "name": "Vashorki",
+  "culture": "sturgia",
+  "group": "cavalry",
+  "level": null,
+  "occupation": "Lord",
+  "is_hero": true,
+  "is_female": false,
+  "has_horse": true,
+  "equipment_rosters": 1,
+  "equipment_sets": [],
+  "upgrade_targets": [],
+  "source": "CustomBattle/ModuleData/custombattlecharacters.xml"
+ }
+]

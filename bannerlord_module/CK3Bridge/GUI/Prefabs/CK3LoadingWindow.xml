@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Replaces the stock LoadingWindow.xml for CK3LoadingWindowManager: black, with the battle's title card while a battle
+  loads or is held, plain black otherwise (boot, return to idle). Root visibility follows the manager (IsActive), the
+  root swallows input like the stock window (DoNotPassEventsToChildren). Custom UI scale is ignored, as in the stock
+  loading window and in CK3TitleCard.xml, so both cards keep the same size. Data source: CK3CardVM.
+-->
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Color="#000000FF" DoNotAcceptEvents="false" DoNotPassEventsToChildren="true" DoNotUseCustomScaleAndChildren="true" IsVisible="@IsActive">
+      <Children>
+        <CK3CardBlock />
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

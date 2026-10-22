@@ -1,0 +1,84 @@
+﻿# The battle clock's events (docs/PROTOCOL.md 14). All hidden; root = a player.
+#   0001 the daily pulse of every steered combat
+#   0002 the fix: the end state of a steered battle, one day after its combat ended or was handed back
+#   0003 opens the summary window ck3xbl_battle.0003 of a steered battle, one window at a time
+
+namespace = ck3xbl_clock
+
+# One chain serves every steered combat. A chain whose id is not the current one stops (re-armed after the player changed, or
+# after a load lost the delayed event). Each steered army leads to its combat (once per pulse); an army whose battle has no army
+# in combat any more arms the fix. The chain stops when no army is steered. Every pulse first drops all saved scopes it inherited
+# but scope:ck3xbl_chain (generated ck3xbl_st_clear_carried_scopes_effect), so its ST dumps hold only the battle clock's keys.
+ck3xbl_clock.0001 = {
+	type = character_event
+	hidden = yes
+	trigger = {
+		exists = scope:ck3xbl_chain
+		has_global_variable = ck3xbl_clock_chain
+		scope:ck3xbl_chain = global_var:ck3xbl_clock_chain
+	}
+	immediate = {
+		ck3xbl_st_clear_carried_scopes_effect = yes
+		ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_clock_tick }
+		set_global_variable = { name = ck3xbl_clock_alive value = 1 days = 3 }
+		save_scope_value_as = { name = ck3xbl_st_any value = 0 }
+		every_in_global_list = {
+			variable = ck3xbl_armies
+			limit = { has_variable = ck3xbl_st_bid }
+			save_scope_value_as = { name = ck3xbl_st_any value = 1 }
+			if = {
+				limit = { is_army_in_combat = yes }
+				involved_combat_side = {
+					combat = { ck3xbl_st_pulse_tick_effect = yes }
+				}
+			}
+			else = { ck3xbl_st_arm_fix_if_gone_effect = yes }
+		}
+		ck3xbl_st_fix_backstop_effect = yes
+		if = {
+			limit = { scope:ck3xbl_st_any = 1 }
+			trigger_event = { id = ck3xbl_clock.0001 days = 1 }
+		}
+		else = {
+			set_global_variable = { name = ck3xbl_clock_running value = 0 }
+		}
+	}
+}
+
+# scope:ck3xbl_st_cur_bid = the steering bid whose fix was armed (ck3xbl_st_arm_fix_effect).
+ck3xbl_clock.0002 = {
+	type = character_event
+	hidden = yes
+	immediate = {
+		ck3xbl_st_drop_carried_scopes_effect = yes
+		ck3xbl_st_fix_effect = yes
+	}
+}
+
+# root = the player of a steered battle; scope:ck3xbl_sum_* (values) and scope:ck3xbl_prov / scope:ck3xbl_enemy_leader from the
+# fix. While another summary window is open (ck3xbl_res_showing) it waits a day, at most 30 times; then the player's ck3xbl_res_*
+# take this battle's numbers and 0003 opens.
+ck3xbl_clock.0003 = {
+	type = character_event
+	hidden = yes
+	immediate = {
+		ck3xbl_st_drop_carried_scopes_effect = yes
+		if = {
+			limit = { has_variable = ck3xbl_res_showing }
+			if = {
+				limit = { scope:ck3xbl_sum_tries < 30 }
+				save_scope_value_as = { name = ck3xbl_sum_tries value = { value = scope:ck3xbl_sum_tries add = 1 } }
+				trigger_event = { id = ck3xbl_clock.0003 days = 1 }
+			}
+		}
+		else = {
+			set_variable = { name = ck3xbl_res_outcome value = scope:ck3xbl_sum_outcome }
+			set_variable = { name = ck3xbl_res_my_lost value = scope:ck3xbl_sum_my_lost }
+			set_variable = { name = ck3xbl_res_enemy_lost value = scope:ck3xbl_sum_enemy_lost }
+			set_variable = { name = ck3xbl_res_my_kills value = scope:ck3xbl_sum_my_kills }
+			set_variable = { name = ck3xbl_res_won value = scope:ck3xbl_sum_won }
+			set_variable = { name = ck3xbl_res_showing value = 1 days = 30 }
+			trigger_event = ck3xbl_battle.0003
+		}
+	}
+}

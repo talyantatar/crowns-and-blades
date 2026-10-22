@@ -1,0 +1,41 @@
+﻿# Attack an enemy fleet in Bannerlord (docs/PROTOCOL.md 44): open while the player's army is at sea and an enemy army sails in the
+# same sea province or a neighbouring one. The enemy may slip away first (its commander's martial against the player's).
+ck3xbl_sea_battle_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = ck3xbl_sea_battle_decision_desc
+	selection_tooltip = ck3xbl_sea_battle_decision_tooltip
+	is_shown = {
+		is_ai = no
+		OR = {
+			commanding_army ?= { ck3xbl_sea_fleet_near_foe_trigger = { WHO = root } }
+			any_army = { ck3xbl_sea_fleet_near_foe_trigger = { WHO = root } }
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		ck3xbl_skirmish_available_trigger = yes
+	}
+	effect = {
+		if = {
+			limit = { commanding_army ?= { ck3xbl_sea_fleet_near_foe_trigger = { WHO = root } } }
+			commanding_army = { save_scope_as = ck3xbl_sea_mine }
+		}
+		else = {
+			ordered_army = {
+				limit = { ck3xbl_sea_fleet_near_foe_trigger = { WHO = root } }
+				order_by = army_size
+				save_scope_as = ck3xbl_sea_mine
+			}
+		}
+		custom_tooltip = ck3xbl_sea_battle_decision_effect_tt
+		hidden_effect = {
+			ck3xbl_sea_find_foe_effect = yes
+			if = {
+				limit = { exists = scope:ck3xbl_sea_theirs }
+				ck3xbl_sea_attack_effect = yes
+			}
+		}
+	}
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}

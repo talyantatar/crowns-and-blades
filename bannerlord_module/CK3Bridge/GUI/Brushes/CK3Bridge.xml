@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Text brushes of the CK3 title card (GUI/Prefabs/CK3CardBlock.xml) and result footer. Fonts are the game's own Galahad
+  and FiraSansExtraCondensed (GUI/GauntletUI/Fonts). Colours follow the bridge's overlay card so the cross-fade between
+  the two is seamless: title gold #D9B76B, subtitle/detail cream #F4E1C4 (Bannerlord's MPLobby.Loading.SubTitle.Text
+  colour). The thin dark outline keeps the text legible while the battlefield emerges behind it.
+  Brush files are collected by name from every module's GUI/Brushes folder (BrushFactory.LoadBrushes), hence the unique
+  file name and the CK3. prefix.
+-->
+<Brushes>
+  <Brush Name="CK3.Card.Title" Font="Galahad" TextHorizontalAlignment="Center" TextVerticalAlignment="Center">
+    <Layers>
+    </Layers>
+    <Styles>
+      <Style Name="Default" FontColor="#D9B76BFF" FontSize="72" TextGlowColor="#000000FF" TextOutlineColor="#000000CC" TextOutlineAmount="0.1" TextGlowRadius="0" TextBlur="0.6" />
+    </Styles>
+  </Brush>
+
+  <Brush Name="CK3.Card.Subtitle" Font="Galahad" TextHorizontalAlignment="Center" TextVerticalAlignment="Center">
+    <Layers>
+    </Layers>
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="34" TextGlowColor="#000000FF" TextOutlineColor="#000000CC" TextOutlineAmount="0.1" TextGlowRadius="0" TextBlur="0.6" />
+    </Styles>
+  </Brush>
+
+  <Brush Name="CK3.Card.Detail" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center" TextVerticalAlignment="Center">
+    <Layers>
+    </Layers>
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="26" TextAlphaFactor="0.8" TextGlowColor="#000000FF" TextOutlineColor="#000000CC" TextOutlineAmount="0.1" TextGlowRadius="0" TextBlur="0.6" />
+    </Styles>
+  </Brush>
+
+  <Brush Name="CK3.Card.Footer" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center" TextVerticalAlignment="Center">
+    <Layers>
+    </Layers>
+    <Styles>
+      <Style Name="Default" FontColor="#F4E1C4FF" FontSize="24" TextGlowColor="#000000FF" TextOutlineColor="#000000CC" TextOutlineAmount="0.1" TextGlowRadius="0" TextBlur="0.6" />
+    </Styles>
+  </Brush>
+</Brushes>

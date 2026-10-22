@@ -1,0 +1,130 @@
+name: Bug report
+description: Something does not work as described.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please check [Troubleshooting](https://github.com/graff0n/ck3-bannerlord-bridge/blob/main/docs/TROUBLESHOOTING.md) first.
+        For a **security** problem, do not open an issue: see [SECURITY.md](https://github.com/graff0n/ck3-bannerlord-bridge/blob/main/SECURITY.md).
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+      placeholder: |
+        I chose "I will take the field myself!" in the Battle of ..., the title card appeared, then ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: If you can make it happen again, how?
+      placeholder: |
+        1. Start Crowns & Blades
+        2. Launch CK3 from the tray (Normal)
+        3. ...
+
+  - type: input
+    id: version
+    attributes:
+      label: Crowns & Blades version
+      description: Tray menu, About Crowns & Blades...
+      placeholder: 0.9.0-beta
+    validations:
+      required: true
+
+  - type: input
+    id: ck3
+    attributes:
+      label: Crusader Kings III version
+      placeholder: 1.20.0.4
+    validations:
+      required: true
+
+  - type: input
+    id: bannerlord
+    attributes:
+      label: Bannerlord version
+      placeholder: v1.4.8
+    validations:
+      required: true
+
+  - type: dropdown
+    id: store
+    attributes:
+      label: Where are your games from?
+      options:
+        - Steam (both games)
+        - GOG
+        - Epic Games Store
+        - Mixed (say which in the description)
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      options:
+        - Normal (achievements)
+        - Dev mode
+        - CK3 started from the Paradox Launcher
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you install it?
+      options:
+        - Installer (CK3xBL-Setup.exe)
+        - Manual zip
+        - Built from source
+
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 23H2
+
+  - type: textarea
+    id: mods
+    attributes:
+      label: Other CK3 mods in your playset
+      description: Leave empty if there are none.
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: |
+        Tray menu, About Crowns & Blades..., **Copy diagnostics**, and paste it here. It contains the versions, the install
+        checks and the end of the logs, with your Windows user folder masked. If Crowns & Blades does not start at all, write
+        that here instead.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and battle files
+      description: |
+        If you can, attach (drag and drop) `bridge.log` and `bannerlord.log` from `%LOCALAPPDATA%\ck3xbl\`, and for a battle
+        problem that battle's folder from `%LOCALAPPDATA%\ck3xbl\battles\` (zip it first).
+        The raw logs contain folder paths, which can include your Windows user name: look them over before you attach them.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: I read the Troubleshooting page.
+          required: true
+        - label: I searched the existing issues for this problem.
+          required: true

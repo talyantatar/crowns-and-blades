@@ -1,0 +1,113 @@
+﻿# Single combat in Bannerlord (docs/PROTOCOL.md 18), seen by the player:
+#   0001 "Single Combat": fight it in Bannerlord yourself, or let fate (CK3) decide.
+#   0002 "Steel Against Steel": open while the duel is fought in Bannerlord; hosts the keypad widget.
+#   0004 (hidden): the delivered winner fixes CK3's own single combat, which then runs as always.
+# root = the player. The event chain carries the scopes of the setup (scope:sc_*) and of ck3xbl_duel_begin_effect (scope:ck3xbl_*).
+
+namespace = ck3xbl_duel
+
+ck3xbl_duel.0001 = {
+	type = character_event
+	title = ck3xbl_duel.0001.t
+	desc = {
+		desc = ck3xbl_duel.0001.desc
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:ck3xbl_d_fatality = 2 }
+				desc = ck3xbl_duel.0001.desc.deadly
+			}
+			triggered_desc = {
+				trigger = { scope:ck3xbl_d_fatality = 1 }
+				desc = ck3xbl_duel.0001.desc.risky
+			}
+			triggered_desc = {
+				trigger = { scope:ck3xbl_d_fatality = 4 }
+				desc = ck3xbl_duel.0001.desc.practice
+			}
+			desc = ck3xbl_duel.0001.desc.blood
+		}
+	}
+	theme = martial
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = scope:ck3xbl_enemy_leader
+		animation = aggressive_sword
+	}
+
+	option = {	# Fight in Bannerlord (re-checks the field when clicked, as the battle event does).
+		name = ck3xbl_duel.0001.a
+		trigger = { ck3xbl_field_available_trigger = yes }
+		show_as_unavailable = { always = yes }
+		hidden_effect = {
+			if = {
+				limit = { ck3xbl_field_available_trigger = yes }
+				ck3xbl_choose_field_effect = yes
+				trigger_event = ck3xbl_duel.0002
+			}
+			else = { trigger_event = ck3xbl_duel.0001 }
+		}
+	}
+	option = {	# CK3 fights the single combat as always.
+		name = ck3xbl_duel.0001.b
+		hidden_effect = {
+			ck3xbl_choose_auto_effect = yes
+			ck3xbl_duel_to_ck3_effect = yes
+		}
+	}
+}
+
+ck3xbl_duel.0002 = {
+	type = character_event
+	title = ck3xbl_duel.0002.t
+	desc = ck3xbl_duel.0002.desc
+	theme = martial
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = scope:ck3xbl_enemy_leader
+		animation = aggressive_sword
+	}
+	widget = {
+		gui = "ck3xbl_keypad"
+		container = "custom_widgets_container"
+	}
+
+	option = {	# Always clickable (as battle event 0002): before word arrives it simply keeps waiting.
+		name = ck3xbl_duel.0002.a
+		hidden_effect = { trigger_event = ck3xbl_duel.0004 }
+	}
+	option = {	# The bridge or Bannerlord failed: CK3 fights the single combat itself.
+		name = ck3xbl_duel.0002.b
+		trigger = {
+			NOT = { ck3xbl_result_applied_trigger = yes }
+		}
+		hidden_effect = {
+			ck3xbl_abandon_battle_effect = yes
+			ck3xbl_duel_to_ck3_effect = yes
+		}
+	}
+}
+
+# Option a of event 0002: the work runs here, not in the option, so CK3 never walks it for tooltips (as battle event 0004).
+ck3xbl_duel.0004 = {
+	type = character_event
+	hidden = yes
+	immediate = {
+		if = {
+			limit = { ck3xbl_result_ready_trigger = yes }
+			ck3xbl_duel_apply_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_alive = yes
+				NOT = { ck3xbl_result_applied_trigger = yes }
+			}
+			trigger_event = ck3xbl_duel.0002
+		}
+	}
+}

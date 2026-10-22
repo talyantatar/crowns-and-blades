@@ -1,0 +1,1142 @@
+﻿# Battle clock (docs/PROTOCOL.md 14): after a payload 4 apply, CK3's own combat inflicts the
+# Bannerlord dead over the next days, steered by owner modifiers and a daily pulse (events/ck3xbl_clock_events.txt), then the
+# Bannerlord winner wins and the fix sets every army's end state one day after the combat.
+# The constants and the math are generated (ck3xbl_gen_steer_*_effects.txt, common/script_values/ck3xbl_gen_steer_values.txt).
+# scope:ck3xbl_st_cur_bid = the steering bid of the battle being worked on; every entry point sets it first. Numbers that go
+# into a record dump are saved values (save_scope_value_as); combat and side scopes are temporary, so no combat scope ever
+# travels into the next day's pulse, and each is cleared once used (temporary scopes show in later dumps; seen in game).
+#
+# Variables:
+#   combat  ck3xbl_steer (1 decide, 2 hand back, 3 ending, 4 handed back), ck3xbl_st_bid, ck3xbl_st_winner (0/1/2),
+#           ck3xbl_st_parent, ck3xbl_st_days (pulse counter), ck3xbl_st_end_day, ck3xbl_st_end_pulses, ck3xbl_st_tick,
+#           ck3xbl_st_suspended, ck3xbl_st_susp_days, ck3xbl_st_child, ck3xbl_clash, the day markers ck3xbl_cd_<k>
+#   side    ck3xbl_st_role (1 Bannerlord winner, 2 loser, 3 no winner), ck3xbl_st_target, ck3xbl_st_killed, ck3xbl_st_gain,
+#           ck3xbl_st_obs_last, ck3xbl_st_measured (the gain was set from measured kills since the last seed), ck3xbl_st_dmg_pp
+#   army    ck3xbl_st_bid, ck3xbl_st_joiner, ck3xbl_st_fix_armed (= the ST|DONE reason), ck3xbl_st_fix_wait, the 0003 copy
+#           ck3xbl_st_res_*, ck3xbl_st_player, ck3xbl_st_prov, ck3xbl_st_enemy_leader, the end states ck3xbl_t_* / ck3xbl_td_*
+#   char    the lever variables, ck3xbl_st_lev_bid (owner levers of that battle), ck3xbl_st_hard_bid (hard modifier of that battle),
+#           ck3xbl_st_cover_bid (its cover while the enemy side has no commander);
+#           global list ck3xbl_st_chars
+#   global  ck3xbl_clock_chain, ck3xbl_clock_tick, ck3xbl_clock_running, ck3xbl_clock_alive (heartbeat, 3 days)
+
+# --- the apply ---------------------------------------------------------------------------------------------------------
+
+# root = this = the player, inside ck3xbl_apply_effect for payload 4 after the summary (PROTOCOL 14.4); scope:ck3xbl_st_att_target,
+# _def_target and _hint hold r8, r9 and r198. Outcomes 1..3: the armies of the battle are marked and their slots stored, then the
+# steering starts, or, when the combat is gone or already at combat day 13, the end state is set at once (ST|DONE reason 4, no
+# war score from the battle). Outcome 4: a cancelled second clash hands its suspended parent back (ST|RESUME reason 4).
+ck3xbl_st_apply_effect = {
+	if = {
+		limit = { scope:ck3xbl_res_outcome <= 3 }
+		save_scope_value_as = { name = ck3xbl_st_cur_bid value = scope:ck3xbl_bid }
+		save_scope_value_as = { name = ck3xbl_st_old_bid value = 0 }
+		scope:ck3xbl_res_combat ?= {
+			if = {
+				limit = { has_variable = ck3xbl_st_bid }
+				save_scope_value_as = { name = ck3xbl_st_old_bid value = var:ck3xbl_st_bid }
+			}
+		}
+		ck3xbl_st_mark_armies_effect = yes
+		ck3xbl_st_store_slots_effect = yes
+		if = {
+			limit = { scope:ck3xbl_res_combat ?= { ck3xbl_cday_value < ck3xbl_st_hard_end_day_value } }
+			scope:ck3xbl_res_combat = { ck3xbl_st_begin_effect = yes }
+			set_variable = { name = ck3xbl_applied_steer value = 1 }
+		}
+		else = {
+			scope:ck3xbl_res_combat ?= { ck3xbl_st_unsteer_combat_effect = yes }
+			save_scope_value_as = { name = ck3xbl_st_cur_bid value = scope:ck3xbl_bid }
+			if = {
+				limit = {
+					any_in_global_list = {
+						variable = ck3xbl_armies
+						ck3xbl_st_army_of_steering_trigger = yes
+					}
+				}
+				every_in_global_list = {
+					variable = ck3xbl_armies
+					limit = { ck3xbl_st_army_of_steering_trigger = yes }
+					set_variable = { name = ck3xbl_st_fix_armed value = 4 }
+				}
+				ck3xbl_st_fix_effect = yes
+				set_variable = { name = ck3xbl_applied_steer value = 2 }
+			}
+			else = {
+				# No army of the battle is left to set: nothing to fix, and event 0002 opens the summary itself from the player's
+				# ck3xbl_res_*, which the summary left alone while another battle's window was open.
+				ck3xbl_write_summary_effect = yes
+				save_scope_value_as = { name = ck3xbl_st_reason value = 4 }
+				info_log = "CK3XBL|ST|DONE"
+				info_log_scopes = yes
+			}
+		}
+	}
+	else = {
+		scope:ck3xbl_res_combat ?= { ck3xbl_st_resume_effect = { MODE = 2 REASON = 4 } }
+	}
+}
+
+# root = the player in the apply. Every army of the battle (tagged with the payload's bid, or steered by this combat's earlier
+# clash) is marked with the steering bid. Its steering-start state is stored once (not again for a later clash, never for a
+# winner-side joiner, which keeps its native losses), and it carries the values of the summary window 0003: the apply's saved
+# values (ck3xbl_apply_summary_effect), not the player's ck3xbl_res_*, which an open summary window of another battle still shows.
+ck3xbl_st_mark_armies_effect = {
+	save_scope_value_as = { name = ck3xbl_st_has_enemy_leader value = 0 }
+	if = {
+		limit = { scope:ck3xbl_res_has_primaries = 1 }
+		if = {
+			limit = { scope:ck3xbl_res_my_side = 1 }
+			scope:ck3xbl_res_def_primary = { save_scope_as = ck3xbl_st_enemy_leader }
+		}
+		else = {
+			scope:ck3xbl_res_att_primary = { save_scope_as = ck3xbl_st_enemy_leader }
+		}
+		save_scope_value_as = { name = ck3xbl_st_has_enemy_leader value = 1 }
+	}
+	else_if = {
+		# Without both war leaders (no war): the enemy leader of the snapshot, when the apply runs in its event chain.
+		limit = { exists = scope:ck3xbl_enemy_leader }
+		scope:ck3xbl_enemy_leader = { save_scope_as = ck3xbl_st_enemy_leader }
+		save_scope_value_as = { name = ck3xbl_st_has_enemy_leader value = 1 }
+	}
+	every_in_global_list = {
+		variable = ck3xbl_armies
+		limit = {
+			OR = {
+				ck3xbl_army_of_battle_trigger = yes
+				AND = {
+					has_variable = ck3xbl_st_bid
+					var:ck3xbl_st_bid = scope:ck3xbl_st_old_bid
+				}
+			}
+		}
+		set_variable = { name = ck3xbl_st_bid value = scope:ck3xbl_st_cur_bid }
+		remove_variable = ck3xbl_st_fix_armed
+		if = {
+			limit = {
+				NOT = { has_variable = ck3xbl_td_levy }
+				NOT = { has_variable = ck3xbl_st_joiner }
+			}
+			ck3xbl_st_store_default_effect = yes
+		}
+		set_variable = { name = ck3xbl_st_res_outcome value = scope:ck3xbl_res_outcome }
+		set_variable = { name = ck3xbl_st_res_my_lost value = scope:ck3xbl_res_my_lost }
+		set_variable = { name = ck3xbl_st_res_enemy_lost value = scope:ck3xbl_res_enemy_lost }
+		set_variable = { name = ck3xbl_st_res_my_kills value = scope:ck3xbl_res_my_kills }
+		set_variable = { name = ck3xbl_st_res_won value = scope:ck3xbl_res_won }
+		set_variable = { name = ck3xbl_st_player value = root }
+		if = {
+			limit = { scope:ck3xbl_res_has_prov = 1 }
+			set_variable = { name = ck3xbl_st_prov value = scope:ck3xbl_res_prov }
+		}
+		if = {
+			limit = { scope:ck3xbl_st_has_enemy_leader = 1 }
+			set_variable = { name = ck3xbl_st_enemy_leader value = scope:ck3xbl_st_enemy_leader }
+		}
+	}
+}
+
+# this = the live combat, root = the player, scope:ck3xbl_st_cur_bid = the payload's bid. Mode, winner,
+# targets (cumulative over clashes), roles and end day; both sides restart from their current kills with gain 1; the
+# commanders get the hard modifier and the owners their (still neutral) levers; ST|BEGIN; the pulse chain runs. A later clash
+# first takes the earlier clash's modifiers off (the suspension normally did), so the owner guard sees its owners free.
+ck3xbl_st_begin_effect = {
+	if = {
+		limit = {
+			scope:ck3xbl_st_old_bid > 0
+			NOT = { scope:ck3xbl_st_old_bid = scope:ck3xbl_st_cur_bid }
+		}
+		save_scope_value_as = { name = ck3xbl_st_new_bid value = scope:ck3xbl_st_cur_bid }
+		save_scope_value_as = { name = ck3xbl_st_cur_bid value = scope:ck3xbl_st_old_bid }
+		ck3xbl_st_remove_owner_levers_effect = yes
+		ck3xbl_st_remove_hard_effect = yes
+		ck3xbl_st_forget_characters_effect = yes
+		save_scope_value_as = { name = ck3xbl_st_cur_bid value = scope:ck3xbl_st_new_bid }
+	}
+	if = {
+		limit = { scope:ck3xbl_res_outcome = 3 }
+		set_variable = { name = ck3xbl_steer value = 2 }
+		set_variable = { name = ck3xbl_st_winner value = 0 }
+	}
+	else = {
+		set_variable = { name = ck3xbl_steer value = 1 }
+		set_variable = { name = ck3xbl_st_winner value = scope:ck3xbl_res_outcome }
+	}
+	set_variable = { name = ck3xbl_st_parent value = scope:ck3xbl_st_old_bid }
+	set_variable = { name = ck3xbl_st_bid value = scope:ck3xbl_st_cur_bid }
+	if = {
+		limit = { NOT = { has_variable = ck3xbl_st_days } }
+		set_variable = { name = ck3xbl_st_days value = ck3xbl_cday_marks_value }
+	}
+	set_variable = { name = ck3xbl_st_end_day value = ck3xbl_st_end_day_value }
+	remove_variable = ck3xbl_st_suspended
+	remove_variable = ck3xbl_st_susp_days
+	remove_variable = ck3xbl_st_child
+	remove_variable = ck3xbl_st_end_pulses
+	combat_attacker = {
+		set_variable = { name = ck3xbl_st_target value = scope:ck3xbl_st_att_target }
+		ck3xbl_st_seed_side_effect = yes
+	}
+	combat_defender = {
+		set_variable = { name = ck3xbl_st_target value = scope:ck3xbl_st_def_target }
+		ck3xbl_st_seed_side_effect = yes
+	}
+	if = {
+		limit = { scope:ck3xbl_res_outcome = 1 }
+		combat_attacker = { set_variable = { name = ck3xbl_st_role value = 1 } }
+		combat_defender = { set_variable = { name = ck3xbl_st_role value = 2 } }
+	}
+	else_if = {
+		limit = { scope:ck3xbl_res_outcome = 2 }
+		combat_attacker = { set_variable = { name = ck3xbl_st_role value = 2 } }
+		combat_defender = { set_variable = { name = ck3xbl_st_role value = 1 } }
+	}
+	else = {
+		combat_attacker = { set_variable = { name = ck3xbl_st_role value = 3 } }
+		combat_defender = { set_variable = { name = ck3xbl_st_role value = 3 } }
+	}
+	combat_attacker = { set_allow_early_retreat = yes }
+	combat_defender = { set_allow_early_retreat = yes }
+	ck3xbl_st_keep_hard_effect = yes
+	ck3xbl_st_refresh_owner_modifiers_effect = yes
+	save_scope_value_as = { name = ck3xbl_st_mode value = var:ck3xbl_steer }
+	save_scope_value_as = { name = ck3xbl_st_winner value = var:ck3xbl_st_winner }
+	save_scope_value_as = { name = ck3xbl_st_end_day value = var:ck3xbl_st_end_day }
+	save_scope_value_as = { name = ck3xbl_st_cday value = ck3xbl_cday_value }
+	save_scope_value_as = { name = ck3xbl_st_parent value = var:ck3xbl_st_parent }
+	info_log = "CK3XBL|ST|BEGIN"
+	info_log_scopes = yes
+	root = { ck3xbl_st_ensure_chain_effect = yes }
+}
+
+# this = combat side: steering (re)starts from the current kills with gain 1 and no damage lever, so the first day with kills
+# runs natively and its measured kills set the gain.
+ck3xbl_st_seed_side_effect = {
+	set_variable = { name = ck3xbl_st_killed value = num_enemies_killed }
+	set_variable = { name = ck3xbl_st_gain value = 1 }
+	set_variable = { name = ck3xbl_st_obs_last value = 0 }
+	set_variable = { name = ck3xbl_st_measured value = 0 }
+	set_variable = { name = ck3xbl_st_dmg_pp value = 0 }
+}
+
+# --- the pulse chain -----------------------------------------------------------------------------------------------------
+
+# The first event of a battle clock chain inherits the saved scopes of whatever triggered it: the apply carries the event chain of
+# the snapshot (the combat, its sides, the war; scope:army when that chain began in a join). Combats and armies die, so the clock
+# events drop these scopes and never carry one into the next day; values and characters may
+# travel.
+ck3xbl_st_drop_carried_scopes_effect = {
+	if = { limit = { exists = scope:army } clear_saved_scope = army }
+	if = { limit = { exists = scope:ck3xbl_combat } clear_saved_scope = ck3xbl_combat }
+	if = { limit = { exists = scope:ck3xbl_res_combat } clear_saved_scope = ck3xbl_res_combat }
+	if = { limit = { exists = scope:ck3xbl_att_side } clear_saved_scope = ck3xbl_att_side }
+	if = { limit = { exists = scope:ck3xbl_def_side } clear_saved_scope = ck3xbl_def_side }
+	if = { limit = { exists = scope:ck3xbl_my_side } clear_saved_scope = ck3xbl_my_side }
+	if = { limit = { exists = scope:ck3xbl_enemy_side } clear_saved_scope = ck3xbl_enemy_side }
+	if = { limit = { exists = scope:ck3xbl_side } clear_saved_scope = ck3xbl_side }
+	if = { limit = { exists = scope:ck3xbl_res_victim_side } clear_saved_scope = ck3xbl_res_victim_side }
+	if = { limit = { exists = scope:ck3xbl_war } clear_saved_scope = ck3xbl_war }
+}
+
+# this = a player: starts the pulse chain unless one is running (its heartbeat is alive).
+ck3xbl_st_ensure_chain_effect = {
+	if = {
+		limit = {
+			OR = {
+				NOT = { has_global_variable = ck3xbl_clock_running }
+				global_var:ck3xbl_clock_running = 0
+				NOT = { has_global_variable = ck3xbl_clock_alive }
+			}
+		}
+		ck3xbl_st_force_rearm_effect = yes
+	}
+}
+
+# this = a player: a new pulse chain on this player from tomorrow; the new chain id stops any older chain that still fires.
+# A dead player (Bannerlord killed him inside the apply) gets no pulse, which would never fire: the chain goes to the living
+# player if CK3 has already switched to the heir; otherwise it stays without a heartbeat, so on_player_character_change
+# (ck3xbl_clock_running = 1) or the next on_army_enter_province re-arms it at once.
+ck3xbl_st_force_rearm_effect = {
+	ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_clock_chain }
+	save_scope_value_as = { name = ck3xbl_chain value = global_var:ck3xbl_clock_chain }
+	set_global_variable = { name = ck3xbl_clock_running value = 1 }
+	if = {
+		limit = { is_alive = yes }
+		ck3xbl_st_start_pulse_effect = yes
+	}
+	else = {
+		random_player = {
+			limit = { is_alive = yes }
+			ck3xbl_st_start_pulse_effect = yes
+		}
+	}
+}
+
+# this = a living player, scope:ck3xbl_chain: the heartbeat and tomorrow's pulse of the chain.
+ck3xbl_st_start_pulse_effect = {
+	set_global_variable = { name = ck3xbl_clock_alive value = 1 days = 3 }
+	trigger_event = { id = ck3xbl_clock.0001 days = 1 }
+}
+
+# this = the combat of a steered army, root = the player, in the daily pulse. Each combat runs once per pulse (ck3xbl_st_tick);
+# the pulse counter advances, suspended or not.
+ck3xbl_st_pulse_tick_effect = {
+	if = {
+		limit = {
+			has_variable = ck3xbl_steer
+			var:ck3xbl_steer <= 3
+			OR = {
+				NOT = { has_variable = ck3xbl_st_tick }
+				NOT = { var:ck3xbl_st_tick = global_var:ck3xbl_clock_tick }
+			}
+		}
+		set_variable = { name = ck3xbl_st_tick value = global_var:ck3xbl_clock_tick }
+		change_variable = { name = ck3xbl_st_days add = 1 }
+		save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid }
+		save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_st_bid }
+		if = {
+			limit = { var:ck3xbl_steer = 3 }
+			ck3xbl_st_end_backstop_effect = yes
+		}
+		else_if = {
+			limit = { has_variable = ck3xbl_st_suspended }
+			ck3xbl_st_pulse_suspended_effect = yes
+		}
+		else = {
+			ck3xbl_st_pulse_combat_effect = yes
+		}
+	}
+}
+
+# this = a steered combat: commanders, both controllers, owner levers, ST|P, end check.
+ck3xbl_st_pulse_combat_effect = {
+	save_scope_value_as = { name = ck3xbl_st_cday value = ck3xbl_cday_value }
+	ck3xbl_st_keep_hard_effect = yes
+	combat_attacker = { ck3xbl_st_control_side_effect = yes }
+	combat_defender = { ck3xbl_st_control_side_effect = yes }
+	ck3xbl_st_refresh_owner_modifiers_effect = yes
+	ck3xbl_st_log_pulse_effect = { SUSP = 0 }
+	ck3xbl_st_end_check_effect = yes
+}
+
+# this = a suspended combat (a second clash is offered). It fights natively; the kill baselines stay
+# fresh. Day 13 hands it back at once; an offer unanswered for the failsafe days and not taken to the field hands it back with a
+# CHOICE|AUTO for the child, so the bridge drops the offer. A child taken to the field whose pending battle nobody can finish any
+# more (ck3xbl_pending_stale_trigger: its player died or is no longer played) does not hold the parent: it is abandoned
+# (CHOICE|ABANDON) after the parent has resumed, so the resume still finds the child's joiner tagged.
+ck3xbl_st_pulse_suspended_effect = {
+	save_scope_value_as = { name = ck3xbl_st_cday value = ck3xbl_cday_value }
+	combat_attacker = { set_variable = { name = ck3xbl_st_killed value = num_enemies_killed } }
+	combat_defender = { set_variable = { name = ck3xbl_st_killed value = num_enemies_killed } }
+	change_variable = { name = ck3xbl_st_susp_days add = 1 }
+	ck3xbl_st_log_pulse_effect = { SUSP = 1 }
+	save_scope_value_as = { name = ck3xbl_st_child_pending value = 0 }
+	save_scope_value_as = { name = ck3xbl_st_child_stale value = 0 }
+	if = {
+		limit = {
+			has_global_variable = ck3xbl_pending_bid
+			global_var:ck3xbl_pending_bid = var:ck3xbl_st_child
+		}
+		if = {
+			limit = { ck3xbl_pending_stale_trigger = yes }
+			save_scope_value_as = { name = ck3xbl_st_child_stale value = 1 }
+		}
+		else = {
+			save_scope_value_as = { name = ck3xbl_st_child_pending value = 1 }
+		}
+	}
+	if = {
+		limit = { scope:ck3xbl_st_cday >= ck3xbl_st_hard_end_day_value }
+		if = {
+			limit = {
+				scope:ck3xbl_st_child_pending = 0
+				scope:ck3xbl_st_child_stale = 0
+			}
+			ck3xbl_st_drop_child_effect = yes
+		}
+		ck3xbl_st_handback_effect = { REASON = 3 }
+		if = {
+			limit = { scope:ck3xbl_st_child_stale = 1 }
+			ck3xbl_drop_stale_pending_effect = yes
+		}
+	}
+	else_if = {
+		limit = {
+			var:ck3xbl_st_susp_days >= ck3xbl_st_failsafe_days_value
+			scope:ck3xbl_st_child_pending = 0
+		}
+		if = {
+			limit = { scope:ck3xbl_st_child_stale = 0 }
+			ck3xbl_st_drop_child_effect = yes
+		}
+		ck3xbl_st_resume_effect = { MODE = 2 REASON = 3 }
+		if = {
+			limit = { scope:ck3xbl_st_child_stale = 1 }
+			ck3xbl_drop_stale_pending_effect = yes
+		}
+	}
+}
+
+# this = a suspended combat: CHOICE|AUTO for its second-clash offer (the bid in ck3xbl_st_child).
+ck3xbl_st_drop_child_effect = {
+	save_scope_value_as = { name = ck3xbl_st_caller_bid value = scope:ck3xbl_bid }
+	save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_st_child }
+	ck3xbl_choose_auto_effect = yes
+	save_scope_value_as = { name = ck3xbl_bid value = scope:ck3xbl_st_caller_bid }
+}
+
+# this = combat side in the pulse (after the day's damage): the next gain of this side from its kills;
+# then the baselines of the next pulse.
+ck3xbl_st_control_side_effect = {
+	save_scope_value_as = { name = ck3xbl_st_obs value = ck3xbl_st_obs_value }
+	save_scope_value_as = {
+		name = ck3xbl_st_rem
+		value = {
+			value = var:ck3xbl_st_target
+			subtract = num_enemies_killed
+		}
+	}
+	save_scope_value_as = { name = ck3xbl_st_want value = ck3xbl_st_want_value }
+	set_variable = { name = ck3xbl_st_gain value = ck3xbl_st_gain_next_value }
+	if = {
+		limit = { scope:ck3xbl_st_obs >= 1 }
+		set_variable = { name = ck3xbl_st_measured value = 1 }
+	}
+	set_variable = { name = ck3xbl_st_obs_last value = scope:ck3xbl_st_obs }
+	set_variable = { name = ck3xbl_st_killed value = num_enemies_killed }
+}
+
+# this = a steered combat: ST|P (PROTOCOL 14.5); $SUSP$ = 1 while suspended.
+ck3xbl_st_log_pulse_effect = {
+	save_scope_value_as = { name = ck3xbl_st_cday_marks value = ck3xbl_cday_marks_value }
+	save_scope_value_as = { name = ck3xbl_st_days value = var:ck3xbl_st_days }
+	combat_attacker = {
+		save_scope_value_as = { name = ck3xbl_st_att_killed value = num_enemies_killed }
+		save_scope_value_as = { name = ck3xbl_st_att_target value = var:ck3xbl_st_target }
+		save_scope_value_as = { name = ck3xbl_st_att_men value = side_soldiers }
+		save_scope_value_as = { name = ck3xbl_st_att_gain value = { value = var:ck3xbl_st_gain multiply = 1000 } }
+	}
+	combat_defender = {
+		save_scope_value_as = { name = ck3xbl_st_def_killed value = num_enemies_killed }
+		save_scope_value_as = { name = ck3xbl_st_def_target value = var:ck3xbl_st_target }
+		save_scope_value_as = { name = ck3xbl_st_def_men value = side_soldiers }
+		save_scope_value_as = { name = ck3xbl_st_def_gain value = { value = var:ck3xbl_st_gain multiply = 1000 } }
+	}
+	save_scope_value_as = { name = ck3xbl_st_susp value = $SUSP$ }
+	info_log = "CK3XBL|ST|P"
+	info_log_scopes = yes
+}
+
+# this = a steered combat in the pulse. Decide mode: the end call when the winner has reached its target, on
+# combat day 13, or on the end day unless the winner is far from its target while the loser still has fighting men (then one more
+# day; the gain cap is no longer required, live test 2026-10-04). Hand-back mode:
+# hand back when both sides have reached their targets or on the end day.
+ck3xbl_st_end_check_effect = {
+	if = {
+		limit = { var:ck3xbl_steer = 1 }
+		if = {
+			limit = { var:ck3xbl_st_winner = 1 }
+			combat_attacker = { save_temporary_scope_as = ck3xbl_st_win_side }
+		}
+		else = {
+			combat_defender = { save_temporary_scope_as = ck3xbl_st_win_side }
+		}
+		if = {
+			limit = {
+				OR = {
+					scope:ck3xbl_st_win_side = { ck3xbl_st_target_reached_trigger = yes }
+					scope:ck3xbl_st_cday >= ck3xbl_st_hard_end_day_value
+				}
+			}
+			ck3xbl_st_end_effect = yes
+		}
+		else_if = {
+			limit = { scope:ck3xbl_st_cday >= var:ck3xbl_st_end_day }
+			if = {
+				limit = {
+					scope:ck3xbl_st_win_side = {
+						num_enemies_killed < ck3xbl_st_extend_kills_value
+						enemy_side = { side_soldiers >= 1 }
+					}
+				}
+				change_variable = { name = ck3xbl_st_end_day add = 1 }
+			}
+			else = {
+				ck3xbl_st_end_effect = yes
+			}
+		}
+		clear_saved_scope = ck3xbl_st_win_side
+	}
+	else_if = {
+		limit = {
+			var:ck3xbl_steer = 2
+			OR = {
+				AND = {
+					combat_attacker = { ck3xbl_st_target_reached_trigger = yes }
+					combat_defender = { ck3xbl_st_target_reached_trigger = yes }
+				}
+				scope:ck3xbl_st_cday >= var:ck3xbl_st_end_day
+			}
+		}
+		ck3xbl_st_handback_effect = { REASON = 2 }
+	}
+}
+
+# --- owner levers and the hard modifier ------------------------------------------------------------------------------------
+
+# this = a steered combat, scope:ck3xbl_st_cur_bid: every owner of its steered armies gets the levers of its side's gain
+# (generated ck3xbl_st_set_owner_modifiers_effect), unless the owner guard keeps him out.
+ck3xbl_st_refresh_owner_modifiers_effect = {
+	combat_attacker = { ck3xbl_st_side_dmg_pp_effect = yes }
+	combat_defender = { ck3xbl_st_side_dmg_pp_effect = yes }
+	location = {
+		every_army_in_location = {
+			limit = {
+				is_army_in_combat = yes
+				ck3xbl_st_army_of_steering_trigger = yes
+			}
+			involved_combat_side = {
+				save_scope_value_as = { name = ck3xbl_st_g value = var:ck3xbl_st_gain }
+				enemy_side = {
+					save_scope_value_as = { name = ck3xbl_st_g_enemy value = var:ck3xbl_st_gain }
+					save_scope_value_as = { name = ck3xbl_st_dmg_enemy value = var:ck3xbl_st_dmg_pp }
+				}
+			}
+			army_owner = { ck3xbl_st_refresh_owner_effect = yes }
+		}
+	}
+}
+
+# this = an army owner of the steered combat. A free owner carries this battle's levers; an owner who no longer is (another of
+# his armies fights a native battle) loses them.
+ck3xbl_st_refresh_owner_effect = {
+	if = {
+		limit = { ck3xbl_st_owner_free_trigger = yes }
+		set_variable = { name = ck3xbl_st_lev_bid value = scope:ck3xbl_st_cur_bid }
+		ck3xbl_st_list_character_effect = yes
+		ck3xbl_st_set_owner_modifiers_effect = yes
+	}
+	else_if = {
+		limit = {
+			has_variable = ck3xbl_st_lev_bid
+			var:ck3xbl_st_lev_bid = scope:ck3xbl_st_cur_bid
+		}
+		ck3xbl_st_owner_levers_off_effect = yes
+		remove_variable = ck3xbl_st_lev_bid
+	}
+}
+
+# this = a character receiving a steering modifier: listed in ck3xbl_st_chars, so the fix can find it.
+ck3xbl_st_list_character_effect = {
+	if = {
+		limit = { NOT = { is_target_in_global_variable_list = { name = ck3xbl_st_chars target = this } } }
+		add_to_global_variable_list = { name = ck3xbl_st_chars target = this }
+	}
+}
+
+# scope:ck3xbl_st_cur_bid: the owner levers of that battle come off.
+ck3xbl_st_remove_owner_levers_effect = {
+	every_in_global_list = {
+		variable = ck3xbl_st_chars
+		limit = {
+			has_variable = ck3xbl_st_lev_bid
+			var:ck3xbl_st_lev_bid = scope:ck3xbl_st_cur_bid
+		}
+		ck3xbl_st_owner_levers_off_effect = yes
+		remove_variable = ck3xbl_st_lev_bid
+	}
+}
+
+# scope:ck3xbl_st_cur_bid: the hard modifier of that battle comes off, and with it the cover of a side without a commander
+# (ck3xbl_st_hard_cover, generated ck3xbl_st_keep_hard_cover_effect).
+ck3xbl_st_remove_hard_effect = {
+	every_in_global_list = {
+		variable = ck3xbl_st_chars
+		limit = {
+			has_variable = ck3xbl_st_hard_bid
+			var:ck3xbl_st_hard_bid = scope:ck3xbl_st_cur_bid
+		}
+		remove_character_modifier = ck3xbl_st_hard
+		remove_variable = ck3xbl_st_hard_bid
+	}
+	every_in_global_list = {
+		variable = ck3xbl_st_chars
+		limit = {
+			has_variable = ck3xbl_st_cover_bid
+			var:ck3xbl_st_cover_bid = scope:ck3xbl_st_cur_bid
+		}
+		remove_character_modifier = ck3xbl_st_hard_cover
+		remove_variable = ck3xbl_st_cover_bid
+	}
+}
+
+# Characters that carry no steering modifier of any battle leave ck3xbl_st_chars.
+ck3xbl_st_forget_characters_effect = {
+	every_in_global_list = {
+		variable = ck3xbl_st_chars
+		limit = {
+			NOT = { has_variable = ck3xbl_st_lev_bid }
+			NOT = { has_variable = ck3xbl_st_hard_bid }
+			NOT = { has_variable = ck3xbl_st_cover_bid }
+		}
+		save_temporary_scope_as = ck3xbl_st_char
+		remove_list_global_variable = { name = ck3xbl_st_chars target = scope:ck3xbl_st_char }
+		clear_saved_scope = ck3xbl_st_char
+	}
+}
+
+# --- ending --------------------------------------------------------------------------------------------------------------
+
+# this = a combat in decide mode: the owner levers come off (the hard modifier stays until the fix), the
+# loser skips pursuit, the Bannerlord winner wins (generated end call), ST|WIN. The engine ends the combat on a later tick.
+ck3xbl_st_end_effect = {
+	ck3xbl_st_remove_owner_levers_effect = yes
+	ck3xbl_st_forget_characters_effect = yes
+	if = {
+		limit = { var:ck3xbl_st_winner = 1 }
+		combat_defender = { set_skip_pursuit = yes }
+		combat_attacker = { ck3xbl_st_win_effect = yes }
+	}
+	else = {
+		combat_attacker = { set_skip_pursuit = yes }
+		combat_defender = { ck3xbl_st_win_effect = yes }
+	}
+	set_variable = { name = ck3xbl_steer value = 3 }
+	set_variable = { name = ck3xbl_st_end_pulses value = 0 }
+	ck3xbl_st_log_win_effect = yes
+}
+
+# this = a combat whose end was called and that is still in combat on a pulse: after the backstop days the battle is handed back
+# (ST|DONE reason 6). force_win is never issued: it ends a battle twice even with the game running (seen in game).
+ck3xbl_st_end_backstop_effect = {
+	change_variable = { name = ck3xbl_st_end_pulses add = 1 }
+	if = {
+		limit = { var:ck3xbl_st_end_pulses >= ck3xbl_st_backstop_days_value }
+		ck3xbl_st_handback_effect = { REASON = 6 }
+	}
+}
+
+# this = a steered combat: ST|WIN (PROTOCOL 14.5). Capped = the winner's gain sat at the gain cap on its last pulse; retry stays 0
+# (the backstop hands the battle back instead of a second end call).
+ck3xbl_st_log_win_effect = {
+	ck3xbl_st_save_end_values_effect = yes
+	save_scope_value_as = { name = ck3xbl_st_winner value = var:ck3xbl_st_winner }
+	save_scope_value_as = { name = ck3xbl_st_capped value = 0 }
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					var:ck3xbl_st_winner = 1
+					combat_attacker = { var:ck3xbl_st_gain >= ck3xbl_st_extend_gain_value }
+				}
+				AND = {
+					var:ck3xbl_st_winner = 2
+					combat_defender = { var:ck3xbl_st_gain >= ck3xbl_st_extend_gain_value }
+				}
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_st_capped value = 1 }
+	}
+	save_scope_value_as = { name = ck3xbl_st_retry value = 0 }
+	info_log = "CK3XBL|ST|WIN"
+	info_log_scopes = yes
+}
+
+# this = a steered combat: the values ST|WIN and ST|HANDBACK share (kills, shortfalls against the targets, the combat day).
+ck3xbl_st_save_end_values_effect = {
+	save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_st_bid }
+	save_scope_value_as = { name = ck3xbl_st_cday value = ck3xbl_cday_value }
+	combat_attacker = {
+		save_scope_value_as = { name = ck3xbl_st_att_killed value = num_enemies_killed }
+		save_scope_value_as = { name = ck3xbl_st_att_short value = { value = var:ck3xbl_st_target subtract = num_enemies_killed min = 0 } }
+	}
+	combat_defender = {
+		save_scope_value_as = { name = ck3xbl_st_def_killed value = num_enemies_killed }
+		save_scope_value_as = { name = ck3xbl_st_def_short value = { value = var:ck3xbl_st_target subtract = num_enemies_killed min = 0 } }
+	}
+}
+
+# this = a steered combat: CK3 takes the battle back without a winner. Every steering modifier and both
+# roles come off (the phase-event shield stops), the fix is armed for tomorrow (mid-combat; the tags stay for the native END),
+# ST|HANDBACK. $REASON$ = 2 targets reached or end day, 3 day 13 while suspended, 6 the end call did not end the combat.
+ck3xbl_st_handback_effect = {
+	save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid }
+	ck3xbl_st_remove_owner_levers_effect = yes
+	ck3xbl_st_remove_hard_effect = yes
+	ck3xbl_st_forget_characters_effect = yes
+	combat_attacker = { remove_variable = ck3xbl_st_role }
+	combat_defender = { remove_variable = ck3xbl_st_role }
+	set_variable = { name = ck3xbl_steer value = 4 }
+	remove_variable = ck3xbl_st_suspended
+	remove_variable = ck3xbl_st_susp_days
+	remove_variable = ck3xbl_st_child
+	ck3xbl_st_save_end_values_effect = yes
+	save_scope_value_as = { name = ck3xbl_st_capped value = 0 }
+	if = {
+		limit = {
+			OR = {
+				combat_attacker = { var:ck3xbl_st_gain >= ck3xbl_st_extend_gain_value }
+				combat_defender = { var:ck3xbl_st_gain >= ck3xbl_st_extend_gain_value }
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_st_capped value = 1 }
+	}
+	save_scope_value_as = { name = ck3xbl_st_retry value = 0 }
+	save_scope_value_as = { name = ck3xbl_st_reason value = $REASON$ }
+	info_log = "CK3XBL|ST|HANDBACK"
+	info_log_scopes = yes
+	if = {
+		limit = { scope:ck3xbl_st_reason = 6 }
+		ck3xbl_st_arm_fix_effect = { REASON = 6 }
+	}
+	else = {
+		ck3xbl_st_arm_fix_effect = { REASON = 2 }
+	}
+}
+
+# this = a side of a tagged combat in on_combat_end_winner / _loser. A steered combat arms the fix (once; the second END finds it
+# armed): reason 1 when the end call ended it, 3 when CK3 ended it before the target, 5 when the Bannerlord loser won.
+# $WRONG_ROLE$ = the role whose side should not be here (2 for the winner, 1 for the loser). Any other combat: today's release.
+# scope:ck3xbl_bid = the combat's bid (ck3xbl_save_combat_end_values_effect). In a steered combat the release still frees the
+# tagged armies that are not steered (a join while the end was called, j_steer 0): the cleanup keeps every steered army for the fix.
+ck3xbl_st_on_combat_end_effect = {
+	if = {
+		limit = { combat = { has_variable = ck3xbl_st_bid } }
+		combat = { save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid } }
+		save_scope_value_as = { name = ck3xbl_st_reason value = 3 }
+		if = {
+			limit = { combat = { var:ck3xbl_steer = 3 } }
+			save_scope_value_as = { name = ck3xbl_st_reason value = 1 }
+		}
+		if = {
+			limit = {
+				has_variable = ck3xbl_st_role
+				var:ck3xbl_st_role = $WRONG_ROLE$
+			}
+			save_scope_value_as = { name = ck3xbl_st_reason value = 5 }
+		}
+		ck3xbl_st_arm_fix_effect = { REASON = scope:ck3xbl_st_reason }
+		ck3xbl_release_unfought_battle_effect = yes
+	}
+	else = {
+		ck3xbl_release_unfought_battle_effect = yes
+	}
+}
+
+# this = a steered army out of combat in the pulse: when no army of its battle is in combat any more, the battle is gone and the
+# fix is armed (ST|DONE reason 4).
+ck3xbl_st_arm_fix_if_gone_effect = {
+	if = {
+		limit = { NOT = { has_variable = ck3xbl_st_fix_armed } }
+		save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid }
+		if = {
+			limit = {
+				NOT = {
+					any_in_global_list = {
+						variable = ck3xbl_armies
+						ck3xbl_st_army_of_steering_trigger = yes
+						is_army_in_combat = yes
+					}
+				}
+			}
+			ck3xbl_st_arm_fix_effect = { REASON = 4 }
+		}
+	}
+}
+
+# scope:ck3xbl_st_cur_bid: unless already armed, every army of that battle waits for the fix (ck3xbl_st_fix_armed = $REASON$, the
+# ST|DONE reason; ck3xbl_st_fix_wait expires after 2 days for the backstop) and the fix runs tomorrow (ck3xbl_clock.0002).
+ck3xbl_st_arm_fix_effect = {
+	if = {
+		limit = {
+			NOT = {
+				any_in_global_list = {
+					variable = ck3xbl_armies
+					ck3xbl_st_army_of_steering_trigger = yes
+					has_variable = ck3xbl_st_fix_armed
+				}
+			}
+		}
+		every_in_global_list = {
+			variable = ck3xbl_armies
+			limit = { ck3xbl_st_army_of_steering_trigger = yes }
+			set_variable = { name = ck3xbl_st_fix_armed value = $REASON$ }
+			set_variable = { name = ck3xbl_st_fix_wait value = 1 days = 2 }
+		}
+		random_player = { trigger_event = { id = ck3xbl_clock.0002 days = 1 } }
+	}
+}
+
+# this = a player in the pulse: a fix armed more than 2 days ago that never ran (its player changed) runs now.
+ck3xbl_st_fix_backstop_effect = {
+	save_scope_value_as = { name = ck3xbl_st_fix_due value = 0 }
+	random_in_global_list = {
+		variable = ck3xbl_armies
+		limit = {
+			has_variable = ck3xbl_st_fix_armed
+			NOT = { has_variable = ck3xbl_st_fix_wait }
+		}
+		save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid }
+		save_scope_value_as = { name = ck3xbl_st_fix_due value = 1 }
+	}
+	if = {
+		limit = { scope:ck3xbl_st_fix_due = 1 }
+		ck3xbl_st_fix_effect = yes
+	}
+}
+
+# --- the fix -------------------------------------------------------------------------------------------------------------
+
+# root = a player, scope:ck3xbl_st_cur_bid (the fix, in this order): the end state of every army with one (ST|FIX), this
+# battle's modifiers off, a handed-back combat loses its steering variables, ST|DONE, the armies are released, and the player of
+# the battle gets the summary window (one at a time, ck3xbl_clock.0003). Runs once: afterwards no army carries the steering bid.
+ck3xbl_st_fix_effect = {
+	if = {
+		limit = {
+			any_in_global_list = {
+				variable = ck3xbl_armies
+				ck3xbl_st_army_of_steering_trigger = yes
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_bid value = scope:ck3xbl_st_cur_bid }
+		save_scope_value_as = { name = ck3xbl_st_reason value = 4 }
+		random_in_global_list = {
+			variable = ck3xbl_armies
+			limit = {
+				ck3xbl_st_army_of_steering_trigger = yes
+				has_variable = ck3xbl_st_fix_armed
+			}
+			save_scope_value_as = { name = ck3xbl_st_reason value = var:ck3xbl_st_fix_armed }
+		}
+		every_in_global_list = {
+			variable = ck3xbl_armies
+			limit = {
+				ck3xbl_st_army_of_steering_trigger = yes
+				OR = {
+					has_variable = ck3xbl_t_levy
+					has_variable = ck3xbl_td_levy
+				}
+			}
+			ck3xbl_st_fix_army_effect = yes
+		}
+		ck3xbl_st_remove_owner_levers_effect = yes
+		ck3xbl_st_remove_hard_effect = yes
+		ck3xbl_st_forget_characters_effect = yes
+		random_in_global_list = {
+			variable = ck3xbl_armies
+			limit = {
+				ck3xbl_st_army_of_steering_trigger = yes
+				is_army_in_combat = yes
+			}
+			involved_combat_side = {
+				combat = {
+					if = {
+						limit = {
+							has_variable = ck3xbl_st_bid
+							var:ck3xbl_st_bid = scope:ck3xbl_st_cur_bid
+						}
+						ck3xbl_st_clear_combat_effect = yes
+					}
+				}
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_st_has_summary value = 0 }
+		random_in_global_list = {
+			variable = ck3xbl_armies
+			limit = {
+				ck3xbl_st_army_of_steering_trigger = yes
+				has_variable = ck3xbl_st_res_outcome
+			}
+			save_scope_value_as = { name = ck3xbl_sum_outcome value = var:ck3xbl_st_res_outcome }
+			save_scope_value_as = { name = ck3xbl_sum_my_lost value = var:ck3xbl_st_res_my_lost }
+			save_scope_value_as = { name = ck3xbl_sum_enemy_lost value = var:ck3xbl_st_res_enemy_lost }
+			save_scope_value_as = { name = ck3xbl_sum_my_kills value = var:ck3xbl_st_res_my_kills }
+			save_scope_value_as = { name = ck3xbl_sum_won value = var:ck3xbl_st_res_won }
+			save_scope_value_as = { name = ck3xbl_sum_tries value = 0 }
+			if = {
+				limit = { has_variable = ck3xbl_st_prov }
+				var:ck3xbl_st_prov = { save_scope_as = ck3xbl_prov }
+			}
+			if = {
+				limit = { has_variable = ck3xbl_st_enemy_leader }
+				var:ck3xbl_st_enemy_leader = { save_scope_as = ck3xbl_enemy_leader }
+			}
+			var:ck3xbl_st_player = { save_scope_as = ck3xbl_summary_player }
+			save_scope_value_as = { name = ck3xbl_st_has_summary value = 1 }
+		}
+		info_log = "CK3XBL|ST|DONE"
+		info_log_scopes = yes
+		every_in_global_list = {
+			variable = ck3xbl_armies
+			limit = { ck3xbl_st_army_of_steering_trigger = yes }
+			ck3xbl_st_release_army_effect = yes
+		}
+		ck3xbl_purge_characters_effect = yes
+		if = {
+			limit = {
+				scope:ck3xbl_st_has_summary = 1
+				scope:ck3xbl_summary_player = {
+					is_alive = yes
+					is_ai = no
+				}
+			}
+			scope:ck3xbl_summary_player = {
+				send_interface_toast = {
+					type = msg_ck3xbl_battle_over
+					title = msg_ck3xbl_battle_over_title
+					desc = msg_ck3xbl_battle_over_desc
+					left_icon = scope:ck3xbl_summary_player
+				}
+				trigger_event = { id = ck3xbl_clock.0003 }
+			}
+		}
+	}
+}
+
+# this = a steered army whose battle the fix has finished: its battle clock variables go; an army out of combat also leaves the
+# mod (tag and list), unless it is being fought in Bannerlord in another battle. An army still in combat (hand-back) keeps its
+# tag for the native END.
+ck3xbl_st_release_army_effect = {
+	ck3xbl_st_release_army_vars_effect = yes
+	if = {
+		limit = {
+			is_army_in_combat = no
+			NOT = { ck3xbl_army_of_pending_battle_trigger = yes }
+		}
+		save_temporary_scope_as = ck3xbl_release_army
+		remove_list_global_variable = { name = ck3xbl_armies target = scope:ck3xbl_release_army }
+		clear_saved_scope = ck3xbl_release_army
+		remove_variable = ck3xbl_aid
+		remove_variable = ck3xbl_bid
+		remove_variable = ck3xbl_aside
+	}
+}
+
+# this = a combat handed back to CK3: its steering variables go, so its native END takes the normal path and releases the tags.
+ck3xbl_st_clear_combat_effect = {
+	remove_variable = ck3xbl_steer
+	remove_variable = ck3xbl_st_bid
+	remove_variable = ck3xbl_st_winner
+	remove_variable = ck3xbl_st_parent
+	remove_variable = ck3xbl_st_days
+	remove_variable = ck3xbl_st_end_day
+	remove_variable = ck3xbl_st_end_pulses
+	remove_variable = ck3xbl_st_tick
+	remove_variable = ck3xbl_st_suspended
+	remove_variable = ck3xbl_st_susp_days
+	remove_variable = ck3xbl_st_child
+	combat_attacker = { ck3xbl_st_clear_side_effect = yes }
+	combat_defender = { ck3xbl_st_clear_side_effect = yes }
+}
+
+ck3xbl_st_clear_side_effect = {
+	remove_variable = ck3xbl_st_role
+	remove_variable = ck3xbl_st_target
+	remove_variable = ck3xbl_st_killed
+	remove_variable = ck3xbl_st_gain
+	remove_variable = ck3xbl_st_obs_last
+	remove_variable = ck3xbl_st_measured
+	remove_variable = ck3xbl_st_dmg_pp
+}
+
+# this = a combat a new clash finds steered when it is too late to steer again: the old steering stops (modifiers, variables).
+ck3xbl_st_unsteer_combat_effect = {
+	if = {
+		limit = { has_variable = ck3xbl_st_bid }
+		save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid }
+		ck3xbl_st_remove_owner_levers_effect = yes
+		ck3xbl_st_remove_hard_effect = yes
+		ck3xbl_st_forget_characters_effect = yes
+		ck3xbl_st_clear_combat_effect = yes
+	}
+}
+
+# --- joins and the second clash ------------------------------------------------------------------------------------------
+
+# root = this = the side scope:army joined, in a tagged combat; before the J record. scope:ck3xbl_j_steer (a J dump key,
+# PROTOCOL 14.5): 0 not steered or ending, 1 the Bannerlord winner's side, 2 the loser's side and a second clash is offered
+# (enough men, decide mode, not suspended, the field free), 3 the loser's side without an offer, 4 hand-back mode.
+ck3xbl_st_classify_join_effect = {
+	save_scope_value_as = { name = ck3xbl_j_steer value = 0 }
+	combat = { save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_bid } }
+	if = {
+		limit = {
+			has_variable = ck3xbl_st_role
+			combat = {
+				has_variable = ck3xbl_steer
+				var:ck3xbl_steer <= 2
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_j_min value = ck3xbl_st_reinforce_min_value }
+		if = {
+			limit = { var:ck3xbl_st_role = 1 }
+			save_scope_value_as = { name = ck3xbl_j_steer value = 1 }
+		}
+		else_if = {
+			limit = {
+				var:ck3xbl_st_role = 2
+				combat = {
+					var:ck3xbl_steer = 1
+					NOT = { has_variable = ck3xbl_st_suspended }
+				}
+				scope:army = { army_size >= scope:ck3xbl_j_min }
+				ck3xbl_field_available_trigger = yes
+			}
+			save_scope_value_as = { name = ck3xbl_j_steer value = 2 }
+		}
+		else_if = {
+			limit = { var:ck3xbl_st_role = 2 }
+			save_scope_value_as = { name = ck3xbl_j_steer value = 3 }
+		}
+		else = {
+			save_scope_value_as = { name = ck3xbl_j_steer value = 4 }
+		}
+	}
+}
+
+# root = this = the joined side, after the J record. A second-clash offer suspends the steering; any other
+# join to a steered combat fights under it as a joiner (no end state, native losses): its commander and owner get the modifiers.
+ck3xbl_st_after_join_effect = {
+	if = {
+		limit = { scope:ck3xbl_j_steer = 2 }
+		combat = { ck3xbl_st_suspend_effect = yes }
+	}
+	else_if = {
+		limit = { scope:ck3xbl_j_steer >= 1 }
+		combat = { save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid } }
+		scope:army = {
+			set_variable = { name = ck3xbl_st_bid value = scope:ck3xbl_st_cur_bid }
+			set_variable = { name = ck3xbl_st_joiner value = 1 }
+		}
+		combat = {
+			if = {
+				limit = { NOT = { has_variable = ck3xbl_st_suspended } }
+				ck3xbl_st_keep_hard_effect = yes
+				ck3xbl_st_refresh_owner_modifiers_effect = yes
+			}
+		}
+	}
+}
+
+# this = a steered combat, root = the side scope:army joined (PROTOCOL 14.6). Steering pauses (every
+# modifier of the battle off; the combat fights natively, roles and shield stay), and the live combat gets a new snapshot with a
+# new bid that names this battle as its parent, the auto-pausing "Reinforcements!" toast and event 0001. ST|SUSPEND.
+# scope:ck3xbl_bid is the child's bid again afterwards, as the event chain of 0001 has it.
+ck3xbl_st_suspend_effect = {
+	save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid }
+	set_variable = { name = ck3xbl_st_suspended value = 1 }
+	set_variable = { name = ck3xbl_st_susp_days value = 0 }
+	ck3xbl_st_remove_owner_levers_effect = yes
+	ck3xbl_st_remove_hard_effect = yes
+	ck3xbl_st_forget_characters_effect = yes
+	scope:army = {
+		if = {
+			limit = { exists = army_commander }
+			army_commander = { save_scope_as = ck3xbl_joiner_leader }
+		}
+		else = {
+			army_owner = { save_scope_as = ck3xbl_joiner_leader }
+		}
+	}
+	save_scope_value_as = { name = ck3xbl_joiner_side_code value = scope:ck3xbl_side_code }
+	ck3xbl_begin_battle_effect = yes
+	set_variable = { name = ck3xbl_st_child value = scope:ck3xbl_bid }
+	save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_st_bid }
+	save_scope_value_as = { name = ck3xbl_st_child value = var:ck3xbl_st_child }
+	save_scope_value_as = { name = ck3xbl_st_reason value = 1 }
+	info_log = "CK3XBL|ST|SUSPEND"
+	info_log_scopes = yes
+	save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_st_child }
+}
+
+# this = a combat; only while suspended. Steering resumes in mode $MODE$ (2 = hand back: steer to the
+# earlier clash's targets, then CK3 continues natively, and the summary says the battle continues) from the current kills, with
+# at least two days left; the commanders get the hard modifier back. The tagged armies in the combat that are not steered (the
+# reinforcement that opened the offer, a third army) fight on as joiners (native losses, released by the fix), so the owner guard
+# does not count them as a native battle of their owner. ST|RESUME, $REASON$ = 2 AUTO/ABANDON of the offer, 3 failsafe or stale
+# offer, 4 the second clash was cancelled in Bannerlord. scope:ck3xbl_bid is left as the caller had it.
+ck3xbl_st_resume_effect = {
+	if = {
+		limit = { has_variable = ck3xbl_st_suspended }
+		save_scope_value_as = { name = ck3xbl_st_cur_bid value = var:ck3xbl_st_bid }
+		remove_variable = ck3xbl_st_suspended
+		remove_variable = ck3xbl_st_susp_days
+		remove_variable = ck3xbl_st_child
+		set_variable = { name = ck3xbl_steer value = $MODE$ }
+		combat_attacker = { ck3xbl_st_seed_side_effect = yes }
+		combat_defender = { ck3xbl_st_seed_side_effect = yes }
+		location = {
+			every_army_in_location = {
+				limit = {
+					is_army_in_combat = yes
+					has_variable = ck3xbl_bid
+					NOT = { has_variable = ck3xbl_st_bid }
+				}
+				set_variable = { name = ck3xbl_st_bid value = scope:ck3xbl_st_cur_bid }
+				set_variable = { name = ck3xbl_st_joiner value = 1 }
+			}
+		}
+		set_variable = { name = ck3xbl_st_end_day value = ck3xbl_st_resume_end_day_value }
+		ck3xbl_st_keep_hard_effect = yes
+		if = {
+			limit = { var:ck3xbl_steer = 2 }
+			every_in_global_list = {
+				variable = ck3xbl_armies
+				limit = { ck3xbl_st_army_of_steering_trigger = yes }
+				set_variable = { name = ck3xbl_st_res_outcome value = 3 }
+				set_variable = { name = ck3xbl_st_res_won value = 0 }
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_st_caller_bid value = scope:ck3xbl_bid }
+		save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_st_bid }
+		save_scope_value_as = { name = ck3xbl_st_mode value = var:ck3xbl_steer }
+		save_scope_value_as = { name = ck3xbl_st_reason value = $REASON$ }
+		info_log = "CK3XBL|ST|RESUME"
+		info_log_scopes = yes
+		save_scope_value_as = { name = ck3xbl_bid value = scope:ck3xbl_st_caller_bid }
+	}
+}
+
+# The event chain of a second-clash offer (scope:ck3xbl_parent_bid > 0, scope:ck3xbl_combat) whose offer the player declined
+# (AUTO in 0001, ABANDON in 0002): the parent continues in hand-back mode (ST|RESUME reason 2), if it still waits for this offer.
+ck3xbl_st_offer_declined_effect = {
+	if = {
+		limit = {
+			exists = scope:ck3xbl_parent_bid
+			scope:ck3xbl_parent_bid > 0
+		}
+		scope:ck3xbl_combat ?= {
+			if = {
+				limit = {
+					has_variable = ck3xbl_st_child
+					var:ck3xbl_st_child = scope:ck3xbl_bid
+				}
+				ck3xbl_st_resume_effect = { MODE = 2 REASON = 2 }
+			}
+		}
+	}
+}
+
+# scope:ck3xbl_bid = a stale pending battle that was just dropped: if it was a second-clash offer, its parent continues in hand-back
+# mode (ST|RESUME reason 3). The steered armies carry the offer's bid, so they lead to the combat.
+ck3xbl_st_stale_offer_effect = {
+	random_in_global_list = {
+		variable = ck3xbl_armies
+		limit = {
+			ck3xbl_army_of_battle_trigger = yes
+			has_variable = ck3xbl_st_bid
+			is_army_in_combat = yes
+		}
+		involved_combat_side = {
+			combat = {
+				if = {
+					limit = {
+						has_variable = ck3xbl_st_child
+						var:ck3xbl_st_child = scope:ck3xbl_bid
+					}
+					ck3xbl_st_resume_effect = { MODE = 2 REASON = 3 }
+				}
+			}
+		}
+	}
+}

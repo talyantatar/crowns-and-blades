@@ -1,0 +1,40 @@
+﻿# Toast sent to the player in the tick a player-involved combat starts. Its filter ck3xbl_battle has
+# auto_pause = yes, so CK3 pauses in that same tick (docs/PROTOCOL.md 1.4).
+msg_ck3xbl_battle_begins = {
+	display = toast
+	icon = "war"
+	title = msg_ck3xbl_battle_begins_title
+	desc = msg_ck3xbl_battle_begins_desc
+	style = neutral
+	message_filter_type = ck3xbl_battle
+}
+
+# Battle clock (docs/PROTOCOL.md 14.6): a join on the Bannerlord loser's side offers a second clash; pauses like a new battle.
+msg_ck3xbl_reinforcements = {
+	display = toast
+	icon = "war"
+	title = msg_ck3xbl_reinforcements_title
+	desc = msg_ck3xbl_reinforcements_desc
+	style = neutral
+	message_filter_type = ck3xbl_battle
+}
+
+# Battle clock news (filter ck3xbl_battle_news, no pause): the result was applied and CK3 fights the battle out, and the
+# battle is over (its summary window follows).
+msg_ck3xbl_battle_rages = {
+	display = toast
+	icon = "war"
+	title = msg_ck3xbl_battle_rages_title
+	desc = msg_ck3xbl_battle_rages_desc
+	style = neutral
+	message_filter_type = ck3xbl_battle_news
+}
+
+msg_ck3xbl_battle_over = {
+	display = toast
+	icon = "war"
+	title = msg_ck3xbl_battle_over_title
+	desc = msg_ck3xbl_battle_over_desc
+	style = neutral
+	message_filter_type = ck3xbl_battle_news
+}

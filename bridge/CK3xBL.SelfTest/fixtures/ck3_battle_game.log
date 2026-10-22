@@ -1,0 +1,2798 @@
+[21:13:40][I][savegameitem.cpp:734]: Waited 12 ms for 1 main menu portraits, ready: true
+[21:13:40][W][pdx_mesh_streamer.cpp:249]: Requesting mesh tgp_great_building_mandala_capital_01_mesh
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 82 (ck3xbl_on_combat_start): CK3XBL|B|BEGIN
+[21:14:05][I][effectimpl.cpp:642]: Battle of Orangallu weak (Combat - 134217801)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 12 (ck3xbl_on_combat_start): CK3XBL|L|terrain|hills
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 30 (ck3xbl_on_combat_start): CK3XBL|L|winter|none
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 34 (ck3xbl_on_combat_start): CK3XBL|L|holding|castle_holding
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 43 (ck3xbl_on_combat_start): CK3XBL|L|coastal|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 45 (ck3xbl_on_combat_start): CK3XBL|L|riverside|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 46 (ck3xbl_on_combat_start): CK3XBL|L|siege|yes
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 49 (ck3xbl_on_combat_start): CK3XBL|L|raid|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 51 (ck3xbl_on_combat_start): CK3XBL|L|occupied|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 63 (ck3xbl_on_combat_start): CK3XBL|L|region|world_india
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 113 (ck3xbl_on_combat_start): CK3XBL|L|building_gfx|indian_building_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 339 (ck3xbl_on_combat_start): CK3XBL|L|loc_culture|telugu
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 385 (ck3xbl_on_combat_start): CK3XBL|L|loc_heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 92 (ck3xbl_on_combat_start): CK3XBL|LV
+[21:14:05][I][effectimpl.cpp:642]: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 76 (ck3xbl_on_combat_start): CK3XBL|S|att
+[21:14:05][I][effectimpl.cpp:642]: Attacker weak (Combat_side - 33554501)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 86 (ck3xbl_on_combat_start): CK3XBL|A|att
+[21:14:05][I][effectimpl.cpp:642]: Bhupati Phoro's Host weak (Army - 16777240)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_ke: 1500.00
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 610 (ck3xbl_on_combat_start): CK3XBL|AX|besieging|yes
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 625 (ck3xbl_on_combat_start): CK3XBL|AX|territory|hostile
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 916 (ck3xbl_on_combat_start): CK3XBL|AX|culture|kannada
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1075 (ck3xbl_on_combat_start): CK3XBL|AX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1124 (ck3xbl_on_combat_start): CK3XBL|AX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1137 (ck3xbl_on_combat_start): CK3XBL|AX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 317 (ck3xbl_on_combat_start): CK3XBL|AX|nomadic|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 646 (ck3xbl_on_combat_start): CK3XBL|AX|otrait|education_martial_4
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_start): CK3XBL|R
+[21:14:05][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,armored_footmen L; Armored Footmen!!' (Internal ID: '16791700' - Type: 'personal' ) weak (Regiment - 16791700)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_start): CK3XBL|R
+[21:14:05][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,light_horsemen L; Light Horsemen!!' (Internal ID: '16791701' - Type: 'personal' ) weak (Regiment - 16791701)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_r_cur: 175.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_start): CK3XBL|R
+[21:14:05][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,paiks L; Paiks!!' (Internal ID: '16791702' - Type: 'personal' ) weak (Regiment - 16791702)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 1.00
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1363 (ck3xbl_on_combat_start): CK3XBL|RX|culture|telugu
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1409 (ck3xbl_on_combat_start): CK3XBL|RX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1458 (ck3xbl_on_combat_start): CK3XBL|RX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_start): CK3XBL|R
+[21:14:05][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,onager L; Onagers!!' (Internal ID: '16791703' - Type: 'personal' ) weak (Regiment - 16791703)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_r_cur: 4.00
+ck3xbl_r_max: 4.00
+ck3xbl_r_hired: 0.00
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 100 (ck3xbl_on_combat_start): CK3XBL|C|CMD|att
+[21:14:05][I][effectimpl.cpp:642]: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_r_cur: 4.00
+ck3xbl_r_max: 4.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 5.00
+ck3xbl_c_age: 38.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 12.00
+ck3xbl_c_martial: 11.00
+ck3xbl_c_weight: -4.00
+ck3xbl_c_tier: 3.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 1.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 537 (ck3xbl_on_combat_start): CK3XBL|CX|culture|kannada
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1547 (ck3xbl_on_combat_start): CK3XBL|CX|trait|strong
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1560 (ck3xbl_on_combat_start): CK3XBL|CX|ctrait|aggressive_attacker
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 703 (ck3xbl_on_combat_start): CK3XBL|CX|ktrait|education_martial_4
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 111 (ck3xbl_on_combat_start): CK3XBL|C|KNIGHT|att
+[21:14:05][I][effectimpl.cpp:642]: Kesava Lowborn of  (Internal ID 23611) weak (Character - 23611)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_r_cur: 4.00
+ck3xbl_r_max: 4.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 6.00
+ck3xbl_c_age: 29.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 16.00
+ck3xbl_c_martial: 6.00
+ck3xbl_c_weight: 0.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 537 (ck3xbl_on_combat_start): CK3XBL|CX|culture|kannada
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 738 (ck3xbl_on_combat_start): CK3XBL|CX|ktrait|the_wake
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 891 (ck3xbl_on_combat_start): CK3XBL|CX|txp|the_wake|4
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 111 (ck3xbl_on_combat_start): CK3XBL|C|KNIGHT|att
+[21:14:05][I][effectimpl.cpp:642]: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 1925.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_r_cur: 4.00
+ck3xbl_r_max: 4.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 7.00
+ck3xbl_c_age: 24.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 13.00
+ck3xbl_c_martial: 7.00
+ck3xbl_c_weight: 10.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 537 (ck3xbl_on_combat_start): CK3XBL|CX|culture|kannada
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1526 (ck3xbl_on_combat_start): CK3XBL|CX|trait|one_eyed
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1281 (ck3xbl_on_combat_start): CK3XBL|CX|artifact|primary_armament|sword|famed
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1295 (ck3xbl_on_combat_start): CK3XBL|CX|artifact|armor|armor_mail|illustrious
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1319 (ck3xbl_on_combat_start): CK3XBL|CX|artifact_helmet|armor_helmet_nasal
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 211 (ck3xbl_on_combat_start): CK3XBL|S|def
+[21:14:05][I][effectimpl.cpp:642]: Defender weak (Combat_side - 33554502)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 1925.00
+ck3xbl_a_levies: 1346.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_r_cur: 4.00
+ck3xbl_r_max: 4.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 7.00
+ck3xbl_c_age: 24.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 13.00
+ck3xbl_c_martial: 7.00
+ck3xbl_c_weight: 10.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 221 (ck3xbl_on_combat_start): CK3XBL|A|def
+[21:14:05][I][effectimpl.cpp:642]: Army of Warangal weak (Army - 16777242)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 8.00
+ck3xbl_a_size: 1700.00
+ck3xbl_a_levies: 1275.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 4.00
+ck3xbl_r_max: 4.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 7.00
+ck3xbl_c_age: 24.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 13.00
+ck3xbl_c_martial: 7.00
+ck3xbl_c_weight: 10.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+ck3xbl_a_ke: 1150.00
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 611 (ck3xbl_on_combat_start): CK3XBL|AX|besieging|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 613 (ck3xbl_on_combat_start): CK3XBL|AX|territory|own
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1029 (ck3xbl_on_combat_start): CK3XBL|AX|culture|telugu
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1075 (ck3xbl_on_combat_start): CK3XBL|AX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1124 (ck3xbl_on_combat_start): CK3XBL|AX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1137 (ck3xbl_on_combat_start): CK3XBL|AX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 317 (ck3xbl_on_combat_start): CK3XBL|AX|nomadic|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_start): CK3XBL|R
+[21:14:05][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,war_elephant L; War Elephants!!' (Internal ID: '16791710' - Type: 'personal' ) weak (Regiment - 16791710)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 8.00
+ck3xbl_a_size: 1700.00
+ck3xbl_a_levies: 1275.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 25.00
+ck3xbl_r_max: 25.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 7.00
+ck3xbl_c_age: 24.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 13.00
+ck3xbl_c_martial: 7.00
+ck3xbl_c_weight: 10.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_start): CK3XBL|R
+[21:14:05][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,armored_footmen L; Armored Footmen!!' (Internal ID: '16791711' - Type: 'personal' ) weak (Regiment - 16791711)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 8.00
+ck3xbl_a_size: 1700.00
+ck3xbl_a_levies: 1275.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 7.00
+ck3xbl_c_age: 24.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 13.00
+ck3xbl_c_martial: 7.00
+ck3xbl_c_weight: 10.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_start): CK3XBL|R
+[21:14:05][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,bowmen L; Bowmen!!' (Internal ID: '16791712' - Type: 'personal' ) weak (Regiment - 16791712)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 8.00
+ck3xbl_a_size: 1700.00
+ck3xbl_a_levies: 1275.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 7.00
+ck3xbl_c_age: 24.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 13.00
+ck3xbl_c_martial: 7.00
+ck3xbl_c_weight: 10.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 221 (ck3xbl_on_combat_start): CK3XBL|A|def
+[21:14:05][I][effectimpl.cpp:642]: Army of Mahur weak (Army - 16777244)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 7.00
+ck3xbl_c_age: 24.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 13.00
+ck3xbl_c_martial: 7.00
+ck3xbl_c_weight: 10.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 7.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+ck3xbl_a_ke: 1000.00
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 611 (ck3xbl_on_combat_start): CK3XBL|AX|besieging|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 627 (ck3xbl_on_combat_start): CK3XBL|AX|territory|other
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1029 (ck3xbl_on_combat_start): CK3XBL|AX|culture|telugu
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1075 (ck3xbl_on_combat_start): CK3XBL|AX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1124 (ck3xbl_on_combat_start): CK3XBL|AX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1137 (ck3xbl_on_combat_start): CK3XBL|AX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 317 (ck3xbl_on_combat_start): CK3XBL|AX|nomadic|no
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 235 (ck3xbl_on_combat_start): CK3XBL|C|CMD|def
+[21:14:05][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 1.00
+ck3xbl_c_age: 71.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 9.00
+ck3xbl_c_martial: 14.00
+ck3xbl_c_weight: 18.00
+ck3xbl_c_tier: 2.00
+ck3xbl_c_is_player: 1.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 1.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 650 (ck3xbl_on_combat_start): CK3XBL|CX|culture|telugu
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1525 (ck3xbl_on_combat_start): CK3XBL|CX|trait|scarred
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1561 (ck3xbl_on_combat_start): CK3XBL|CX|ctrait|unyielding_defender
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 246 (ck3xbl_on_combat_start): CK3XBL|C|KNIGHT|def
+[21:14:05][I][effectimpl.cpp:642]: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 2.00
+ck3xbl_c_age: 34.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 18.00
+ck3xbl_c_martial: 10.00
+ck3xbl_c_weight: 6.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 650 (ck3xbl_on_combat_start): CK3XBL|CX|culture|telugu
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 949 (ck3xbl_on_combat_start): CK3XBL|CX|acc_active|yes
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 955 (ck3xbl_on_combat_start): CK3XBL|CX|acc_rank|3
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 973 (ck3xbl_on_combat_start): CK3XBL|CX|acc_primary|archer_attribute
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1038 (ck3xbl_on_combat_start): CK3XBL|CX|acc_type|valiant_attribute|1
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1086 (ck3xbl_on_combat_start): CK3XBL|CX|acc_type|archer_attribute|2
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 246 (ck3xbl_on_combat_start): CK3XBL|C|KNIGHT|def
+[21:14:05][I][effectimpl.cpp:642]: Rudra Lowborn of  (Internal ID 23540) weak (Character - 23540)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 650 (ck3xbl_on_combat_start): CK3XBL|CX|culture|telugu
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1543 (ck3xbl_on_combat_start): CK3XBL|CX|trait|wounded_1
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1571 (ck3xbl_on_combat_start): CK3XBL|CX|ctrait|forest_fighter
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 685 (ck3xbl_on_combat_start): CK3XBL|CX|ktrait|brave
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 794 (ck3xbl_on_combat_start): CK3XBL|CX|txp|forest_fighter|3
+[21:14:05][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 87 (ck3xbl_on_combat_start): CK3XBL|B|END
+[21:14:05][I][effectimpl.cpp:642]: Battle of Orangallu weak (Combat - 134217801)!
+Root: Battle of Orangallu weak (Combat - 134217801)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+[21:14:19][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_result_effects.txt line: 29 (ck3xbl_battle.0001:option): CK3XBL|CHOICE|FIELD
+[21:14:19][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+governor: Shuzhen_6DD1_73CD Zhào of c_nanxi (Internal ID: 12972 - Historical ID han_3410) weak (Character - 12972)!
+pool_province: Ijaw (Internal ID: 8115) weak (Province - 8115)!
+steps: 0.10
+throne: yes
+buddhism_relic_name: Flag bone (6463)
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+
+Saved list targets:
+elders: 
+Qikun Yáng of d_yongchang (Internal ID: 14142 - Historical ID bai_yang_3_2) weak (Character - 14142)!
+Petros Lowborn of  (Internal ID 18194) weak (Character - 18194)!
+[21:20:39][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_keypad_effects.txt line: 1353 (ck3xbl_key_commit:effect): CK3XBL|IN|BAD
+[21:20:39][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_in_sum: 6114.00
+ck3xbl_in_count: 33.00
+ck3xbl_in_maxver: 4.00
+[21:20:41][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_keypad_effects.txt line: 1351 (ck3xbl_key_commit:effect): CK3XBL|IN|OK
+[21:20:41][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_in_sum: 2687.00
+ck3xbl_in_count: 34.00
+ck3xbl_in_maxver: 4.00
+[21:20:47][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_apply_effects.txt line: 17 (ck3xbl_battle.0002:option): CK3XBL|RES|BEGIN
+[21:20:47][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_res_outcome: 2.00
+[21:20:47][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_apply_effects.txt line: 20 (ck3xbl_battle.0002:option): CK3XBL|RES|LIVE
+[21:20:47][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_res_outcome: 2.00
+ck3xbl_res_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_res_has_prov: 1.00
+ck3xbl_res_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_res_has_primaries: 1.00
+ck3xbl_res_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_res_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_my_side: 2.00
+ck3xbl_res_has_captor: 1.00
+ck3xbl_res_winner_code: 2.00
+ck3xbl_res_default_vside: 1.00
+ck3xbl_captor: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_loser_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+[21:20:47][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_apply_effects.txt line: 99 (ck3xbl_battle.0002:option): CK3XBL|RES|A
+[21:20:47][I][effectimpl.cpp:642]: Bhupati Phoro's Host weak (Army - 16777240)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 7.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_res_outcome: 2.00
+ck3xbl_res_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_res_has_prov: 1.00
+ck3xbl_res_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_res_has_primaries: 1.00
+ck3xbl_res_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_res_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_my_side: 2.00
+ck3xbl_res_has_captor: 1.00
+ck3xbl_res_winner_code: 2.00
+ck3xbl_res_default_vside: 1.00
+ck3xbl_captor: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_loser_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_after: 1012.00
+[21:20:47][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_apply_effects.txt line: 99 (ck3xbl_battle.0002:option): CK3XBL|RES|A
+[21:20:47][I][effectimpl.cpp:642]: Army of Warangal weak (Army - 16777242)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 8.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_res_outcome: 2.00
+ck3xbl_res_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_res_has_prov: 1.00
+ck3xbl_res_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_res_has_primaries: 1.00
+ck3xbl_res_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_res_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_my_side: 2.00
+ck3xbl_res_has_captor: 1.00
+ck3xbl_res_winner_code: 2.00
+ck3xbl_res_default_vside: 1.00
+ck3xbl_captor: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_loser_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_after: 1431.00
+[21:20:47][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_apply_effects.txt line: 99 (ck3xbl_battle.0002:option): CK3XBL|RES|A
+[21:20:47][I][effectimpl.cpp:642]: Army of Mahur weak (Army - 16777244)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_res_outcome: 2.00
+ck3xbl_res_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_res_has_prov: 1.00
+ck3xbl_res_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_res_has_primaries: 1.00
+ck3xbl_res_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_res_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_my_side: 2.00
+ck3xbl_res_has_captor: 1.00
+ck3xbl_res_winner_code: 2.00
+ck3xbl_res_default_vside: 1.00
+ck3xbl_captor: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_loser_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_after: 486.00
+[21:20:47][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_apply_effects.txt line: 76 (ck3xbl_battle.0002:option): CK3XBL|RES|END
+[21:20:47][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_year: 871.00
+ck3xbl_month: 2.00
+ck3xbl_day: 14.00
+ck3xbl_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Orangallu (Internal ID: 10111 - Internal Key: b_warangal) weak (Landed_title - 10111)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 1.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554501)!
+ck3xbl_my_men: 2300.00
+ck3xbl_enemy_men: 1925.00
+ck3xbl_enemy_leader: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 3.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Ellur (Internal ID: 1255) weak (Province - 1255)!
+ck3xbl_side: Defender weak (Combat_side - 33554502)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 2300.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_tag: 9.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 0.00
+ck3xbl_a_cmd: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_r_cur: 200.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 8.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_c_has_house: 0.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_res_outcome: 2.00
+ck3xbl_res_combat: Battle of Orangallu weak (Combat - 134217801)!
+ck3xbl_res_has_prov: 1.00
+ck3xbl_res_prov: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_res_has_primaries: 1.00
+ck3xbl_res_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_res_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_my_side: 2.00
+ck3xbl_res_has_captor: 1.00
+ck3xbl_res_winner_code: 2.00
+ck3xbl_res_default_vside: 1.00
+ck3xbl_captor: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_res_loser_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_after: 486.00
+[21:20:47][I][jomini_effect_impl.cpp:450]: file: common/on_action/ck3xbl_on_actions.txt line: 68 (ck3xbl_on_combat_end_winner): CK3XBL|END|winner
+[21:20:47][I][effectimpl.cpp:642]: Defender weak (Combat_side - 33554502)!
+Root: Defender weak (Combat_side - 33554502)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_end_st_bid: 0.00
+ck3xbl_end_wipe: 0.00
+ck3xbl_end_has_primary: 1.00
+ck3xbl_end_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+[21:20:47][I][jomini_effect_impl.cpp:450]: file: common/on_action/ck3xbl_on_actions.txt line: 78 (ck3xbl_on_combat_end_loser): CK3XBL|END|loser
+[21:20:47][I][effectimpl.cpp:642]: Attacker weak (Combat_side - 33554501)!
+Root: Attacker weak (Combat_side - 33554501)!
+
+Saved event targets:
+ck3xbl_bid: 3.00
+ck3xbl_end_st_bid: 0.00
+ck3xbl_end_wipe: 0.00
+ck3xbl_end_has_primary: 1.00
+ck3xbl_end_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 82 (ck3xbl_on_combat_start): CK3XBL|B|BEGIN
+[21:31:12][I][effectimpl.cpp:642]: Battle of Medak weak (Combat - 134217830)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 8 (ck3xbl_on_combat_start): CK3XBL|L|terrain|plains
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 30 (ck3xbl_on_combat_start): CK3XBL|L|winter|none
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 34 (ck3xbl_on_combat_start): CK3XBL|L|holding|castle_holding
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 43 (ck3xbl_on_combat_start): CK3XBL|L|coastal|no
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 44 (ck3xbl_on_combat_start): CK3XBL|L|riverside|yes
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 47 (ck3xbl_on_combat_start): CK3XBL|L|siege|no
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 49 (ck3xbl_on_combat_start): CK3XBL|L|raid|no
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 51 (ck3xbl_on_combat_start): CK3XBL|L|occupied|no
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 63 (ck3xbl_on_combat_start): CK3XBL|L|region|world_india
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 113 (ck3xbl_on_combat_start): CK3XBL|L|building_gfx|indian_building_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 339 (ck3xbl_on_combat_start): CK3XBL|L|loc_culture|telugu
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 385 (ck3xbl_on_combat_start): CK3XBL|L|loc_heritage|heritage_dravidian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 92 (ck3xbl_on_combat_start): CK3XBL|LV
+[21:31:12][I][effectimpl.cpp:642]: Medak (Internal ID: 1257) weak (Province - 1257)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 76 (ck3xbl_on_combat_start): CK3XBL|S|att
+[21:31:12][I][effectimpl.cpp:642]: Attacker weak (Combat_side - 33554530)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 500.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 86 (ck3xbl_on_combat_start): CK3XBL|A|att
+[21:31:12][I][effectimpl.cpp:642]: Raiders of Vengi weak (Army - 16777250)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 500.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_a_tag: 10.00
+ck3xbl_a_size: 500.00
+ck3xbl_a_levies: 380.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_a_ke: 1500.00
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 611 (ck3xbl_on_combat_start): CK3XBL|AX|besieging|no
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 625 (ck3xbl_on_combat_start): CK3XBL|AX|territory|hostile
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 916 (ck3xbl_on_combat_start): CK3XBL|AX|culture|kannada
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1075 (ck3xbl_on_combat_start): CK3XBL|AX|heritage|heritage_dravidian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1124 (ck3xbl_on_combat_start): CK3XBL|AX|unit_gfx|indian_unit_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1137 (ck3xbl_on_combat_start): CK3XBL|AX|era|culture_era_early_medieval
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 317 (ck3xbl_on_combat_start): CK3XBL|AX|nomadic|no
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 646 (ck3xbl_on_combat_start): CK3XBL|AX|otrait|education_martial_4
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_start): CK3XBL|R
+[21:31:12][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,light_horsemen L; Light Horsemen!!' (Internal ID: '16791720' - Type: 'personal' ) weak (Regiment - 16791720)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 500.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_a_tag: 10.00
+ck3xbl_a_size: 500.00
+ck3xbl_a_levies: 380.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 100 (ck3xbl_on_combat_start): CK3XBL|C|CMD|att
+[21:31:12][I][effectimpl.cpp:642]: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 500.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_a_tag: 10.00
+ck3xbl_a_size: 500.00
+ck3xbl_a_levies: 380.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 7.00
+ck3xbl_c_age: 24.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 13.00
+ck3xbl_c_martial: 7.00
+ck3xbl_c_weight: 10.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 10.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 537 (ck3xbl_on_combat_start): CK3XBL|CX|culture|kannada
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1526 (ck3xbl_on_combat_start): CK3XBL|CX|trait|one_eyed
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1281 (ck3xbl_on_combat_start): CK3XBL|CX|artifact|primary_armament|sword|famed
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1295 (ck3xbl_on_combat_start): CK3XBL|CX|artifact|armor|armor_mail|illustrious
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1319 (ck3xbl_on_combat_start): CK3XBL|CX|artifact_helmet|armor_helmet_nasal
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 119 (ck3xbl_on_combat_start): CK3XBL|C|PRIMARY|att
+[21:31:12][I][effectimpl.cpp:642]: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_side_code: 1.00
+ck3xbl_s_size: 500.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_s_player_in: 0.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 2.00
+ck3xbl_s_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_a_tag: 10.00
+ck3xbl_a_size: 500.00
+ck3xbl_a_levies: 380.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 5.00
+ck3xbl_c_age: 38.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 12.00
+ck3xbl_c_martial: 11.00
+ck3xbl_c_weight: -4.00
+ck3xbl_c_tier: 3.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 0.00
+ck3xbl_c_absent: 1.00
+ck3xbl_c_has_title: 1.00
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 537 (ck3xbl_on_combat_start): CK3XBL|CX|culture|kannada
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1547 (ck3xbl_on_combat_start): CK3XBL|CX|trait|strong
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1560 (ck3xbl_on_combat_start): CK3XBL|CX|ctrait|aggressive_attacker
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 703 (ck3xbl_on_combat_start): CK3XBL|CX|ktrait|education_martial_4
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 211 (ck3xbl_on_combat_start): CK3XBL|S|def
+[21:31:12][I][effectimpl.cpp:642]: Defender weak (Combat_side - 33554531)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 600.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_a_tag: 10.00
+ck3xbl_a_size: 500.00
+ck3xbl_a_levies: 380.00
+ck3xbl_a_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 5.00
+ck3xbl_c_age: 38.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 12.00
+ck3xbl_c_martial: 11.00
+ck3xbl_c_weight: -4.00
+ck3xbl_c_tier: 3.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 0.00
+ck3xbl_c_absent: 1.00
+ck3xbl_c_has_title: 1.00
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 221 (ck3xbl_on_combat_start): CK3XBL|A|def
+[21:31:12][I][effectimpl.cpp:642]: Army of Mahur weak (Army - 16777244)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 600.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_a_tag: 11.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 5.00
+ck3xbl_c_age: 38.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 12.00
+ck3xbl_c_martial: 11.00
+ck3xbl_c_weight: -4.00
+ck3xbl_c_tier: 3.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 0.00
+ck3xbl_c_absent: 1.00
+ck3xbl_c_has_title: 1.00
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Phoro (Internal ID: 5340 - Internal Key: ) weak (Dynasty_house - 5340)!
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+ck3xbl_a_ke: 1000.00
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 611 (ck3xbl_on_combat_start): CK3XBL|AX|besieging|no
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 627 (ck3xbl_on_combat_start): CK3XBL|AX|territory|other
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1029 (ck3xbl_on_combat_start): CK3XBL|AX|culture|telugu
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1075 (ck3xbl_on_combat_start): CK3XBL|AX|heritage|heritage_dravidian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1124 (ck3xbl_on_combat_start): CK3XBL|AX|unit_gfx|indian_unit_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1137 (ck3xbl_on_combat_start): CK3XBL|AX|era|culture_era_early_medieval
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 317 (ck3xbl_on_combat_start): CK3XBL|AX|nomadic|no
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 235 (ck3xbl_on_combat_start): CK3XBL|C|CMD|def
+[21:31:12][I][effectimpl.cpp:642]: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 600.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_a_tag: 11.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 2.00
+ck3xbl_c_age: 34.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 18.00
+ck3xbl_c_martial: 10.00
+ck3xbl_c_weight: 6.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 11.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_c_title: Vengi (Internal ID: 3612 - Internal Key: d_vengi) weak (Landed_title - 3612)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 650 (ck3xbl_on_combat_start): CK3XBL|CX|culture|telugu
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 949 (ck3xbl_on_combat_start): CK3XBL|CX|acc_active|yes
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 955 (ck3xbl_on_combat_start): CK3XBL|CX|acc_rank|3
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 973 (ck3xbl_on_combat_start): CK3XBL|CX|acc_primary|archer_attribute
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1038 (ck3xbl_on_combat_start): CK3XBL|CX|acc_type|valiant_attribute|1
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 1086 (ck3xbl_on_combat_start): CK3XBL|CX|acc_type|archer_attribute|2
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_side_effects.txt line: 254 (ck3xbl_on_combat_start): CK3XBL|C|PRIMARY|def
+[21:31:12][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 600.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_a_tag: 11.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 1.00
+ck3xbl_c_age: 71.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 9.00
+ck3xbl_c_martial: 14.00
+ck3xbl_c_weight: 18.00
+ck3xbl_c_tier: 2.00
+ck3xbl_c_is_player: 1.00
+ck3xbl_c_army: 0.00
+ck3xbl_c_absent: 1.00
+ck3xbl_c_has_title: 1.00
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 650 (ck3xbl_on_combat_start): CK3XBL|CX|culture|telugu
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_start): CK3XBL|CX|heritage|heritage_dravidian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_start): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_start): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_start): CK3XBL|CX|era|culture_era_early_medieval
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_start): CK3XBL|CX|ethnicity|south_indian
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1525 (ck3xbl_on_combat_start): CK3XBL|CX|trait|scarred
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1561 (ck3xbl_on_combat_start): CK3XBL|CX|ctrait|unyielding_defender
+[21:31:12][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 87 (ck3xbl_on_combat_start): CK3XBL|B|END
+[21:31:12][I][effectimpl.cpp:642]: Battle of Medak weak (Combat - 134217830)!
+Root: Battle of Medak weak (Combat - 134217830)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 600.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_a_tag: 11.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 1.00
+ck3xbl_c_age: 71.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 9.00
+ck3xbl_c_martial: 14.00
+ck3xbl_c_weight: 18.00
+ck3xbl_c_tier: 2.00
+ck3xbl_c_is_player: 1.00
+ck3xbl_c_army: 0.00
+ck3xbl_c_absent: 1.00
+ck3xbl_c_has_title: 1.00
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+[21:31:20][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_result_effects.txt line: 112 (ck3xbl_battle.0001:option): CK3XBL|CHOICE|AUTO
+[21:31:20][I][effectimpl.cpp:642]: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+Root: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_parent_bid: 0.00
+ck3xbl_clash: 1.00
+ck3xbl_combat: Battle of Medak weak (Combat - 134217830)!
+ck3xbl_year: 871.00
+ck3xbl_month: 3.00
+ck3xbl_day: 2.00
+ck3xbl_prov: Medak (Internal ID: 1257) weak (Province - 1257)!
+ck3xbl_county: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+ck3xbl_barony: Medak (Internal ID: 10112 - Internal Key: b_medak) weak (Landed_title - 10112)!
+ck3xbl_war: Bhupati Phoro's Conquest of Warangal weak (War - 37)!
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_att_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_att_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_def_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_def_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_player_present: 0.00
+ck3xbl_my_side_code: 2.00
+ck3xbl_my_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_enemy_side: Attacker weak (Combat_side - 33554530)!
+ck3xbl_my_men: 600.00
+ck3xbl_enemy_men: 500.00
+ck3xbl_enemy_leader: Mallaya Phoro of  (Internal ID: 16210 - Historical ID 189302) weak (Character - 16210)!
+ck3xbl_enemy_army_owner: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!
+ck3xbl_l_fort: 1.00
+ck3xbl_l_dev: 12.00
+ck3xbl_l_has_origin: 1.00
+ck3xbl_l_origin: Orangallu (Internal ID: 1256) weak (Province - 1256)!
+ck3xbl_side: Defender weak (Combat_side - 33554531)!
+ck3xbl_side_code: 2.00
+ck3xbl_s_size: 600.00
+ck3xbl_s_has_primary: 1.00
+ck3xbl_s_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_s_player_in: 1.00
+ck3xbl_s_has_cmd: 1.00
+ck3xbl_s_hostility_out: 1.00
+ck3xbl_s_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_a_tag: 11.00
+ck3xbl_a_size: 600.00
+ck3xbl_a_levies: 600.00
+ck3xbl_a_owner: Beta Kakatiya of c_mahur (Internal ID: 10846 - Historical ID 189230) weak (Character - 10846)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Prola Kakatiya of  (Internal ID: 10845 - Historical ID 189229) weak (Character - 10845)!
+ck3xbl_r_cur: 120.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 1.00
+ck3xbl_c_age: 71.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 9.00
+ck3xbl_c_martial: 14.00
+ck3xbl_c_weight: 18.00
+ck3xbl_c_tier: 2.00
+ck3xbl_c_is_player: 1.00
+ck3xbl_c_army: 0.00
+ck3xbl_c_absent: 1.00
+ck3xbl_c_has_title: 1.00
+ck3xbl_c_has_house: 1.00
+ck3xbl_c_house: Kakatiya (Internal ID: 5301 - Internal Key: ) weak (Dynasty_house - 5301)!
+ck3xbl_c_title: Orangallu (Internal ID: 10110 - Internal Key: c_orangallu) weak (Landed_title - 10110)!
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 444 (ck3xbl_on_combat_join): CK3XBL|J|def
+[21:31:52][I][effectimpl.cpp:642]: Army of Warangal weak (Army - 16777242)!
+Root: Defender weak (Combat_side - 33554531)!
+
+Saved event targets:
+ck3xbl_j_steer: 0.00
+ck3xbl_bid: 4.00
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_side_code: 2.00
+ck3xbl_a_tag: 12.00
+ck3xbl_a_size: 1180.00
+ck3xbl_a_levies: 840.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Rudra Lowborn of  (Internal ID 23540) weak (Character - 23540)!
+ck3xbl_a_ke: 1150.00
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 611 (ck3xbl_on_combat_join): CK3XBL|AX|besieging|no
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 613 (ck3xbl_on_combat_join): CK3XBL|AX|territory|own
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1029 (ck3xbl_on_combat_join): CK3XBL|AX|culture|telugu
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1075 (ck3xbl_on_combat_join): CK3XBL|AX|heritage|heritage_dravidian
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1124 (ck3xbl_on_combat_join): CK3XBL|AX|unit_gfx|indian_unit_gfx
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1137 (ck3xbl_on_combat_join): CK3XBL|AX|era|culture_era_early_medieval
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 317 (ck3xbl_on_combat_join): CK3XBL|AX|nomadic|no
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_join): CK3XBL|R
+[21:31:52][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,war_elephant L; War Elephants!!' (Internal ID: '16791710' - Type: 'personal' ) weak (Regiment - 16791710)!
+Root: Defender weak (Combat_side - 33554531)!
+
+Saved event targets:
+ck3xbl_j_steer: 0.00
+ck3xbl_bid: 4.00
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_side_code: 2.00
+ck3xbl_a_tag: 12.00
+ck3xbl_a_size: 1180.00
+ck3xbl_a_levies: 840.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Rudra Lowborn of  (Internal ID 23540) weak (Character - 23540)!
+ck3xbl_r_cur: 20.00
+ck3xbl_r_max: 25.00
+ck3xbl_r_hired: 0.00
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_join): CK3XBL|R
+[21:31:52][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,armored_footmen L; Armored Footmen!!' (Internal ID: '16791711' - Type: 'personal' ) weak (Regiment - 16791711)!
+Root: Defender weak (Combat_side - 33554531)!
+
+Saved event targets:
+ck3xbl_j_steer: 0.00
+ck3xbl_bid: 4.00
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_side_code: 2.00
+ck3xbl_a_tag: 12.00
+ck3xbl_a_size: 1180.00
+ck3xbl_a_levies: 840.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Rudra Lowborn of  (Internal ID 23540) weak (Character - 23540)!
+ck3xbl_r_cur: 140.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 300 (ck3xbl_on_combat_join): CK3XBL|R
+[21:31:52][I][effectimpl.cpp:642]: 'TOOLTIP:MEN_AT_ARMS_TYPE,bowmen L; Bowmen!!' (Internal ID: '16791712' - Type: 'personal' ) weak (Regiment - 16791712)!
+Root: Defender weak (Combat_side - 33554531)!
+
+Saved event targets:
+ck3xbl_j_steer: 0.00
+ck3xbl_bid: 4.00
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_side_code: 2.00
+ck3xbl_a_tag: 12.00
+ck3xbl_a_size: 1180.00
+ck3xbl_a_levies: 840.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Rudra Lowborn of  (Internal ID 23540) weak (Character - 23540)!
+ck3xbl_r_cur: 180.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_snapshot_effects.txt line: 460 (ck3xbl_on_combat_join): CK3XBL|C|CMD|def
+[21:31:52][I][effectimpl.cpp:642]: Rudra Lowborn of  (Internal ID 23540) weak (Character - 23540)!
+Root: Defender weak (Combat_side - 33554531)!
+
+Saved event targets:
+ck3xbl_j_steer: 0.00
+ck3xbl_bid: 4.00
+ck3xbl_player: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_side_code: 2.00
+ck3xbl_a_tag: 12.00
+ck3xbl_a_size: 1180.00
+ck3xbl_a_levies: 840.00
+ck3xbl_a_owner: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+ck3xbl_a_has_cmd: 1.00
+ck3xbl_a_cmd: Rudra Lowborn of  (Internal ID 23540) weak (Character - 23540)!
+ck3xbl_r_cur: 180.00
+ck3xbl_r_max: 200.00
+ck3xbl_r_hired: 0.00
+ck3xbl_c_tag: 8.00
+ck3xbl_c_age: 41.00
+ck3xbl_c_female: 0.00
+ck3xbl_c_prowess: 15.00
+ck3xbl_c_martial: 9.00
+ck3xbl_c_weight: 24.00
+ck3xbl_c_tier: 0.00
+ck3xbl_c_is_player: 0.00
+ck3xbl_c_army: 12.00
+ck3xbl_c_absent: 0.00
+ck3xbl_c_has_title: 0.00
+ck3xbl_c_has_house: 0.00
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 650 (ck3xbl_on_combat_join): CK3XBL|CX|culture|telugu
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 696 (ck3xbl_on_combat_join): CK3XBL|CX|heritage|heritage_dravidian
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 745 (ck3xbl_on_combat_join): CK3XBL|CX|unit_gfx|indian_unit_gfx
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 791 (ck3xbl_on_combat_join): CK3XBL|CX|clothing_gfx|indian_clothing_gfx
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 803 (ck3xbl_on_combat_join): CK3XBL|CX|era|culture_era_early_medieval
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1515 (ck3xbl_on_combat_join): CK3XBL|CX|ethnicity|south_indian
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1543 (ck3xbl_on_combat_join): CK3XBL|CX|trait|wounded_1
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_emit_effects.txt line: 1571 (ck3xbl_on_combat_join): CK3XBL|CX|ctrait|forest_fighter
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 685 (ck3xbl_on_combat_join): CK3XBL|CX|ktrait|brave
+[21:31:52][I][jomini_effect_impl.cpp:450]: file: common/scripted_effects/ck3xbl_gen_knight_effects.txt line: 794 (ck3xbl_on_combat_join): CK3XBL|CX|txp|forest_fighter|3
+[21:33:05][I][jomini_effect_impl.cpp:450]: file: common/on_action/ck3xbl_on_actions.txt line: 68 (ck3xbl_on_combat_end_winner): CK3XBL|END|winner
+[21:33:05][I][effectimpl.cpp:642]: Defender weak (Combat_side - 33554531)!
+Root: Defender weak (Combat_side - 33554531)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_end_st_bid: 0.00
+ck3xbl_end_wipe: 0.00
+ck3xbl_end_has_primary: 1.00
+ck3xbl_end_primary: Gunda Kakatiya of c_orangallu (Internal ID: 10811 - Historical ID 189226) weak (Character - 10811)!
+[21:33:05][I][jomini_effect_impl.cpp:450]: file: common/on_action/ck3xbl_on_actions.txt line: 78 (ck3xbl_on_combat_end_loser): CK3XBL|END|loser
+[21:33:05][I][effectimpl.cpp:642]: Attacker weak (Combat_side - 33554530)!
+Root: Attacker weak (Combat_side - 33554530)!
+
+Saved event targets:
+ck3xbl_bid: 4.00
+ck3xbl_end_st_bid: 0.00
+ck3xbl_end_wipe: 0.00
+ck3xbl_end_has_primary: 1.00
+ck3xbl_end_primary: Bhupati Phoro of d_vengi (Internal ID: 10935 - Historical ID 189301) weak (Character - 10935)!

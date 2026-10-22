@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Headless self-check of the game-independent part of the CK3Bridge module (src/Core): protocol JSON, commands,
+    naming, banner codes, normalisation rules, group ledger, battle accounting, file transport; plus a metadata-only
+    (reflection-only load, nothing executed) check that the built CK3Bridge.dll and the private game members it reaches by
+    reflection match the installed Bannerlord.
+    Run: dotnet build -c Release && bin\Release\CK3Bridge.SelfCheck.exe   (exit code 0 = all checks passed)
+    Newtonsoft.Json is resolved at runtime from the user's Bannerlord install; nothing from the game is copied here.
+    The Bannerlord folder is found as for the module (../src/BannerlordDir.props: -p:BannerlordDir, BANNERLORD_DIR or Steam).
+  -->
+  <Import Project="..\src\BannerlordDir.props" />
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\shared\Protocol.cs" Link="Shared\Protocol.cs" />
+    <Compile Include="..\src\Core\*.cs" Link="Core\%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="$(BannerlordDir)\bin\Win64_Shipping_Client\Newtonsoft.Json.dll" Private="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>ModuleDir</_Parameter1>
+      <_Parameter2>$(MSBuildThisFileDirectory)..</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>BannerlordBin</_Parameter1>
+      <_Parameter2>$(BannerlordDir)\bin\Win64_Shipping_Client</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+</Project>

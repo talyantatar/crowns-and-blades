@@ -1,0 +1,54 @@
+﻿# Sieges in Bannerlord (docs/PROTOCOL.md 39).
+
+# A day number (360-day years): the difference of two is a number of days, close enough for a siege's length.
+ck3xbl_day_number_value = {
+	value = current_year
+	multiply = 360
+	add = { value = current_month multiply = 30 }
+	add = current_day
+}
+
+# this = province: its fort level, 0..20 (the trigger only compares, so the value is read step by step).
+ck3xbl_fort_level_value = {
+	value = 0
+	if = { limit = { fort_level >= 1 } value = 1 }
+	if = { limit = { fort_level >= 2 } value = 2 }
+	if = { limit = { fort_level >= 3 } value = 3 }
+	if = { limit = { fort_level >= 4 } value = 4 }
+	if = { limit = { fort_level >= 5 } value = 5 }
+	if = { limit = { fort_level >= 6 } value = 6 }
+	if = { limit = { fort_level >= 7 } value = 7 }
+	if = { limit = { fort_level >= 8 } value = 8 }
+	if = { limit = { fort_level >= 9 } value = 9 }
+	if = { limit = { fort_level >= 10 } value = 10 }
+	if = { limit = { fort_level >= 11 } value = 11 }
+	if = { limit = { fort_level >= 12 } value = 12 }
+	if = { limit = { fort_level >= 14 } value = 14 }
+	if = { limit = { fort_level >= 16 } value = 16 }
+	if = { limit = { fort_level >= 20 } value = 20 }
+}
+
+# this = province: its largest garrison, 0..5000 in steps of 25 below 1000 and of 100 above.
+ck3xbl_garrison_value = {
+	value = 0
+	if = { limit = { building_max_garrison >= 25 } value = 25 }
+	if = { limit = { building_max_garrison >= 50 } value = 50 }
+	if = { limit = { building_max_garrison >= 75 } value = 75 }
+	if = { limit = { building_max_garrison >= 100 } value = 100 }
+	if = { limit = { building_max_garrison >= 150 } value = 150 }
+	if = { limit = { building_max_garrison >= 200 } value = 200 }
+	if = { limit = { building_max_garrison >= 250 } value = 250 }
+	if = { limit = { building_max_garrison >= 300 } value = 300 }
+	if = { limit = { building_max_garrison >= 400 } value = 400 }
+	if = { limit = { building_max_garrison >= 500 } value = 500 }
+	if = { limit = { building_max_garrison >= 600 } value = 600 }
+	if = { limit = { building_max_garrison >= 750 } value = 750 }
+	if = { limit = { building_max_garrison >= 1000 } value = 1000 }
+	if = { limit = { building_max_garrison >= 1250 } value = 1250 }
+	if = { limit = { building_max_garrison >= 1500 } value = 1500 }
+	if = { limit = { building_max_garrison >= 2000 } value = 2000 }
+	if = { limit = { building_max_garrison >= 2500 } value = 2500 }
+	if = { limit = { building_max_garrison >= 3000 } value = 3000 }
+	if = { limit = { building_max_garrison >= 4000 } value = 4000 }
+	if = { limit = { building_max_garrison >= 5000 } value = 5000 }
+}

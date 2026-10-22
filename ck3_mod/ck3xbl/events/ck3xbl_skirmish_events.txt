@@ -1,0 +1,63 @@
+﻿# Skirmishes on the road in Bannerlord (docs/PROTOCOL.md 20), seen by the player:
+#   0001 (hidden): the option "Fight it out in Bannerlord" of a vanilla travel danger event: the skirmish is logged and fought.
+#   0002 "Blades on the Road": open while the skirmish is fought in Bannerlord; hosts the keypad widget.
+#   0004 (hidden): the delivered result is applied (fates, spoils).
+# root = the player. The chain carries scope:ck3xbl_foe and scope:ck3xbl_sk_kind from the vanilla event's option.
+
+namespace = ck3xbl_skirmish
+
+ck3xbl_skirmish.0001 = {
+	type = character_event
+	hidden = yes
+	immediate = { ck3xbl_skirmish_begin_effect = yes }
+}
+
+ck3xbl_skirmish.0002 = {
+	type = character_event
+	title = ck3xbl_skirmish.0002.t
+	desc = ck3xbl_skirmish.0002.desc
+	theme = travel_danger
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = scope:ck3xbl_foe
+		animation = aggressive_sword
+	}
+	widget = {
+		gui = "ck3xbl_keypad"
+		container = "custom_widgets_container"
+	}
+
+	option = {	# Always clickable (as battle event 0002): before word arrives it simply keeps waiting.
+		name = ck3xbl_skirmish.0002.a
+		hidden_effect = { trigger_event = ck3xbl_skirmish.0004 }
+	}
+	option = {	# The bridge or Bannerlord failed: the travellers slip away, leaving some coin behind.
+		name = ck3xbl_skirmish.0002.b
+		trigger = {
+			NOT = { ck3xbl_result_applied_trigger = yes }
+		}
+		hidden_effect = { ck3xbl_abandon_battle_effect = yes }
+		remove_short_term_gold = minor_gold_value
+	}
+}
+
+ck3xbl_skirmish.0004 = {
+	type = character_event
+	hidden = yes
+	immediate = {
+		if = {
+			limit = { ck3xbl_result_ready_trigger = yes }
+			ck3xbl_skirmish_apply_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_alive = yes
+				NOT = { ck3xbl_result_applied_trigger = yes }
+			}
+			trigger_event = ck3xbl_skirmish.0002
+		}
+	}
+}

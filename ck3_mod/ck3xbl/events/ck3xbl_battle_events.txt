@@ -1,0 +1,378 @@
+﻿# The battle flow seen by the player (docs/PROTOCOL.md 1.3-2.2):
+#   0001 "The Battle of X": fight in Bannerlord, or let CK3 resolve it.
+#   0002 "The Armies Clash": open while the battle is fought in Bannerlord; hosts the keypad widget.
+#   0003 "Victory at X" / "Defeat at X": the outcome, after the result has been applied (a payload 4 battle: after the battle
+#        clock's fix, opened by ck3xbl_clock.0003 one window at a time; docs/PROTOCOL.md 14.4).
+# root = the player. The event chain carries the snapshot scopes of ck3xbl_snapshot_effect (scope:ck3xbl_bid,
+# scope:ck3xbl_prov, scope:ck3xbl_my_side_code, scope:ck3xbl_enemy_leader, ...).
+
+namespace = ck3xbl_battle
+
+# A second clash (battle clock, PROTOCOL 14.6: scope:ck3xbl_clash >= 2, the joiner in scope:ck3xbl_joiner_leader) is offered
+# as "Reinforcements Arrive!". Once its parent no longer waits for it (failsafe, AUTO), the window says the moment has passed and
+# offers only option b.
+ck3xbl_battle.0001 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { exists = scope:ck3xbl_clash scope:ck3xbl_clash >= 2 }
+				desc = ck3xbl_battle.0001.t.reinforcements
+			}
+			desc = ck3xbl_battle.0001.t
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { NOT = { ck3xbl_child_open_trigger = yes } }
+				desc = ck3xbl_battle.0001.desc.passed
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:ck3xbl_clash
+					scope:ck3xbl_clash >= 2
+					scope:ck3xbl_joiner_side_code = scope:ck3xbl_my_side_code
+				}
+				desc = ck3xbl_battle.0001.desc.reinforcements_ours
+			}
+			triggered_desc = {
+				trigger = { exists = scope:ck3xbl_clash scope:ck3xbl_clash >= 2 }
+				desc = ck3xbl_battle.0001.desc.reinforcements_theirs
+			}
+			triggered_desc = {
+				trigger = { scope:ck3xbl_my_side_code = 1 }
+				desc = ck3xbl_battle.0001.desc.attacking
+			}
+			desc = ck3xbl_battle.0001.desc.defending
+		}
+		triggered_desc = {
+			trigger = { ck3xbl_child_open_trigger = yes }
+			desc = ck3xbl_battle.0001.desc.odds
+		}
+		# A second clash: CK3 is still counting the first clash's losses; Bannerlord fields only those who lived through it.
+		triggered_desc = {
+			trigger = {
+				ck3xbl_child_open_trigger = yes
+				exists = scope:ck3xbl_clash
+				scope:ck3xbl_clash >= 2
+			}
+			desc = ck3xbl_battle.0001.desc.carried
+		}
+	}
+	theme = battle
+	left_portrait = {
+		character = root
+		triggered_animation = {
+			trigger = { scope:ck3xbl_my_side_code = 1 }
+			animation = war_attacker
+		}
+		animation = war_defender
+	}
+	right_portrait = {
+		character = scope:ck3xbl_enemy_leader
+		animation = marshal
+	}
+
+	# Options a and c re-check the field when clicked: two battles starting in the same tick open two windows, and
+	# option availability may not refresh while a window is open. If another battle took the field meanwhile, the
+	# window opens again and shows why the field is closed.
+	option = {	# The player rides with one of the armies: fight as yourself.
+		name = ck3xbl_battle.0001.a
+		trigger = {
+			custom_tooltip = {
+				text = ck3xbl_with_host_tt
+				ck3xbl_player_in_battle_trigger = yes
+			}
+			ck3xbl_field_available_trigger = yes
+			custom_tooltip = {
+				text = ck3xbl_moment_passed_tt
+				ck3xbl_child_open_trigger = yes
+			}
+		}
+		show_as_unavailable = {
+			ck3xbl_player_in_battle_trigger = yes
+			ck3xbl_child_open_trigger = yes
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					ck3xbl_field_available_trigger = yes
+					ck3xbl_child_open_trigger = yes
+				}
+				ck3xbl_choose_field_effect = yes
+				trigger_event = ck3xbl_battle.0002
+			}
+			else = { trigger_event = ck3xbl_battle.0001 }
+		}
+	}
+	option = {	# The player is not with the host: take the field in the commander's place.
+		name = ck3xbl_battle.0001.c
+		trigger = {
+			custom_tooltip = {
+				text = ck3xbl_away_from_host_tt
+				NOT = { ck3xbl_player_in_battle_trigger = yes }
+			}
+			ck3xbl_field_available_trigger = yes
+			custom_tooltip = {
+				text = ck3xbl_moment_passed_tt
+				ck3xbl_child_open_trigger = yes
+			}
+		}
+		show_as_unavailable = {
+			NOT = { ck3xbl_player_in_battle_trigger = yes }
+			ck3xbl_child_open_trigger = yes
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					ck3xbl_field_available_trigger = yes
+					ck3xbl_child_open_trigger = yes
+				}
+				ck3xbl_choose_field_effect = yes
+				trigger_event = ck3xbl_battle.0002
+			}
+			else = { trigger_event = ck3xbl_battle.0001 }
+		}
+	}
+	# A relief (docs/PROTOCOL.md 40): the besiegers of the player's or a vassal's holding may be fought at the walls instead.
+	option = {	# Break into the holding and hold the walls with its garrison; some of the host falls on the way in.
+		name = ck3xbl_battle.0001.d
+		trigger = {
+			exists = scope:ck3xbl_relief
+			scope:ck3xbl_relief = 1
+			ck3xbl_field_available_trigger = yes
+			custom_tooltip = {
+				text = ck3xbl_moment_passed_tt
+				ck3xbl_child_open_trigger = yes
+			}
+		}
+		show_as_unavailable = {
+			exists = scope:ck3xbl_relief
+			scope:ck3xbl_relief = 1
+			ck3xbl_child_open_trigger = yes
+		}
+		custom_tooltip = ck3xbl_battle.0001.d.tt
+		hidden_effect = {
+			if = {
+				limit = {
+					ck3xbl_field_available_trigger = yes
+					ck3xbl_child_open_trigger = yes
+				}
+				ck3xbl_choose_field_defend_effect = yes
+				trigger_event = ck3xbl_battle.0002
+			}
+			else = { trigger_event = ck3xbl_battle.0001 }
+		}
+	}
+	option = {	# Fall on the besiegers' camp outside the walls.
+		name = ck3xbl_battle.0001.e
+		trigger = {
+			exists = scope:ck3xbl_relief
+			scope:ck3xbl_relief = 1
+			ck3xbl_field_available_trigger = yes
+			custom_tooltip = {
+				text = ck3xbl_moment_passed_tt
+				ck3xbl_child_open_trigger = yes
+			}
+		}
+		show_as_unavailable = {
+			exists = scope:ck3xbl_relief
+			scope:ck3xbl_relief = 1
+			ck3xbl_child_open_trigger = yes
+		}
+		custom_tooltip = ck3xbl_battle.0001.e.tt
+		hidden_effect = {
+			if = {
+				limit = {
+					ck3xbl_field_available_trigger = yes
+					ck3xbl_child_open_trigger = yes
+				}
+				ck3xbl_choose_field_camp_effect = yes
+				trigger_event = ck3xbl_battle.0002
+			}
+			else = { trigger_event = ck3xbl_battle.0001 }
+		}
+	}
+	option = {	# CK3 resolves the battle; a declined second clash hands its parent back to CK3.
+		name = ck3xbl_battle.0001.b
+		hidden_effect = {
+			ck3xbl_choose_auto_effect = yes
+			ck3xbl_st_offer_declined_effect = yes
+		}
+	}
+}
+
+ck3xbl_battle.0002 = {
+	type = character_event
+	title = ck3xbl_battle.0002.t
+	desc = {
+		desc = ck3xbl_battle.0002.desc
+		desc = ck3xbl_battle.0002.desc.clock
+	}
+	theme = battle
+	left_portrait = {
+		character = root
+		triggered_animation = {
+			trigger = { scope:ck3xbl_my_side_code = 1 }
+			animation = war_attacker
+		}
+		animation = war_defender
+	}
+	right_portrait = {
+		character = scope:ck3xbl_enemy_leader
+		triggered_animation = {
+			trigger = { scope:ck3xbl_my_side_code = 1 }
+			animation = war_defender
+		}
+		animation = war_attacker
+	}
+	widget = {
+		gui = "ck3xbl_keypad"
+		container = "custom_widgets_container"
+	}
+
+	# Every state leaves at least one option: waiting (c, b), committed (a, b), applied (a), and a window of a battle
+	# that is no longer pending, e.g. dropped as stale (b, which then only logs CHOICE|ABANDON for it).
+	option = {	# Always clickable: CK3 does not re-evaluate option availability while an event window stays open (seen
+			# in game), so availability cannot signal the dispatch. The live status line above tells the player whether word has
+			# arrived; a click before that simply keeps waiting (re-opens this window). A payload 4 apply (ck3xbl_applied_steer)
+			# opens no summary here: 1 = the battle clock steers the combat (toast), 2 = its fix already opened the summary.
+		name = ck3xbl_battle.0002.a
+		# The work runs in the hidden event 0004: CK3 rebuilds an open option's effect tooltip every frame, and walking the
+		# apply/steering effects there (variables set earlier in the same apply do not exist yet) logged script errors per frame
+		# (live test 2026-10-04: 66,000 lines while the window stayed open). Triggered events are not walked for tooltips.
+		hidden_effect = { trigger_event = ck3xbl_battle.0004 }
+	}
+	option = {	# The bridge or Bannerlord failed: CK3 resolves the battle itself; a declined second clash hands its parent back.
+		name = ck3xbl_battle.0002.b
+		trigger = {
+			NOT = { ck3xbl_result_applied_trigger = yes }
+		}
+		hidden_effect = {
+			ck3xbl_abandon_battle_effect = yes
+			ck3xbl_st_offer_declined_effect = yes
+		}
+	}
+}
+
+ck3xbl_battle.0003 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { var:ck3xbl_res_won = 1 }
+				desc = ck3xbl_battle.0003.t.win
+			}
+			triggered_desc = {
+				trigger = { var:ck3xbl_res_outcome >= 3 }
+				desc = ck3xbl_battle.0003.t.undecided
+			}
+			desc = ck3xbl_battle.0003.t.loss
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { var:ck3xbl_res_outcome = 4 }
+				desc = ck3xbl_battle.0003.desc.cancelled
+			}
+			triggered_desc = {
+				# Reading the numbers here also tells CK3 the variables are used (they are otherwise only read in loc).
+				trigger = { var:ck3xbl_res_my_lost >= 0 var:ck3xbl_res_enemy_lost >= 0 }
+				desc = ck3xbl_battle.0003.desc.numbers
+			}
+			desc = ck3xbl_battle.0003.desc.numbers
+		}
+		triggered_desc = {
+			trigger = {
+				var:ck3xbl_res_outcome < 4
+				var:ck3xbl_res_my_kills >= 1
+			}
+			desc = ck3xbl_battle.0003.desc.personal
+		}
+		triggered_desc = {
+			trigger = { var:ck3xbl_res_outcome = 3 }
+			desc = ck3xbl_battle.0003.desc.continues
+		}
+		# CK3's own post-battle rolls still run for a decided battle (docs/PROTOCOL.md 10.5).
+		triggered_desc = {
+			trigger = { var:ck3xbl_res_outcome <= 2 }
+			desc = ck3xbl_battle.0003.desc.aftermath
+		}
+	}
+	theme = battle
+	left_portrait = {
+		character = root
+		triggered_animation = {
+			trigger = { var:ck3xbl_res_won = 1 }
+			animation = war_over_win
+		}
+		triggered_animation = {
+			trigger = { var:ck3xbl_res_outcome >= 3 }
+			animation = war_over_tie
+		}
+		animation = war_over_loss
+	}
+	right_portrait = {
+		character = scope:ck3xbl_enemy_leader
+		triggered_animation = {
+			trigger = { root.var:ck3xbl_res_won = 1 }
+			animation = war_over_loss
+		}
+		triggered_animation = {
+			trigger = { root.var:ck3xbl_res_outcome >= 3 }
+			animation = war_over_tie
+		}
+		animation = war_over_win
+	}
+
+	option = {	# The next steered battle's summary may open (ck3xbl_clock.0003).
+		name = ck3xbl_battle.0003.a
+		remove_variable = ck3xbl_res_showing
+	}
+}
+
+# Option "The dust settles..." of event 0002: apply the delivered result, then show what follows (the steering toast, the
+# summary, or event 0002 again while word from the field is still on its way). root = the player; the saved scopes of the
+# battle (scope:ck3xbl_bid, ...) come along from event 0002.
+ck3xbl_battle.0004 = {
+	type = character_event
+	hidden = yes
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					ck3xbl_result_ready_trigger = yes
+					ck3xbl_result_applied_trigger = yes
+				}
+			}
+			ck3xbl_apply_effect = yes
+			ck3xbl_unbroken_walls_effect = yes
+		}
+		if = {
+			limit = {
+				is_alive = yes
+				ck3xbl_result_applied_trigger = yes
+			}
+			if = {
+				limit = { has_variable = ck3xbl_applied_steer }
+				if = {
+					limit = { var:ck3xbl_applied_steer = 1 }
+					send_interface_toast = {
+						type = msg_ck3xbl_battle_rages
+						title = msg_ck3xbl_battle_rages_title
+						desc = msg_ck3xbl_battle_rages_desc
+						left_icon = root
+					}
+				}
+				remove_variable = ck3xbl_applied_steer
+			}
+			else = { trigger_event = ck3xbl_battle.0003 }
+		}
+		else_if = {
+			limit = { is_alive = yes }
+			trigger_event = ck3xbl_battle.0002
+		}
+	}
+}

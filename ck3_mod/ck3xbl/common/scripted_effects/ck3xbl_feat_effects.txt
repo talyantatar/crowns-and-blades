@@ -1,0 +1,274 @@
+﻿# Feats (docs/PROTOCOL.md 32, 45). Every feat modifier is for life and has three ranks (ck3xbl_feat_<feat>, _2, _3): earning a feat
+# again raises its rank. A feat of an older save (its timed rank I modifier, no rank variable) counts as rank I.
+
+# this = a character. $FEAT$ = the feat key. Rank + 1 (at most 3), the new rank's modifier for life, a toast for the player.
+ck3xbl_feat_rank_effect = {
+	save_scope_value_as = { name = ck3xbl_fr_now value = 0 }
+	if = {
+		limit = { has_variable = ck3xbl_fr_$FEAT$ }
+		save_scope_value_as = { name = ck3xbl_fr_now value = var:ck3xbl_fr_$FEAT$ }
+	}
+	else_if = {
+		limit = { has_character_modifier = ck3xbl_feat_$FEAT$ }
+		save_scope_value_as = { name = ck3xbl_fr_now value = 1 }
+	}
+	if = {
+		limit = { scope:ck3xbl_fr_now < 3 }
+		remove_character_modifier = ck3xbl_feat_$FEAT$
+		remove_character_modifier = ck3xbl_feat_$FEAT$_2
+		set_variable = { name = ck3xbl_fr_$FEAT$ value = { value = scope:ck3xbl_fr_now add = 1 } }
+		if = {
+			limit = { is_ai = no }
+			send_interface_toast = {
+				type = event_toast_effect_good
+				title = ck3xbl_feat_toast_$FEAT$
+				left_icon = this
+				ck3xbl_feat_add_rank_effect = { FEAT = $FEAT$ }
+			}
+		}
+		else = { ck3xbl_feat_add_rank_effect = { FEAT = $FEAT$ } }
+	}
+}
+
+# this = a character whose ck3xbl_fr_$FEAT$ was just raised: the modifier of that rank, for life.
+ck3xbl_feat_add_rank_effect = {
+	if = {
+		limit = { var:ck3xbl_fr_$FEAT$ = 1 }
+		add_character_modifier = { modifier = ck3xbl_feat_$FEAT$ }
+	}
+	else_if = {
+		limit = { var:ck3xbl_fr_$FEAT$ = 2 }
+		add_character_modifier = { modifier = ck3xbl_feat_$FEAT$_2 }
+	}
+	else = { add_character_modifier = { modifier = ck3xbl_feat_$FEAT$_3 } }
+}
+
+# this = a character. $NAME$ = a counter variable: + 1 (created at 1).
+ck3xbl_feat_count_effect = {
+	if = {
+		limit = { has_variable = $NAME$ }
+		change_variable = { name = $NAME$ add = 1 }
+	}
+	else = { set_variable = { name = $NAME$ value = 1 } }
+}
+
+# Battle feats from the bridge. root = the player. scope:ck3xbl_res_feats = the feat mask of r7 (r7 = prestige bonus + 226 x mask).
+# Bits: 1 reaper, 2 carnage, 4 legend, 8 commander slayer, 16 unyielding defender, 32 aggressive attacker, 64 miracle,
+# 128 invulnerable, 256 scars, 512 winter soldier; bits 1024..2048 = terrain (1 rough, 2 forest, 3 desert).
+# The bridge counts the deeds (feats.json) and sends a bit each time a feat is earned again; a trait then gains experience.
+ck3xbl_apply_feats_effect = {
+	save_scope_value_as = { name = ck3xbl_ft_reaper value = { value = scope:ck3xbl_res_feats modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_carnage value = { value = scope:ck3xbl_res_feats divide = 2 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_legend value = { value = scope:ck3xbl_res_feats divide = 4 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_slayer value = { value = scope:ck3xbl_res_feats divide = 8 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_defender value = { value = scope:ck3xbl_res_feats divide = 16 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_attacker value = { value = scope:ck3xbl_res_feats divide = 32 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_miracle value = { value = scope:ck3xbl_res_feats divide = 64 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_invulnerable value = { value = scope:ck3xbl_res_feats divide = 128 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_scars value = { value = scope:ck3xbl_res_feats divide = 256 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_winter value = { value = scope:ck3xbl_res_feats divide = 512 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_terrain value = { value = scope:ck3xbl_res_feats divide = 1024 floor = yes modulo = 4 } }
+	info_log = "CK3XBL|RES|FEATS"
+	info_log_scopes = yes
+
+	if = {
+		limit = { scope:ck3xbl_ft_reaper = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = reaper }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_carnage = 1 }
+		add_prestige = 200
+		ck3xbl_feat_rank_effect = { FEAT = carnage }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_legend = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = legend }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_slayer = 1 }
+		add_prestige = 150
+		ck3xbl_feat_rank_effect = { FEAT = slayer }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_miracle = 1 }
+		add_prestige = 300
+		ck3xbl_feat_rank_effect = { FEAT = miracle }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_invulnerable = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = invulnerable }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_scars = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = scars }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_defender = 1 }
+		ck3xbl_feat_trait_effect = { TRAIT = unyielding_defender }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_attacker = 1 }
+		ck3xbl_feat_trait_effect = { TRAIT = aggressive_attacker }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_winter = 1 }
+		ck3xbl_feat_trait_effect = { TRAIT = winter_soldier }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_terrain = 1 }
+		ck3xbl_feat_trait_effect = { TRAIT = rough_terrain_expert }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_terrain = 2 }
+		ck3xbl_feat_trait_effect = { TRAIT = forest_fighter }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_terrain = 3 }
+		ck3xbl_feat_trait_effect = { TRAIT = desert_warrior }
+	}
+}
+
+# The second feat mask (r6 = the player's kills + 1000 x mask; docs/PROTOCOL.md 45). root = the player, scope:ck3xbl_res_feats2.
+# Bits: 1 last stand, 2 knight hunter, 4 bloody harvest, 8 veteran, 16 sea wolf, 32 first to board, 64 terror of the coasts.
+ck3xbl_apply_feats2_effect = {
+	save_scope_value_as = { name = ck3xbl_ft_last_stand value = { value = scope:ck3xbl_res_feats2 modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_knight_hunter value = { value = scope:ck3xbl_res_feats2 divide = 2 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_bloody_harvest value = { value = scope:ck3xbl_res_feats2 divide = 4 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_veteran value = { value = scope:ck3xbl_res_feats2 divide = 8 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_sea_wolf value = { value = scope:ck3xbl_res_feats2 divide = 16 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_first_to_board value = { value = scope:ck3xbl_res_feats2 divide = 32 floor = yes modulo = 2 } }
+	save_scope_value_as = { name = ck3xbl_ft_coast_terror value = { value = scope:ck3xbl_res_feats2 divide = 64 floor = yes modulo = 2 } }
+	if = {
+		limit = { scope:ck3xbl_ft_last_stand = 1 }
+		add_prestige = 250
+		ck3xbl_feat_rank_effect = { FEAT = last_stand }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_knight_hunter = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = knight_hunter }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_bloody_harvest = 1 }
+		add_prestige = 300
+		ck3xbl_feat_rank_effect = { FEAT = bloody_harvest }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_veteran = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = veteran }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_sea_wolf = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = sea_wolf }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_first_to_board = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = first_to_board }
+	}
+	if = {
+		limit = { scope:ck3xbl_ft_coast_terror = 1 }
+		ck3xbl_feat_rank_effect = { FEAT = coast_terror }
+	}
+}
+
+# this = the player. A commander trait the feat earns, or experience in it when he has it.
+ck3xbl_feat_trait_effect = {
+	if = {
+		limit = { has_trait = $TRAIT$ }
+		send_interface_toast = {
+			type = event_toast_effect_good
+			title = ck3xbl_feat_toast_trait_xp
+			left_icon = root
+			add_trait_xp = {
+				trait = $TRAIT$
+				value = 20
+			}
+		}
+	}
+	else = {
+		send_interface_toast = {
+			type = event_toast_effect_good
+			title = ck3xbl_feat_toast_trait
+			left_icon = root
+			add_trait = $TRAIT$
+		}
+	}
+}
+
+# Duel feats (docs/PROTOCOL.md 45), after a duel fought in Bannerlord: scope:ck3xbl_duel_winner, scope:ck3xbl_duel_loser,
+# scope:ck3xbl_duel_killed (1 the loser fell dead), scope:fatality (before CK3's rule). Only a human duelist earns them.
+#   Unbeaten Blade    every fifth duel won in a row (a lost duel breaks the streak).
+#   Champion Slayer   a win over someone with ten prowess or more over one's own.
+#   Merciful Victor   a beaten foe spared in a duel that could kill.
+ck3xbl_duel_feats_effect = {
+	scope:ck3xbl_duel_loser = {
+		if = {
+			limit = { is_ai = no }
+			set_variable = { name = ck3xbl_duel_streak value = 0 }
+		}
+	}
+	scope:ck3xbl_duel_winner = {
+		if = {
+			limit = { is_ai = no }
+			ck3xbl_feat_count_effect = { NAME = ck3xbl_duel_streak }
+			if = {
+				limit = { var:ck3xbl_duel_streak >= 5 }
+				set_variable = { name = ck3xbl_duel_streak value = 0 }
+				ck3xbl_feat_rank_effect = { FEAT = unbeaten_blade }
+			}
+			save_scope_value_as = { name = ck3xbl_fd_mark value = { value = scope:ck3xbl_duel_loser.prowess subtract = 10 } }
+			if = {
+				limit = { prowess <= scope:ck3xbl_fd_mark }
+				ck3xbl_feat_rank_effect = { FEAT = champion_slayer }
+			}
+			if = {
+				limit = {
+					scope:ck3xbl_duel_killed = 0
+					scope:fatality = flag:possible
+				}
+				ck3xbl_feat_rank_effect = { FEAT = merciful }
+			}
+		}
+	}
+}
+
+# Tournament feats (docs/PROTOCOL.md 45). root = the player, after a bout fought in Bannerlord; scope:ck3xbl_d_tourney (1 single
+# combat, 2 wrestling, 3 melee, 4 joust, 5 archery), scope:ck3xbl_res_outcome (1 he won, 2 he lost).
+#   Champion of the Lists   the 3rd, 6th and 10th bout won.
+#   Unhorsed by None        every fifth joust won in a row.
+#   Keen Eye                an archery contest won.
+ck3xbl_tourney_feats_effect = {
+	if = {
+		limit = { scope:ck3xbl_res_outcome = 1 }
+		ck3xbl_feat_count_effect = { NAME = ck3xbl_tourney_wins }
+		if = {
+			limit = {
+				OR = {
+					var:ck3xbl_tourney_wins = 3
+					var:ck3xbl_tourney_wins = 6
+					var:ck3xbl_tourney_wins = 10
+				}
+			}
+			ck3xbl_feat_rank_effect = { FEAT = tourney_champion }
+		}
+		if = {
+			limit = { scope:ck3xbl_d_tourney = 4 }
+			ck3xbl_feat_count_effect = { NAME = ck3xbl_joust_streak }
+			if = {
+				limit = { var:ck3xbl_joust_streak >= 5 }
+				set_variable = { name = ck3xbl_joust_streak value = 0 }
+				ck3xbl_feat_rank_effect = { FEAT = joust_master }
+			}
+		}
+		if = {
+			limit = { scope:ck3xbl_d_tourney = 5 }
+			ck3xbl_feat_rank_effect = { FEAT = marksman }
+		}
+	}
+	else_if = {
+		limit = {
+			scope:ck3xbl_res_outcome = 2
+			scope:ck3xbl_d_tourney = 4
+		}
+		set_variable = { name = ck3xbl_joust_streak value = 0 }
+	}
+}

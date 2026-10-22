@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CK3xBL.Core</RootNamespace>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>CS8618;CS8601;CS8602;CS8603;CS8604;CS8625</NoWarn>
+
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\shared\Protocol.cs" Link="Protocol\Protocol.cs" />
+    <InternalsVisibleTo Include="CK3xBL.SelfTest" />
+  </ItemGroup>
+</Project>

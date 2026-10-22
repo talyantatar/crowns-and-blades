@@ -1,0 +1,6199 @@
+{
+ "meta": {
+  "version": 1,
+  "generated": "2026-10-04T08:56:59.912Z",
+  "bannerlord": "v1.4.8",
+  "ck3": "1.20.0.3",
+  "sources": {
+   "bl_scenes": "bridge/data/bl_scenes.json",
+   "ck3_index": "bridge/data/ck3_province_terrain_index.json",
+   "builder": "tools/data/build_terrain_scenes.js",
+   "validator": "tools/data/validate_terrain_scenes.js",
+   "resolver": "tools/data/battlefield_resolver.js"
+  },
+  "note": "Scene lists are hand-curated (INFERRED) and ordered best-first; ids are validated against bl_scenes.json and the install. Supersedes mapping.json terrain_scenes/climate_*/season_*/time_of_day."
+ },
+ "climate": {
+  "buckets": [
+   "temperate",
+   "boreal",
+   "mediterranean",
+   "arid",
+   "steppe",
+   "tropical",
+   "highland",
+   "east_asia"
+  ],
+  "fallback": {
+   "temperate": [],
+   "boreal": [
+    "temperate"
+   ],
+   "mediterranean": [
+    "temperate"
+   ],
+   "arid": [
+    "steppe"
+   ],
+   "steppe": [
+    "arid"
+   ],
+   "tropical": [
+    "mediterranean",
+    "temperate"
+   ],
+   "highland": [
+    "steppe",
+    "arid"
+   ],
+   "east_asia": [
+    "temperate"
+   ]
+  },
+  "source": "bridge/data/ck3_province_climate.json (tools/data/ck3_province_climate.js)",
+  "mapping_json_alias": {
+   "cold": "boreal",
+   "continental": "temperate",
+   "highland": "highland",
+   "temperate": "temperate",
+   "steppe": "steppe",
+   "arid": "arid",
+   "tropical": "tropical"
+  }
+ },
+ "terrain": {
+  "plains": {
+   "bl_terrain_type": "Plain",
+   "scenes": {
+    "any": [
+     "battle_terrain_032",
+     "battle_terrain_biome_025",
+     "battle_terrain_biome_131",
+     "battle_terrain_biome_027",
+     "battle_terrain_biome_012",
+     "battle_terrain_biome_114"
+    ],
+    "boreal": [
+     "battle_terrain_biome_047",
+     "battle_terrain_006",
+     "battle_terrain_032",
+     "battle_terrain_biome_131",
+     "battle_terrain_biome_012"
+    ],
+    "mediterranean": [
+     "battle_terrain_biome_130",
+     "battle_terrain_L",
+     "battle_terrain_m",
+     "battle_terrain_O",
+     "battle_terrain_biome_131"
+    ],
+    "arid": [
+     "battle_terrain_biome_040",
+     "battle_terrain_biome_094",
+     "battle_terrain_biome_067",
+     "battle_terrain_biome_076",
+     "battle_terrain_019"
+    ],
+    "steppe": [
+     "battle_terrain_006",
+     "battle_terrain_013",
+     "battle_terrain_015",
+     "battle_terrain_biome_040",
+     "battle_terrain_019",
+     "battle_terrain_014"
+    ],
+    "tropical": [
+     "battle_terrain_biome_096",
+     "battle_terrain_biome_130",
+     "battle_terrain_biome_131",
+     "battle_terrain_biome_107",
+     "battle_terrain_biome_025"
+    ],
+    "highland": [
+     "battle_terrain_biome_088",
+     "battle_terrain_014",
+     "battle_terrain_013",
+     "battle_terrain_012",
+     "battle_terrain_biome_148"
+    ],
+    "east_asia": [
+     "battle_terrain_biome_131",
+     "battle_terrain_biome_130",
+     "battle_terrain_biome_012",
+     "battle_terrain_032",
+     "battle_terrain_biome_096"
+    ]
+   }
+  },
+  "farmlands": {
+   "bl_terrain_type": "Plain",
+   "scenes": {
+    "any": [
+     "battle_terrain_032",
+     "battle_terrain_biome_131",
+     "battle_terrain_biome_012",
+     "battle_terrain_biome_096"
+    ],
+    "boreal": [
+     "battle_terrain_biome_047",
+     "battle_terrain_032",
+     "battle_terrain_biome_131",
+     "battle_terrain_biome_012"
+    ],
+    "mediterranean": [
+     "battle_terrain_biome_130",
+     "battle_terrain_L",
+     "battle_terrain_m",
+     "battle_terrain_biome_131",
+     "battle_terrain_z"
+    ],
+    "arid": [
+     "battle_terrain_biome_075",
+     "battle_terrain_biome_096",
+     "battle_terrain_biome_130",
+     "battle_terrain_biome_076"
+    ],
+    "steppe": [
+     "battle_terrain_006",
+     "battle_terrain_biome_089",
+     "battle_terrain_018",
+     "battle_terrain_biome_047"
+    ],
+    "tropical": [
+     "battle_terrain_biome_096",
+     "battle_terrain_biome_107",
+     "battle_terrain_biome_130",
+     "battle_terrain_biome_131"
+    ],
+    "east_asia": [
+     "battle_terrain_biome_096",
+     "battle_terrain_biome_131",
+     "battle_terrain_biome_130",
+     "battle_terrain_032"
+    ]
+   }
+  },
+  "hills": {
+   "bl_terrain_type": "Plain",
+   "scenes": {
+    "any": [
+     "battle_terrain_026",
+     "battle_terrain_biome_098",
+     "battle_terrain_biome_027",
+     "battle_terrain_biome_012",
+     "battle_terrain_z",
+     "battle_terrain_biome_050",
+     "battle_terrain_biome_149"
+    ],
+    "boreal": [
+     "battle_terrain_007",
+     "battle_terrain_biome_098",
+     "battle_terrain_biome_050",
+     "battle_terrain_J",
+     "battle_terrain_biome_047"
+    ],
+    "mediterranean": [
+     "battle_terrain_i",
+     "battle_terrain_L",
+     "battle_terrain_m",
+     "battle_terrain_O",
+     "battle_terrain_026",
+     "battle_terrain_biome_098"
+    ],
+    "arid": [
+     "battle_terrain_g",
+     "battle_terrain_008",
+     "battle_terrain_biome_088",
+     "battle_terrain_b",
+     "battle_terrain_biome_076"
+    ],
+    "steppe": [
+     "battle_terrain_biome_148",
+     "battle_terrain_007",
+     "battle_terrain_014",
+     "battle_terrain_013",
+     "battle_terrain_biome_088"
+    ],
+    "tropical": [
+     "battle_terrain_k",
+     "battle_terrain_h",
+     "battle_terrain_biome_106",
+     "battle_terrain_026",
+     "battle_terrain_023"
+    ],
+    "highland": [
+     "battle_terrain_biome_148",
+     "battle_terrain_012",
+     "battle_terrain_014",
+     "battle_terrain_biome_088",
+     "battle_terrain_007"
+    ],
+    "east_asia": [
+     "battle_terrain_026",
+     "battle_terrain_biome_098",
+     "battle_terrain_O",
+     "battle_terrain_i",
+     "battle_terrain_biome_012"
+    ]
+   }
+  },
+  "terraced_hills": {
+   "bl_terrain_type": "Plain",
+   "scenes": {
+    "any": [
+     "battle_terrain_biome_096",
+     "battle_terrain_026",
+     "battle_terrain_z",
+     "battle_terrain_m",
+     "battle_terrain_L",
+     "battle_terrain_O",
+     "battle_terrain_biome_012"
+    ],
+    "tropical": [
+     "battle_terrain_biome_096",
+     "battle_terrain_026",
+     "battle_terrain_O",
+     "battle_terrain_m",
+     "battle_terrain_k"
+    ],
+    "east_asia": [
+     "battle_terrain_biome_096",
+     "battle_terrain_z",
+     "battle_terrain_026",
+     "battle_terrain_L",
+     "battle_terrain_m"
+    ]
+   }
+  },
+  "mountains": {
+   "bl_terrain_type": "Mountain",
+   "scenes": {
+    "any": [
+     "battle_terrain_biome_034",
+     "battle_terrain_biome_044",
+     "battle_terrain_biome_128",
+     "battle_terrain_004",
+     "battle_terrain_001",
+     "battle_terrain_031",
+     "battle_terrain_biome_022"
+    ],
+    "boreal": [
+     "battle_terrain_004",
+     "battle_terrain_biome_044",
+     "battle_terrain_biome_128",
+     "battle_terrain_001",
+     "battle_terrain_007"
+    ],
+    "mediterranean": [
+     "battle_terrain_i",
+     "battle_terrain_O",
+     "battle_terrain_biome_034",
+     "battle_terrain_031",
+     "battle_terrain_h"
+    ],
+    "arid": [
+     "battle_terrain_g",
+     "battle_terrain_008",
+     "battle_terrain_biome_088",
+     "battle_terrain_b"
+    ],
+    "steppe": [
+     "battle_terrain_007",
+     "battle_terrain_biome_148",
+     "battle_terrain_biome_050",
+     "battle_terrain_012"
+    ],
+    "tropical": [
+     "battle_terrain_k",
+     "battle_terrain_h",
+     "battle_terrain_biome_034",
+     "battle_terrain_biome_128"
+    ],
+    "highland": [
+     "battle_terrain_biome_148",
+     "battle_terrain_012",
+     "battle_terrain_007",
+     "battle_terrain_biome_050",
+     "battle_terrain_biome_022",
+     "battle_terrain_031"
+    ],
+    "east_asia": [
+     "battle_terrain_biome_034",
+     "battle_terrain_biome_044",
+     "battle_terrain_031",
+     "battle_terrain_biome_128",
+     "battle_terrain_O"
+    ]
+   }
+  },
+  "desert": {
+   "bl_terrain_type": "Desert",
+   "scenes": {
+    "any": [
+     "battle_terrain_010",
+     "battle_terrain_009",
+     "battle_terrain_d",
+     "battle_terrain_e",
+     "battle_terrain_b",
+     "battle_terrain_biome_067",
+     "battle_terrain_008"
+    ]
+   }
+  },
+  "desert_mountains": {
+   "bl_terrain_type": "Mountain",
+   "scenes": {
+    "any": [
+     "battle_terrain_g",
+     "battle_terrain_008",
+     "battle_terrain_biome_088",
+     "battle_terrain_b",
+     "battle_terrain_biome_076",
+     "battle_terrain_012"
+    ]
+   }
+  },
+  "oasis": {
+   "bl_terrain_type": "Desert",
+   "scenes": {
+    "any": [
+     "battle_terrain_biome_075",
+     "battle_terrain_biome_076",
+     "battle_terrain_biome_065",
+     "battle_terrain_biome_083",
+     "battle_terrain_022",
+     "battle_terrain_b"
+    ]
+   }
+  },
+  "drylands": {
+   "bl_terrain_type": "Plain",
+   "scenes": {
+    "any": [
+     "battle_terrain_biome_040",
+     "battle_terrain_biome_094",
+     "battle_terrain_biome_067",
+     "battle_terrain_biome_076",
+     "battle_terrain_019",
+     "battle_terrain_012",
+     "battle_terrain_biome_148"
+    ],
+    "highland": [
+     "battle_terrain_012",
+     "battle_terrain_biome_088",
+     "battle_terrain_014",
+     "battle_terrain_biome_148",
+     "battle_terrain_013"
+    ],
+    "steppe": [
+     "battle_terrain_015",
+     "battle_terrain_019",
+     "battle_terrain_biome_040",
+     "battle_terrain_014",
+     "battle_terrain_012"
+    ],
+    "tropical": [
+     "battle_terrain_biome_040",
+     "battle_terrain_biome_094",
+     "battle_terrain_019",
+     "battle_terrain_biome_130"
+    ]
+   }
+  },
+  "steppe": {
+   "bl_terrain_type": "Steppe",
+   "scenes": {
+    "any": [
+     "battle_terrain_006",
+     "battle_terrain_015",
+     "battle_terrain_013",
+     "battle_terrain_019",
+     "battle_terrain_014",
+     "battle_terrain_biome_040",
+     "battle_terrain_012",
+     "battle_terrain_biome_089"
+    ],
+    "boreal": [
+     "battle_terrain_006",
+     "battle_terrain_biome_047",
+     "battle_terrain_013"
+    ]
+   }
+  },
+  "jungle": {
+   "bl_terrain_type": "Forest",
+   "scenes": {
+    "any": [
+     "battle_terrain_k",
+     "battle_terrain_h",
+     "battle_terrain_v",
+     "battle_terrain_biome_097",
+     "battle_terrain_biome_106",
+     "battle_terrain_023"
+    ]
+   }
+  },
+  "forest": {
+   "bl_terrain_type": "Forest",
+   "scenes": {
+    "any": [
+     "battle_terrain_r",
+     "battle_terrain_028",
+     "battle_terrain_t",
+     "battle_terrain_u",
+     "battle_terrain_n"
+    ],
+    "boreal": [
+     "battle_terrain_a",
+     "battle_terrain_J",
+     "battle_terrain_u",
+     "battle_terrain_biome_046",
+     "battle_terrain_003",
+     "battle_terrain_t",
+     "battle_terrain_024"
+    ],
+    "mediterranean": [
+     "battle_terrain_n",
+     "battle_terrain_h",
+     "battle_terrain_v",
+     "battle_terrain_028"
+    ],
+    "arid": [
+     "battle_terrain_v",
+     "battle_terrain_biome_106",
+     "battle_terrain_h",
+     "battle_terrain_n"
+    ],
+    "steppe": [
+     "battle_terrain_a",
+     "battle_terrain_biome_006",
+     "battle_terrain_t",
+     "battle_terrain_biome_097"
+    ],
+    "tropical": [
+     "battle_terrain_k",
+     "battle_terrain_h",
+     "battle_terrain_v",
+     "battle_terrain_biome_097",
+     "battle_terrain_biome_106"
+    ],
+    "highland": [
+     "battle_terrain_biome_106",
+     "battle_terrain_J",
+     "battle_terrain_023",
+     "battle_terrain_025"
+    ],
+    "east_asia": [
+     "battle_terrain_028",
+     "battle_terrain_003",
+     "battle_terrain_biome_106",
+     "battle_terrain_023",
+     "battle_terrain_n",
+     "battle_terrain_t"
+    ]
+   }
+  },
+  "taiga": {
+   "bl_terrain_type": "Forest",
+   "scenes": {
+    "any": [
+     "battle_terrain_J",
+     "battle_terrain_u",
+     "battle_terrain_a",
+     "battle_terrain_biome_046",
+     "battle_terrain_003",
+     "battle_terrain_t"
+    ]
+   }
+  },
+  "wetlands": {
+   "bl_terrain_type": "Swamp",
+   "scenes": {
+    "any": [
+     "battle_terrain_034",
+     "battle_terrain_005",
+     "battle_terrain_f",
+     "battle_terrain_033",
+     "battle_terrain_biome_092",
+     "battle_terrain_biome_046"
+    ],
+    "boreal": [
+     "battle_terrain_biome_046",
+     "battle_terrain_034",
+     "battle_terrain_f",
+     "battle_terrain_005"
+    ],
+    "mediterranean": [
+     "battle_terrain_f",
+     "battle_terrain_034",
+     "battle_terrain_005",
+     "battle_terrain_biome_092"
+    ],
+    "arid": [
+     "battle_terrain_005",
+     "battle_terrain_034",
+     "battle_terrain_biome_096",
+     "battle_terrain_biome_075"
+    ],
+    "steppe": [
+     "battle_terrain_017",
+     "battle_terrain_018",
+     "battle_terrain_034",
+     "battle_terrain_005"
+    ],
+    "tropical": [
+     "battle_terrain_biome_097",
+     "battle_terrain_biome_096",
+     "battle_terrain_005",
+     "battle_terrain_biome_092",
+     "battle_terrain_biome_087b",
+     "battle_terrain_biome_093b"
+    ],
+    "east_asia": [
+     "battle_terrain_biome_096",
+     "battle_terrain_034",
+     "battle_terrain_005",
+     "battle_terrain_biome_092"
+    ]
+   }
+  },
+  "floodplains": {
+   "bl_terrain_type": "Plain",
+   "scenes": {
+    "any": [
+     "battle_terrain_s",
+     "battle_terrain_011",
+     "battle_terrain_biome_048",
+     "battle_terrain_biome_107",
+     "battle_terrain_027",
+     "battle_terrain_biome_092"
+    ],
+    "mediterranean": [
+     "battle_terrain_s",
+     "battle_terrain_011",
+     "battle_terrain_biome_053",
+     "battle_terrain_biome_107"
+    ],
+    "arid": [
+     "battle_terrain_biome_075",
+     "battle_terrain_017",
+     "battle_terrain_biome_089",
+     "battle_terrain_biome_096",
+     "battle_terrain_018"
+    ],
+    "steppe": [
+     "battle_terrain_017",
+     "battle_terrain_018",
+     "battle_terrain_biome_089"
+    ],
+    "tropical": [
+     "battle_terrain_biome_096",
+     "battle_terrain_biome_107",
+     "battle_terrain_s",
+     "battle_terrain_011"
+    ],
+    "east_asia": [
+     "battle_terrain_biome_107",
+     "battle_terrain_biome_048",
+     "battle_terrain_011",
+     "battle_terrain_s",
+     "battle_terrain_biome_096"
+    ]
+   }
+  },
+  "coastal_sea": {
+   "bl_terrain_type": "Plain",
+   "scenes": {
+    "any": [
+     "battle_terrain_029",
+     "battle_terrain_021",
+     "battle_terrain_biome_028",
+     "battle_terrain_020",
+     "battle_terrain_p",
+     "battle_terrain_biome_005"
+    ]
+   }
+  },
+  "sea": {
+   "bl_terrain_type": "Plain",
+   "scenes": {
+    "any": [
+     "battle_terrain_029",
+     "battle_terrain_021",
+     "battle_terrain_biome_028",
+     "battle_terrain_020",
+     "battle_terrain_p",
+     "battle_terrain_biome_005"
+    ]
+   }
+  }
+ },
+ "bl_terrain_type_ids": {
+  "Plain": 1,
+  "Desert": 2,
+  "Snow": 3,
+  "Forest": 4,
+  "Steppe": 5,
+  "Mountain": 7,
+  "Swamp": 15
+ },
+ "situational": {
+  "major_river_crossing": {
+   "any": [
+    "battle_terrain_biome_053",
+    "battle_terrain_biome_048",
+    "battle_terrain_biome_092",
+    "battle_terrain_018",
+    "battle_terrain_011"
+   ],
+   "arid": [
+    "battle_terrain_biome_075",
+    "battle_terrain_017",
+    "battle_terrain_biome_089"
+   ],
+   "steppe": [
+    "battle_terrain_018",
+    "battle_terrain_017",
+    "battle_terrain_biome_089",
+    "battle_terrain_biome_048"
+   ],
+   "tropical": [
+    "battle_terrain_biome_092",
+    "battle_terrain_biome_107",
+    "battle_terrain_biome_053"
+   ],
+   "boreal": [
+    "battle_terrain_biome_048",
+    "battle_terrain_biome_053",
+    "battle_terrain_011"
+   ]
+  },
+  "river_crossing": {
+   "any": [
+    "battle_terrain_011",
+    "battle_terrain_s",
+    "battle_terrain_027",
+    "battle_terrain_biome_053",
+    "battle_terrain_biome_048",
+    "battle_terrain_biome_107",
+    "battle_terrain_f"
+   ],
+   "boreal": [
+    "battle_terrain_027",
+    "battle_terrain_011",
+    "battle_terrain_biome_048",
+    "battle_terrain_f"
+   ],
+   "mediterranean": [
+    "battle_terrain_biome_053",
+    "battle_terrain_s",
+    "battle_terrain_011",
+    "battle_terrain_030"
+   ],
+   "arid": [
+    "battle_terrain_biome_075",
+    "battle_terrain_017",
+    "battle_terrain_biome_089"
+   ],
+   "steppe": [
+    "battle_terrain_017",
+    "battle_terrain_018",
+    "battle_terrain_biome_089",
+    "battle_terrain_biome_048"
+   ],
+   "tropical": [
+    "battle_terrain_biome_107",
+    "battle_terrain_biome_096",
+    "battle_terrain_s",
+    "battle_terrain_biome_092"
+   ],
+   "highland": [
+    "battle_terrain_biome_089",
+    "battle_terrain_018",
+    "battle_terrain_017"
+   ],
+   "east_asia": [
+    "battle_terrain_biome_107",
+    "battle_terrain_011",
+    "battle_terrain_s",
+    "battle_terrain_biome_048"
+   ],
+   "by_terrain": {
+    "mountains": [
+     "battle_terrain_biome_030",
+     "battle_terrain_027",
+     "battle_terrain_011"
+    ],
+    "hills": [
+     "battle_terrain_biome_030",
+     "battle_terrain_027",
+     "battle_terrain_011",
+     "battle_terrain_s"
+    ],
+    "forest": [
+     "battle_terrain_027",
+     "battle_terrain_011",
+     "battle_terrain_f"
+    ],
+    "taiga": [
+     "battle_terrain_027",
+     "battle_terrain_f",
+     "battle_terrain_011"
+    ]
+   },
+   "by_terrain_buckets": [
+    "temperate",
+    "boreal",
+    "mediterranean",
+    "east_asia"
+   ]
+  },
+  "coastal": {
+   "any": [
+    "battle_terrain_029",
+    "battle_terrain_biome_005",
+    "battle_terrain_biome_028",
+    "battle_terrain_020",
+    "battle_terrain_p"
+   ],
+   "boreal": [
+    "battle_terrain_biome_028",
+    "battle_terrain_020",
+    "battle_terrain_029",
+    "battle_terrain_p"
+   ],
+   "mediterranean": [
+    "battle_terrain_021",
+    "battle_terrain_029",
+    "battle_terrain_020",
+    "battle_terrain_biome_005"
+   ],
+   "arid": [
+    "battle_terrain_022",
+    "battle_terrain_y",
+    "battle_terrain_biome_083",
+    "battle_terrain_biome_065"
+   ],
+   "steppe": [
+    "battle_terrain_y",
+    "battle_terrain_biome_065",
+    "battle_terrain_biome_083"
+   ],
+   "tropical": [
+    "battle_terrain_p",
+    "battle_terrain_029",
+    "battle_terrain_021",
+    "battle_terrain_022"
+   ],
+   "highland": [
+    "battle_terrain_y",
+    "battle_terrain_biome_065"
+   ],
+   "east_asia": [
+    "battle_terrain_029",
+    "battle_terrain_021",
+    "battle_terrain_biome_028",
+    "battle_terrain_p"
+   ],
+   "by_terrain": {
+    "hills": [
+     "battle_terrain_020",
+     "battle_terrain_030",
+     "battle_terrain_biome_005",
+     "battle_terrain_biome_028"
+    ],
+    "mountains": [
+     "battle_terrain_020",
+     "battle_terrain_030",
+     "battle_terrain_biome_005"
+    ],
+    "terraced_hills": [
+     "battle_terrain_020",
+     "battle_terrain_biome_005",
+     "battle_terrain_029"
+    ],
+    "forest": [
+     "battle_terrain_p",
+     "battle_terrain_020",
+     "battle_terrain_biome_028"
+    ],
+    "taiga": [
+     "battle_terrain_p",
+     "battle_terrain_biome_028",
+     "battle_terrain_020"
+    ]
+   },
+   "by_terrain_buckets": [
+    "temperate",
+    "boreal",
+    "mediterranean",
+    "east_asia"
+   ]
+  },
+  "lakeside": {
+   "any": [
+    "battle_terrain_biome_149",
+    "battle_terrain_001",
+    "battle_terrain_biome_025",
+    "battle_terrain_biome_130",
+    "battle_terrain_t"
+   ],
+   "arid": [
+    "battle_terrain_biome_076",
+    "battle_terrain_biome_065"
+   ],
+   "steppe": [
+    "battle_terrain_biome_048",
+    "battle_terrain_biome_025"
+   ]
+  }
+ },
+ "rules": {
+  "precedence": [
+   "siege_or_relief",
+   "major_river_crossing",
+   "river_crossing",
+   "strait_crossing->coastal",
+   "coastal_near",
+   "lakeside_near",
+   "coastal_far(chance)",
+   "riverside(chance)",
+   "terrain"
+  ],
+  "coastal_near_px": 3,
+  "coastal_far_chance": 0.35,
+  "riverside_chance": 0.35,
+  "river_border_ratio": 0.3,
+  "pick_top_n": 3,
+  "pick_weights": [
+   0.5,
+   0.3,
+   0.2
+  ],
+  "reorder": [
+   "winter season -> stable-move scenes with snow_layer to the front (46 field scenes have a winter-only snow layer)",
+   "relief class high (relief7Raw >= p67 of the terrain) -> stable-move relief_high scenes forward; low (<= p33) -> relief_low forward",
+   "battle with >= large_battle_agents agents -> drop scenes whose smaller side is < large_battle_min_scene_m (keep at least one)"
+  ],
+  "large_battle_agents": 600,
+  "large_battle_min_scene_m": 1000,
+  "exclude_unlisted": [
+   "battle_terrain_benchmark",
+   "battle_terrain_016",
+   "battle_terrain_035",
+   "battle_terrain_c"
+  ],
+  "fallback_scene": "battle_terrain_029",
+  "relief7_terciles": {
+   "mountains": [
+    2425,
+    3701
+   ],
+   "taiga": [
+    384,
+    857
+   ],
+   "plains": [
+    869,
+    1687
+   ],
+   "hills": [
+    1802,
+    2951
+   ],
+   "wetlands": [
+    518,
+    1094
+   ],
+   "forest": [
+    1053,
+    2136
+   ],
+   "farmlands": [
+    783,
+    1639
+   ],
+   "steppe": [
+    796,
+    1325
+   ],
+   "desert": [
+    488,
+    1183
+   ],
+   "terraced_hills": [
+    1685,
+    2687
+   ],
+   "jungle": [
+    784,
+    1731
+   ],
+   "drylands": [
+    649,
+    1355
+   ],
+   "desert_mountains": [
+    2489,
+    3690
+   ],
+   "oasis": [
+    571,
+    1114
+   ],
+   "floodplains": [
+    721,
+    1316
+   ]
+  }
+ },
+ "siege": {
+  "holding_kind": {
+   "castle_holding": "castle",
+   "city_holding": "town",
+   "church_holding": "town",
+   "temple_citadel_holding": "castle",
+   "tribal_holding": "village",
+   "nomad_holding": "field",
+   "herder_holding": "field",
+   "none": "field"
+  },
+  "fort_level_to_wall_level": [
+   {
+    "max": 2,
+    "wall": 1
+   },
+   {
+    "max": 5,
+    "wall": 2
+   },
+   {
+    "max": 999,
+    "wall": 3
+   }
+  ],
+  "architecture": {
+   "building_gfx": {
+    "western_building_gfx": "vlandia",
+    "norse_building_gfx": "sturgia",
+    "east_slavic_building_gfx": "sturgia",
+    "mediterranean_building_gfx": "empire",
+    "byzantine_building_gfx": "empire",
+    "caucasian_building_gfx": "empire",
+    "iberian_building_gfx": {
+     "castle": "vlandia",
+     "town": "empire",
+     "village": "empire"
+    },
+    "mena_building_gfx": "aserai",
+    "arabic_group_building_gfx": "aserai",
+    "berber_group_building_gfx": "aserai",
+    "iranian_building_gfx": "aserai",
+    "african_building_gfx": "aserai",
+    "indian_building_gfx": "aserai",
+    "southeast_asian_building_gfx": "aserai",
+    "steppe_building_gfx": "khuzait",
+    "tibetan_building_gfx": "khuzait",
+    "chinese_building_gfx": "khuzait",
+    "japanese_building_gfx": "khuzait",
+    "amuric_building_gfx": "khuzait",
+    "emishi_building_gfx": "khuzait"
+   },
+   "heritage_override_for_western": {
+    "heritage_goidelic": "battania",
+    "heritage_brythonic": "battania",
+    "heritage_baltic": "sturgia",
+    "heritage_balto_finnic": "sturgia",
+    "heritage_west_slavic": "sturgia",
+    "heritage_volga_finnic": "sturgia",
+    "heritage_ugro_permian": "sturgia",
+    "heritage_north_germanic": "sturgia"
+   },
+   "ck3_chain_order": [
+    "norse_building_gfx",
+    "east_slavic_building_gfx",
+    "byzantine_building_gfx",
+    "iberian_building_gfx",
+    "caucasian_building_gfx",
+    "berber_group_building_gfx",
+    "arabic_group_building_gfx",
+    "iranian_building_gfx",
+    "tibetan_building_gfx",
+    "japanese_building_gfx",
+    "emishi_building_gfx",
+    "amuric_building_gfx",
+    "chinese_building_gfx",
+    "southeast_asian_building_gfx",
+    "indian_building_gfx",
+    "african_building_gfx",
+    "steppe_building_gfx",
+    "mena_building_gfx",
+    "mediterranean_building_gfx",
+    "western_building_gfx"
+   ],
+   "default": "vlandia"
+  },
+  "scenes": {
+   "vlandia": {
+    "castle": [
+     "vlandia_castle_005a",
+     "vlandia_castle_a",
+     "vlandia_castle_b",
+     "vlandia_castle_c",
+     "vlandia_castle_d"
+    ],
+    "town": [
+     "vlandia_city_a",
+     "vlandia_town_a",
+     "vlandia_town_c",
+     "vlandia_town_d",
+     "vlandia_town_e",
+     "vlandia_town_f",
+     "vlandia_town_g",
+     "vlandia_town_h"
+    ]
+   },
+   "empire": {
+    "castle": [
+     "empire_castle_004",
+     "empire_siege_001",
+     "empire_castle_f",
+     "empire_castle_g",
+     "empire_castle_b",
+     "empire_castle_c"
+    ],
+    "town": [
+     "empire_town_a",
+     "empire_town_b",
+     "empire_town_c",
+     "empire_town_d",
+     "empire_town_e",
+     "empire_town_f",
+     "empire_town_g",
+     "empire_town_h",
+     "empire_town_i",
+     "empire_town_j_siege",
+     "empire_town_k",
+     "empire_town_l",
+     "empire_town_m",
+     "empire_town_n",
+     "empire_town_o",
+     "empire_town_p",
+     "empire_town_q",
+     "empire_town_r",
+     "empire_town_s"
+    ]
+   },
+   "sturgia": {
+    "castle": [
+     "sturgia_castle_003",
+     "sturgia_castle_siege_001",
+     "sturgia_castle_c"
+    ],
+    "town": [
+     "sturgia_town_a",
+     "sturgia_town_b",
+     "sturgia_town_c",
+     "sturgia_town_d",
+     "sturgia_town_e",
+     "sturgia_town_f",
+     "sturgia_town_g"
+    ]
+   },
+   "battania": {
+    "castle": [
+     "battania_castle_b",
+     "battania_castle_a",
+     "battania_castle_c"
+    ],
+    "town": [
+     "battania_town_a",
+     "battania_town_b",
+     "battania_town_c",
+     "battania_town_d",
+     "battania_town_e"
+    ]
+   },
+   "aserai": {
+    "castle": [
+     "aserai_castle_002",
+     "aserai_castle_a",
+     "aserai_castle_c",
+     "aserai_castle_d"
+    ],
+    "town": [
+     "aserai_town_a",
+     "aserai_town_b",
+     "aserai_town_c",
+     "aserai_town_d",
+     "aserai_town_e",
+     "aserai_town_f",
+     "aserai_town_g",
+     "aserai_town_h"
+    ]
+   },
+   "khuzait": {
+    "castle": [
+     "khuzait_castle_002",
+     "khuzait_castle_siege_001"
+    ],
+    "town": [
+     "khuzait_city_a",
+     "khuzait_city_b",
+     "khuzait_town_004",
+     "khuzait_town_e",
+     "khuzait_town_f",
+     "khuzait_town_g",
+     "khuzait_town_c"
+    ]
+   }
+  },
+  "untested_scenes": [
+   "empire_town_s",
+   "battania_castle_c",
+   "khuzait_town_c"
+  ],
+  "wall_hit_points": {
+   "default": [
+    1,
+    1
+   ],
+   "max_entries": 2,
+   "note": "Settlement.WallSectionCount = 2; FindRightMostWall handles 1-2 entries only (SiegeMissionPreparationHandler)"
+  },
+  "scene_levels": "level_<wall> siege (pass sceneUpgradeLevel 1..3; 0 means level_3 in the stock siege opener, BannerlordMissions)",
+  "prefer": [
+   "water_plane when CK3 coastal/riverside",
+   "snow_layer in winter"
+  ]
+ },
+ "village": {
+  "scenes": {
+   "vlandia": [
+    "vlandia_village_b",
+    "vlandia_village_c",
+    "vlandia_village_d",
+    "vlandia_village_e",
+    "vlandia_village_f",
+    "vlandia_village_g",
+    "vlandia_village_h",
+    "vlandia_village_i",
+    "vlandia_village_j",
+    "vlandia_village_k",
+    "vlandia_village_l",
+    "vlandia_village_m",
+    "vlandia_village_n"
+   ],
+   "empire": [
+    "empire_village_001",
+    "empire_village_002",
+    "empire_village_003",
+    "empire_village_004",
+    "empire_village_005",
+    "empire_village_006",
+    "empire_village_007",
+    "empire_village_008",
+    "empire_village_009",
+    "empire_village_011",
+    "empire_village_a",
+    "empire_village_b",
+    "empire_village_c",
+    "empire_village_d",
+    "empire_village_e",
+    "empire_village_f",
+    "empire_village_g",
+    "empire_village_h",
+    "empire_village_i",
+    "empire_village_j",
+    "empire_village_k",
+    "empire_village_l",
+    "empire_village_m",
+    "empire_village_o",
+    "empire_village_p",
+    "empire_village_r",
+    "empire_village_s",
+    "empire_village_t",
+    "empire_village_u",
+    "empire_village_v",
+    "empire_village_x",
+    "empire_village_y",
+    "empire_village_z"
+   ],
+   "sturgia": [
+    "sturgia_village_a",
+    "sturgia_village_b",
+    "sturgia_village_c",
+    "sturgia_village_d",
+    "sturgia_village_e",
+    "sturgia_village_f",
+    "sturgia_village_g",
+    "sturgia_village_h",
+    "sturgia_village_j",
+    "sturgia_village_k",
+    "sturgia_village_l"
+   ],
+   "battania": [
+    "battania_village",
+    "battania_village_e",
+    "battania_village_g",
+    "battania_village_h",
+    "battania_village_i",
+    "battania_village_j",
+    "battania_village_k",
+    "battania_village_l",
+    "battania_village_m"
+   ],
+   "aserai": [
+    "aserai_village_b",
+    "aserai_village_c",
+    "aserai_village_d",
+    "aserai_village_e",
+    "aserai_village_g",
+    "aserai_village_j",
+    "aserai_village_k",
+    "aserai_village_l",
+    "aserai_village_m"
+   ],
+   "khuzait": [
+    "khuzait_village_a",
+    "khuzait_village_b",
+    "khuzait_village_c",
+    "khuzait_village_d",
+    "khuzait_village_e",
+    "khuzait_village_f",
+    "khuzait_village_g",
+    "khuzait_village_h",
+    "khuzait_village_i",
+    "khuzait_village_j",
+    "khuzait_village_k",
+    "khuzait_village_l"
+   ]
+  },
+  "opener": "OpenCustomBattleMission(sceneId, ..., sceneLevels = custom_battle.forced_scene_level or \"\")",
+  "use_when": "tribal holding sieges; optional settlement-edge battles"
+ },
+ "season": {
+  "bl_ids": {
+   "spring": 0,
+   "summer": 1,
+   "fall": 2,
+   "winter": 3
+  },
+  "base": {
+   "default": [
+    [
+     "01-01",
+     "spring"
+    ],
+    [
+     "06-01",
+     "summer"
+    ],
+    [
+     "09-11",
+     "fall"
+    ],
+    [
+     "12-01",
+     "fall"
+    ]
+   ],
+   "arid": [
+    [
+     "01-01",
+     "spring"
+    ],
+    [
+     "04-01",
+     "summer"
+    ],
+    [
+     "10-01",
+     "fall"
+    ]
+   ],
+   "tropical": [
+    [
+     "01-01",
+     "summer"
+    ]
+   ]
+  },
+  "no_winter_split": "Dec -> fall, Jan-Feb -> spring (the campaign does the same for clear winter days: DefaultMapWeatherModel)",
+  "winter_from_modifier": {
+   "harsh": "winter",
+   "normal": "winter",
+   "mild": "winter if bucket in mild_winter_buckets or winterBias >= 0.6, else no winter",
+   "none": "no winter"
+  },
+  "mild_winter_buckets": [
+   "boreal",
+   "steppe",
+   "highland"
+  ],
+  "winter_window_by_bias": [
+   {
+    "min": 0.8,
+    "from": "11-15",
+    "to": "03-31",
+    "chance": 1
+   },
+   {
+    "min": 0.5,
+    "from": "12-01",
+    "to": "02-28",
+    "chance": 1
+   },
+   {
+    "min": 0.2,
+    "from": "01-01",
+    "to": "02-15",
+    "chance": "winterBias"
+   },
+   {
+    "min": 0,
+    "from": null,
+    "to": null,
+    "chance": 0
+   }
+  ],
+  "permanent_snow_pct": 30
+ },
+ "weather": {
+  "kinds": [
+   "clear",
+   "overcast",
+   "light_rain",
+   "heavy_rain",
+   "fog",
+   "snow",
+   "blizzard",
+   "dust"
+  ],
+  "table": {
+   "temperate": {
+    "spring": {
+     "clear": 0.5,
+     "overcast": 0.15,
+     "light_rain": 0.2,
+     "heavy_rain": 0.08,
+     "fog": 0.07
+    },
+    "summer": {
+     "clear": 0.7,
+     "overcast": 0.1,
+     "light_rain": 0.12,
+     "heavy_rain": 0.05,
+     "fog": 0.03
+    },
+    "fall": {
+     "clear": 0.45,
+     "overcast": 0.2,
+     "light_rain": 0.2,
+     "heavy_rain": 0.07,
+     "fog": 0.08
+    },
+    "winter": {
+     "clear": 0.3,
+     "overcast": 0.15,
+     "snow": 0.4,
+     "blizzard": 0.05,
+     "fog": 0.1
+    }
+   },
+   "mediterranean": {
+    "spring": {
+     "clear": 0.65,
+     "overcast": 0.12,
+     "light_rain": 0.15,
+     "heavy_rain": 0.05,
+     "fog": 0.03
+    },
+    "summer": {
+     "clear": 0.9,
+     "overcast": 0.05,
+     "light_rain": 0.03,
+     "heavy_rain": 0.02
+    },
+    "fall": {
+     "clear": 0.6,
+     "overcast": 0.15,
+     "light_rain": 0.15,
+     "heavy_rain": 0.07,
+     "fog": 0.03
+    },
+    "winter": {
+     "clear": 0.35,
+     "overcast": 0.2,
+     "snow": 0.3,
+     "blizzard": 0.05,
+     "fog": 0.1
+    }
+   },
+   "arid": {
+    "spring": {
+     "clear": 0.85,
+     "overcast": 0.05,
+     "light_rain": 0.03,
+     "dust": 0.07
+    },
+    "summer": {
+     "clear": 0.88,
+     "dust": 0.12
+    },
+    "fall": {
+     "clear": 0.85,
+     "overcast": 0.05,
+     "light_rain": 0.02,
+     "dust": 0.08
+    },
+    "winter": {
+     "clear": 0.5,
+     "overcast": 0.15,
+     "snow": 0.3,
+     "blizzard": 0.05
+    }
+   },
+   "steppe": {
+    "spring": {
+     "clear": 0.65,
+     "overcast": 0.1,
+     "light_rain": 0.12,
+     "heavy_rain": 0.05,
+     "dust": 0.08
+    },
+    "summer": {
+     "clear": 0.78,
+     "light_rain": 0.07,
+     "heavy_rain": 0.05,
+     "dust": 0.1
+    },
+    "fall": {
+     "clear": 0.6,
+     "overcast": 0.15,
+     "light_rain": 0.12,
+     "dust": 0.08,
+     "fog": 0.05
+    },
+    "winter": {
+     "clear": 0.3,
+     "overcast": 0.1,
+     "snow": 0.45,
+     "blizzard": 0.15
+    }
+   },
+   "tropical": {
+    "spring": {
+     "clear": 0.65,
+     "overcast": 0.1,
+     "light_rain": 0.15,
+     "heavy_rain": 0.05,
+     "fog": 0.05
+    },
+    "summer": {
+     "clear": 0.6,
+     "overcast": 0.1,
+     "light_rain": 0.15,
+     "heavy_rain": 0.1,
+     "fog": 0.05
+    },
+    "fall": {
+     "clear": 0.6,
+     "overcast": 0.1,
+     "light_rain": 0.15,
+     "heavy_rain": 0.1,
+     "fog": 0.05
+    },
+    "winter": {
+     "clear": 0.6,
+     "overcast": 0.15,
+     "light_rain": 0.15,
+     "fog": 0.1
+    }
+   }
+  },
+  "group_of_bucket": {
+   "temperate": "temperate",
+   "boreal": "temperate",
+   "east_asia": "temperate",
+   "mediterranean": "mediterranean",
+   "arid": "arid",
+   "highland": "steppe",
+   "steppe": "steppe",
+   "tropical": "tropical"
+  },
+  "monsoon": {
+   "buckets": [
+    "tropical"
+   ],
+   "months": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "override": {
+    "clear": 0.3,
+    "overcast": 0.2,
+    "light_rain": 0.25,
+    "heavy_rain": 0.25
+   }
+  },
+  "ck3_winter_override": {
+   "harsh": {
+    "snow": 0.5,
+    "blizzard": 0.3,
+    "clear": 0.15,
+    "overcast": 0.05
+   },
+   "normal": {
+    "snow": 0.5,
+    "blizzard": 0.1,
+    "clear": 0.25,
+    "overcast": 0.15
+   }
+  },
+  "desert_terrains": [
+   "desert",
+   "oasis",
+   "desert_mountains"
+  ],
+  "desert_terrain_override": {
+   "rain_to": "dust"
+  },
+  "fog_hours": [
+   5,
+   10
+  ],
+  "atmosphere": {
+   "clear": {
+    "interpolated": "semicloudy_field_battle",
+    "rain": 0,
+    "snow": 0,
+    "fog": 1
+   },
+   "overcast": {
+    "interpolated": "semicloudy_field_battle",
+    "rain": 0,
+    "snow": 0,
+    "fog": 1.5,
+    "preset_family": "Overcast"
+   },
+   "light_rain": {
+    "interpolated": "semi_rainy",
+    "rain": 0.7,
+    "snow": 0,
+    "fog": 1.5,
+    "preset_family": "Overcast",
+    "runtime_rain": 0.5
+   },
+   "heavy_rain": {
+    "interpolated": "dense_rainy",
+    "rain": 0.9,
+    "snow": 0,
+    "fog": 2,
+    "preset_family": "HeavyRain"
+   },
+   "fog": {
+    "interpolated": "semicloudy_field_battle",
+    "rain": 0,
+    "snow": 0,
+    "fog": 4,
+    "preset_family": "Foggy"
+   },
+   "snow": {
+    "interpolated": "semi_snowy",
+    "rain": 0.55,
+    "snow": 0.6,
+    "fog": 1.5,
+    "season": "winter",
+    "runtime_snow": 0.6
+   },
+   "blizzard": {
+    "interpolated": "dense_snowy",
+    "rain": 0.85,
+    "snow": 0.85,
+    "fog": 3,
+    "season": "winter",
+    "runtime_snow": 0.9
+   },
+   "dust": {
+    "interpolated": "semicloudy_field_battle",
+    "rain": 0,
+    "snow": 0,
+    "fog": 3,
+    "fog_color": [
+     0.8,
+     0.68,
+     0.5
+    ],
+    "dryness": 1
+   }
+  }
+ },
+ "time_of_day": {
+  "legacy_hours": {
+   "6": 0.2,
+   "12": 0.35,
+   "15": 0.35,
+   "18": 0.1,
+   "22": 0
+  },
+  "daylight": {
+   "winter": [
+    8.5,
+    15.5
+   ],
+   "spring": [
+    7,
+    17.5
+   ],
+   "summer": [
+    6,
+    19.5
+   ],
+   "fall": [
+    7.5,
+    17
+   ]
+  },
+  "night_share": 0,
+  "presets_by_hour": [
+   {
+    "from": 0,
+    "to": 4,
+    "clear": "TOD_01_00_SemiCloudy",
+    "rain": "TOD_01_00_HeavyRain",
+    "custom_battle": true
+   },
+   {
+    "from": 4,
+    "to": 5.5,
+    "clear": "TOD_03_00_SemiCloudy"
+   },
+   {
+    "from": 5.5,
+    "to": 6.5,
+    "clear": "TOD_06_00_SemiCloudy",
+    "fog": "TOD_06_00_Foggy",
+    "overcast": "TOD_06_00_Overcast",
+    "custom_battle": true
+   },
+   {
+    "from": 6.5,
+    "to": 7.5,
+    "clear": "TOD_07_00_SemiCloudy",
+    "fog": "TOD_06_00_Foggy",
+    "overcast": "TOD_06_00_Overcast"
+   },
+   {
+    "from": 7.5,
+    "to": 8.5,
+    "clear": "TOD_08_00_SemiCloudy",
+    "fog": "TOD_06_00_Foggy",
+    "overcast": "TOD_08_00_Overcast"
+   },
+   {
+    "from": 8.5,
+    "to": 9.5,
+    "clear": "TOD_09_00_SemiCloudy",
+    "overcast": "TOD_08_00_Overcast"
+   },
+   {
+    "from": 9.5,
+    "to": 10.5,
+    "clear": "TOD_10_00_SemiCloudy",
+    "overcast": "TOD_08_00_Overcast"
+   },
+   {
+    "from": 10.5,
+    "to": 11.5,
+    "clear": "TOD_11_00_SemiCloudy",
+    "overcast": "TOD_12_00_Overcast"
+   },
+   {
+    "from": 11.5,
+    "to": 14,
+    "clear": "TOD_12_00_SemiCloudy",
+    "overcast": "TOD_12_00_Overcast",
+    "rain": "TOD_12_00_HeavyRain",
+    "custom_battle": true
+   },
+   {
+    "from": 14,
+    "to": 16.5,
+    "clear": "TOD_04_00_SemiCloudy",
+    "overcast": "TOD_12_00_Overcast",
+    "rain": "TOD_12_00_HeavyRain",
+    "custom_battle": true
+   },
+   {
+    "from": 16.5,
+    "to": 17.5,
+    "clear": "TOD_05_00_SemiCloudy",
+    "overcast": "TOD_06_30_Cloudy_sunset2"
+   },
+   {
+    "from": 17.5,
+    "to": 20,
+    "clear": "TOD_03_00_SemiCloudy",
+    "overcast": "TOD_06_30_Cloudy_sunset2",
+    "rain": "TOD_01_00_HeavyRain",
+    "custom_battle": true
+   },
+   {
+    "from": 20,
+    "to": 24,
+    "clear": "TOD_01_00_SemiCloudy",
+    "rain": "TOD_01_00_HeavyRain",
+    "custom_battle": true
+   }
+  ]
+ },
+ "scene_info": {
+  "aserai_castle_002": {
+   "name": "Ain Baliq Castle",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_castle_a": {
+   "name": "Barihal Castle",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_castle_c": {
+   "name": "Jamayeh Castle",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_castle_d": {
+   "name": "Medeni Castle",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_town_a": {
+   "name": "Husn Fulq",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1600,
+    2000
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_town_b": {
+   "name": "Iyakis",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    2200,
+    2200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_town_c": {
+   "name": "Quyaz",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1600,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_town_d": {
+   "name": "Askar",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    2400,
+    2400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_town_e": {
+   "name": "Qasira",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_town_f": {
+   "name": "Razih",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_town_g": {
+   "name": "Hubyar",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_town_h": {
+   "name": "Sanala",
+   "kind": "siege",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_b": {
+   "name": "Ain baliq",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    525,
+    525
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_c": {
+   "name": "Asmait",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    525,
+    525
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_d": {
+   "name": "Deir Hawa",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    900,
+    900
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_e": {
+   "name": "Mossom",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_g": {
+   "name": "Bir seif",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_j": {
+   "name": "Hoqqa",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_k": {
+   "name": "Uqba",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_l": {
+   "name": "Tasheba",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "aserai_village_m": {
+   "name": "Wadar",
+   "kind": "village",
+   "culture": "aserai",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_castle_a": {
+   "name": "Ab Comer Castle",
+   "kind": "siege",
+   "culture": "battania",
+   "size_m": [
+    1500,
+    1500
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_castle_b": {
+   "name": "Llanoc Hen Castle",
+   "kind": "siege",
+   "culture": "battania",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_castle_c": {
+   "name": null,
+   "kind": "siege",
+   "culture": "battania",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": false,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_town_a": {
+   "name": "Car Banseth",
+   "kind": "siege",
+   "culture": "battania",
+   "size_m": [
+    875,
+    875
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_town_b": {
+   "name": "Seonon",
+   "kind": "siege",
+   "culture": "battania",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_town_c": {
+   "name": "Pen Cannoc",
+   "kind": "siege",
+   "culture": "battania",
+   "size_m": [
+    2400,
+    2400
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_town_d": {
+   "name": "Marunath",
+   "kind": "siege",
+   "culture": "battania",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_town_e": {
+   "name": "Dunglanys",
+   "kind": "siege",
+   "culture": "battania",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village": {
+   "name": "Bryn glas",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village_e": {
+   "name": "Tor Melina",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village_g": {
+   "name": "Bog Beth",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village_h": {
+   "name": "Morihig",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village_i": {
+   "name": "Ath Cafal",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village_j": {
+   "name": "Fenon Tryn",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village_k": {
+   "name": "Rhemtoil",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village_l": {
+   "name": "Glenlithrig",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battania_village_m": {
+   "name": "Geunat Nal",
+   "kind": "village",
+   "culture": "battania",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "battle_terrain_001": {
+   "name": "Chertyg Mountain Pass (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    500,
+    800
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 1,
+   "vegetation": "open"
+  },
+  "battle_terrain_003": {
+   "name": "Temea Forest (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_004": {
+   "name": "Dryatic Mountain Pass (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "deciduous_open"
+  },
+  "battle_terrain_005": {
+   "name": "Iltan Swamp (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 2,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_006": {
+   "name": "Ov Plains (Steppe)",
+   "kind": "field",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_007": {
+   "name": "Takor Mountains (Steppe)",
+   "kind": "field",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_008": {
+   "name": "Jarjara Desert Pass (Desert)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "open"
+  },
+  "battle_terrain_009": {
+   "name": "Liwas Desert (Desert)",
+   "kind": "field",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "open"
+  },
+  "battle_terrain_010": {
+   "name": "Jabal Ashab Desert (Desert)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "open"
+  },
+  "battle_terrain_011": {
+   "name": "Trand River Valley (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_012": {
+   "name": "Bars Dag Wastes (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "open"
+  },
+  "battle_terrain_013": {
+   "name": "Nevys Valley (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 6,
+   "vegetation": "open"
+  },
+  "battle_terrain_014": {
+   "name": "Devseg Plateau (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "open"
+  },
+  "battle_terrain_015": {
+   "name": "Tismil Wastes (Steppe)",
+   "kind": "field",
+   "culture": "khuzait",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_017": {
+   "name": "Damar River (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_018": {
+   "name": "Ozu River (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_019": {
+   "name": "Sulun Dag Wastes (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 5,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_020": {
+   "name": "Vesin Coast (Plain)",
+   "kind": "field",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "deciduous_open"
+  },
+  "battle_terrain_021": {
+   "name": "Vinela Coast (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_022": {
+   "name": "Medeni Coast (Desert)",
+   "kind": "field",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_023": {
+   "name": "Uchalion Forest (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_024": {
+   "name": "Tor Leiad Forest (Plain)",
+   "kind": "field",
+   "culture": "battania",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 2,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_025": {
+   "name": "Morihig Woods (Plain)",
+   "kind": "field",
+   "culture": "battania",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_026": {
+   "name": "Erithrys Foothill (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 3,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_027": {
+   "name": "Temea Creek (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_028": {
+   "name": "Myzead Woods (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_029": {
+   "name": "Laconis Shores (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_030": {
+   "name": "Drapand Cliffs (Plain)",
+   "kind": "field",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_031": {
+   "name": "Kachyar Valley (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 1,
+   "vegetation": "open"
+  },
+  "battle_terrain_032": {
+   "name": "Pendraic Prairie (Plain)",
+   "kind": "field",
+   "culture": "battania",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_low",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_033": {
+   "name": "Bog Beth Arch (Plain)",
+   "kind": "field",
+   "culture": "battania",
+   "size_m": [
+    900,
+    1000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_034": {
+   "name": "Calsean Swamps (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    900,
+    900
+   ],
+   "relief": "relief_low",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 3,
+   "vegetation": "open"
+  },
+  "battle_terrain_J": {
+   "name": "Kvol Woods (Plain)",
+   "kind": "field",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_L": {
+   "name": "Vealos Basin (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_O": {
+   "name": "Zestea Valley (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_a": {
+   "name": "Vladiv Forest (Plain)",
+   "kind": "field",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_b": {
+   "name": "Abba Basin (Desert)",
+   "kind": "field",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_005": {
+   "name": "Bay of West Vlandia (Plain)",
+   "kind": "field",
+   "culture": "vlandia",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 8,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_006": {
+   "name": "Biscan Woods (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 16,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_012": {
+   "name": "Neurval Valley (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_022": {
+   "name": null,
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": false,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_025": {
+   "name": "Swenryn Plains (Plain)",
+   "kind": "field",
+   "culture": "battania",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 11,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_027": {
+   "name": "East Dunglanys (Plain)",
+   "kind": "field",
+   "culture": "battania",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 11,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_028": {
+   "name": "Dalmengus Coast (Plain)",
+   "kind": "field",
+   "culture": "battania",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 8,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_030": {
+   "name": "Upper Thrand River (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_034": {
+   "name": "Epiric Mountain Pass (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_040": {
+   "name": "Galcha Wastes (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": "relief_low",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 13,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_044": {
+   "name": "Ircara Edge Mountains (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 15,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_046": {
+   "name": "Ircara Forest (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 11,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_047": {
+   "name": "Skorin Plains (Plain)",
+   "kind": "field",
+   "culture": "sturgia",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 11,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_048": {
+   "name": "Miron River Basin (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 9,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_050": {
+   "name": "Dryatic Mountain Plains (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_053": {
+   "name": "Aminys Bridges (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_065": {
+   "name": "West Jade Sea (Desert)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 13,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_067": {
+   "name": "South Wastes (Desert)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "deciduous_open"
+  },
+  "battle_terrain_biome_075": {
+   "name": "Damar Bridge (Desert)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 9,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_076": {
+   "name": "Jarjara Lowlands (Desert)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_083": {
+   "name": "Jade Sea Coast (Desert)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 12,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_087b": {
+   "name": null,
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": false,
+    "campaign": true
+   },
+   "spawn_paths": 8,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_088": {
+   "name": "Nahr Al-Kals Plateau (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_089": {
+   "name": "Tiagys Riverbed (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_092": {
+   "name": "Calsa River (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 10,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_093b": {
+   "name": null,
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": false,
+    "campaign": true
+   },
+   "spawn_paths": 8,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_094": {
+   "name": "Calsean Wastes (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_096": {
+   "name": "Tripotamia Valley (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 13,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_097": {
+   "name": "Sethys Woods (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 14,
+   "vegetation": "deciduous_open"
+  },
+  "battle_terrain_biome_098": {
+   "name": "Ornion Plateau (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 9,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_106": {
+   "name": "Ophthys Forest (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 9,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_107": {
+   "name": "Upper Sethys River (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 11,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_114": {
+   "name": null,
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": false,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_128": {
+   "name": "Lower Dryatic Mountain (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 3,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_130": {
+   "name": "Diathma Meadows (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 15,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_biome_131": {
+   "name": "Aris Lowlands (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 12,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_148": {
+   "name": "Akkan Hill Pass (Steppe)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 13,
+   "vegetation": "open"
+  },
+  "battle_terrain_biome_149": {
+   "name": "West Llyn Tywal (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": "relief_high",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 8,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_d": {
+   "name": "Jabal Tamar Desert (Desert)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_e": {
+   "name": "Wadar Desert (Desert)",
+   "kind": "field",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 7,
+   "vegetation": "open"
+  },
+  "battle_terrain_f": {
+   "name": "Oritan River (Swamp)",
+   "kind": "field",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 2,
+   "vegetation": "open"
+  },
+  "battle_terrain_g": {
+   "name": "Bir Seif Desert Pass (Desert)",
+   "kind": "field",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 1,
+   "vegetation": "open"
+  },
+  "battle_terrain_h": {
+   "name": "Potamis Woods (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 5,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_i": {
+   "name": "Goleryn Basin (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 3,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_k": {
+   "name": "Hertogea Jungle (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "open"
+  },
+  "battle_terrain_m": {
+   "name": "Samatha Valley (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_high",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "conifer_dense"
+  },
+  "battle_terrain_n": {
+   "name": "Canoros Forest (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "deciduous_open"
+  },
+  "battle_terrain_p": {
+   "name": "Bay of Tirby Woods (Plain)",
+   "kind": "field",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_r": {
+   "name": "Imlagh Forest (Plain)",
+   "kind": "field",
+   "culture": "battania",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 4,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_s": {
+   "name": "Gavys River (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 7,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_t": {
+   "name": "Miron Woods (Plain)",
+   "kind": "field",
+   "culture": null,
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 6,
+   "vegetation": "mixed"
+  },
+  "battle_terrain_u": {
+   "name": "Ismilkorg Woods (Plain)",
+   "kind": "field",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_medium",
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 4,
+   "vegetation": "deciduous_open"
+  },
+  "battle_terrain_v": {
+   "name": "Gamardan Forest (Plain)",
+   "kind": "field",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 2,
+   "vegetation": "deciduous_open"
+  },
+  "battle_terrain_y": {
+   "name": "Tasheba Coast (Steppe)",
+   "kind": "field",
+   "culture": "aserai",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": "relief_low",
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 4,
+   "vegetation": "open"
+  },
+  "battle_terrain_z": {
+   "name": "Palisont Valley (Plain)",
+   "kind": "field",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": "relief_medium",
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": true
+   },
+   "spawn_paths": 4,
+   "vegetation": "conifer_dense"
+  },
+  "empire_castle_004": {
+   "name": "Thractorae Castle",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_castle_b": {
+   "name": "Sestadaim Castle",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_castle_c": {
+   "name": "Jogurys Castle",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_castle_f": {
+   "name": "Ataconia Castle",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1100,
+    1100
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_castle_g": {
+   "name": "Mecalovea Castle",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_siege_001": {
+   "name": "Veron Castle",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_a": {
+   "name": "Argoron",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_b": {
+   "name": "Myzea",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_c": {
+   "name": "Ortysia",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1536,
+    1536
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_d": {
+   "name": "Zeonica",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    3000,
+    3000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_e": {
+   "name": "Poros",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    3000,
+    3000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_f": {
+   "name": "Lageta",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1500,
+    1500
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_g": {
+   "name": "Epicrotea",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_h": {
+   "name": "Rhotae",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_i": {
+   "name": "Jalmarys",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_j_siege": {
+   "name": "Amitatys",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    2400,
+    2400
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_k": {
+   "name": "Onira",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    2400,
+    2400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_l": {
+   "name": "Vostrum",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_m": {
+   "name": "Lycaron",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_n": {
+   "name": "Amprela",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_o": {
+   "name": "Syronea",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_p": {
+   "name": "Phycaon",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_q": {
+   "name": "Diathma",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_r": {
+   "name": "Saneopa",
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_town_s": {
+   "name": null,
+   "kind": "siege",
+   "culture": "empire",
+   "size_m": [
+    2400,
+    2400
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": false,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_001": {
+   "name": "Dyopalis",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_002": {
+   "name": "Jogurys",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_003": {
+   "name": "Vargornis",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_004": {
+   "name": "Avalyps",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_005": {
+   "name": "Vealos",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_006": {
+   "name": "Tevea",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_007": {
+   "name": "Popsia",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_008": {
+   "name": "Hertogea",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_009": {
+   "name": "Aeoria",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_011": {
+   "name": "Gaos",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_a": {
+   "name": "Goleryn",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_b": {
+   "name": "Jeracos",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_c": {
+   "name": "Thorios",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    800,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_d": {
+   "name": "Canterion",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_e": {
+   "name": "Bergum",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_f": {
+   "name": "Vathea",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_g": {
+   "name": "Samatha",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    500,
+    700
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_h": {
+   "name": "Gersegos",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_i": {
+   "name": "Primessos",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_j": {
+   "name": "Rhesos",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_k": {
+   "name": "Syratos",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_l": {
+   "name": "Carphenion",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_m": {
+   "name": "Epinosa",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_o": {
+   "name": "Lochana",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_p": {
+   "name": "Agalmon",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_r": {
+   "name": "Zestea",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_s": {
+   "name": "Gamardan",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_t": {
+   "name": "Crios",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_u": {
+   "name": "Melion",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_v": {
+   "name": "Thractorae",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_x": {
+   "name": "Alision",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_y": {
+   "name": "Leblenion",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "empire_village_z": {
+   "name": "Morenia",
+   "kind": "village",
+   "culture": "empire",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_castle_002": {
+   "name": "Simira Castle",
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_castle_siege_001": {
+   "name": "Hakkun Castle",
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_city_a": {
+   "name": "Chaikand",
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_city_b": {
+   "name": "Baltakhand",
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_town_004": {
+   "name": "Odokh",
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_town_c": {
+   "name": null,
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    3000,
+    3000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": false,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_town_e": {
+   "name": "Ortongard",
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_town_f": {
+   "name": "Makeb",
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    1600,
+    1600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_town_g": {
+   "name": "Akkalat",
+   "kind": "siege",
+   "culture": "khuzait",
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_a": {
+   "name": "Shapeshte",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_b": {
+   "name": "Asalig",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_c": {
+   "name": "Kuruluk",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    1800,
+    1800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_d": {
+   "name": "Dinar",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_e": {
+   "name": "Karahan",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_f": {
+   "name": "Nutyuk",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    400,
+    400
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_g": {
+   "name": "Tismil",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_h": {
+   "name": "Usek",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_i": {
+   "name": "Esme",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_j": {
+   "name": "Erzenur",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_k": {
+   "name": "Tepes",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "khuzait_village_l": {
+   "name": "Kiraz",
+   "kind": "village",
+   "culture": "khuzait",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_castle_003": {
+   "name": "Takor Castle",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_castle_c": {
+   "name": "Mazhadan Castle",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_castle_siege_001": {
+   "name": "Ustokol Castle",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_town_a": {
+   "name": "Sibir",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    1500,
+    1500
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_town_b": {
+   "name": "Varnovapol",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_town_c": {
+   "name": "Balgard",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_town_d": {
+   "name": "Tyal",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_town_e": {
+   "name": "Omor",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    2400,
+    2400
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_town_f": {
+   "name": "Revyl",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_town_g": {
+   "name": "Varcheg",
+   "kind": "siege",
+   "culture": "sturgia",
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_a": {
+   "name": "Forin",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    900,
+    900
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_b": {
+   "name": "Vladiv",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_c": {
+   "name": "Mazhadan",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_d": {
+   "name": "Kvol",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_e": {
+   "name": "Bukits",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_f": {
+   "name": "Yangutum",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    400,
+    400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_g": {
+   "name": "Urikskala",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    500,
+    500
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_h": {
+   "name": "Visibrot",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_j": {
+   "name": "Rodobas",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_k": {
+   "name": "Korsyas",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "sturgia_village_l": {
+   "name": "Chornobas",
+   "kind": "village",
+   "culture": "sturgia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_castle_005a": {
+   "name": "Talivel Castle",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1400,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_castle_a": {
+   "name": "Hongard Castle",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_castle_b": {
+   "name": "Verecsand Castle",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_castle_c": {
+   "name": "Caleus Castle",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_castle_d": {
+   "name": "Usanc Castle",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_city_a": {
+   "name": "Jaculan",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1250,
+    1250
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_town_a": {
+   "name": "Pravend",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    2000,
+    2000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_town_c": {
+   "name": "Galend",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_town_d": {
+   "name": "Ostican",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1400
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_town_e": {
+   "name": "Sargot",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    3000,
+    3000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_town_f": {
+   "name": "Rovalt",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_town_g": {
+   "name": "Charas",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    3000,
+    3000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_town_h": {
+   "name": "Ocs Hall",
+   "kind": "siege",
+   "culture": "vlandia",
+   "size_m": [
+    1300,
+    1300
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_b": {
+   "name": "Ormanfard",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_c": {
+   "name": "Mareiven",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_d": {
+   "name": "Halisvust",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_e": {
+   "name": "Etirfurd",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_f": {
+   "name": "Hongard",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_g": {
+   "name": "Fregian",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_h": {
+   "name": "Palisont",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    900,
+    900
+   ],
+   "relief": null,
+   "snow_layer": false,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_i": {
+   "name": "Drapand",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    600,
+    600
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_j": {
+   "name": "Remental",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    1000,
+    1000
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": false,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_k": {
+   "name": "Nogrent",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    1200,
+    1200
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_l": {
+   "name": "Mot",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_m": {
+   "name": "Vesin",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  },
+  "vlandia_village_n": {
+   "name": "Verecsand",
+   "kind": "village",
+   "culture": "vlandia",
+   "size_m": [
+    800,
+    800
+   ],
+   "relief": null,
+   "snow_layer": true,
+   "water": true,
+   "listed": {
+    "custom_battle": true,
+    "campaign": false
+   },
+   "spawn_paths": 0
+  }
+ }
+}

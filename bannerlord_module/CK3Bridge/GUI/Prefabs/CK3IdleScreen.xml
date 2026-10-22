@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shown between battles (CK3IdleScreen): plain black. Bannerlord is normally cloaked while idle anyway. -->
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Color="#000000FF" />
+  </Window>
+</Prefab>

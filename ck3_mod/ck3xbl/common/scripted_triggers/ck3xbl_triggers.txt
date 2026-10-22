@@ -1,0 +1,334 @@
+﻿# ck3xbl scripted triggers. Mod contract: docs/PROTOCOL.md.
+
+# this = character: a human player, or a loyal member of a human player's realm. Rebels at war with their top liege
+# (faction wars) keep that liege as top_liege, so they are excluded explicitly.
+ck3xbl_char_of_player_realm_trigger = {
+	OR = {
+		is_ai = no
+		AND = {
+			top_liege ?= { is_ai = no }
+			NOT = { is_at_war_with = top_liege }
+		}
+	}
+}
+
+# this = combat side: a human player is a participant, commander or knight of this side.
+ck3xbl_side_has_player_trigger = {
+	OR = {
+		any_side_participant = { is_ai = no }
+		any_side_commander = { is_ai = no }
+		any_side_knight = { is_ai = no }
+	}
+}
+
+# this = combat side: the player or a loyal member of the player's realm fights on this side.
+ck3xbl_side_involves_player_trigger = {
+	OR = {
+		any_side_participant = { ck3xbl_char_of_player_realm_trigger = yes }
+		any_side_commander = { ck3xbl_char_of_player_realm_trigger = yes }
+		any_side_knight = { ck3xbl_char_of_player_realm_trigger = yes }
+	}
+}
+
+# this = combat: an army of the player or of a loyal member of the player's realm fights on the attacker ($ATT$ = yes) or defender
+# ($ATT$ = no) side (a host without a commander has nobody on the side lists; live test 2026-10-04, PROTOCOL 15).
+ck3xbl_realm_army_on_side_trigger = {
+	location = {
+		any_army_in_location = {
+			ck3xbl_army_in_combat_side_trigger = { ATT = $ATT$ }
+			army_owner = { ck3xbl_char_of_player_realm_trigger = yes }
+		}
+	}
+}
+
+# scope:ck3xbl_d_tourney set: the tournament contest is a bout between two (single combat 1, wrestling 2, joust 4), which
+# contest_events.0802 resolves, not a contest decided at its end (grand melee 3, archery 5). PROTOCOL 36.
+ck3xbl_tourney_bout_trigger = {
+	OR = {
+		scope:ck3xbl_d_tourney = 1
+		scope:ck3xbl_d_tourney = 2
+		scope:ck3xbl_d_tourney = 4
+	}
+}
+
+# this = combat side, scope:ck3xbl_player and scope:ck3xbl_war set: the side's primary participant fights on the player's side
+# of the war (an adventurer joined to a war by contract is a war participant, but is_at_war_with missed one; live 2026-10-18).
+ck3xbl_side_with_player_in_war_trigger = {
+	side_primary_participant ?= {
+		OR = {
+			AND = {
+				is_attacker_in_war = scope:ck3xbl_war
+				scope:ck3xbl_player = { is_attacker_in_war = scope:ck3xbl_war }
+			}
+			AND = {
+				is_defender_in_war = scope:ck3xbl_war
+				scope:ck3xbl_player = { is_defender_in_war = scope:ck3xbl_war }
+			}
+		}
+	}
+}
+
+# this = combat side, scope:ck3xbl_player set: a participant of this side is at war with the player (the enemy side).
+ck3xbl_side_against_player_trigger = {
+	any_side_participant = { is_at_war_with = scope:ck3xbl_player }
+}
+
+# this = combat: a combat the player takes part in that has no snapshot yet (docs/PROTOCOL.md 10.1): a human player is a
+# participant, commander or knight of one side, or one of the player's own armies fights in it. Battles of allies and vassals
+# in the player's war, with none of his armies there, are left to CK3 (live 2026-10-18: an ally's battle was offered while the
+# player's armies were not even raised).
+ck3xbl_combat_wanted_trigger = {
+	NOT = { has_variable = ck3xbl_bid }
+	OR = {
+		any_combat_side = { ck3xbl_side_has_player_trigger = yes }
+		location = {
+			any_army_in_location = {
+				is_army_in_combat = yes
+				army_owner = { is_ai = no }
+			}
+		}
+	}
+}
+
+# this = army: the army fights on the attacker ($ATT$ = yes) or defender ($ATT$ = no) side of a combat.
+# is_army_in_combat comes first: involved_combat_side is only valid for armies in combat.
+ck3xbl_army_in_combat_side_trigger = {
+	is_army_in_combat = yes
+	involved_combat_side = { is_combat_side_attacker = $ATT$ }
+}
+
+# this = army: tagged for the battle in scope:ck3xbl_bid.
+ck3xbl_army_of_battle_trigger = {
+	has_variable = ck3xbl_bid
+	var:ck3xbl_bid = scope:ck3xbl_bid
+}
+
+# this = army: tagged for the battle being fought in Bannerlord. Such an army keeps its tag when it joins another
+# combat, so the pending result still finds it.
+ck3xbl_army_of_pending_battle_trigger = {
+	has_variable = ck3xbl_bid
+	has_global_variable = ck3xbl_pending_bid
+	var:ck3xbl_bid = global_var:ck3xbl_pending_bid
+}
+
+# Some tagged army of the battle $BID$ is still in combat (CK3 has not finished that combat).
+ck3xbl_battle_live_trigger = {
+	any_in_global_list = {
+		variable = ck3xbl_armies
+		has_variable = ck3xbl_bid
+		var:ck3xbl_bid = $BID$
+		is_army_in_combat = yes
+	}
+}
+
+# this = character: already has a C record in the snapshot of scope:ck3xbl_bid.
+ck3xbl_char_emitted_trigger = {
+	has_variable = ck3xbl_cbid
+	var:ck3xbl_cbid = scope:ck3xbl_bid
+}
+
+# The battle in scope:ck3xbl_bid is the one being fought in Bannerlord.
+ck3xbl_bid_is_pending_trigger = {
+	has_global_variable = ck3xbl_pending_bid
+	global_var:ck3xbl_pending_bid = scope:ck3xbl_bid
+}
+
+# this = the player, in the event chain of a snapshot: the player is physically in this battle
+# (commands, or rides as a knight in, one of its tagged armies).
+ck3xbl_player_in_battle_trigger = {
+	OR = {
+		commanding_army ?= { ck3xbl_army_of_battle_trigger = yes }
+		knight_army ?= { ck3xbl_army_of_battle_trigger = yes }
+	}
+}
+
+# A pending battle nobody can finish any more (docs/PROTOCOL.md 10.2): the player who chose it is dead or no longer
+# played, or it is older than the grace period (ck3xbl_pending_fresh, 7 days) and CK3 has finished its combat.
+# Its event window (0002) is then gone or useless, so another battle may take its place.
+ck3xbl_pending_stale_trigger = {
+	OR = {
+		NOT = { has_global_variable = ck3xbl_pending_player }
+		global_var:ck3xbl_pending_player = {
+			OR = {
+				is_alive = no
+				is_ai = yes
+			}
+		}
+		AND = {
+			NOT = { has_global_variable = ck3xbl_pending_fresh }
+			NOT = { ck3xbl_battle_live_trigger = { BID = global_var:ck3xbl_pending_bid } }
+		}
+	}
+}
+
+# Only one battle at a time can be fought in Bannerlord: the battle of scope:ck3xbl_bid may be taken to the field
+# unless another one is pending and still alive.
+ck3xbl_field_available_trigger = {
+	custom_tooltip = {
+		text = ck3xbl_field_busy_tt
+		OR = {
+			NOT = { has_global_variable = ck3xbl_pending_bid }
+			global_var:ck3xbl_pending_bid = 0
+			global_var:ck3xbl_pending_bid = scope:ck3xbl_bid
+			ck3xbl_pending_stale_trigger = yes
+		}
+	}
+}
+
+# this = the player, event 0002 of the battle in scope:ck3xbl_bid: its result is committed (IN|OK) and not applied yet.
+ck3xbl_result_ready_trigger = {
+	has_variable = ck3xbl_ready
+	var:ck3xbl_ready = 1
+	ck3xbl_bid_is_pending_trigger = yes
+}
+
+# this = the player: the result of the battle in scope:ck3xbl_bid has been applied (also by a dev-mode run file).
+ck3xbl_result_applied_trigger = {
+	has_variable = ck3xbl_ready
+	var:ck3xbl_ready = 2
+	trigger_if = {
+		limit = { has_variable = ck3xbl_applied_bid }
+		var:ck3xbl_applied_bid = scope:ck3xbl_bid
+	}
+	trigger_else = { always = no }
+}
+
+# this = the victim of a capture, during ck3xbl_apply_effect: the winning side's war leader can take them prisoner.
+# Prisoners are only taken in wars (as vanilla combat_event.1001 does).
+ck3xbl_res_can_capture_trigger = {
+	scope:ck3xbl_res_has_captor = 1
+	is_imprisoned = no
+	NOT = { this = scope:ck3xbl_captor }
+	NOT = { scope:ck3xbl_res_vside = scope:ck3xbl_res_winner_code }
+	scope:ck3xbl_captor = {
+		is_alive = yes
+		is_at_war_with = scope:ck3xbl_res_loser_primary
+	}
+}
+
+# --- single combat (docs/PROTOCOL.md 18) ---
+
+# A single combat CK3 just set up (configure_start_single_combat_effect: scope:sc_attacker, scope:sc_defender, scope:fixed) may be
+# fought in Bannerlord: a human player is one of the two duelists, nothing fixes the winner already, and the field is free (no
+# battle or duel pending in Bannerlord, or only a stale one).
+ck3xbl_duel_wanted_trigger = {
+	exists = scope:sc_attacker
+	exists = scope:sc_defender
+	NOT = { scope:sc_attacker = scope:sc_defender }
+	scope:fixed = flag:no
+	OR = {
+		scope:sc_attacker = { is_ai = no }
+		scope:sc_defender = { is_ai = no }
+	}
+	OR = {
+		NOT = { has_global_variable = ck3xbl_pending_bid }
+		global_var:ck3xbl_pending_bid = 0
+		ck3xbl_pending_stale_trigger = yes
+	}
+}
+
+# this = the player in a vanilla travel danger event (docs/PROTOCOL.md 20): the skirmish may be fought in Bannerlord (the field is
+# free, as for a duel).
+ck3xbl_skirmish_available_trigger = {
+	# AI characters get the vanilla travel and tournament events too, and an AI picks among the options it may take: without this
+	# AI travellers far away chose "fight it out in Bannerlord" and took the field from the player (live 2026-10-18, b137..b220).
+	is_ai = no
+	custom_tooltip = {
+		text = ck3xbl_field_busy_tt
+		OR = {
+			NOT = { has_global_variable = ck3xbl_pending_bid }
+			global_var:ck3xbl_pending_bid = 0
+			ck3xbl_pending_stale_trigger = yes
+		}
+	}
+}
+
+# --- battles at sea (docs/PROTOCOL.md 44) ---
+
+# this = an army: a fleet at war with $WHO$ (a character), at sea, not fighting, and not chased in the last days.
+ck3xbl_sea_foe_army_trigger = {
+	is_army_in_combat = no
+	NOT = { has_variable = ck3xbl_sea_tried }
+	army_owner = {
+		NOT = { this = $WHO$ }
+		OR = {
+			is_at_war_with = $WHO$
+			is_at_war_with = $WHO$.top_liege
+		}
+	}
+}
+
+# this = a province: a sea province with an enemy fleet of $WHO$ in it.
+ck3xbl_sea_foe_here_trigger = {
+	is_sea_province = yes
+	any_army_in_location = { ck3xbl_sea_foe_army_trigger = { WHO = $WHO$ } }
+}
+
+# this = an army of $WHO$: at sea, free, with an enemy fleet in its sea province or a neighbouring one.
+ck3xbl_sea_fleet_near_foe_trigger = {
+	is_army_in_combat = no
+	NOT = { has_variable = ck3xbl_sea_tried }
+	location = {
+		is_sea_province = yes
+		OR = {
+			ck3xbl_sea_foe_here_trigger = { WHO = $WHO$ }
+			any_neighboring_province = { ck3xbl_sea_foe_here_trigger = { WHO = $WHO$ } }
+		}
+	}
+}
+
+# this = an army of the player: at sea, free, in scope:army's sea province or a neighbouring one.
+ck3xbl_sea_fleet_by_army_trigger = {
+	is_army_in_combat = no
+	NOT = { has_variable = ck3xbl_sea_tried }
+	location = {
+		is_sea_province = yes
+		OR = {
+			this = scope:army.location
+			any_neighboring_province = { this = scope:army.location }
+		}
+	}
+}
+
+# --- battle clock (docs/PROTOCOL.md 14) ---
+
+# this = army: steered for the battle in scope:ck3xbl_st_cur_bid.
+ck3xbl_st_army_of_steering_trigger = {
+	has_variable = ck3xbl_st_bid
+	var:ck3xbl_st_bid = scope:ck3xbl_st_cur_bid
+}
+
+# this = an army owner of the steered battle in scope:ck3xbl_st_cur_bid (owner guard): he carries no other
+# battle's owner levers, and none of his armies fights a native (unsteered) battle, which the levers would distort.
+ck3xbl_st_owner_free_trigger = {
+	OR = {
+		NOT = { has_variable = ck3xbl_st_lev_bid }
+		var:ck3xbl_st_lev_bid = scope:ck3xbl_st_cur_bid
+	}
+	NOT = {
+		any_army = {
+			is_army_in_combat = yes
+			NOT = { has_variable = ck3xbl_st_bid }
+		}
+	}
+}
+
+# this = a steered combat side after its control step: less than half a day's kills of its target remain.
+ck3xbl_st_target_reached_trigger = {
+	var:ck3xbl_st_killed >= ck3xbl_st_reach_at_value
+}
+
+# The event chain of event 0001: the battle may still be taken to the field. Always for a first clash; a second-clash offer only
+# while its parent is suspended and waiting for this very offer (PROTOCOL 14.6), so an offer answered after the failsafe or after
+# AUTO cannot open a field the parent no longer waits for.
+ck3xbl_child_open_trigger = {
+	OR = {
+		NOT = { exists = scope:ck3xbl_parent_bid }
+		scope:ck3xbl_parent_bid = 0
+		scope:ck3xbl_combat ?= {
+			has_variable = ck3xbl_st_suspended
+			has_variable = ck3xbl_st_child
+			var:ck3xbl_st_child = scope:ck3xbl_bid
+		}
+	}
+}

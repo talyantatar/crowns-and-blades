@@ -1,0 +1,251 @@
+﻿# Single combat in Bannerlord (docs/PROTOCOL.md 18). CK3 sets a single combat up through configure_start_single_combat_effect
+# (redefined in zz_ck3xbl_gen_single_combat_hook.txt, which saves scope:sc_initiator, sc_attacker, sc_defender, follow_up_event,
+# invalidation_event, fatality, fixed and locale exactly as vanilla does). When a human player is one of the duelists, the duel
+# is logged like a battle without armies and offered: fought in Bannerlord, its winner (and whether the loser fell dead there) then
+# fixes CK3's own single combat (scope:fixed, scope:fatality), which runs its rounds, wounds, deaths and output event as always.
+
+# this = whatever called the setup; the sc_* scopes are saved. B|BEGIN (ck3xbl_kind = 2), L lines, S + C|KNIGHT per duelist,
+# B|END; then the player is asked (ck3xbl_duel.0001), with the auto-pausing battle toast.
+ck3xbl_duel_begin_effect = {
+	ck3xbl_duel_log_effect = yes
+	info_log = "CK3XBL|B|END"
+	info_log_scopes = yes
+	scope:ck3xbl_player = {
+		send_interface_toast = {
+			type = msg_ck3xbl_battle_begins
+			title = msg_ck3xbl_duel_begins_title
+			desc = msg_ck3xbl_duel_begins_desc
+			left_icon = scope:ck3xbl_player
+			right_icon = scope:ck3xbl_enemy_leader
+		}
+		trigger_event = ck3xbl_duel.0001
+	}
+}
+
+# The records of a single combat up to its sides (B|BEGIN, L, S + C|KNIGHT per duelist); the caller adds more knights (a tournament's
+# grand melee) and B|END. scope:sc_attacker, scope:sc_defender and scope:fatality are saved.
+ck3xbl_duel_log_effect = {
+	ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_bid value = global_var:ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_parent_bid value = 0 }
+	save_scope_value_as = { name = ck3xbl_clash value = 1 }
+	save_scope_value_as = { name = ck3xbl_kind value = 2 }
+	save_scope_value_as = { name = ck3xbl_year value = current_year }
+	save_scope_value_as = { name = ck3xbl_month value = current_month }
+	save_scope_value_as = { name = ck3xbl_day value = current_day }
+	# The player's side: 1 = the player is the attacker, 2 = the defender.
+	if = {
+		limit = { scope:sc_attacker = { is_ai = no } }
+		scope:sc_attacker = { save_scope_as = ck3xbl_player }
+		scope:sc_defender = { save_scope_as = ck3xbl_enemy_leader }
+		save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+	}
+	else = {
+		scope:sc_defender = { save_scope_as = ck3xbl_player }
+		scope:sc_attacker = { save_scope_as = ck3xbl_enemy_leader }
+		save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+	}
+	save_scope_value_as = { name = ck3xbl_player_present value = 1 }
+	scope:sc_attacker = { save_scope_as = ck3xbl_att_primary }
+	scope:sc_defender = { save_scope_as = ck3xbl_def_primary }
+	scope:ck3xbl_player.location = {
+		save_scope_as = ck3xbl_prov
+		county ?= { save_scope_as = ck3xbl_county }
+		barony ?= { save_scope_as = ck3xbl_barony }
+	}
+	# CK3's death rule for the loser: 0 no, 1 possible, 2 always, 3 default (decided by government), 4 practice.
+	save_scope_value_as = { name = ck3xbl_d_fatality value = 0 }
+	if = { limit = { scope:fatality = flag:possible } save_scope_value_as = { name = ck3xbl_d_fatality value = 1 } }
+	else_if = { limit = { scope:fatality = flag:always } save_scope_value_as = { name = ck3xbl_d_fatality value = 2 } }
+	else_if = { limit = { scope:fatality = flag:default } save_scope_value_as = { name = ck3xbl_d_fatality value = 3 } }
+	else_if = { limit = { scope:fatality = flag:practice } save_scope_value_as = { name = ck3xbl_d_fatality value = 4 } }
+	# Where it is fought (PROTOCOL 27): 1 = the foe is of noble birth (an arena), 0 = a lowborn foe (bandit, wanderer: the woods).
+	save_scope_value_as = { name = ck3xbl_d_noble value = 0 }
+	if = {
+		limit = { scope:ck3xbl_enemy_leader = { is_lowborn = no } }
+		save_scope_value_as = { name = ck3xbl_d_noble value = 1 }
+	}
+	info_log = "CK3XBL|B|BEGIN"
+	info_log_scopes = yes
+	scope:ck3xbl_prov = { ck3xbl_emit_location_effect = yes }
+	ck3xbl_duel_emit_side_effect = { CODE = 1 DUELIST = scope:sc_attacker }
+	ck3xbl_duel_emit_side_effect = { CODE = 2 DUELIST = scope:sc_defender }
+}
+
+# One more fighter of side $CODE$ (a team mate in a grand melee, PROTOCOL 29): C|KNIGHT (+CX), present.
+ck3xbl_duel_emit_knight_effect = {
+	save_scope_value_as = { name = ck3xbl_side_code value = $CODE$ }
+	ck3xbl_save_char_values_effect = yes
+	save_scope_value_as = { name = ck3xbl_c_absent value = 0 }
+	if = {
+		limit = { scope:ck3xbl_side_code = 1 }
+		info_log = "CK3XBL|C|KNIGHT|att"
+	}
+	else = { info_log = "CK3XBL|C|KNIGHT|def" }
+	info_log_scopes = yes
+	ck3xbl_emit_cx_effect = yes
+}
+
+# One duelist as a side of one: S (the duelist is its primary participant) and C|KNIGHT (+CX), present in the fight.
+ck3xbl_duel_emit_side_effect = {
+	save_scope_value_as = { name = ck3xbl_side_code value = $CODE$ }
+	save_scope_value_as = { name = ck3xbl_s_size value = 1 }
+	save_scope_value_as = { name = ck3xbl_s_has_primary value = 1 }
+	$DUELIST$ = { save_scope_as = ck3xbl_s_primary }
+	if = {
+		limit = { scope:ck3xbl_my_side_code = $CODE$ }
+		save_scope_value_as = { name = ck3xbl_s_player_in value = 1 }
+	}
+	else = { save_scope_value_as = { name = ck3xbl_s_player_in value = 0 } }
+	save_scope_value_as = { name = ck3xbl_s_has_cmd value = 0 }
+	save_scope_value_as = { name = ck3xbl_s_hostility_out value = 0 }
+	if = {
+		limit = { scope:ck3xbl_side_code = 1 }
+		info_log = "CK3XBL|S|att"
+	}
+	else = { info_log = "CK3XBL|S|def" }
+	info_log_scopes = yes
+	$DUELIST$ = {
+		ck3xbl_save_char_values_effect = yes
+		save_scope_value_as = { name = ck3xbl_c_absent value = 0 }
+		if = {
+			limit = { scope:ck3xbl_side_code = 1 }
+			info_log = "CK3XBL|C|KNIGHT|att"
+		}
+		else = { info_log = "CK3XBL|C|KNIGHT|def" }
+		info_log_scopes = yes
+		ck3xbl_emit_cx_effect = yes
+	}
+}
+
+# root = the player, event ck3xbl_duel.0004: the result has been committed (ck3xbl_result_ready_trigger). r2 = the winner (1 the
+# attacker, 2 the defender; 3 and 4 = no winner), r8 = 1 when the loser fell dead in Bannerlord. The pending duel is finished like
+# a battle (RES|BEGIN .. RES|END, ck3xbl_finish_battle_effect); CK3's single combat then runs with the winner fixed.
+ck3xbl_duel_apply_effect = {
+	save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_r1 }
+	save_scope_value_as = { name = ck3xbl_res_outcome value = var:ck3xbl_r2 }
+	save_scope_value_as = { name = ck3xbl_duel_killed value = var:ck3xbl_r8 }
+	info_log = "CK3XBL|RES|BEGIN"
+	info_log_scopes = yes
+	info_log = "CK3XBL|RES|END"
+	info_log_scopes = yes
+	ck3xbl_finish_battle_effect = yes
+	if = {
+		limit = { scope:ck3xbl_res_outcome = 1 }
+		save_scope_value_as = { name = fixed value = flag:sc_attacker }
+		scope:sc_attacker = { save_scope_as = ck3xbl_duel_winner }
+		scope:sc_defender = { save_scope_as = ck3xbl_duel_loser }
+		ck3xbl_duel_rewards_effect = yes
+		ck3xbl_duel_feats_effect = yes
+	}
+	else_if = {
+		limit = { scope:ck3xbl_res_outcome = 2 }
+		save_scope_value_as = { name = fixed value = flag:sc_defender }
+		scope:sc_defender = { save_scope_as = ck3xbl_duel_winner }
+		scope:sc_attacker = { save_scope_as = ck3xbl_duel_loser }
+		ck3xbl_duel_rewards_effect = yes
+		ck3xbl_duel_feats_effect = yes
+	}
+	# CK3's rule decides: a loser who fell dead in a duel that may kill dies; one who only went down lives where CK3 allows it
+	# ("always" stays fatal, "default" stays CK3's own government rule when he fell dead).
+	if = {
+		limit = { scope:ck3xbl_res_outcome <= 2 }
+		if = {
+			limit = {
+				scope:ck3xbl_duel_killed = 1
+				scope:fatality = flag:possible
+			}
+			save_scope_value_as = { name = fatality value = flag:always }
+		}
+		else_if = {
+			limit = {
+				scope:ck3xbl_duel_killed = 0
+				OR = {
+					scope:fatality = flag:possible
+					scope:fatality = flag:default
+				}
+			}
+			save_scope_value_as = { name = fatality value = flag:no }
+		}
+	}
+	# With a winner CK3 skips its rounds and goes straight to its aftermath (PROTOCOL 30): victory and defeat events, wounds and
+	# death by the rule, and the output event of whatever started the duel (prestige, opinions, the challenge's stakes). Without
+	# one, CK3 fights the duel itself.
+	if = {
+		limit = { scope:ck3xbl_res_outcome <= 2 }
+		ck3xbl_sc_decided_effect = yes
+	}
+	else = { ck3xbl_sc_setup_effect = yes }
+}
+
+# What a duel fought in Bannerlord earns (PROTOCOL 18.4), before CK3's single combat applies its wounds: scope:ck3xbl_duel_winner,
+# scope:ck3xbl_duel_loser.
+#   Blademaster   experience for both, more for the winner (lifestyle_blademaster; without the trait it is earned at 50 XP).
+#   Brave         beating someone with more prowess: a craven loses that trait, anyone else becomes brave.
+#   Berserker     the tenth duel won.
+#   Trophy        half the time the winner takes one of the loser's personal artifacts (inventory, never court artifacts).
+ck3xbl_duel_rewards_effect = {
+	scope:ck3xbl_duel_winner = { ck3xbl_duel_add_xp_effect = { XP = 20 } }
+	scope:ck3xbl_duel_loser = { ck3xbl_duel_add_xp_effect = { XP = 8 } }
+	scope:ck3xbl_duel_winner = {
+		if = {
+			limit = { prowess < scope:ck3xbl_duel_loser.prowess }
+			if = {
+				limit = { has_trait = craven }
+				remove_trait = craven
+			}
+			else_if = {
+				limit = { NOT = { has_trait = brave } }
+				add_trait = brave
+			}
+		}
+		if = {
+			limit = { has_variable = ck3xbl_duel_wins }
+			change_variable = { name = ck3xbl_duel_wins add = 1 }
+		}
+		else = { set_variable = { name = ck3xbl_duel_wins value = 1 } }
+		if = {
+			limit = {
+				var:ck3xbl_duel_wins >= 10
+				NOT = { has_trait = berserker }
+			}
+			add_trait = berserker
+		}
+	}
+	random = {
+		chance = 50
+		scope:ck3xbl_duel_loser = {
+			random_character_artifact = {
+				limit = { category = inventory }
+				set_owner = { target = scope:ck3xbl_duel_winner }
+			}
+		}
+	}
+}
+
+# this = a duelist. Blademaster experience $XP$; without the trait it is kept (ck3xbl_duel_xp) until 50 earns the trait.
+ck3xbl_duel_add_xp_effect = {
+	if = {
+		limit = { has_trait = lifestyle_blademaster }
+		add_trait_xp = { trait = lifestyle_blademaster value = $XP$ }
+	}
+	else = {
+		if = {
+			limit = { has_variable = ck3xbl_duel_xp }
+			change_variable = { name = ck3xbl_duel_xp add = $XP$ }
+		}
+		else = { set_variable = { name = ck3xbl_duel_xp value = $XP$ } }
+		if = {
+			limit = { var:ck3xbl_duel_xp >= 50 }
+			add_trait = lifestyle_blademaster
+			remove_variable = ck3xbl_duel_xp
+		}
+	}
+}
+
+# The duel goes to CK3 after all (fate decides, or Bannerlord gave no winner): its tags are released and CK3's single combat runs
+# unchanged.
+ck3xbl_duel_to_ck3_effect = {
+	ck3xbl_cleanup_battle_effect = yes
+	ck3xbl_sc_setup_effect = yes
+}

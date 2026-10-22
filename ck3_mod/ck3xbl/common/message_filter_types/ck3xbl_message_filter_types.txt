@@ -1,0 +1,18 @@
+﻿# Message filter of the battle toast. auto_pause = yes pauses the game when such a message appears
+# (game/common/message_filter_types/_message_filter_types.info). Localization: message_filter_ck3xbl_battle.
+ck3xbl_battle = {
+	display = toast
+	always_show = yes
+	auto_pause = yes
+	sort_order = 100
+	group = battle
+}
+
+# The battle clock's news toasts (docs/PROTOCOL.md 14.4): shown, never pausing. Localization: message_filter_ck3xbl_battle_news.
+ck3xbl_battle_news = {
+	display = toast
+	always_show = yes
+	auto_pause = no
+	sort_order = 101
+	group = battle
+}

@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="CK3xBL.Appearance/CK3xBL.Appearance.csproj" />
+  <Project Path="CK3xBL.Core/CK3xBL.Core.csproj" />
+  <Project Path="CK3xBL.Mapping/CK3xBL.Mapping.csproj" />
+  <Project Path="CK3xBL.SelfTest/CK3xBL.SelfTest.csproj" />
+  <Project Path="CK3xBL.Ux/CK3xBL.Ux.csproj" />
+  <Project Path="CK3xBL/CK3xBL.csproj" />
+</Solution>

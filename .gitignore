@@ -1,0 +1,11 @@
+# Build output, local settings and files that never belong in this repository.
+bin/
+obj/
+.vs/
+*.user
+bridge/config.json
+tools/data/validation_report.txt
+tools/data/ck3_script_docs/
+*.pdb
+*.ck3
+dist/

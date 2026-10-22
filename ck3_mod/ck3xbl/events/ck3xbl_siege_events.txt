@@ -1,0 +1,101 @@
+﻿# Storming the walls in Bannerlord (docs/PROTOCOL.md 39), seen by the player:
+#   0001 (hidden): the decision "Storm the walls in Bannerlord": the assault is logged and fought.
+#   0002 "The Assault": open while the walls are stormed in Bannerlord; hosts the keypad widget.
+#   0004 (hidden): the delivered result is applied (losses, fates, the breach).
+# root = the player. The chain carries scope:ck3xbl_siege_army.
+
+namespace = ck3xbl_siege
+
+ck3xbl_siege.0001 = {
+	type = character_event
+	hidden = yes
+	immediate = { ck3xbl_siege_begin_effect = yes }
+}
+
+ck3xbl_siege.0002 = {
+	type = character_event
+	title = ck3xbl_siege.0002.t
+	desc = ck3xbl_siege.0002.desc
+	theme = battle
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = scope:ck3xbl_def_primary
+		animation = worry
+	}
+	widget = {
+		gui = "ck3xbl_keypad"
+		container = "custom_widgets_container"
+	}
+
+	option = {	# Always clickable (as battle event 0002): before word arrives it simply keeps waiting.
+		name = ck3xbl_siege.0002.a
+		hidden_effect = { trigger_event = ck3xbl_siege.0004 }
+	}
+	option = {	# The bridge or Bannerlord failed: the assault is called off and the siege goes on as CK3's.
+		name = ck3xbl_siege.0002.b
+		trigger = {
+			NOT = { ck3xbl_result_applied_trigger = yes }
+		}
+		hidden_effect = { ck3xbl_abandon_battle_effect = yes }
+	}
+}
+
+# The holding the player stormed has fallen (on_siege_completion, docs/PROTOCOL.md 41): its fate is his to decide.
+# root = the player, scope:county = the county of the taken barony, scope:barony = the barony.
+ck3xbl_siege.0010 = {
+	type = character_event
+	title = ck3xbl_siege.0010.t
+	desc = ck3xbl_siege.0010.desc
+	theme = war
+	left_portrait = {
+		character = root
+		animation = war_over_win
+	}
+
+	option = {	# Sack it: gold and dread; the county is ruined and hates you; a sin against your own faith.
+		name = ck3xbl_siege.0010.a
+		ck3xbl_sack_effect = yes
+		stress_impact = {
+			compassionate = medium_stress_impact_gain
+			just = minor_stress_impact_gain
+			forgiving = minor_stress_impact_gain
+		}
+	}
+	option = {	# Demand a ransom from the townsfolk: some gold, some resentment.
+		name = ck3xbl_siege.0010.b
+		ck3xbl_ransom_effect = yes
+		stress_impact = {
+			compassionate = minor_stress_impact_gain
+		}
+	}
+	option = {	# Spare the town: prestige and the people's goodwill; the men grumble.
+		name = ck3xbl_siege.0010.c
+		ck3xbl_spare_effect = yes
+		stress_impact = {
+			greedy = medium_stress_impact_gain
+			sadistic = minor_stress_impact_gain
+			wrathful = minor_stress_impact_gain
+		}
+	}
+}
+
+ck3xbl_siege.0004 = {
+	type = character_event
+	hidden = yes
+	immediate = {
+		if = {
+			limit = { ck3xbl_result_ready_trigger = yes }
+			ck3xbl_siege_apply_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_alive = yes
+				NOT = { ck3xbl_result_applied_trigger = yes }
+			}
+			trigger_event = ck3xbl_siege.0002
+		}
+	}
+}

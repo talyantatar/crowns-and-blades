@@ -1,0 +1,387 @@
+﻿# Feats (docs/PROTOCOL.md 32, 41, 45): lifelong, three ranks each. Rank I keeps the old modifier name, so a feat of an older
+# save counts as rank I; the next time it is earned it rises (ck3xbl_feat_rank_effect).
+
+ck3xbl_feat_reaper = {
+	icon = prowess_positive
+	prowess_no_portrait = 2
+	dread_baseline_add = 5
+}
+ck3xbl_feat_reaper_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 4
+	dread_baseline_add = 10
+}
+ck3xbl_feat_reaper_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 6
+	dread_baseline_add = 15
+}
+
+ck3xbl_feat_carnage = {
+	icon = dread_positive
+	prowess_no_portrait = 3
+	dread_baseline_add = 10
+	monthly_prestige = 0.5
+}
+ck3xbl_feat_carnage_2 = {
+	icon = dread_positive
+	prowess_no_portrait = 6
+	dread_baseline_add = 20
+	monthly_prestige = 1
+}
+ck3xbl_feat_carnage_3 = {
+	icon = dread_positive
+	prowess_no_portrait = 9
+	dread_baseline_add = 30
+	monthly_prestige = 2
+}
+
+ck3xbl_feat_legend = {
+	icon = prowess_positive
+	prowess_no_portrait = 3
+	monthly_prestige = 1
+	knight_effectiveness_mult = 0.1
+}
+ck3xbl_feat_legend_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 6
+	monthly_prestige = 2
+	knight_effectiveness_mult = 0.2
+}
+ck3xbl_feat_legend_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 10
+	monthly_prestige = 3
+	knight_effectiveness_mult = 0.3
+}
+
+ck3xbl_feat_slayer = {
+	icon = martial_positive
+	prowess_no_portrait = 1
+	dread_baseline_add = 5
+	monthly_prestige = 0.3
+}
+ck3xbl_feat_slayer_2 = {
+	icon = martial_positive
+	prowess_no_portrait = 3
+	dread_baseline_add = 10
+	monthly_prestige = 0.6
+}
+ck3xbl_feat_slayer_3 = {
+	icon = martial_positive
+	prowess_no_portrait = 5
+	dread_baseline_add = 15
+	monthly_prestige = 1
+}
+
+ck3xbl_feat_miracle = {
+	icon = prestige_positive
+	monthly_prestige = 1
+	vassal_opinion = 5
+	advantage = 2
+}
+ck3xbl_feat_miracle_2 = {
+	icon = prestige_positive
+	monthly_prestige = 2
+	vassal_opinion = 10
+	advantage = 4
+}
+ck3xbl_feat_miracle_3 = {
+	icon = prestige_positive
+	monthly_prestige = 3
+	vassal_opinion = 15
+	advantage = 6
+}
+
+ck3xbl_feat_invulnerable = {
+	icon = health_positive
+	health = 0.25
+}
+ck3xbl_feat_invulnerable_2 = {
+	icon = health_positive
+	health = 0.5
+}
+ck3xbl_feat_invulnerable_3 = {
+	icon = health_positive
+	health = 1
+}
+
+ck3xbl_feat_scars = {
+	icon = prowess_mixed
+	prowess_no_portrait = 2
+	dread_baseline_add = 3
+	attraction_opinion = -5
+}
+ck3xbl_feat_scars_2 = {
+	icon = prowess_mixed
+	prowess_no_portrait = 4
+	dread_baseline_add = 6
+	attraction_opinion = -5
+}
+ck3xbl_feat_scars_3 = {
+	icon = prowess_mixed
+	prowess_no_portrait = 6
+	dread_baseline_add = 10
+	attraction_opinion = -5
+}
+
+ck3xbl_feat_first_on_wall = {
+	icon = prowess_positive
+	prowess_no_portrait = 2
+	siege_phase_time = -0.1
+	monthly_prestige = 0.5
+}
+ck3xbl_feat_first_on_wall_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 3
+	siege_phase_time = -0.15
+	monthly_prestige = 1
+}
+ck3xbl_feat_first_on_wall_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 5
+	siege_phase_time = -0.25
+	monthly_prestige = 1.5
+}
+
+ck3xbl_feat_unbroken_walls = {
+	icon = martial_positive
+	defender_advantage = 3
+	monthly_prestige = 0.5
+}
+ck3xbl_feat_unbroken_walls_2 = {
+	icon = martial_positive
+	defender_advantage = 6
+	monthly_prestige = 1
+}
+ck3xbl_feat_unbroken_walls_3 = {
+	icon = martial_positive
+	defender_advantage = 10
+	monthly_prestige = 1.5
+}
+
+ck3xbl_feat_last_stand = {
+	icon = martial_positive
+	defender_advantage = 4
+	vassal_opinion = 5
+}
+ck3xbl_feat_last_stand_2 = {
+	icon = martial_positive
+	defender_advantage = 8
+	vassal_opinion = 10
+}
+ck3xbl_feat_last_stand_3 = {
+	icon = martial_positive
+	defender_advantage = 12
+	vassal_opinion = 15
+}
+
+ck3xbl_feat_knight_hunter = {
+	icon = prowess_positive
+	prowess_no_portrait = 2
+	knight_effectiveness_mult = 0.1
+}
+ck3xbl_feat_knight_hunter_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 4
+	knight_effectiveness_mult = 0.2
+}
+ck3xbl_feat_knight_hunter_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 6
+	knight_effectiveness_mult = 0.3
+}
+
+ck3xbl_feat_bloody_harvest = {
+	icon = dread_positive
+	prowess_no_portrait = 4
+	dread_baseline_add = 15
+}
+ck3xbl_feat_bloody_harvest_2 = {
+	icon = dread_positive
+	prowess_no_portrait = 7
+	dread_baseline_add = 30
+}
+ck3xbl_feat_bloody_harvest_3 = {
+	icon = dread_positive
+	prowess_no_portrait = 10
+	dread_baseline_add = 45
+}
+
+ck3xbl_feat_veteran = {
+	icon = martial_positive
+	martial = 1
+	prowess_no_portrait = 1
+	advantage = 1
+}
+ck3xbl_feat_veteran_2 = {
+	icon = martial_positive
+	martial = 2
+	prowess_no_portrait = 2
+	advantage = 2
+}
+ck3xbl_feat_veteran_3 = {
+	icon = martial_positive
+	martial = 3
+	prowess_no_portrait = 3
+	advantage = 3
+}
+
+ck3xbl_feat_sea_wolf = {
+	icon = martial_positive
+	advantage = 2
+	naval_movement_speed_mult = 0.1
+	monthly_prestige = 0.5
+}
+ck3xbl_feat_sea_wolf_2 = {
+	icon = martial_positive
+	advantage = 4
+	naval_movement_speed_mult = 0.2
+	monthly_prestige = 1
+}
+ck3xbl_feat_sea_wolf_3 = {
+	icon = martial_positive
+	advantage = 6
+	naval_movement_speed_mult = 0.3
+	monthly_prestige = 1.5
+}
+
+ck3xbl_feat_first_to_board = {
+	icon = prowess_positive
+	prowess_no_portrait = 2
+	monthly_prestige = 0.5
+}
+ck3xbl_feat_first_to_board_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 4
+	monthly_prestige = 1
+}
+ck3xbl_feat_first_to_board_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 6
+	monthly_prestige = 1.5
+}
+
+ck3xbl_feat_coast_terror = {
+	icon = dread_positive
+	attacker_advantage = 3
+	dread_baseline_add = 5
+	embarkation_cost_mult = -0.1
+}
+ck3xbl_feat_coast_terror_2 = {
+	icon = dread_positive
+	attacker_advantage = 6
+	dread_baseline_add = 10
+	embarkation_cost_mult = -0.2
+}
+ck3xbl_feat_coast_terror_3 = {
+	icon = dread_positive
+	attacker_advantage = 9
+	dread_baseline_add = 15
+	embarkation_cost_mult = -0.3
+}
+
+ck3xbl_feat_unbeaten_blade = {
+	icon = prowess_positive
+	prowess_no_portrait = 3
+	monthly_prestige = 0.5
+}
+ck3xbl_feat_unbeaten_blade_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 6
+	monthly_prestige = 1
+}
+ck3xbl_feat_unbeaten_blade_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 9
+	monthly_prestige = 1.5
+}
+
+ck3xbl_feat_champion_slayer = {
+	icon = prowess_positive
+	prowess_no_portrait = 2
+	dread_baseline_add = 5
+	monthly_prestige = 0.5
+}
+ck3xbl_feat_champion_slayer_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 4
+	dread_baseline_add = 10
+	monthly_prestige = 1
+}
+ck3xbl_feat_champion_slayer_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 6
+	dread_baseline_add = 15
+	monthly_prestige = 1.5
+}
+
+ck3xbl_feat_merciful = {
+	icon = piety_positive
+	monthly_piety = 0.5
+	general_opinion = 5
+	vassal_opinion = 3
+}
+ck3xbl_feat_merciful_2 = {
+	icon = piety_positive
+	monthly_piety = 1
+	general_opinion = 10
+	vassal_opinion = 6
+}
+ck3xbl_feat_merciful_3 = {
+	icon = piety_positive
+	monthly_piety = 1.5
+	general_opinion = 15
+	vassal_opinion = 10
+}
+
+ck3xbl_feat_tourney_champion = {
+	icon = prestige_positive
+	monthly_prestige = 1
+	prowess_no_portrait = 1
+	attraction_opinion = 5
+}
+ck3xbl_feat_tourney_champion_2 = {
+	icon = prestige_positive
+	monthly_prestige = 1.5
+	prowess_no_portrait = 2
+	attraction_opinion = 10
+}
+ck3xbl_feat_tourney_champion_3 = {
+	icon = prestige_positive
+	monthly_prestige = 2.5
+	prowess_no_portrait = 3
+	attraction_opinion = 15
+}
+
+ck3xbl_feat_joust_master = {
+	icon = prowess_positive
+	prowess_no_portrait = 2
+	knight_effectiveness_mult = 0.1
+}
+ck3xbl_feat_joust_master_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 4
+	knight_effectiveness_mult = 0.2
+}
+ck3xbl_feat_joust_master_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 6
+	knight_effectiveness_mult = 0.3
+}
+
+ck3xbl_feat_marksman = {
+	icon = prowess_positive
+	prowess_no_portrait = 1
+	monthly_prestige = 0.5
+}
+ck3xbl_feat_marksman_2 = {
+	icon = prowess_positive
+	prowess_no_portrait = 2
+	monthly_prestige = 1
+}
+ck3xbl_feat_marksman_3 = {
+	icon = prowess_positive
+	prowess_no_portrait = 4
+	monthly_prestige = 1.5
+}

@@ -1,0 +1,13 @@
+{
+  "version": "0.9.0-beta",
+  "module_version": "v0.9.0",
+  "release_date": "2026-10-08",
+  "supported": {
+    "ck3": "1.20",
+    "bannerlord": "v1.4.8"
+  },
+  "installer": {
+    "supports_ck3": "1.20.*",
+    "supports_bannerlord": "v1.4.*"
+  }
+}

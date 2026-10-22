@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The CK3Bridge.Naval Bannerlord module: battles at sea and landings with War Sails (docs/PROTOCOL.md §44). Build after CK3Bridge:
+    dotnet build -c Release [-p:BannerlordDir="<Bannerlord install folder>"]. The output goes to ../bin/Win64_Shipping_Client, next
+    to SubModule.xml, which together are the module folder.
+  -->
+  <Import Project="..\..\CK3Bridge\src\BannerlordDir.props" />
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>CK3Bridge.Naval</AssemblyName>
+    <RootNamespace>CK3Bridge.Naval</RootNamespace>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <VersionPrefix>0.9.0</VersionPrefix>
+    <VersionSuffix>beta</VersionSuffix>
+    <Authors>TaLyAn</Authors>
+    <Company>TaLyAn</Company>
+    <Product>Crowns &amp; Blades</Product>
+    <Copyright>Copyright (c) 2026 TaLyAn</Copyright>
+    <Deterministic>true</Deterministic>
+    <PathMap Condition="'$(PathMap)' == ''">$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)', '..', '..', '..'))=/_/</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="..\..\CK3Bridge\bin\Win64_Shipping_Client\CK3Bridge.dll" Private="false" />
+    <Reference Include="$(BannerlordDir)\bin\Win64_Shipping_Client\TaleWorlds.*.dll" Exclude="$(BannerlordDir)\bin\Win64_Shipping_Client\TaleWorlds.Native.dll" Private="false" />
+    <Reference Include="$(BannerlordDir)\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.View.dll" Private="false" />
+    <Reference Include="$(BannerlordDir)\Modules\Native\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.GauntletUI.dll" Private="false" />
+    <Reference Include="$(BannerlordDir)\Modules\CustomBattle\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.CustomBattle.dll" Private="false" />
+    <Reference Include="$(BannerlordDir)\Modules\NavalDLC\bin\Win64_Shipping_Client\NavalDLC.dll" Private="false" />
+    <Reference Include="$(BannerlordDir)\Modules\NavalDLC\bin\Win64_Shipping_Client\NavalDLC.CustomBattle.dll" Private="false" />
+    <Reference Include="$(BannerlordDir)\Modules\NavalDLC\bin\Win64_Shipping_Client\NavalDLC.View.dll" Private="false" />
+    <Reference Include="$(BannerlordDir)\bin\Win64_Shipping_Client\Newtonsoft.Json.dll" Private="false" />
+  </ItemGroup>
+</Project>

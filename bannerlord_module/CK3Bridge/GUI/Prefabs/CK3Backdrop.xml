@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Full-screen black behind the in-engine title card (CK3HandoffView, mission layer 299). Faded 1 -> 0 with
+  GauntletLayer.UIContext.ContextAlpha so the battlefield emerges behind the title. Sprite and colour as in the stock
+  Mission/CameraFade.xml. Accepts no input.
+-->
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="BlankWhiteSquare_9" Color="#000000FF" DoNotAcceptEvents="true" DoNotPassEventsToChildren="true" />
+  </Window>
+</Prefab>

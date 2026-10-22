@@ -1,0 +1,55 @@
+<Project>
+  <!--
+    Where Mount & Blade II: Bannerlord is installed, for the references of CK3Bridge.csproj and the self-check. Nothing from the game
+    is copied into the build; the game's assemblies are only referenced (Private=false).
+    In order: -p:BannerlordDir="<Bannerlord root>", the BANNERLORD_DIR environment variable, the Steam libraries listed in Steam's
+    libraryfolders.vdf (Steam found through the registry), then the default Steam folder under Program Files (x86).
+    A missing or wrong folder stops the build with an error that says how to set it (target CK3CheckBannerlordDir).
+  -->
+  <PropertyGroup>
+    <_CK3BlRelative>steamapps\common\Mount &amp; Blade II Bannerlord</_CK3BlRelative>
+    <_CK3BlProbe>bin\Win64_Shipping_Client\TaleWorlds.Library.dll</_CK3BlProbe>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(BANNERLORD_DIR)' != ''">$(BANNERLORD_DIR)</BannerlordDir>
+  </PropertyGroup>
+
+  <!-- Steam libraries: the Steam folder itself, then up to eight "path" entries of libraryfolders.vdf. -->
+  <PropertyGroup Condition="'$(BannerlordDir)' == '' and '$(OS)' == 'Windows_NT'">
+    <_CK3SteamRoot>$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\Software\Valve\Steam', 'SteamPath', null, RegistryView.Default))</_CK3SteamRoot>
+    <_CK3SteamRoot Condition="'$(_CK3SteamRoot)' == ''">$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Valve\Steam', 'InstallPath', null, RegistryView.Registry32, RegistryView.Registry64))</_CK3SteamRoot>
+    <_CK3SteamRoot Condition="'$(_CK3SteamRoot)' != ''">$(_CK3SteamRoot.Replace('/', '\'))</_CK3SteamRoot>
+    <_CK3Vdf>$(_CK3SteamRoot)\steamapps\libraryfolders.vdf</_CK3Vdf>
+    <_CK3VdfText Condition="'$(_CK3SteamRoot)' != '' and Exists('$(_CK3Vdf)')">$([System.IO.File]::ReadAllText('$(_CK3Vdf)'))</_CK3VdfText>
+    <_CK3PathRegex>"path"\s*"([^"]*)"</_CK3PathRegex>
+
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3SteamRoot)' != '' and Exists('$(_CK3SteamRoot)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3SteamRoot)\$(_CK3BlRelative)</BannerlordDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(BannerlordDir)' == '' and '$(_CK3VdfText)' != ''">
+    <_CK3Lib0>$([System.Text.RegularExpressions.Regex]::Match($(_CK3VdfText), '(?s)^(?:.*?$(_CK3PathRegex)){1}').Groups[1].Value.Replace('\\', '\'))</_CK3Lib0>
+    <_CK3Lib1>$([System.Text.RegularExpressions.Regex]::Match($(_CK3VdfText), '(?s)^(?:.*?$(_CK3PathRegex)){2}').Groups[1].Value.Replace('\\', '\'))</_CK3Lib1>
+    <_CK3Lib2>$([System.Text.RegularExpressions.Regex]::Match($(_CK3VdfText), '(?s)^(?:.*?$(_CK3PathRegex)){3}').Groups[1].Value.Replace('\\', '\'))</_CK3Lib2>
+    <_CK3Lib3>$([System.Text.RegularExpressions.Regex]::Match($(_CK3VdfText), '(?s)^(?:.*?$(_CK3PathRegex)){4}').Groups[1].Value.Replace('\\', '\'))</_CK3Lib3>
+    <_CK3Lib4>$([System.Text.RegularExpressions.Regex]::Match($(_CK3VdfText), '(?s)^(?:.*?$(_CK3PathRegex)){5}').Groups[1].Value.Replace('\\', '\'))</_CK3Lib4>
+    <_CK3Lib5>$([System.Text.RegularExpressions.Regex]::Match($(_CK3VdfText), '(?s)^(?:.*?$(_CK3PathRegex)){6}').Groups[1].Value.Replace('\\', '\'))</_CK3Lib5>
+    <_CK3Lib6>$([System.Text.RegularExpressions.Regex]::Match($(_CK3VdfText), '(?s)^(?:.*?$(_CK3PathRegex)){7}').Groups[1].Value.Replace('\\', '\'))</_CK3Lib6>
+    <_CK3Lib7>$([System.Text.RegularExpressions.Regex]::Match($(_CK3VdfText), '(?s)^(?:.*?$(_CK3PathRegex)){8}').Groups[1].Value.Replace('\\', '\'))</_CK3Lib7>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3Lib0)' != '' and Exists('$(_CK3Lib0)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3Lib0)\$(_CK3BlRelative)</BannerlordDir>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3Lib1)' != '' and Exists('$(_CK3Lib1)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3Lib1)\$(_CK3BlRelative)</BannerlordDir>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3Lib2)' != '' and Exists('$(_CK3Lib2)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3Lib2)\$(_CK3BlRelative)</BannerlordDir>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3Lib3)' != '' and Exists('$(_CK3Lib3)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3Lib3)\$(_CK3BlRelative)</BannerlordDir>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3Lib4)' != '' and Exists('$(_CK3Lib4)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3Lib4)\$(_CK3BlRelative)</BannerlordDir>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3Lib5)' != '' and Exists('$(_CK3Lib5)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3Lib5)\$(_CK3BlRelative)</BannerlordDir>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3Lib6)' != '' and Exists('$(_CK3Lib6)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3Lib6)\$(_CK3BlRelative)</BannerlordDir>
+    <BannerlordDir Condition="'$(BannerlordDir)' == '' and '$(_CK3Lib7)' != '' and Exists('$(_CK3Lib7)\$(_CK3BlRelative)\$(_CK3BlProbe)')">$(_CK3Lib7)\$(_CK3BlRelative)</BannerlordDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BannerlordDir Condition="'$(BannerlordDir)' == ''">$(MSBuildProgramFiles32)\Steam\$(_CK3BlRelative)</BannerlordDir>
+    <BannerlordDir>$([System.IO.Path]::GetFullPath('$(BannerlordDir)').TrimEnd('\'))</BannerlordDir>
+  </PropertyGroup>
+
+  <Target Name="CK3CheckBannerlordDir" BeforeTargets="ResolveAssemblyReferences;CoreCompile">
+    <Error Condition="!Exists('$(BannerlordDir)\$(_CK3BlProbe)')"
+           Text="Mount &amp; Blade II: Bannerlord was not found at '$(BannerlordDir)'. Build with -p:BannerlordDir=&quot;&lt;Bannerlord install folder&gt;&quot; or set the BANNERLORD_DIR environment variable." />
+  </Target>
+</Project>

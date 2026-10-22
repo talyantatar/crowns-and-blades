@@ -1,0 +1,40 @@
+name: Feature request
+description: An idea to make Crowns & Blades better.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! Some limits are deliberate: sieges stay in CK3, and Normal mode must never cost players their
+        achievements. See the [Known limitations](https://github.com/graff0n/ck3-bannerlord-bridge#known-limitations).
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to happen?
+      description: Describe it as a player would see it in the games.
+      placeholder: When my knight wins a duel in Bannerlord, ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why?
+      description: What problem does it solve, or what would it make more fun?
+    validations:
+      required: true
+
+  - type: textarea
+    id: how
+    attributes:
+      label: Ideas for how it could work
+      description: Optional. Which part would change (the CK3 mod, the bridge, the Bannerlord module)? Anything you know from modding either game?
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: I searched the existing issues for this idea.
+          required: true

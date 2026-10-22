@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+  <Name value="Crowns &amp; Blades - War Sails"/>
+  <Id value="CK3Bridge.Naval"/>
+  <Version value="v0.9.0"/>
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
+  <ModuleCategory value="Singleplayer"/>
+  <ModuleType value="Community"/>
+  <!-- Battles at sea and landings (docs/PROTOCOL.md §44) with the War Sails DLC. The bridge loads it only when NavalDLC is
+       installed; like CK3Bridge it does nothing unless the Crowns & Blades bridge started the game. -->
+  <DependedModules>
+    <DependedModule Id="Native" DependentVersion="v1.4.8" Optional="false"/>
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.4.8" Optional="false"/>
+    <DependedModule Id="Sandbox" DependentVersion="v1.4.8" Optional="false"/>
+    <DependedModule Id="StoryMode" DependentVersion="v1.4.8" Optional="false"/>
+    <DependedModule Id="CustomBattle" DependentVersion="v1.4.8" Optional="false"/>
+    <DependedModule Id="NavalDLC" Optional="false"/>
+    <DependedModule Id="CK3Bridge" Optional="false"/>
+  </DependedModules>
+  <SubModules>
+    <SubModule>
+      <Name value="CK3Bridge.Naval"/>
+      <DLLName value="CK3Bridge.Naval.dll"/>
+      <SubModuleClassType value="CK3Bridge.Naval.NavalSubModule"/>
+      <Tags/>
+    </SubModule>
+  </SubModules>
+</Module>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+  <Name value="Crowns &amp; Blades"/>
+  <Id value="CK3Bridge"/>
+  <!-- The Crowns & Blades release (bridge/Directory.Build.props; the bridge's self test release.versions_agree checks it). -->
+  <Version value="v0.9.0"/>
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
+  <ModuleCategory value="Singleplayer"/>
+  <ModuleType value="Community"/>
+  <!-- Built and tested against Bannerlord v1.4.8. The module does nothing unless the Crowns & Blades bridge started the game. -->
+  <DependedModules>
+    <DependedModule Id="Native" DependentVersion="v1.4.8" Optional="false"/>
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.4.8" Optional="false"/>
+    <DependedModule Id="CustomBattle" DependentVersion="v1.4.8" Optional="false"/>
+  </DependedModules>
+  <SubModules>
+    <SubModule>
+      <Name value="CK3Bridge"/>
+      <DLLName value="CK3Bridge.dll"/>
+      <SubModuleClassType value="CK3Bridge.CK3BridgeSubModule"/>
+      <Tags/>
+    </SubModule>
+  </SubModules>
+</Module>

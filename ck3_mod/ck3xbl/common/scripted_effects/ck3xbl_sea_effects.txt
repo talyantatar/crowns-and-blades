@@ -1,0 +1,319 @@
+﻿# Battles at sea in Bannerlord (docs/PROTOCOL.md 44). CK3 armies never fight at sea, so the mod lets two hosts at war meet there:
+#   - the decision ck3xbl_sea_battle_decision, or the sighting event ck3xbl_sea.0010, sends the player's fleet against an enemy one
+#     in the same or a neighbouring sea province; the enemy tries to slip away first;
+#   - an AI fleet at war that comes upon the player's may bear down on it (ck3xbl_sea.0011): the player gives battle or tries to
+#     slip away;
+#   - slipping away depends on the two commanders' martial (ck3xbl_sea_evade_effect).
+# The battle is logged as B|BEGIN with ck3xbl_kind = 5 and both armies, then fought at once (CHOICE|FIELD) and applied like an
+# assault: no CK3 combat, payload 3.
+
+# root = the player. scope:ck3xbl_sea_att / scope:ck3xbl_sea_def = the attacking / defending army, scope:ck3xbl_my_side_code =
+# the player's side (1 attacker, 2 defender).
+ck3xbl_sea_begin_effect = {
+	ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_bid value = global_var:ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_parent_bid value = 0 }
+	save_scope_value_as = { name = ck3xbl_clash value = 1 }
+	save_scope_value_as = { name = ck3xbl_kind value = 5 }
+	save_scope_value_as = { name = ck3xbl_year value = current_year }
+	save_scope_value_as = { name = ck3xbl_month value = current_month }
+	save_scope_value_as = { name = ck3xbl_day value = current_day }
+	save_scope_as = ck3xbl_player
+	if = {
+		limit = { scope:ck3xbl_my_side_code = 1 }
+		scope:ck3xbl_sea_att = { save_scope_as = ck3xbl_sea_mine }
+		scope:ck3xbl_sea_def = { save_scope_as = ck3xbl_sea_theirs }
+	}
+	else = {
+		scope:ck3xbl_sea_def = { save_scope_as = ck3xbl_sea_mine }
+		scope:ck3xbl_sea_att = { save_scope_as = ck3xbl_sea_theirs }
+	}
+	save_scope_value_as = { name = ck3xbl_player_present value = 0 }
+	if = {
+		limit = {
+			OR = {
+				scope:ck3xbl_sea_mine = { army_commander ?= root }
+				knight_army ?= scope:ck3xbl_sea_mine
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_player_present value = 1 }
+	}
+	scope:ck3xbl_sea_att = { army_owner = { save_scope_as = ck3xbl_att_primary } }
+	scope:ck3xbl_sea_def = {
+		army_owner = { save_scope_as = ck3xbl_def_primary }
+		# The battle is fought where the defenders were caught.
+		location = { save_scope_as = ck3xbl_prov }
+	}
+	scope:ck3xbl_sea_theirs = {
+		army_owner = { save_scope_as = ck3xbl_enemy_leader }
+		army_commander ?= { save_scope_as = ck3xbl_enemy_leader }
+	}
+	info_log = "CK3XBL|B|BEGIN"
+	info_log_scopes = yes
+	scope:ck3xbl_prov = { ck3xbl_emit_location_effect = yes }
+	ck3xbl_sea_side_effect = { CODE = 1 ARMY = scope:ck3xbl_sea_att PRIMARY = scope:ck3xbl_att_primary }
+	ck3xbl_sea_side_effect = { CODE = 2 ARMY = scope:ck3xbl_sea_def PRIMARY = scope:ck3xbl_def_primary }
+	info_log = "CK3XBL|B|END"
+	info_log_scopes = yes
+	ck3xbl_choose_field_effect = yes
+	scope:ck3xbl_sea_att = { set_variable = { name = ck3xbl_sea_tried value = yes days = 30 } }
+	scope:ck3xbl_sea_def = { set_variable = { name = ck3xbl_sea_tried value = yes days = 30 } }
+	trigger_event = ck3xbl_sea.0002
+}
+
+# One side: S, the army's A record with its regiments, its commander, its knights, and the player on his own side.
+# $CODE$ 1 att / 2 def, $ARMY$ the army, $PRIMARY$ its owner.
+ck3xbl_sea_side_effect = {
+	save_scope_value_as = { name = ck3xbl_side_code value = $CODE$ }
+	$ARMY$ = { save_scope_value_as = { name = ck3xbl_s_size value = army_size } }
+	save_scope_value_as = { name = ck3xbl_s_has_primary value = 1 }
+	$PRIMARY$ = { save_scope_as = ck3xbl_s_primary }
+	save_scope_value_as = { name = ck3xbl_s_player_in value = 0 }
+	if = {
+		limit = { scope:ck3xbl_my_side_code = $CODE$ }
+		save_scope_value_as = { name = ck3xbl_s_player_in value = scope:ck3xbl_player_present }
+	}
+	save_scope_value_as = { name = ck3xbl_s_has_cmd value = 0 }
+	$ARMY$ = {
+		army_commander ?= {
+			save_scope_as = ck3xbl_s_cmd
+			save_scope_value_as = { name = ck3xbl_s_has_cmd value = 1 }
+		}
+	}
+	save_scope_value_as = { name = ck3xbl_s_hostility_out value = 0 }
+	if = { limit = { scope:ck3xbl_side_code = 1 } info_log = "CK3XBL|S|att" }
+	else = { info_log = "CK3XBL|S|def" }
+	info_log_scopes = yes
+	$ARMY$ = {
+		ck3xbl_tag_army_effect = yes
+		ck3xbl_save_army_values_effect = yes
+		army_owner = { ck3xbl_save_knight_eff_effect = yes }
+		if = { limit = { scope:ck3xbl_side_code = 1 } info_log = "CK3XBL|A|att" }
+		else = { info_log = "CK3XBL|A|def" }
+		info_log_scopes = yes
+		clear_saved_scope = ck3xbl_a_ke
+		ck3xbl_emit_ax_army_effect = yes
+		army_owner = { ck3xbl_emit_ax_effect = yes }
+		ck3xbl_emit_regiments_effect = yes
+		army_commander ?= {
+			if = {
+				limit = { NOT = { ck3xbl_char_emitted_trigger = yes } }
+				ck3xbl_save_char_values_effect = yes
+				if = { limit = { scope:ck3xbl_side_code = 1 } info_log = "CK3XBL|C|CMD|att" }
+				else = { info_log = "CK3XBL|C|CMD|def" }
+				info_log_scopes = yes
+				ck3xbl_emit_cx_effect = yes
+			}
+		}
+		save_scope_as = ck3xbl_sea_side_army
+		army_owner = {
+			every_knight = {
+				limit = {
+					knight_army ?= scope:ck3xbl_sea_side_army
+					NOT = { ck3xbl_char_emitted_trigger = yes }
+				}
+				ck3xbl_save_char_values_effect = yes
+				if = { limit = { scope:ck3xbl_side_code = 1 } info_log = "CK3XBL|C|KNIGHT|att" }
+				else = { info_log = "CK3XBL|C|KNIGHT|def" }
+				info_log_scopes = yes
+				ck3xbl_emit_cx_effect = yes
+			}
+		}
+	}
+	if = {
+		limit = { scope:ck3xbl_my_side_code = $CODE$ }
+		root = {
+			if = {
+				limit = { NOT = { ck3xbl_char_emitted_trigger = yes } }
+				ck3xbl_save_char_values_effect = yes
+				save_scope_value_as = { name = ck3xbl_c_absent value = { value = 1 subtract = scope:ck3xbl_player_present } }
+				if = { limit = { scope:ck3xbl_side_code = 1 } info_log = "CK3XBL|C|PLAYER|att" }
+				else = { info_log = "CK3XBL|C|PLAYER|def" }
+				info_log_scopes = yes
+				ck3xbl_emit_cx_effect = yes
+			}
+		}
+	}
+}
+
+# The martial of an army's commander, else of its owner. this = the army; saved as $NAME$.
+ck3xbl_sea_save_martial_effect = {
+	army_owner = { save_scope_value_as = { name = $NAME$ value = martial } }
+	army_commander ?= { save_scope_value_as = { name = $NAME$ value = martial } }
+}
+
+# Does scope:ck3xbl_sea_evader slip away from scope:ck3xbl_sea_chaser? 35 % plus 4 % per point of martial its commander has over
+# the chaser's, between 5 and 75 %. Saves ck3xbl_sea_escaped (0/1) and ck3xbl_sea_evade_chance.
+ck3xbl_sea_evade_effect = {
+	scope:ck3xbl_sea_evader = { ck3xbl_sea_save_martial_effect = { NAME = ck3xbl_sea_evader_martial } }
+	scope:ck3xbl_sea_chaser = { ck3xbl_sea_save_martial_effect = { NAME = ck3xbl_sea_chaser_martial } }
+	save_scope_value_as = {
+		name = ck3xbl_sea_evade_chance
+		value = {
+			value = scope:ck3xbl_sea_evader_martial
+			subtract = scope:ck3xbl_sea_chaser_martial
+			multiply = 4
+			add = 35
+			min = 5
+			max = 75
+		}
+	}
+	save_scope_value_as = { name = ck3xbl_sea_escaped value = 0 }
+	random = {
+		chance = scope:ck3xbl_sea_evade_chance
+		save_scope_value_as = { name = ck3xbl_sea_escaped value = 1 }
+	}
+}
+
+# root = the player, his fleet scope:ck3xbl_sea_mine attacks scope:ck3xbl_sea_theirs (the decision, sighting option a). The enemy
+# tries to slip away; caught, it fights in Bannerlord.
+ck3xbl_sea_attack_effect = {
+	scope:ck3xbl_sea_mine = { save_scope_as = ck3xbl_sea_att }
+	scope:ck3xbl_sea_theirs = { save_scope_as = ck3xbl_sea_def }
+	scope:ck3xbl_sea_theirs = { save_scope_as = ck3xbl_sea_evader }
+	scope:ck3xbl_sea_mine = { save_scope_as = ck3xbl_sea_chaser }
+	ck3xbl_sea_evade_effect = yes
+	if = {
+		limit = { scope:ck3xbl_sea_escaped = 1 }
+		scope:ck3xbl_sea_mine = { set_variable = { name = ck3xbl_sea_tried value = yes days = 10 } }
+		send_interface_toast = {
+			type = event_toast_effect_neutral
+			title = ck3xbl_sea.escaped
+			desc = ck3xbl_sea.escaped.desc
+			left_icon = root
+		}
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+		trigger_event = ck3xbl_sea.0001
+	}
+}
+
+# root = the player, sighting/interception option: the player's fleet scope:ck3xbl_sea_mine is attacked by scope:ck3xbl_sea_theirs
+# and tries to slip away; caught, it fights in Bannerlord.
+ck3xbl_sea_flee_effect = {
+	scope:ck3xbl_sea_theirs = { save_scope_as = ck3xbl_sea_att }
+	scope:ck3xbl_sea_mine = { save_scope_as = ck3xbl_sea_def }
+	scope:ck3xbl_sea_mine = { save_scope_as = ck3xbl_sea_evader }
+	scope:ck3xbl_sea_theirs = { save_scope_as = ck3xbl_sea_chaser }
+	ck3xbl_sea_evade_effect = yes
+	if = {
+		limit = { scope:ck3xbl_sea_escaped = 1 }
+		scope:ck3xbl_sea_theirs = { set_variable = { name = ck3xbl_sea_tried value = yes days = 30 } }
+		send_interface_toast = {
+			type = event_toast_effect_good
+			title = ck3xbl_sea.slipped
+			desc = ck3xbl_sea.slipped.desc
+			left_icon = root
+		}
+	}
+	else = {
+		send_interface_toast = {
+			type = event_toast_effect_bad
+			title = ck3xbl_sea.caught
+			desc = ck3xbl_sea.caught.desc
+			left_icon = root
+		}
+		save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+		trigger_event = ck3xbl_sea.0001
+	}
+}
+
+# root = the player, scope:ck3xbl_sea_mine = his fleet at sea: saves the largest enemy fleet in its sea province or a neighbouring
+# one as scope:ck3xbl_sea_theirs.
+ck3xbl_sea_find_foe_effect = {
+	scope:ck3xbl_sea_mine.location = {
+		if = {
+			limit = { ck3xbl_sea_foe_here_trigger = { WHO = root } }
+			ordered_army_in_location = {
+				limit = { ck3xbl_sea_foe_army_trigger = { WHO = root } }
+				order_by = army_size
+				save_scope_as = ck3xbl_sea_theirs
+			}
+		}
+		else = {
+			random_neighboring_province = {
+				limit = { ck3xbl_sea_foe_here_trigger = { WHO = root } }
+				ordered_army_in_location = {
+					limit = { ck3xbl_sea_foe_army_trigger = { WHO = root } }
+					order_by = army_size
+					save_scope_as = ck3xbl_sea_theirs
+				}
+			}
+		}
+	}
+}
+
+# on_army_enter_province: root = the army's owner, scope:army = the army, now in a sea province. Once per encounter (15 days):
+#   - the player's fleet near an enemy one: the sighting event 0010 (attack or sail on);
+#   - an AI fleet near the player's, at war with him and at least four fifths its size: half the time it bears down (0011).
+ck3xbl_sea_on_enter_effect = {
+	scope:army = { set_variable = { name = ck3xbl_sea_sighted value = yes days = 15 } }
+	if = {
+		limit = {
+			is_ai = no
+			ck3xbl_skirmish_available_trigger = yes
+			scope:army = { ck3xbl_sea_fleet_near_foe_trigger = { WHO = root } }
+		}
+		scope:army = { save_scope_as = ck3xbl_sea_mine }
+		ck3xbl_sea_find_foe_effect = yes
+		if = {
+			limit = { exists = scope:ck3xbl_sea_theirs }
+			trigger_event = ck3xbl_sea.0010
+		}
+	}
+	else_if = {
+		limit = {
+			is_ai = yes
+			scope:army = { NOT = { has_variable = ck3xbl_sea_tried } }
+		}
+		random_player = {
+			save_scope_as = ck3xbl_sea_p
+			if = {
+				limit = {
+					ck3xbl_skirmish_available_trigger = yes
+					scope:army = { ck3xbl_sea_foe_army_trigger = { WHO = scope:ck3xbl_sea_p } }
+					any_army = { ck3xbl_sea_fleet_by_army_trigger = yes }
+				}
+				ordered_army = {
+					limit = { ck3xbl_sea_fleet_by_army_trigger = yes }
+					order_by = army_size
+					save_scope_as = ck3xbl_sea_mine
+					save_scope_value_as = { name = ck3xbl_sea_my_men value = { value = army_size multiply = 0.8 } }
+				}
+				scope:army = { save_scope_as = ck3xbl_sea_theirs }
+				if = {
+					limit = { scope:ck3xbl_sea_theirs = { army_size >= scope:ck3xbl_sea_my_men } }
+					random = {
+						chance = 50
+						trigger_event = ck3xbl_sea.0011
+					}
+				}
+			}
+		}
+	}
+}
+
+# root = the player, ck3xbl_sea.0004: the result is committed. r2 = 1 the attackers won, 2 the defenders, 3/4 no winner.
+ck3xbl_sea_apply_effect = {
+	save_scope_value_as = { name = ck3xbl_sea_outcome value = var:ck3xbl_r2 }
+	ck3xbl_apply_effect = yes
+	if = {
+		limit = { scope:ck3xbl_sea_outcome = scope:ck3xbl_my_side_code }
+		send_interface_toast = {
+			type = msg_ck3xbl_battle_over
+			title = ck3xbl_sea.won
+			desc = ck3xbl_sea.won.desc
+			left_icon = root
+		}
+	}
+	else_if = {
+		limit = { scope:ck3xbl_sea_outcome <= 2 }
+		send_interface_toast = {
+			type = msg_ck3xbl_battle_over
+			title = ck3xbl_sea.lost
+			desc = ck3xbl_sea.lost.desc
+			left_icon = root
+		}
+	}
+}

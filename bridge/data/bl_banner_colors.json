@@ -1,0 +1,3672 @@
+{
+ "meta": {
+  "source": "Modules/Native/ModuleData/banner_icons.xml (Bannerlord v1.4.8). Loaded by TaleWorlds.Core.BannerManager.LoadBannerIconsFromXml; merged across modules via MBObjectManager.GetMergedXmlForManaged(\"BannerIcons\"). Only Native ships this file.",
+  "note": "BannerManager.GetColorId(uint) only matches EXACT palette colours; Banner.ChangePrimaryColor/ChangeIconColors silently ignore colours not in this palette. Map CK3 colours to the nearest id here. hex is ARGB."
+ },
+ "items": [
+  {
+   "id": 0,
+   "hex": "0xffB57A1E",
+   "argb_uint": 4290083358,
+   "rgb": [
+    181,
+    122,
+    30
+   ],
+   "html": "#b57a1e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Aserai background",
+   "line": 1112
+  },
+  {
+   "id": 1,
+   "hex": "0xff4E1A13",
+   "argb_uint": 4283308563,
+   "rgb": [
+    78,
+    26,
+    19
+   ],
+   "html": "#4e1a13",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Aserai color 2",
+   "line": 1116
+  },
+  {
+   "id": 2,
+   "hex": "0xff284E19",
+   "argb_uint": 4280831513,
+   "rgb": [
+    40,
+    78,
+    25
+   ],
+   "html": "#284e19",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "battania background",
+   "line": 1120
+  },
+  {
+   "id": 3,
+   "hex": "0xffB4F0F1",
+   "argb_uint": 4290048241,
+   "rgb": [
+    180,
+    240,
+    241
+   ],
+   "html": "#b4f0f1",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "battania color 2",
+   "line": 1124
+  },
+  {
+   "id": 4,
+   "hex": "0xff793191",
+   "argb_uint": 4286132625,
+   "rgb": [
+    121,
+    49,
+    145
+   ],
+   "html": "#793191",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "northern empire background",
+   "line": 1128
+  },
+  {
+   "id": 5,
+   "hex": "0xffFCDE90",
+   "argb_uint": 4294762128,
+   "rgb": [
+    252,
+    222,
+    144
+   ],
+   "html": "#fcde90",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "northern empire color 2",
+   "line": 1132
+  },
+  {
+   "id": 6,
+   "hex": "0xff382188",
+   "argb_uint": 4281868680,
+   "rgb": [
+    56,
+    33,
+    136
+   ],
+   "html": "#382188",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "southern background",
+   "line": 1136
+  },
+  {
+   "id": 7,
+   "hex": "0xffDEA940",
+   "argb_uint": 4292782400,
+   "rgb": [
+    222,
+    169,
+    64
+   ],
+   "html": "#dea940",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "southern empire color 2",
+   "line": 1140
+  },
+  {
+   "id": 8,
+   "hex": "0xff591645",
+   "argb_uint": 4284028485,
+   "rgb": [
+    89,
+    22,
+    69
+   ],
+   "html": "#591645",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "western background",
+   "line": 1144
+  },
+  {
+   "id": 9,
+   "hex": "0xffFFAD54",
+   "argb_uint": 4294946132,
+   "rgb": [
+    255,
+    173,
+    84
+   ],
+   "html": "#ffad54",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "western empire color 2",
+   "line": 1148
+  },
+  {
+   "id": 10,
+   "hex": "0xff429081",
+   "argb_uint": 4282552449,
+   "rgb": [
+    66,
+    144,
+    129
+   ],
+   "html": "#429081",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "khuzait background",
+   "line": 1152
+  },
+  {
+   "id": 11,
+   "hex": "0xffEFC990",
+   "argb_uint": 4293904784,
+   "rgb": [
+    239,
+    201,
+    144
+   ],
+   "html": "#efc990",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "khuzait color 2",
+   "line": 1156
+  },
+  {
+   "id": 12,
+   "hex": "0xff224277",
+   "argb_uint": 4280435319,
+   "rgb": [
+    34,
+    66,
+    119
+   ],
+   "html": "#224277",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "sturgia background",
+   "line": 1160
+  },
+  {
+   "id": 13,
+   "hex": "0xffCEDAE7",
+   "argb_uint": 4291746535,
+   "rgb": [
+    206,
+    218,
+    231
+   ],
+   "html": "#cedae7",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "sturgia color 2-f",
+   "line": 1164
+  },
+  {
+   "id": 14,
+   "hex": "0xff8D291A",
+   "argb_uint": 4287441178,
+   "rgb": [
+    141,
+    41,
+    26
+   ],
+   "html": "#8d291a",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "vlandia background",
+   "line": 1168
+  },
+  {
+   "id": 15,
+   "hex": "0xffF7BF46",
+   "argb_uint": 4294426438,
+   "rgb": [
+    247,
+    191,
+    70
+   ],
+   "html": "#f7bf46",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "vlandia color 2",
+   "line": 1172
+  },
+  {
+   "id": 16,
+   "hex": "0xff6bd5dc",
+   "argb_uint": 4285257180,
+   "rgb": [
+    107,
+    213,
+    220
+   ],
+   "html": "#6bd5dc",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1175
+  },
+  {
+   "id": 17,
+   "hex": "0xffeed690",
+   "argb_uint": 4293842576,
+   "rgb": [
+    238,
+    214,
+    144
+   ],
+   "html": "#eed690",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1178
+  },
+  {
+   "id": 18,
+   "hex": "0xffaec382",
+   "argb_uint": 4289643394,
+   "rgb": [
+    174,
+    195,
+    130
+   ],
+   "html": "#aec382",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1181
+  },
+  {
+   "id": 19,
+   "hex": "0xffc3c3c3",
+   "argb_uint": 4291019715,
+   "rgb": [
+    195,
+    195,
+    195
+   ],
+   "html": "#c3c3c3",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1184
+  },
+  {
+   "id": 20,
+   "hex": "0xffd5d7d4",
+   "argb_uint": 4292204500,
+   "rgb": [
+    213,
+    215,
+    212
+   ],
+   "html": "#d5d7d4",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1187
+  },
+  {
+   "id": 21,
+   "hex": "0xffe7ecd6",
+   "argb_uint": 4293389526,
+   "rgb": [
+    231,
+    236,
+    214
+   ],
+   "html": "#e7ecd6",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1190
+  },
+  {
+   "id": 22,
+   "hex": "0xffeaeeef",
+   "argb_uint": 4293586671,
+   "rgb": [
+    234,
+    238,
+    239
+   ],
+   "html": "#eaeeef",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1193
+  },
+  {
+   "id": 23,
+   "hex": "0xff7f6b60",
+   "argb_uint": 4286540640,
+   "rgb": [
+    127,
+    107,
+    96
+   ],
+   "html": "#7f6b60",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1196
+  },
+  {
+   "id": 24,
+   "hex": "0xff967e7e",
+   "argb_uint": 4288052862,
+   "rgb": [
+    150,
+    126,
+    126
+   ],
+   "html": "#967e7e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1199
+  },
+  {
+   "id": 25,
+   "hex": "0xffb6aba7",
+   "argb_uint": 4290161575,
+   "rgb": [
+    182,
+    171,
+    167
+   ],
+   "html": "#b6aba7",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1202
+  },
+  {
+   "id": 26,
+   "hex": "0xffe7d3ba",
+   "argb_uint": 4293383098,
+   "rgb": [
+    231,
+    211,
+    186
+   ],
+   "html": "#e7d3ba",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1205
+  },
+  {
+   "id": 27,
+   "hex": "0xffeae1da",
+   "argb_uint": 4293583322,
+   "rgb": [
+    234,
+    225,
+    218
+   ],
+   "html": "#eae1da",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1208
+  },
+  {
+   "id": 28,
+   "hex": "0xffd9dbce",
+   "argb_uint": 4292467662,
+   "rgb": [
+    217,
+    219,
+    206
+   ],
+   "html": "#d9dbce",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1211
+  },
+  {
+   "id": 29,
+   "hex": "0xffdfd6cd",
+   "argb_uint": 4292859597,
+   "rgb": [
+    223,
+    214,
+    205
+   ],
+   "html": "#dfd6cd",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1214
+  },
+  {
+   "id": 30,
+   "hex": "0xffcac1ba",
+   "argb_uint": 4291477946,
+   "rgb": [
+    202,
+    193,
+    186
+   ],
+   "html": "#cac1ba",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1217
+  },
+  {
+   "id": 31,
+   "hex": "0xffece8dd",
+   "argb_uint": 4293716189,
+   "rgb": [
+    236,
+    232,
+    221
+   ],
+   "html": "#ece8dd",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1220
+  },
+  {
+   "id": 32,
+   "hex": "0xffe0dcd9",
+   "argb_uint": 4292926681,
+   "rgb": [
+    224,
+    220,
+    217
+   ],
+   "html": "#e0dcd9",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1223
+  },
+  {
+   "id": 33,
+   "hex": "0xffefece5",
+   "argb_uint": 4293913829,
+   "rgb": [
+    239,
+    236,
+    229
+   ],
+   "html": "#efece5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1226
+  },
+  {
+   "id": 34,
+   "hex": "0xffeae9e5",
+   "argb_uint": 4293585381,
+   "rgb": [
+    234,
+    233,
+    229
+   ],
+   "html": "#eae9e5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1229
+  },
+  {
+   "id": 35,
+   "hex": "0xfff5f5f5",
+   "argb_uint": 4294309365,
+   "rgb": [
+    245,
+    245,
+    245
+   ],
+   "html": "#f5f5f5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1232
+  },
+  {
+   "id": 36,
+   "hex": "0xfff5b365",
+   "argb_uint": 4294292325,
+   "rgb": [
+    245,
+    179,
+    101
+   ],
+   "html": "#f5b365",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1235
+  },
+  {
+   "id": 38,
+   "hex": "0xffe68c36",
+   "argb_uint": 4293299254,
+   "rgb": [
+    230,
+    140,
+    54
+   ],
+   "html": "#e68c36",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1238
+  },
+  {
+   "id": 39,
+   "hex": "0xffdcac46",
+   "argb_uint": 4292652102,
+   "rgb": [
+    220,
+    172,
+    70
+   ],
+   "html": "#dcac46",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1241
+  },
+  {
+   "id": 41,
+   "hex": "0xffeee7d4",
+   "argb_uint": 4293846996,
+   "rgb": [
+    238,
+    231,
+    212
+   ],
+   "html": "#eee7d4",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1244
+  },
+  {
+   "id": 42,
+   "hex": "0xffe9e2c5",
+   "argb_uint": 4293518021,
+   "rgb": [
+    233,
+    226,
+    197
+   ],
+   "html": "#e9e2c5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1247
+  },
+  {
+   "id": 43,
+   "hex": "0xffebdcbb",
+   "argb_uint": 4293647547,
+   "rgb": [
+    235,
+    220,
+    187
+   ],
+   "html": "#ebdcbb",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1250
+  },
+  {
+   "id": 44,
+   "hex": "0xfff0e0a5",
+   "argb_uint": 4293976229,
+   "rgb": [
+    240,
+    224,
+    165
+   ],
+   "html": "#f0e0a5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1253
+  },
+  {
+   "id": 45,
+   "hex": "0xffe0c78e",
+   "argb_uint": 4292921230,
+   "rgb": [
+    224,
+    199,
+    142
+   ],
+   "html": "#e0c78e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1256
+  },
+  {
+   "id": 46,
+   "hex": "0xffcda87c",
+   "argb_uint": 4291668092,
+   "rgb": [
+    205,
+    168,
+    124
+   ],
+   "html": "#cda87c",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1259
+  },
+  {
+   "id": 47,
+   "hex": "0xfff9d575",
+   "argb_uint": 4294563189,
+   "rgb": [
+    249,
+    213,
+    117
+   ],
+   "html": "#f9d575",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1262
+  },
+  {
+   "id": 48,
+   "hex": "0xffe44434",
+   "argb_uint": 4293149748,
+   "rgb": [
+    228,
+    68,
+    52
+   ],
+   "html": "#e44434",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1265
+  },
+  {
+   "id": 49,
+   "hex": "0xffe69077",
+   "argb_uint": 4293300343,
+   "rgb": [
+    230,
+    144,
+    119
+   ],
+   "html": "#e69077",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1268
+  },
+  {
+   "id": 50,
+   "hex": "0xffe79c7d",
+   "argb_uint": 4293368957,
+   "rgb": [
+    231,
+    156,
+    125
+   ],
+   "html": "#e79c7d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1271
+  },
+  {
+   "id": 51,
+   "hex": "0xffc94b4e",
+   "argb_uint": 4291382094,
+   "rgb": [
+    201,
+    75,
+    78
+   ],
+   "html": "#c94b4e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1274
+  },
+  {
+   "id": 52,
+   "hex": "0xffe6b0a6",
+   "argb_uint": 4293308582,
+   "rgb": [
+    230,
+    176,
+    166
+   ],
+   "html": "#e6b0a6",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1277
+  },
+  {
+   "id": 53,
+   "hex": "0xffe4c8c7",
+   "argb_uint": 4293183687,
+   "rgb": [
+    228,
+    200,
+    199
+   ],
+   "html": "#e4c8c7",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1280
+  },
+  {
+   "id": 54,
+   "hex": "0xfff2b0a2",
+   "argb_uint": 4294095010,
+   "rgb": [
+    242,
+    176,
+    162
+   ],
+   "html": "#f2b0a2",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1283
+  },
+  {
+   "id": 55,
+   "hex": "0xffDA6C6D",
+   "argb_uint": 4292504685,
+   "rgb": [
+    218,
+    108,
+    109
+   ],
+   "html": "#da6c6d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1286
+  },
+  {
+   "id": 56,
+   "hex": "0xffE2BCAF",
+   "argb_uint": 4293049519,
+   "rgb": [
+    226,
+    188,
+    175
+   ],
+   "html": "#e2bcaf",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1289
+  },
+  {
+   "id": 57,
+   "hex": "0xffBD7E75",
+   "argb_uint": 4290608757,
+   "rgb": [
+    189,
+    126,
+    117
+   ],
+   "html": "#bd7e75",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1292
+  },
+  {
+   "id": 58,
+   "hex": "0xffD1C7C5",
+   "argb_uint": 4291938245,
+   "rgb": [
+    209,
+    199,
+    197
+   ],
+   "html": "#d1c7c5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1295
+  },
+  {
+   "id": 59,
+   "hex": "0xff975B43",
+   "argb_uint": 4288109379,
+   "rgb": [
+    151,
+    91,
+    67
+   ],
+   "html": "#975b43",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1298
+  },
+  {
+   "id": 60,
+   "hex": "0xffE6A57F",
+   "argb_uint": 4293305727,
+   "rgb": [
+    230,
+    165,
+    127
+   ],
+   "html": "#e6a57f",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1301
+  },
+  {
+   "id": 61,
+   "hex": "0xff7B5E4E",
+   "argb_uint": 4286275150,
+   "rgb": [
+    123,
+    94,
+    78
+   ],
+   "html": "#7b5e4e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1304
+  },
+  {
+   "id": 62,
+   "hex": "0xffAC9188",
+   "argb_uint": 4289499528,
+   "rgb": [
+    172,
+    145,
+    136
+   ],
+   "html": "#ac9188",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1307
+  },
+  {
+   "id": 63,
+   "hex": "0xffD7967A",
+   "argb_uint": 4292318842,
+   "rgb": [
+    215,
+    150,
+    122
+   ],
+   "html": "#d7967a",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1310
+  },
+  {
+   "id": 64,
+   "hex": "0xffE6C9BB",
+   "argb_uint": 4293315003,
+   "rgb": [
+    230,
+    201,
+    187
+   ],
+   "html": "#e6c9bb",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1313
+  },
+  {
+   "id": 65,
+   "hex": "0xff934165",
+   "argb_uint": 4287840613,
+   "rgb": [
+    147,
+    65,
+    101
+   ],
+   "html": "#934165",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1316
+  },
+  {
+   "id": 66,
+   "hex": "0xffD39EB0",
+   "argb_uint": 4292058800,
+   "rgb": [
+    211,
+    158,
+    176
+   ],
+   "html": "#d39eb0",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1319
+  },
+  {
+   "id": 67,
+   "hex": "0xff644974",
+   "argb_uint": 4284762484,
+   "rgb": [
+    100,
+    73,
+    116
+   ],
+   "html": "#644974",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1322
+  },
+  {
+   "id": 68,
+   "hex": "0xff7F658A",
+   "argb_uint": 4286539146,
+   "rgb": [
+    127,
+    101,
+    138
+   ],
+   "html": "#7f658a",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1325
+  },
+  {
+   "id": 69,
+   "hex": "0xffA793AE",
+   "argb_uint": 4289172398,
+   "rgb": [
+    167,
+    147,
+    174
+   ],
+   "html": "#a793ae",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1328
+  },
+  {
+   "id": 70,
+   "hex": "0xffC5057C",
+   "argb_uint": 4291102076,
+   "rgb": [
+    197,
+    5,
+    124
+   ],
+   "html": "#c5057c",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1331
+  },
+  {
+   "id": 71,
+   "hex": "0xff710083",
+   "argb_uint": 4285595779,
+   "rgb": [
+    113,
+    0,
+    131
+   ],
+   "html": "#710083",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1334
+  },
+  {
+   "id": 72,
+   "hex": "0xff00667F",
+   "argb_uint": 4278216319,
+   "rgb": [
+    0,
+    102,
+    127
+   ],
+   "html": "#00667f",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1337
+  },
+  {
+   "id": 73,
+   "hex": "0xff00A0BA",
+   "argb_uint": 4278231226,
+   "rgb": [
+    0,
+    160,
+    186
+   ],
+   "html": "#00a0ba",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1340
+  },
+  {
+   "id": 74,
+   "hex": "0xff53B7C6",
+   "argb_uint": 4283676614,
+   "rgb": [
+    83,
+    183,
+    198
+   ],
+   "html": "#53b7c6",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1343
+  },
+  {
+   "id": 75,
+   "hex": "0xffA1B1EF",
+   "argb_uint": 4288786927,
+   "rgb": [
+    161,
+    177,
+    239
+   ],
+   "html": "#a1b1ef",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1346
+  },
+  {
+   "id": 76,
+   "hex": "0xff7F8CC0",
+   "argb_uint": 4286549184,
+   "rgb": [
+    127,
+    140,
+    192
+   ],
+   "html": "#7f8cc0",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1349
+  },
+  {
+   "id": 77,
+   "hex": "0xff5960A8",
+   "argb_uint": 4284047528,
+   "rgb": [
+    89,
+    96,
+    168
+   ],
+   "html": "#5960a8",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1352
+  },
+  {
+   "id": 78,
+   "hex": "0xffC1589A",
+   "argb_uint": 4290861210,
+   "rgb": [
+    193,
+    88,
+    154
+   ],
+   "html": "#c1589a",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1355
+  },
+  {
+   "id": 79,
+   "hex": "0xffA34FAF",
+   "argb_uint": 4288892847,
+   "rgb": [
+    163,
+    79,
+    175
+   ],
+   "html": "#a34faf",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1358
+  },
+  {
+   "id": 80,
+   "hex": "0xffD08E54",
+   "argb_uint": 4291858004,
+   "rgb": [
+    208,
+    142,
+    84
+   ],
+   "html": "#d08e54",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1361
+  },
+  {
+   "id": 81,
+   "hex": "0xff939BD9",
+   "argb_uint": 4287863769,
+   "rgb": [
+    147,
+    155,
+    217
+   ],
+   "html": "#939bd9",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1364
+  },
+  {
+   "id": 82,
+   "hex": "0xffEA4F00",
+   "argb_uint": 4293545728,
+   "rgb": [
+    234,
+    79,
+    0
+   ],
+   "html": "#ea4f00",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1367
+  },
+  {
+   "id": 83,
+   "hex": "0xffD22D33",
+   "argb_uint": 4291964211,
+   "rgb": [
+    210,
+    45,
+    51
+   ],
+   "html": "#d22d33",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1370
+  },
+  {
+   "id": 84,
+   "hex": "0xffFDE217",
+   "argb_uint": 4294828567,
+   "rgb": [
+    253,
+    226,
+    23
+   ],
+   "html": "#fde217",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1373
+  },
+  {
+   "id": 85,
+   "hex": "0xffFFA4DD",
+   "argb_uint": 4294943965,
+   "rgb": [
+    255,
+    164,
+    221
+   ],
+   "html": "#ffa4dd",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1376
+  },
+  {
+   "id": 86,
+   "hex": "0xffCB83D5",
+   "argb_uint": 4291527637,
+   "rgb": [
+    203,
+    131,
+    213
+   ],
+   "html": "#cb83d5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1379
+  },
+  {
+   "id": 87,
+   "hex": "0xff895D5E",
+   "argb_uint": 4287192414,
+   "rgb": [
+    137,
+    93,
+    94
+   ],
+   "html": "#895d5e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1382
+  },
+  {
+   "id": 88,
+   "hex": "0xff02FF19",
+   "argb_uint": 4278386457,
+   "rgb": [
+    2,
+    255,
+    25
+   ],
+   "html": "#02ff19",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1385
+  },
+  {
+   "id": 89,
+   "hex": "0xff019678",
+   "argb_uint": 4278294136,
+   "rgb": [
+    1,
+    150,
+    120
+   ],
+   "html": "#019678",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1388
+  },
+  {
+   "id": 90,
+   "hex": "0xff9EC400",
+   "argb_uint": 4288594944,
+   "rgb": [
+    158,
+    196,
+    0
+   ],
+   "html": "#9ec400",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1391
+  },
+  {
+   "id": 91,
+   "hex": "0xffA34402",
+   "argb_uint": 4288889858,
+   "rgb": [
+    163,
+    68,
+    2
+   ],
+   "html": "#a34402",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1394
+  },
+  {
+   "id": 92,
+   "hex": "0xff714214",
+   "argb_uint": 4285612564,
+   "rgb": [
+    113,
+    66,
+    20
+   ],
+   "html": "#714214",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1397
+  },
+  {
+   "id": 93,
+   "hex": "0xffFFC3C3",
+   "argb_uint": 4294951875,
+   "rgb": [
+    255,
+    195,
+    195
+   ],
+   "html": "#ffc3c3",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1400
+  },
+  {
+   "id": 94,
+   "hex": "0xff855FA8",
+   "argb_uint": 4286930856,
+   "rgb": [
+    133,
+    95,
+    168
+   ],
+   "html": "#855fa8",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1403
+  },
+  {
+   "id": 95,
+   "hex": "0xff7E6E4A",
+   "argb_uint": 4286475850,
+   "rgb": [
+    126,
+    110,
+    74
+   ],
+   "html": "#7e6e4a",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1406
+  },
+  {
+   "id": 96,
+   "hex": "0xff3A3321",
+   "argb_uint": 4282004257,
+   "rgb": [
+    58,
+    51,
+    33
+   ],
+   "html": "#3a3321",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1409
+  },
+  {
+   "id": 97,
+   "hex": "0xff3D2F22",
+   "argb_uint": 4282199842,
+   "rgb": [
+    61,
+    47,
+    34
+   ],
+   "html": "#3d2f22",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1412
+  },
+  {
+   "id": 98,
+   "hex": "0xff422C2E",
+   "argb_uint": 4282526766,
+   "rgb": [
+    66,
+    44,
+    46
+   ],
+   "html": "#422c2e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1415
+  },
+  {
+   "id": 99,
+   "hex": "0xff453E38",
+   "argb_uint": 4282727992,
+   "rgb": [
+    69,
+    62,
+    56
+   ],
+   "html": "#453e38",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1418
+  },
+  {
+   "id": 100,
+   "hex": "0xff332c4d",
+   "argb_uint": 4281543757,
+   "rgb": [
+    51,
+    44,
+    77
+   ],
+   "html": "#332c4d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1421
+  },
+  {
+   "id": 101,
+   "hex": "0xff515267",
+   "argb_uint": 4283519591,
+   "rgb": [
+    81,
+    82,
+    103
+   ],
+   "html": "#515267",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1424
+  },
+  {
+   "id": 102,
+   "hex": "0xff6c72a2",
+   "argb_uint": 4285297314,
+   "rgb": [
+    108,
+    114,
+    162
+   ],
+   "html": "#6c72a2",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1427
+  },
+  {
+   "id": 103,
+   "hex": "0xff8b93ba",
+   "argb_uint": 4287337402,
+   "rgb": [
+    139,
+    147,
+    186
+   ],
+   "html": "#8b93ba",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1430
+  },
+  {
+   "id": 104,
+   "hex": "0xffa6d5db",
+   "argb_uint": 4289123803,
+   "rgb": [
+    166,
+    213,
+    219
+   ],
+   "html": "#a6d5db",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1433
+  },
+  {
+   "id": 105,
+   "hex": "0xffa4b1c2",
+   "argb_uint": 4288983490,
+   "rgb": [
+    164,
+    177,
+    194
+   ],
+   "html": "#a4b1c2",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1436
+  },
+  {
+   "id": 106,
+   "hex": "0xffc5bcd1",
+   "argb_uint": 4291149009,
+   "rgb": [
+    197,
+    188,
+    209
+   ],
+   "html": "#c5bcd1",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1439
+  },
+  {
+   "id": 107,
+   "hex": "0xffd8aec5",
+   "argb_uint": 4292390597,
+   "rgb": [
+    216,
+    174,
+    197
+   ],
+   "html": "#d8aec5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1442
+  },
+  {
+   "id": 108,
+   "hex": "0xffcedada",
+   "argb_uint": 4291746522,
+   "rgb": [
+    206,
+    218,
+    218
+   ],
+   "html": "#cedada",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1445
+  },
+  {
+   "id": 109,
+   "hex": "0xffd2d6d5",
+   "argb_uint": 4292007637,
+   "rgb": [
+    210,
+    214,
+    213
+   ],
+   "html": "#d2d6d5",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1448
+  },
+  {
+   "id": 110,
+   "hex": "0xffcacccb",
+   "argb_uint": 4291480779,
+   "rgb": [
+    202,
+    204,
+    203
+   ],
+   "html": "#cacccb",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1451
+  },
+  {
+   "id": 111,
+   "hex": "0xffdfdedc",
+   "argb_uint": 4292861660,
+   "rgb": [
+    223,
+    222,
+    220
+   ],
+   "html": "#dfdedc",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1454
+  },
+  {
+   "id": 112,
+   "hex": "0xff5d5b44",
+   "argb_uint": 4284308292,
+   "rgb": [
+    93,
+    91,
+    68
+   ],
+   "html": "#5d5b44",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1457
+  },
+  {
+   "id": 113,
+   "hex": "0xff726b3d",
+   "argb_uint": 4285688637,
+   "rgb": [
+    114,
+    107,
+    61
+   ],
+   "html": "#726b3d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1460
+  },
+  {
+   "id": 114,
+   "hex": "0xffcdcc7c",
+   "argb_uint": 4291677308,
+   "rgb": [
+    205,
+    204,
+    124
+   ],
+   "html": "#cdcc7c",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1463
+  },
+  {
+   "id": 115,
+   "hex": "0xff8fd1dd",
+   "argb_uint": 4287615453,
+   "rgb": [
+    143,
+    209,
+    221
+   ],
+   "html": "#8fd1dd",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1466
+  },
+  {
+   "id": 116,
+   "hex": "0xff0B0C11",
+   "argb_uint": 4278914065,
+   "rgb": [
+    11,
+    12,
+    17
+   ],
+   "html": "#0b0c11",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1469
+  },
+  {
+   "id": 118,
+   "hex": "0xffE36664",
+   "argb_uint": 4293092964,
+   "rgb": [
+    227,
+    102,
+    100
+   ],
+   "html": "#e36664",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Referenced for tournament colours",
+   "line": 1473
+  },
+  {
+   "id": 119,
+   "hex": "0xff456DFF",
+   "argb_uint": 4282740223,
+   "rgb": [
+    69,
+    109,
+    255
+   ],
+   "html": "#456dff",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Referenced for tournament colours",
+   "line": 1477
+  },
+  {
+   "id": 120,
+   "hex": "0xff5FBD72",
+   "argb_uint": 4284464498,
+   "rgb": [
+    95,
+    189,
+    114
+   ],
+   "html": "#5fbd72",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Referenced for tournament colours",
+   "line": 1481
+  },
+  {
+   "id": 121,
+   "hex": "0xfff4d32e",
+   "argb_uint": 4294234926,
+   "rgb": [
+    244,
+    211,
+    46
+   ],
+   "html": "#f4d32e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Referenced for tournament colours",
+   "line": 1485
+  },
+  {
+   "id": 122,
+   "hex": "0xffa97435",
+   "argb_uint": 4289295413,
+   "rgb": [
+    169,
+    116,
+    53
+   ],
+   "html": "#a97435",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Aserai Background 1",
+   "line": 1489
+  },
+  {
+   "id": 123,
+   "hex": "0xff41281b",
+   "argb_uint": 4282460187,
+   "rgb": [
+    65,
+    40,
+    27
+   ],
+   "html": "#41281b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Aserai Foreground 1",
+   "line": 1493
+  },
+  {
+   "id": 126,
+   "hex": "0xff34671e",
+   "argb_uint": 4281624350,
+   "rgb": [
+    52,
+    103,
+    30
+   ],
+   "html": "#34671e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Battania Background 1",
+   "line": 1499
+  },
+  {
+   "id": 127,
+   "hex": "0xfff3f3f3",
+   "argb_uint": 4294177779,
+   "rgb": [
+    243,
+    243,
+    243
+   ],
+   "html": "#f3f3f3",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Battania Foreground 1",
+   "line": 1503
+  },
+  {
+   "id": 130,
+   "hex": "0xff7739a7",
+   "argb_uint": 4286003623,
+   "rgb": [
+    119,
+    57,
+    167
+   ],
+   "html": "#7739a7",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Empire Background 1",
+   "line": 1509
+  },
+  {
+   "id": 131,
+   "hex": "0xfff1c232",
+   "argb_uint": 4294033970,
+   "rgb": [
+    241,
+    194,
+    50
+   ],
+   "html": "#f1c232",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Empire Foreground 1",
+   "line": 1513
+  },
+  {
+   "id": 134,
+   "hex": "0xff5aa4ad",
+   "argb_uint": 4284130477,
+   "rgb": [
+    90,
+    164,
+    173
+   ],
+   "html": "#5aa4ad",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Khuzait Background 1",
+   "line": 1519
+  },
+  {
+   "id": 135,
+   "hex": "0xffffe9d4",
+   "argb_uint": 4294961620,
+   "rgb": [
+    255,
+    233,
+    212
+   ],
+   "html": "#ffe9d4",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Khuzait Foreground 1",
+   "line": 1523
+  },
+  {
+   "id": 138,
+   "hex": "0xff3a6298",
+   "argb_uint": 4282016408,
+   "rgb": [
+    58,
+    98,
+    152
+   ],
+   "html": "#3a6298",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Sturgia Background 1",
+   "line": 1529
+  },
+  {
+   "id": 139,
+   "hex": "0xffd9d9d9",
+   "argb_uint": 4292467161,
+   "rgb": [
+    217,
+    217,
+    217
+   ],
+   "html": "#d9d9d9",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Sturgia Foreground 1",
+   "line": 1533
+  },
+  {
+   "id": 142,
+   "hex": "0xff830808",
+   "argb_uint": 4286777352,
+   "rgb": [
+    131,
+    8,
+    8
+   ],
+   "html": "#830808",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Vlandia Background 1",
+   "line": 1539
+  },
+  {
+   "id": 143,
+   "hex": "0xfff4ca14",
+   "argb_uint": 4294232596,
+   "rgb": [
+    244,
+    202,
+    20
+   ],
+   "html": "#f4ca14",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Vlandia Foreground 1",
+   "line": 1543
+  },
+  {
+   "id": 146,
+   "hex": "0xff2C4D86",
+   "argb_uint": 4281093510,
+   "rgb": [
+    44,
+    77,
+    134
+   ],
+   "html": "#2c4d86",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Vlandia Foreground 2",
+   "line": 1548
+  },
+  {
+   "id": 147,
+   "hex": "0xff955066",
+   "argb_uint": 4287975526,
+   "rgb": [
+    149,
+    80,
+    102
+   ],
+   "html": "#955066",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1551
+  },
+  {
+   "id": 148,
+   "hex": "0xff6c1512",
+   "argb_uint": 4285273362,
+   "rgb": [
+    108,
+    21,
+    18
+   ],
+   "html": "#6c1512",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1554
+  },
+  {
+   "id": 149,
+   "hex": "0xff211f1f",
+   "argb_uint": 4280360735,
+   "rgb": [
+    33,
+    31,
+    31
+   ],
+   "html": "#211f1f",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1557
+  },
+  {
+   "id": 150,
+   "hex": "0xffccc4bf",
+   "argb_uint": 4291609791,
+   "rgb": [
+    204,
+    196,
+    191
+   ],
+   "html": "#ccc4bf",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1560
+  },
+  {
+   "id": 151,
+   "hex": "0xffef9b9b",
+   "argb_uint": 4293893019,
+   "rgb": [
+    239,
+    155,
+    155
+   ],
+   "html": "#ef9b9b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1563
+  },
+  {
+   "id": 152,
+   "hex": "0xffb5d0fd",
+   "argb_uint": 4290105597,
+   "rgb": [
+    181,
+    208,
+    253
+   ],
+   "html": "#b5d0fd",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1566
+  },
+  {
+   "id": 153,
+   "hex": "0xffa8ceab",
+   "argb_uint": 4289253035,
+   "rgb": [
+    168,
+    206,
+    171
+   ],
+   "html": "#a8ceab",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1569
+  },
+  {
+   "id": 154,
+   "hex": "0xff8d5c44",
+   "argb_uint": 4287454276,
+   "rgb": [
+    141,
+    92,
+    68
+   ],
+   "html": "#8d5c44",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1572
+  },
+  {
+   "id": 155,
+   "hex": "0xffe9a74d",
+   "argb_uint": 4293502797,
+   "rgb": [
+    233,
+    167,
+    77
+   ],
+   "html": "#e9a74d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1575
+  },
+  {
+   "id": 156,
+   "hex": "0xffb3a491",
+   "argb_uint": 4289963153,
+   "rgb": [
+    179,
+    164,
+    145
+   ],
+   "html": "#b3a491",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1578
+  },
+  {
+   "id": 157,
+   "hex": "0xff5f4f44",
+   "argb_uint": 4284436292,
+   "rgb": [
+    95,
+    79,
+    68
+   ],
+   "html": "#5f4f44",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Player Clan Primary",
+   "line": 1582
+  },
+  {
+   "id": 158,
+   "hex": "0xff234116",
+   "argb_uint": 4280500502,
+   "rgb": [
+    35,
+    65,
+    22
+   ],
+   "html": "#234116",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": true,
+   "hint": "Banner Editor Colors",
+   "line": 1587
+  },
+  {
+   "id": 159,
+   "hex": "0xff26406d",
+   "argb_uint": 4280696941,
+   "rgb": [
+    38,
+    64,
+    109
+   ],
+   "html": "#26406d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": true,
+   "hint": null,
+   "line": 1591
+  },
+  {
+   "id": 160,
+   "hex": "0xff7a4253",
+   "argb_uint": 4286202451,
+   "rgb": [
+    122,
+    66,
+    83
+   ],
+   "html": "#7a4253",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": true,
+   "hint": null,
+   "line": 1595
+  },
+  {
+   "id": 161,
+   "hex": "0xff5a1310",
+   "argb_uint": 4284093200,
+   "rgb": [
+    90,
+    19,
+    16
+   ],
+   "html": "#5a1310",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": true,
+   "hint": null,
+   "line": 1599
+  },
+  {
+   "id": 162,
+   "hex": "0xff2f2a2b",
+   "argb_uint": 4281281067,
+   "rgb": [
+    47,
+    42,
+    43
+   ],
+   "html": "#2f2a2b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": true,
+   "hint": null,
+   "line": 1603
+  },
+  {
+   "id": 163,
+   "hex": "0xff744c38",
+   "argb_uint": 4285811768,
+   "rgb": [
+    116,
+    76,
+    56
+   ],
+   "html": "#744c38",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": true,
+   "hint": null,
+   "line": 1607
+  },
+  {
+   "id": 164,
+   "hex": "0xff594012",
+   "argb_uint": 4284039186,
+   "rgb": [
+    89,
+    64,
+    18
+   ],
+   "html": "#594012",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": true,
+   "hint": null,
+   "line": 1611
+  },
+  {
+   "id": 165,
+   "hex": "0xffbf5a25",
+   "argb_uint": 4290730533,
+   "rgb": [
+    191,
+    90,
+    37
+   ],
+   "html": "#bf5a25",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": true,
+   "hint": null,
+   "line": 1615
+  },
+  {
+   "id": 166,
+   "hex": "0xffffcf83",
+   "argb_uint": 4294954883,
+   "rgb": [
+    255,
+    207,
+    131
+   ],
+   "html": "#ffcf83",
+   "alpha": 255,
+   "player_can_choose_for_sigil": true,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1619
+  },
+  {
+   "id": 167,
+   "hex": "0xff85827f",
+   "argb_uint": 4286939775,
+   "rgb": [
+    133,
+    130,
+    127
+   ],
+   "html": "#85827f",
+   "alpha": 255,
+   "player_can_choose_for_sigil": true,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1623
+  },
+  {
+   "id": 168,
+   "hex": "0xffce9697",
+   "argb_uint": 4291729047,
+   "rgb": [
+    206,
+    150,
+    151
+   ],
+   "html": "#ce9697",
+   "alpha": 255,
+   "player_can_choose_for_sigil": true,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1627
+  },
+  {
+   "id": 169,
+   "hex": "0xff95a9cc",
+   "argb_uint": 4287998412,
+   "rgb": [
+    149,
+    169,
+    204
+   ],
+   "html": "#95a9cc",
+   "alpha": 255,
+   "player_can_choose_for_sigil": true,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1631
+  },
+  {
+   "id": 170,
+   "hex": "0xff89a78b",
+   "argb_uint": 4287211403,
+   "rgb": [
+    137,
+    167,
+    139
+   ],
+   "html": "#89a78b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": true,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1635
+  },
+  {
+   "id": 171,
+   "hex": "0xffffb53e",
+   "argb_uint": 4294948158,
+   "rgb": [
+    255,
+    181,
+    62
+   ],
+   "html": "#ffb53e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": true,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1639
+  },
+  {
+   "id": 172,
+   "hex": "0xffffffff",
+   "argb_uint": 4294967295,
+   "rgb": [
+    255,
+    255,
+    255
+   ],
+   "html": "#ffffff",
+   "alpha": 255,
+   "player_can_choose_for_sigil": true,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1643
+  },
+  {
+   "id": 173,
+   "hex": "0xffc7beb7",
+   "argb_uint": 4291280567,
+   "rgb": [
+    199,
+    190,
+    183
+   ],
+   "html": "#c7beb7",
+   "alpha": 255,
+   "player_can_choose_for_sigil": true,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1647
+  },
+  {
+   "id": 174,
+   "hex": "0xFFB38841",
+   "argb_uint": 4289955905,
+   "rgb": [
+    179,
+    136,
+    65
+   ],
+   "html": "#b38841",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Minor Faction Banner Colors",
+   "line": 1652
+  },
+  {
+   "id": 175,
+   "hex": "0xFF848B65",
+   "argb_uint": 4286876517,
+   "rgb": [
+    132,
+    139,
+    101
+   ],
+   "html": "#848b65",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1655
+  },
+  {
+   "id": 176,
+   "hex": "0xFF5A7A4F",
+   "argb_uint": 4284119631,
+   "rgb": [
+    90,
+    122,
+    79
+   ],
+   "html": "#5a7a4f",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1658
+  },
+  {
+   "id": 177,
+   "hex": "0xFF7CAFC7",
+   "argb_uint": 4286361543,
+   "rgb": [
+    124,
+    175,
+    199
+   ],
+   "html": "#7cafc7",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1661
+  },
+  {
+   "id": 178,
+   "hex": "0xFF7C2B1A",
+   "argb_uint": 4286327578,
+   "rgb": [
+    124,
+    43,
+    26
+   ],
+   "html": "#7c2b1a",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1664
+  },
+  {
+   "id": 179,
+   "hex": "0xFFAC5F2E",
+   "argb_uint": 4289486638,
+   "rgb": [
+    172,
+    95,
+    46
+   ],
+   "html": "#ac5f2e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1667
+  },
+  {
+   "id": 180,
+   "hex": "0xFF72583B",
+   "argb_uint": 4285683771,
+   "rgb": [
+    114,
+    88,
+    59
+   ],
+   "html": "#72583b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1670
+  },
+  {
+   "id": 181,
+   "hex": "0xFF61725E",
+   "argb_uint": 4284576350,
+   "rgb": [
+    97,
+    114,
+    94
+   ],
+   "html": "#61725e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1673
+  },
+  {
+   "id": 182,
+   "hex": "0xFFA6825C",
+   "argb_uint": 4289102428,
+   "rgb": [
+    166,
+    130,
+    92
+   ],
+   "html": "#a6825c",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1676
+  },
+  {
+   "id": 183,
+   "hex": "0xFFCCC3AB",
+   "argb_uint": 4291609515,
+   "rgb": [
+    204,
+    195,
+    171
+   ],
+   "html": "#ccc3ab",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1679
+  },
+  {
+   "id": 184,
+   "hex": "0xFF8B7C73",
+   "argb_uint": 4287331443,
+   "rgb": [
+    139,
+    124,
+    115
+   ],
+   "html": "#8b7c73",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1682
+  },
+  {
+   "id": 185,
+   "hex": "0xFFD0884E",
+   "argb_uint": 4291856462,
+   "rgb": [
+    208,
+    136,
+    78
+   ],
+   "html": "#d0884e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1685
+  },
+  {
+   "id": 186,
+   "hex": "0xFF7B5869",
+   "argb_uint": 4286273641,
+   "rgb": [
+    123,
+    88,
+    105
+   ],
+   "html": "#7b5869",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1688
+  },
+  {
+   "id": 187,
+   "hex": "0xFF66CCFF",
+   "argb_uint": 4284927231,
+   "rgb": [
+    102,
+    204,
+    255
+   ],
+   "html": "#66ccff",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1691
+  },
+  {
+   "id": 188,
+   "hex": "0xFFAA415D",
+   "argb_uint": 4289347933,
+   "rgb": [
+    170,
+    65,
+    93
+   ],
+   "html": "#aa415d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1694
+  },
+  {
+   "id": 189,
+   "hex": "0xFF687f5e",
+   "argb_uint": 4285038430,
+   "rgb": [
+    104,
+    127,
+    94
+   ],
+   "html": "#687f5e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Forest Bandits",
+   "line": 1699
+  },
+  {
+   "id": 190,
+   "hex": "0xFF4E75BC",
+   "argb_uint": 4283332028,
+   "rgb": [
+    78,
+    117,
+    188
+   ],
+   "html": "#4e75bc",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Sea Raiders",
+   "line": 1703
+  },
+  {
+   "id": 191,
+   "hex": "0xFFf1c178",
+   "argb_uint": 4294033784,
+   "rgb": [
+    241,
+    193,
+    120
+   ],
+   "html": "#f1c178",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Desert Bandits",
+   "line": 1707
+  },
+  {
+   "id": 192,
+   "hex": "0xFFd1c4a4",
+   "argb_uint": 4291937444,
+   "rgb": [
+    209,
+    196,
+    164
+   ],
+   "html": "#d1c4a4",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Steppe Bandits",
+   "line": 1711
+  },
+  {
+   "id": 193,
+   "hex": "0xFF5e5737",
+   "argb_uint": 4284372791,
+   "rgb": [
+    94,
+    87,
+    55
+   ],
+   "html": "#5e5737",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Looters",
+   "line": 1715
+  },
+  {
+   "id": 194,
+   "hex": "0xFF802463",
+   "argb_uint": 4286588003,
+   "rgb": [
+    128,
+    36,
+    99
+   ],
+   "html": "#802463",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Empire Color 1",
+   "line": 1719
+  },
+  {
+   "id": 196,
+   "hex": "0xFFDE9953",
+   "argb_uint": 4292778323,
+   "rgb": [
+    222,
+    153,
+    83
+   ],
+   "html": "#de9953",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Empire Cloth Color 1",
+   "line": 1724
+  },
+  {
+   "id": 197,
+   "hex": "0xFF4E3A55",
+   "argb_uint": 4283316821,
+   "rgb": [
+    78,
+    58,
+    85
+   ],
+   "html": "#4e3a55",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Empire Cloth Color 2",
+   "line": 1728
+  },
+  {
+   "id": 198,
+   "hex": "0xFFCC8324",
+   "argb_uint": 4291592996,
+   "rgb": [
+    204,
+    131,
+    36
+   ],
+   "html": "#cc8324",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Aserai Color 1",
+   "line": 1732
+  },
+  {
+   "id": 200,
+   "hex": "0xFF4F2212",
+   "argb_uint": 4283376146,
+   "rgb": [
+    79,
+    34,
+    18
+   ],
+   "html": "#4f2212",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Empire Cloth Color 1",
+   "line": 1737
+  },
+  {
+   "id": 201,
+   "hex": "0xFF965228",
+   "argb_uint": 4288041512,
+   "rgb": [
+    150,
+    82,
+    40
+   ],
+   "html": "#965228",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Empire Cloth Color 2",
+   "line": 1741
+  },
+  {
+   "id": 202,
+   "hex": "0xFF2A5599",
+   "argb_uint": 4280964505,
+   "rgb": [
+    42,
+    85,
+    153
+   ],
+   "html": "#2a5599",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Sturgia Color 1",
+   "line": 1745
+  },
+  {
+   "id": 204,
+   "hex": "0xFF949CCC",
+   "argb_uint": 4287929548,
+   "rgb": [
+    148,
+    156,
+    204
+   ],
+   "html": "#949ccc",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Sturgia Cloth Color 1",
+   "line": 1750
+  },
+  {
+   "id": 205,
+   "hex": "0xFF1C2A50",
+   "argb_uint": 4280035920,
+   "rgb": [
+    28,
+    42,
+    80
+   ],
+   "html": "#1c2a50",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Sturgia Cloth Color 2",
+   "line": 1754
+  },
+  {
+   "id": 208,
+   "hex": "0xFFA88220",
+   "argb_uint": 4289233440,
+   "rgb": [
+    168,
+    130,
+    32
+   ],
+   "html": "#a88220",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Vlandia Cloth Color 1",
+   "line": 1760
+  },
+  {
+   "id": 209,
+   "hex": "0xFF4A100C",
+   "argb_uint": 4283043852,
+   "rgb": [
+    74,
+    16,
+    12
+   ],
+   "html": "#4a100c",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Vlandia Cloth Color 2",
+   "line": 1764
+  },
+  {
+   "id": 210,
+   "hex": "0xFF335F22",
+   "argb_uint": 4281556770,
+   "rgb": [
+    51,
+    95,
+    34
+   ],
+   "html": "#335f22",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Battania Color 1",
+   "line": 1768
+  },
+  {
+   "id": 212,
+   "hex": "0xFFDFC36B",
+   "argb_uint": 4292854635,
+   "rgb": [
+    223,
+    195,
+    107
+   ],
+   "html": "#dfc36b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Battania Cloth Color 1",
+   "line": 1773
+  },
+  {
+   "id": 213,
+   "hex": "0xFF2D3F1D",
+   "argb_uint": 4281155357,
+   "rgb": [
+    45,
+    63,
+    29
+   ],
+   "html": "#2d3f1d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Battania Cloth Color 2",
+   "line": 1777
+  },
+  {
+   "id": 214,
+   "hex": "0xFF418174",
+   "argb_uint": 4282483060,
+   "rgb": [
+    65,
+    129,
+    116
+   ],
+   "html": "#418174",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Khuzait Color 1",
+   "line": 1781
+  },
+  {
+   "id": 216,
+   "hex": "0xFFCCBB89",
+   "argb_uint": 4291607433,
+   "rgb": [
+    204,
+    187,
+    137
+   ],
+   "html": "#ccbb89",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Khuzait Cloth Color 1",
+   "line": 1786
+  },
+  {
+   "id": 217,
+   "hex": "0xFF58888B",
+   "argb_uint": 4283992203,
+   "rgb": [
+    88,
+    136,
+    139
+   ],
+   "html": "#58888b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "Multiplayer Khuzait Cloth Color 2",
+   "line": 1790
+  },
+  {
+   "id": 218,
+   "hex": "0xff202931",
+   "argb_uint": 4280297777,
+   "rgb": [
+    32,
+    41,
+    49
+   ],
+   "html": "#202931",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "New color set",
+   "line": 1794
+  },
+  {
+   "id": 219,
+   "hex": "0xffb7623c",
+   "argb_uint": 4290208316,
+   "rgb": [
+    183,
+    98,
+    60
+   ],
+   "html": "#b7623c",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1797
+  },
+  {
+   "id": 220,
+   "hex": "0xff4e1362",
+   "argb_uint": 4283306850,
+   "rgb": [
+    78,
+    19,
+    98
+   ],
+   "html": "#4e1362",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": "New color set for ninor fatcion",
+   "line": 1801
+  },
+  {
+   "id": 221,
+   "hex": "0xff25152a",
+   "argb_uint": 4280620330,
+   "rgb": [
+    37,
+    21,
+    42
+   ],
+   "html": "#25152a",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1804
+  },
+  {
+   "id": 222,
+   "hex": "0xff420e54",
+   "argb_uint": 4282519124,
+   "rgb": [
+    66,
+    14,
+    84
+   ],
+   "html": "#420e54",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1807
+  },
+  {
+   "id": 223,
+   "hex": "0xfff1580d",
+   "argb_uint": 4294006797,
+   "rgb": [
+    241,
+    88,
+    13
+   ],
+   "html": "#f1580d",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1810
+  },
+  {
+   "id": 224,
+   "hex": "0xfff48955",
+   "argb_uint": 4294216021,
+   "rgb": [
+    244,
+    137,
+    85
+   ],
+   "html": "#f48955",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1813
+  },
+  {
+   "id": 225,
+   "hex": "0xffe1890b",
+   "argb_uint": 4292970763,
+   "rgb": [
+    225,
+    137,
+    11
+   ],
+   "html": "#e1890b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1816
+  },
+  {
+   "id": 226,
+   "hex": "0xffd47547",
+   "argb_uint": 4292113735,
+   "rgb": [
+    212,
+    117,
+    71
+   ],
+   "html": "#d47547",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1819
+  },
+  {
+   "id": 227,
+   "hex": "0xff9f7407",
+   "argb_uint": 4288640007,
+   "rgb": [
+    159,
+    116,
+    7
+   ],
+   "html": "#9f7407",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1822
+  },
+  {
+   "id": 228,
+   "hex": "0xfff2ead6",
+   "argb_uint": 4294109910,
+   "rgb": [
+    242,
+    234,
+    214
+   ],
+   "html": "#f2ead6",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1825
+  },
+  {
+   "id": 229,
+   "hex": "0xffe1a50b",
+   "argb_uint": 4292977931,
+   "rgb": [
+    225,
+    165,
+    11
+   ],
+   "html": "#e1a50b",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1828
+  },
+  {
+   "id": 230,
+   "hex": "0xffdcbb65",
+   "argb_uint": 4292655973,
+   "rgb": [
+    220,
+    187,
+    101
+   ],
+   "html": "#dcbb65",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1831
+  },
+  {
+   "id": 231,
+   "hex": "0xff5f3f0e",
+   "argb_uint": 4284432142,
+   "rgb": [
+    95,
+    63,
+    14
+   ],
+   "html": "#5f3f0e",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1834
+  },
+  {
+   "id": 232,
+   "hex": "0xffc13b29",
+   "argb_uint": 4290853673,
+   "rgb": [
+    193,
+    59,
+    41
+   ],
+   "html": "#c13b29",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1837
+  },
+  {
+   "id": 233,
+   "hex": "0xff112038",
+   "argb_uint": 4279312440,
+   "rgb": [
+    17,
+    32,
+    56
+   ],
+   "html": "#112038",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1840
+  },
+  {
+   "id": 234,
+   "hex": "0xff3995f8",
+   "argb_uint": 4281964024,
+   "rgb": [
+    57,
+    149,
+    248
+   ],
+   "html": "#3995f8",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1843
+  },
+  {
+   "id": 235,
+   "hex": "0xffb7623c",
+   "argb_uint": 4290208316,
+   "rgb": [
+    183,
+    98,
+    60
+   ],
+   "html": "#b7623c",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1846
+  },
+  {
+   "id": 236,
+   "hex": "0xff252a01",
+   "argb_uint": 4280625665,
+   "rgb": [
+    37,
+    42,
+    1
+   ],
+   "html": "#252a01",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1849
+  },
+  {
+   "id": 237,
+   "hex": "0xff315305",
+   "argb_uint": 4281422597,
+   "rgb": [
+    49,
+    83,
+    5
+   ],
+   "html": "#315305",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1852
+  },
+  {
+   "id": 238,
+   "hex": "0xff72bfc0",
+   "argb_uint": 4285710272,
+   "rgb": [
+    114,
+    191,
+    192
+   ],
+   "html": "#72bfc0",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1855
+  },
+  {
+   "id": 239,
+   "hex": "0xffc2d3d3",
+   "argb_uint": 4290958291,
+   "rgb": [
+    194,
+    211,
+    211
+   ],
+   "html": "#c2d3d3",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1858
+  },
+  {
+   "id": 240,
+   "hex": "0xff5c6868",
+   "argb_uint": 4284246120,
+   "rgb": [
+    92,
+    104,
+    104
+   ],
+   "html": "#5c6868",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1861
+  },
+  {
+   "id": 241,
+   "hex": "0xff7a8383",
+   "argb_uint": 4286219139,
+   "rgb": [
+    122,
+    131,
+    131
+   ],
+   "html": "#7a8383",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1864
+  },
+  {
+   "id": 242,
+   "hex": "0xffacb3b3",
+   "argb_uint": 4289508275,
+   "rgb": [
+    172,
+    179,
+    179
+   ],
+   "html": "#acb3b3",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1867
+  },
+  {
+   "id": 243,
+   "hex": "0xff234942",
+   "argb_uint": 4280502594,
+   "rgb": [
+    35,
+    73,
+    66
+   ],
+   "html": "#234942",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1870
+  },
+  {
+   "id": 244,
+   "hex": "0xff213330",
+   "argb_uint": 4280365872,
+   "rgb": [
+    33,
+    51,
+    48
+   ],
+   "html": "#213330",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1873
+  },
+  {
+   "id": 245,
+   "hex": "0xffeea332",
+   "argb_uint": 4293829426,
+   "rgb": [
+    238,
+    163,
+    50
+   ],
+   "html": "#eea332",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1876
+  },
+  {
+   "id": 246,
+   "hex": "0xfff0e1cb",
+   "argb_uint": 4293976523,
+   "rgb": [
+    240,
+    225,
+    203
+   ],
+   "html": "#f0e1cb",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1879
+  },
+  {
+   "id": 247,
+   "hex": "0xff192026",
+   "argb_uint": 4279836710,
+   "rgb": [
+    25,
+    32,
+    38
+   ],
+   "html": "#192026",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1882
+  },
+  {
+   "id": 248,
+   "hex": "0xffeebda7",
+   "argb_uint": 4293836199,
+   "rgb": [
+    238,
+    189,
+    167
+   ],
+   "html": "#eebda7",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1885
+  },
+  {
+   "id": 249,
+   "hex": "0xffe5a386",
+   "argb_uint": 4293239686,
+   "rgb": [
+    229,
+    163,
+    134
+   ],
+   "html": "#e5a386",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1888
+  },
+  {
+   "id": 250,
+   "hex": "0xffffffff",
+   "argb_uint": 4294967295,
+   "rgb": [
+    255,
+    255,
+    255
+   ],
+   "html": "#ffffff",
+   "alpha": 255,
+   "player_can_choose_for_sigil": false,
+   "player_can_choose_for_background": false,
+   "hint": null,
+   "line": 1891
+  }
+ ]
+}

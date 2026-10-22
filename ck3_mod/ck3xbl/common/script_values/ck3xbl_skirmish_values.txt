@@ -1,0 +1,23 @@
+﻿# Skirmishes on the road (docs/PROTOCOL.md 20). root = the player; scope:ck3xbl_sk_kind saved.
+# Size of the foe's band: 8 + a fifth of the road's danger, 6 more soldiers of an army, an assassin brings 2 cutthroats; 3..28.
+ck3xbl_sk_foes_value = {
+	value = 8
+	if = {
+		limit = { exists = root.current_travel_plan }
+		add = {
+			value = root.current_travel_plan.current_danger_value
+			divide = 5
+		}
+	}
+	if = {
+		limit = { scope:ck3xbl_sk_kind = 4 }
+		add = 6
+	}
+	if = {
+		limit = { scope:ck3xbl_sk_kind = 3 }
+		value = 3
+	}
+	min = 3
+	max = 28
+	round = yes
+}

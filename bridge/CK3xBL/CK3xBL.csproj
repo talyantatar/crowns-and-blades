@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CK3xBL</RootNamespace>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>CS8618;CS8601;CS8602;CS8603;CS8604;CS8625</NoWarn>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <!-- The Crowns & Blades badge, drawn by installer/src/Ui/AppIcon.cs (the same design as the tray icon). -->
+    <ApplicationIcon Condition="Exists('..\..\installer\assets\CK3xBL.ico')">..\..\installer\assets\CK3xBL.ico</ApplicationIcon>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>CK3xBL</AssemblyName>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <!-- The UI is English: a self-contained publish needs no localized framework resources. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CK3xBL.Core\CK3xBL.Core.csproj" />
+    <ProjectReference Include="..\CK3xBL.Mapping\CK3xBL.Mapping.csproj" />
+    <ProjectReference Include="..\CK3xBL.Appearance\CK3xBL.Appearance.csproj" />
+    <ProjectReference Include="..\CK3xBL.Ux\CK3xBL.Ux.csproj" />
+  </ItemGroup>
+</Project>

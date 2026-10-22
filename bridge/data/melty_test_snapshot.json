@@ -1,0 +1,2158 @@
+{
+  "bid": 352,
+  "sessionKey": "02e3",
+  "combatId": 2097152009,
+  "combatName": "Битва в провинции Вад",
+  "year": 1048,
+  "month": 4,
+  "day": 25,
+  "location": {
+    "provinceId": 4478,
+    "provinceName": "Вад",
+    "countyKey": "c_turan",
+    "countyName": "Туран",
+    "baronyKey": "b_wad",
+    "terrain": "desert_mountains",
+    "winter": "none",
+    "holding": "city_holding",
+    "coastal": false,
+    "riverside": false,
+    "siege": false,
+    "fortLevel": 0,
+    "development": 10,
+    "attackerOriginProvinceId": 4476,
+    "facts": {
+      "terrain": "desert_mountains",
+      "winter": "none",
+      "holding": "city_holding",
+      "coastal": "no",
+      "riverside": "no",
+      "siege": "no",
+      "raid": "no",
+      "occupied": "yes",
+      "region": "world_middle_east",
+      "building_gfx": "iranian_building_gfx",
+      "loc_culture": "brahui",
+      "loc_heritage": "heritage_indo_aryan",
+      "fort": "0",
+      "dev": "10",
+      "origin": "4476"
+    }
+  },
+  "playerCk3Id": 33651144,
+  "warName": "L ONCLICK:TITLE,7148 TOOLTIP:LANDED_TITLE,7148 L; Французск!!!ая! война по претензии персонажа ONCLICK:CHARACTER,127037 TOOLTIP:CHARACTER,127037 L high Шахзаде! high Кавус! !!! на титул «ONCLICK:TITLE,10528 TOOLTIP:LANDED_TITLE,10528 L; Великий эмират Синд!!!»",
+  "attacker": {
+    "key": "attacker",
+    "size": 5,
+    "playerIn": false,
+    "primary": {
+      "ck3Id": 134306415,
+      "historicalId": null,
+      "name": "Annaladevi Чаухан",
+      "titleKey": "d_stravani"
+    },
+    "commander": {
+      "ck3Id": 134306415,
+      "historicalId": null,
+      "name": "Annaladevi Чаухан",
+      "titleKey": "d_stravani"
+    },
+    "faithHostilityOut": 3,
+    "armies": [
+      {
+        "armyId": 2097152487,
+        "name": "1-я армия провинции Викрамапура",
+        "tag": 554,
+        "size": 5,
+        "levies": 5,
+        "owner": {
+          "ck3Id": 134306415,
+          "historicalId": null,
+          "name": "Annaladevi Чаухан",
+          "titleKey": "d_stravani"
+        },
+        "commander": {
+          "ck3Id": 134306415,
+          "historicalId": null,
+          "name": "Annaladevi Чаухан",
+          "titleKey": "d_stravani"
+        },
+        "ownerCulture": {
+          "culture": "rajput",
+          "heritage": "heritage_indo_aryan",
+          "unitGfx": "indian_unit_gfx",
+          "clothingGfx": null,
+          "era": "culture_era_early_medieval"
+        },
+        "ownerNomadic": false,
+        "knightEffectivenessPermille": 1120,
+        "development": 10,
+        "besieging": false,
+        "territory": "hostile",
+        "ownerTraits": [],
+        "ownerCultureParams": [],
+        "ownerFaithParams": [],
+        "regiments": [
+          {
+            "regimentId": 14363,
+            "maaKey": "paiks",
+            "current": 0,
+            "max": 600,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 20627,
+            "maaKey": "paiks",
+            "current": 0,
+            "max": 400,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 184564525,
+            "maaKey": "onager",
+            "current": 0,
+            "max": 20,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 520110838,
+            "maaKey": "armored_footmen",
+            "current": 0,
+            "max": 400,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          }
+        ]
+      }
+    ],
+    "characters": [
+      {
+        "ref": {
+          "ck3Id": 134306415,
+          "historicalId": null,
+          "name": "Annaladevi Чаухан",
+          "titleKey": "d_stravani"
+        },
+        "role": "CMD",
+        "isCommander": true,
+        "isKnight": false,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1334,
+        "age": 19,
+        "female": true,
+        "prowess": 5,
+        "martial": 11,
+        "health": 5.37,
+        "weight": 13,
+        "tier": 3,
+        "armyTag": 554,
+        "primaryTitleKey": "d_stravani",
+        "houseName": "Чаухан",
+        "culture": {
+          "culture": "rajput",
+          "heritage": "heritage_indo_aryan",
+          "unitGfx": "indian_unit_gfx",
+          "clothingGfx": "indian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "mediterranean",
+        "traits": [
+          "scarred"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "patient",
+          "pregnant",
+          "zealous"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": [
+          {
+            "slot": "ck3xbl_cape",
+            "itemId": "a_aserai_scale_b_shoulder_b"
+          }
+        ]
+      },
+      {
+        "ref": {
+          "ck3Id": 184609892,
+          "historicalId": null,
+          "name": "Govindraj Чаухан",
+          "titleKey": "b_juna_barmer"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1336,
+        "age": 46,
+        "female": false,
+        "prowess": 2,
+        "martial": 10,
+        "health": 3.94,
+        "weight": -49,
+        "tier": 1,
+        "armyTag": 554,
+        "primaryTitleKey": "b_juna_barmer",
+        "houseName": "Чаухан",
+        "culture": {
+          "culture": "rajput",
+          "heritage": "heritage_indo_aryan",
+          "unitGfx": "indian_unit_gfx",
+          "clothingGfx": "indian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "mediterranean",
+        "traits": [
+          "hunchbacked"
+        ],
+        "commanderTraits": [
+          "unyielding_defender"
+        ],
+        "combatTraits": [
+          "diligent",
+          "temperate"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": {
+          "active": true,
+          "rank": 1,
+          "primary": "disciplinarian_attribute",
+          "levels": {
+            "disciplinarian_attribute": 1,
+            "valiant_attribute": 1
+          }
+        },
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 135635,
+          "historicalId": null,
+          "name": "Balaprasada Рантхамборе",
+          "titleKey": "c_ranthambore"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1337,
+        "age": 31,
+        "female": false,
+        "prowess": 13,
+        "martial": 4,
+        "health": 4.23,
+        "weight": -2,
+        "tier": 2,
+        "armyTag": 554,
+        "primaryTitleKey": "c_ranthambore",
+        "houseName": "Рантхамборе",
+        "culture": {
+          "culture": "rajput",
+          "heritage": "heritage_indo_aryan",
+          "unitGfx": "indian_unit_gfx",
+          "clothingGfx": "indian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "indian",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "lazy",
+          "vengeful",
+          "wrathful"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 50441419,
+          "historicalId": null,
+          "name": "Mahayak Худородность",
+          "titleKey": "b_kolayat"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1338,
+        "age": 44,
+        "female": false,
+        "prowess": 10,
+        "martial": 8,
+        "health": 2.99,
+        "weight": 50,
+        "tier": 1,
+        "armyTag": 554,
+        "primaryTitleKey": "b_kolayat",
+        "houseName": null,
+        "culture": {
+          "culture": "rajput",
+          "heritage": "heritage_indo_aryan",
+          "unitGfx": "indian_unit_gfx",
+          "clothingGfx": "indian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "indian",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "zealous"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": [
+          {
+            "slot": "ck3xbl_gear",
+            "itemId": "adarga"
+          }
+        ]
+      },
+      {
+        "ref": {
+          "ck3Id": 125389,
+          "historicalId": null,
+          "name": "Vindhyavarman Кучаман",
+          "titleKey": "b_kuchaman"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1339,
+        "age": 41,
+        "female": false,
+        "prowess": 5,
+        "martial": 4,
+        "health": 3.36,
+        "weight": -17,
+        "tier": 1,
+        "armyTag": 554,
+        "primaryTitleKey": "b_kuchaman",
+        "houseName": "Кучаман",
+        "culture": {
+          "culture": "rajput",
+          "heritage": "heritage_indo_aryan",
+          "unitGfx": "indian_unit_gfx",
+          "clothingGfx": "indian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "indian",
+        "traits": [],
+        "commanderTraits": [
+          "military_engineer"
+        ],
+        "combatTraits": [
+          "paranoid",
+          "patient"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 16913227,
+          "historicalId": null,
+          "name": "Apara_Gangeya Худородность",
+          "titleKey": "b_phalavardhika"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1340,
+        "age": 76,
+        "female": false,
+        "prowess": 0,
+        "martial": 18,
+        "health": 4.54,
+        "weight": 17,
+        "tier": 1,
+        "armyTag": 554,
+        "primaryTitleKey": "b_phalavardhika",
+        "houseName": null,
+        "culture": {
+          "culture": "rajput",
+          "heritage": "heritage_indo_aryan",
+          "unitGfx": "indian_unit_gfx",
+          "clothingGfx": "indian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "indian",
+        "traits": [],
+        "commanderTraits": [
+          "reckless"
+        ],
+        "combatTraits": [
+          "ambitious",
+          "craven",
+          "education_martial_4",
+          "zealous"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      }
+    ]
+  },
+  "defender": {
+    "key": "defender",
+    "size": 5460,
+    "playerIn": true,
+    "primary": {
+      "ck3Id": 33651144,
+      "historicalId": null,
+      "name": "Simon де Мену",
+      "titleKey": "e_france"
+    },
+    "commander": {
+      "ck3Id": 33651144,
+      "historicalId": null,
+      "name": "Simon де Мену",
+      "titleKey": "e_france"
+    },
+    "faithHostilityOut": 3,
+    "armies": [
+      {
+        "armyId": 184549926,
+        "name": "1-я армия провинции Киз",
+        "tag": 555,
+        "size": 5460,
+        "levies": 29,
+        "owner": {
+          "ck3Id": 33651144,
+          "historicalId": null,
+          "name": "Simon де Мену",
+          "titleKey": "e_france"
+        },
+        "commander": {
+          "ck3Id": 33651144,
+          "historicalId": null,
+          "name": "Simon де Мену",
+          "titleKey": "e_france"
+        },
+        "ownerCulture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": null,
+          "era": "culture_era_early_medieval"
+        },
+        "ownerNomadic": false,
+        "knightEffectivenessPermille": 2770,
+        "development": 28,
+        "besieging": false,
+        "territory": "own",
+        "ownerTraits": [
+          "education_martial_4",
+          "gallant",
+          "strategist"
+        ],
+        "ownerCultureParams": [],
+        "ownerFaithParams": [],
+        "regiments": [
+          {
+            "regimentId": 117456811,
+            "maaKey": "accolade_maa_vanguards",
+            "current": 1000,
+            "max": 1000,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 50346135,
+            "maaKey": "light_footmen",
+            "current": 789,
+            "max": 800,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 117456597,
+            "maaKey": "armored_footmen",
+            "current": 995,
+            "max": 1000,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 83905432,
+            "maaKey": "mangonel",
+            "current": 70,
+            "max": 70,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 83903558,
+            "maaKey": "bondi",
+            "current": 794,
+            "max": 800,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 16793052,
+            "maaKey": "armored_footmen",
+            "current": 995,
+            "max": 1000,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          },
+          {
+            "regimentId": 33571694,
+            "maaKey": "metsanvartija",
+            "current": 788,
+            "max": 800,
+            "hired": false,
+            "regimentType": "personal",
+            "hiredCulture": null
+          }
+        ]
+      }
+    ],
+    "characters": [
+      {
+        "ref": {
+          "ck3Id": 33651144,
+          "historicalId": null,
+          "name": "Simon де Мену",
+          "titleKey": "e_france"
+        },
+        "role": "CMD",
+        "isCommander": true,
+        "isKnight": false,
+        "isPrimary": false,
+        "isPlayer": true,
+        "absent": false,
+        "tag": 983,
+        "age": 66,
+        "female": false,
+        "prowess": 32,
+        "martial": 40,
+        "health": 3.9,
+        "weight": -9,
+        "tier": 5,
+        "armyTag": 555,
+        "primaryTitleKey": "e_france",
+        "houseName": "де Мену",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_ginger",
+        "traits": [
+          "disfigured",
+          "beauty_good_2",
+          "physique_good_2",
+          "whole_of_body"
+        ],
+        "commanderTraits": [
+          "aggressive_attacker",
+          "forder"
+        ],
+        "combatTraits": [
+          "brave",
+          "content",
+          "education_martial_4",
+          "gallant",
+          "infirm",
+          "lifestyle_blademaster",
+          "strategist",
+          "tourney_participant",
+          "zealous"
+        ],
+        "traitLevels": {
+          "aggressive_attacker": 3,
+          "forder": 2,
+          "infirm": 2,
+          "lifestyle_blademaster": 1,
+          "tourney_participant:foot": 2,
+          "tourney_participant:bow": 1,
+          "tourney_participant:horse": 1,
+          "tourney_participant:wit": 1
+        },
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [
+          {
+            "slotType": "helmet",
+            "type": "helmet",
+            "rarity": "famed",
+            "helmetFeature": null
+          },
+          {
+            "slotType": "armor",
+            "type": "armor_mail",
+            "rarity": "illustrious",
+            "helmetFeature": "armor_helmet_kulah_khud"
+          }
+        ],
+        "gear": [
+          {
+            "slot": "ck3xbl_head",
+            "itemId": "guards_kettle_over_padded_coif"
+          },
+          {
+            "slot": "ck3xbl_cape",
+            "itemId": "pauldron_over_scale_armor"
+          },
+          {
+            "slot": "ck3xbl_main",
+            "itemId": "lowland_yew_bow"
+          },
+          {
+            "slot": "ck3xbl_main",
+            "itemId": "vlandia_sword_3_t4"
+          },
+          {
+            "slot": "ck3xbl_gear",
+            "itemId": "pavise_shield"
+          },
+          {
+            "slot": "ck3xbl_body",
+            "itemId": "long_padded_robe"
+          },
+          {
+            "slot": "ck3xbl_horse",
+            "itemId": "t2_vlandia_horse"
+          }
+        ]
+      },
+      {
+        "ref": {
+          "ck3Id": 16901331,
+          "historicalId": null,
+          "name": "Ahmad Ибн Зейдун",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1171,
+        "age": 44,
+        "female": false,
+        "prowess": 19,
+        "martial": 4,
+        "health": 4.1,
+        "weight": 17,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "Ибн Зейдун",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "ambitious",
+          "lifestyle_blademaster"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 83992575,
+          "historicalId": null,
+          "name": "Sigismond де Мену",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1298,
+        "age": 32,
+        "female": false,
+        "prowess": 26,
+        "martial": 12,
+        "health": 5.74,
+        "weight": -8,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Мену",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_blond",
+        "traits": [
+          "beauty_good_3",
+          "physique_good_3"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "compassionate",
+          "content",
+          "diligent"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 50428768,
+          "historicalId": null,
+          "name": "Yazi Куркутайид",
+          "titleKey": "c_sarykamysh"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1312,
+        "age": 57,
+        "female": false,
+        "prowess": 9,
+        "martial": 9,
+        "health": 3.01,
+        "weight": -9,
+        "tier": 2,
+        "armyTag": 555,
+        "primaryTitleKey": "c_sarykamysh",
+        "houseName": "Куркутайид",
+        "culture": {
+          "culture": "khwarezmian",
+          "heritage": "heritage_iranian",
+          "unitGfx": "iranian_unit_gfx",
+          "clothingGfx": "iranian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "turkic_west",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "content",
+          "impatient",
+          "strategist"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 100688451,
+          "historicalId": null,
+          "name": "Guillaume де Мену",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1025,
+        "age": 55,
+        "female": false,
+        "prowess": 23,
+        "martial": 8,
+        "health": 3.9,
+        "weight": -5,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Мену",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_ginger",
+        "traits": [
+          "beauty_good_3",
+          "physique_good_1"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "content",
+          "deceitful",
+          "lifestyle_blademaster",
+          "tourney_participant"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": {
+          "active": true,
+          "rank": 5,
+          "primary": "house_knight_attribute",
+          "levels": {
+            "house_knight_attribute": 3,
+            "besieger_attribute": 2
+          }
+        },
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 100765739,
+          "historicalId": null,
+          "name": "Ali Ибн Хазм",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1084,
+        "age": 53,
+        "female": false,
+        "prowess": 27,
+        "martial": 17,
+        "health": 3.06,
+        "weight": 3,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "Ибн Хазм",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [
+          "scarred"
+        ],
+        "commanderTraits": [
+          "unyielding_defender"
+        ],
+        "combatTraits": [
+          "education_learning_5",
+          "patient",
+          "stubborn",
+          "tourney_participant"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": {
+          "active": true,
+          "rank": 6,
+          "primary": "tactician_attribute",
+          "levels": {
+            "stalwart_attribute": 3,
+            "tactician_attribute": 3
+          }
+        },
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 120659,
+          "historicalId": null,
+          "name": "FrE_dE_ric де Иглезиас",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1210,
+        "age": 35,
+        "female": false,
+        "prowess": 16,
+        "martial": 10,
+        "health": 4.32,
+        "weight": -13,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Иглезиас",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_dark_hair",
+        "traits": [
+          "disfigured"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "content",
+          "tourney_participant"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 16895160,
+          "historicalId": null,
+          "name": "Archambaud де Барте",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1091,
+        "age": 56,
+        "female": false,
+        "prowess": 17,
+        "martial": 16,
+        "health": 3.16,
+        "weight": 9,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Барте",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_dark_hair",
+        "traits": [],
+        "commanderTraits": [
+          "aggressive_attacker",
+          "forder"
+        ],
+        "combatTraits": [
+          "brave",
+          "lifestyle_blademaster",
+          "tourney_participant"
+        ],
+        "traitLevels": {
+          "tourney_participant:foot": 1
+        },
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 115853,
+          "historicalId": null,
+          "name": "Yves де Мену",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1088,
+        "age": 45,
+        "female": false,
+        "prowess": 31,
+        "martial": 12,
+        "health": 5.4,
+        "weight": -7,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Мену",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_ginger",
+        "traits": [
+          "disfigured",
+          "beauty_good_3",
+          "physique_good_3"
+        ],
+        "commanderTraits": [
+          "unyielding_defender"
+        ],
+        "combatTraits": [
+          "athletic",
+          "compassionate",
+          "content",
+          "stubborn",
+          "tourney_participant"
+        ],
+        "traitLevels": {
+          "tourney_participant:foot": 1
+        },
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 184625135,
+          "historicalId": null,
+          "name": "Othon Худородность",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1313,
+        "age": 52,
+        "female": false,
+        "prowess": 13,
+        "martial": 5,
+        "health": 3.62,
+        "weight": 0,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_dark_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "brave",
+          "content"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 33673791,
+          "historicalId": null,
+          "name": "Adalbert Худородность",
+          "titleKey": "b_cantillana"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1142,
+        "age": 62,
+        "female": false,
+        "prowess": 13,
+        "martial": 6,
+        "health": 2.74,
+        "weight": -41,
+        "tier": 1,
+        "armyTag": 555,
+        "primaryTitleKey": "b_cantillana",
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "craven",
+          "sadistic"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": [
+          {
+            "slot": "ck3xbl_head",
+            "itemId": "wrapped_desert_cap"
+          }
+        ]
+      },
+      {
+        "ref": {
+          "ck3Id": 33681204,
+          "historicalId": null,
+          "name": "Kshemendra Худородность",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1314,
+        "age": 57,
+        "female": false,
+        "prowess": 0,
+        "martial": 1,
+        "health": 2.83,
+        "weight": -4,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": null,
+        "culture": {
+          "culture": "kashmiri",
+          "heritage": "heritage_indo_aryan",
+          "unitGfx": "indian_unit_gfx",
+          "clothingGfx": "indian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "indian",
+        "traits": [
+          "wounded_1"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "ambitious",
+          "diligent",
+          "education_diplomacy_4",
+          "infirm",
+          "lifestyle_blademaster"
+        ],
+        "traitLevels": {
+          "infirm": 1
+        },
+        "cultureParams": [
+          "mountain_trait_bonuses"
+        ],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 50438443,
+          "historicalId": null,
+          "name": "Tanhoiarn Пенсек",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1021,
+        "age": 64,
+        "female": false,
+        "prowess": 6,
+        "martial": 13,
+        "health": 2.59,
+        "weight": -21,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "Пенсек",
+        "culture": {
+          "culture": "breton",
+          "heritage": "heritage_brythonic",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "breton_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [],
+        "commanderTraits": [
+          "unyielding_defender"
+        ],
+        "combatTraits": [
+          "athletic",
+          "infirm",
+          "paranoid",
+          "sadistic",
+          "tourney_participant"
+        ],
+        "traitLevels": {
+          "tourney_participant:foot": 2
+        },
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": {
+          "active": true,
+          "rank": 6,
+          "primary": "vanguard_attribute",
+          "levels": {
+            "vanguard_attribute": 3,
+            "mentor_attribute": 3
+          }
+        },
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 16884345,
+          "historicalId": null,
+          "name": "Centule Худородность",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1141,
+        "age": 43,
+        "female": false,
+        "prowess": 17,
+        "martial": 12,
+        "health": 4.24,
+        "weight": 7,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_dark_hair",
+        "traits": [],
+        "commanderTraits": [
+          "holy_warrior"
+        ],
+        "combatTraits": [
+          "calm",
+          "sadistic",
+          "tourney_participant"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 50424704,
+          "historicalId": null,
+          "name": "Timurtas Худородность",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1202,
+        "age": 51,
+        "female": false,
+        "prowess": 7,
+        "martial": 7,
+        "health": 2.48,
+        "weight": -29,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": null,
+        "culture": {
+          "culture": "turkish",
+          "heritage": "heritage_turkic",
+          "unitGfx": "mongol_unit_gfx",
+          "clothingGfx": "turkic_clothing_gfx",
+          "era": "culture_era_tribal"
+        },
+        "ethnicity": "turkic_west",
+        "traits": [
+          "wounded_1"
+        ],
+        "commanderTraits": [
+          "flexible_leader"
+        ],
+        "combatTraits": [
+          "compassionate",
+          "order_member",
+          "temperate"
+        ],
+        "traitLevels": {},
+        "cultureParams": [
+          "martial_traits_give_out_hcav_bonus",
+          "stewardship_traits_give_out_cav_bonus"
+        ],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 33685461,
+          "historicalId": null,
+          "name": "AldE_ric Худородность",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1315,
+        "age": 23,
+        "female": false,
+        "prowess": 21,
+        "martial": 8,
+        "health": 4.82,
+        "weight": -31,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "lifestyle_blademaster",
+          "tourney_participant",
+          "zealous"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 33638751,
+          "historicalId": null,
+          "name": "Adalbert де Донзи",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1085,
+        "age": 53,
+        "female": false,
+        "prowess": 21,
+        "martial": 1,
+        "health": 3.29,
+        "weight": 17,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Донзи",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_dark_hair",
+        "traits": [
+          "blind"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "arrogant",
+          "lifestyle_blademaster",
+          "peasant_leader",
+          "stubborn",
+          "tourney_participant"
+        ],
+        "traitLevels": {
+          "tourney_participant:wit": 1
+        },
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": {
+          "active": true,
+          "rank": 6,
+          "primary": "valiant_attribute",
+          "levels": {
+            "marauder_attribute": 3,
+            "valiant_attribute": 3
+          }
+        },
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 67207552,
+          "historicalId": null,
+          "name": "NuN_a Бану Муса",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1316,
+        "age": 19,
+        "female": true,
+        "prowess": 12,
+        "martial": 12,
+        "health": 5.17,
+        "weight": -4,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "Бану Муса",
+        "culture": {
+          "culture": "basque",
+          "heritage": "heritage_iberian",
+          "unitGfx": "iberian_christian_unit_gfx",
+          "clothingGfx": "iberian_christian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_dark_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "fickle",
+          "patient",
+          "tourney_participant"
+        ],
+        "traitLevels": {},
+        "cultureParams": [
+          "mountain_trait_bonuses"
+        ],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 67200540,
+          "historicalId": null,
+          "name": "Gilles де Клерье",
+          "titleKey": "b_raqqada"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1140,
+        "age": 45,
+        "female": false,
+        "prowess": 8,
+        "martial": 4,
+        "health": 2.63,
+        "weight": -5,
+        "tier": 1,
+        "armyTag": 555,
+        "primaryTitleKey": "b_raqqada",
+        "houseName": "де Клерье",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [
+          "physique_bad_1",
+          "wounded_1"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "calm",
+          "content"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 184643233,
+          "historicalId": null,
+          "name": "Hasan Худородность",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1317,
+        "age": 29,
+        "female": false,
+        "prowess": 7,
+        "martial": 7,
+        "health": 4.95,
+        "weight": 1,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": null,
+        "culture": {
+          "culture": "tajik",
+          "heritage": "heritage_iranian",
+          "unitGfx": "iranian_unit_gfx",
+          "clothingGfx": "iranian_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "arab",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "ambitious",
+          "diligent",
+          "education_learning_5"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 33654587,
+          "historicalId": null,
+          "name": "Mathilde Худородность",
+          "titleKey": "b_jalula"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1090,
+        "age": 55,
+        "female": true,
+        "prowess": 15,
+        "martial": 8,
+        "health": 3,
+        "weight": 6,
+        "tier": 1,
+        "armyTag": 555,
+        "primaryTitleKey": "b_jalula",
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [
+          "beauty_bad_2"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "brave",
+          "compassionate",
+          "lazy",
+          "lifestyle_blademaster"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": [
+          {
+            "slot": "ck3xbl_main",
+            "itemId": "vlandia_mace_1_t2"
+          }
+        ]
+      },
+      {
+        "ref": {
+          "ck3Id": 50437502,
+          "historicalId": null,
+          "name": "Centule де Аль-Аббасия",
+          "titleKey": "b_al_abbasiya"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1146,
+        "age": 44,
+        "female": false,
+        "prowess": 7,
+        "martial": 0,
+        "health": 3.07,
+        "weight": -3,
+        "tier": 1,
+        "armyTag": 555,
+        "primaryTitleKey": "b_al_abbasiya",
+        "houseName": "де Аль-Аббасия",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_dark_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "content",
+          "ill"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 50447200,
+          "historicalId": null,
+          "name": "Guiges Худородность",
+          "titleKey": "b_talavera"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1211,
+        "age": 51,
+        "female": false,
+        "prowess": 15,
+        "martial": 2,
+        "health": 0.77,
+        "weight": -20,
+        "tier": 1,
+        "armyTag": 555,
+        "primaryTitleKey": "b_talavera",
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [
+          "physique_good_1"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "ill",
+          "paranoid",
+          "stubborn",
+          "zealous"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": [
+          {
+            "slot": "ck3xbl_head",
+            "itemId": "nasalhelm_over_leather"
+          }
+        ]
+      },
+      {
+        "ref": {
+          "ck3Id": 184603765,
+          "historicalId": null,
+          "name": "E_tienne де Мену",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1253,
+        "age": 33,
+        "female": false,
+        "prowess": 25,
+        "martial": 11,
+        "health": 6.34,
+        "weight": -10,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Мену",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_ginger",
+        "traits": [
+          "beauty_good_3",
+          "physique_good_3"
+        ],
+        "commanderTraits": [],
+        "combatTraits": [
+          "content",
+          "patient",
+          "scaly",
+          "tourney_participant"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 84003769,
+          "historicalId": null,
+          "name": "Jean Худородность",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1267,
+        "age": 60,
+        "female": false,
+        "prowess": 4,
+        "martial": 7,
+        "health": 2.88,
+        "weight": -13,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_ginger",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "deceitful",
+          "vengeful"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 50451305,
+          "historicalId": null,
+          "name": "Julien Худородность",
+          "titleKey": "b_montreuil"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1209,
+        "age": 60,
+        "female": false,
+        "prowess": 8,
+        "martial": 4,
+        "health": 3.39,
+        "weight": 10,
+        "tier": 1,
+        "armyTag": 555,
+        "primaryTitleKey": "b_montreuil",
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "ambitious",
+          "lifestyle_blademaster",
+          "zealous"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": [
+          {
+            "slot": "ck3xbl_main",
+            "itemId": "vlandia_sword_1_t2"
+          },
+          {
+            "slot": "ck3xbl_gear",
+            "itemId": "battania_targe_b"
+          }
+        ]
+      },
+      {
+        "ref": {
+          "ck3Id": 151033776,
+          "historicalId": null,
+          "name": "Raymonde де Мену",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 985,
+        "age": 68,
+        "female": true,
+        "prowess": 17,
+        "martial": 10,
+        "health": 3.03,
+        "weight": -21,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Мену",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_blond",
+        "traits": [
+          "beauty_good_3",
+          "physique_good_2"
+        ],
+        "commanderTraits": [
+          "unyielding_defender"
+        ],
+        "combatTraits": [
+          "education_diplomacy_4",
+          "infirm",
+          "tourney_participant",
+          "vengeful"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 50448287,
+          "historicalId": null,
+          "name": "AgnE_s Худородность",
+          "titleKey": "b_guadiz"
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1168,
+        "age": 45,
+        "female": true,
+        "prowess": 11,
+        "martial": 4,
+        "health": 4.1,
+        "weight": 43,
+        "tier": 1,
+        "armyTag": 555,
+        "primaryTitleKey": "b_guadiz",
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_dark_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "peasant_leader",
+          "vengeful"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 16890739,
+          "historicalId": null,
+          "name": "AndrE_ де Мену",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1300,
+        "age": 42,
+        "female": false,
+        "prowess": 29,
+        "martial": 16,
+        "health": 5.45,
+        "weight": 0,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": "де Мену",
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_blond",
+        "traits": [
+          "beauty_good_3",
+          "physique_good_3"
+        ],
+        "commanderTraits": [
+          "unyielding_defender"
+        ],
+        "combatTraits": [
+          "brave",
+          "tourney_participant"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      },
+      {
+        "ref": {
+          "ck3Id": 50425402,
+          "historicalId": null,
+          "name": "Perinne Худородность",
+          "titleKey": null
+        },
+        "role": "KNIGHT",
+        "isCommander": false,
+        "isKnight": true,
+        "isPrimary": false,
+        "isPlayer": false,
+        "absent": null,
+        "tag": 1086,
+        "age": 48,
+        "female": true,
+        "prowess": 17,
+        "martial": 8,
+        "health": 3.9,
+        "weight": -14,
+        "tier": 0,
+        "armyTag": 555,
+        "primaryTitleKey": null,
+        "houseName": null,
+        "culture": {
+          "culture": "french",
+          "heritage": "heritage_frankish",
+          "unitGfx": "western_unit_gfx",
+          "clothingGfx": "french_clothing_gfx",
+          "era": "culture_era_early_medieval"
+        },
+        "ethnicity": "caucasian_brown_hair",
+        "traits": [],
+        "commanderTraits": [],
+        "combatTraits": [
+          "patient",
+          "peasant_leader",
+          "temperate"
+        ],
+        "traitLevels": {},
+        "cultureParams": [],
+        "faithParams": [],
+        "accolade": null,
+        "artifacts": [],
+        "gear": []
+      }
+    ]
+  },
+  "complete": true,
+  "parentBid": 0,
+  "clash": 1,
+  "isDuel": false,
+  "duelFatality": 0,
+  "duelNoble": null,
+  "duelTourney": 0,
+  "isSkirmish": false,
+  "skirmishKind": 0,
+  "isSiege": false,
+  "landing": false,
+  "isSeaBattle": false,
+  "relief": false,
+  "siegeFort": 0,
+  "siegeGarrison": 0,
+  "siegeDays": 0,
+  "siegeMen": 0,
+  "knightFactsLogged": true
+}

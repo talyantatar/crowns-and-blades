@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CK3xBL.Ux</RootNamespace>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>CS8618;CS8601;CS8602;CS8603;CS8604;CS8625</NoWarn>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup><ProjectReference Include="..\CK3xBL.Core\CK3xBL.Core.csproj" /></ItemGroup>
+  <ItemGroup>
+    <!-- The self tests exercise the overlay plumbing (hidden layered windows, animation clock) directly. -->
+    <InternalsVisibleTo Include="CK3xBL.SelfTest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Troubleshooting
+    url: https://github.com/graff0n/ck3-bannerlord-bridge/blob/main/docs/TROUBLESHOOTING.md
+    about: Logs, common problems and their fixes.
+  - name: Report a security problem
+    url: https://github.com/graff0n/ck3-bannerlord-bridge/security/advisories/new
+    about: Please report vulnerabilities privately, not as an issue.

@@ -1,0 +1,142 @@
+﻿# Battles at sea in Bannerlord (docs/PROTOCOL.md 44), seen by the player:
+#   0001 (hidden): the battle is logged and fought.
+#   0002 "Battle at Sea": open while the ships fight in Bannerlord; hosts the keypad widget.
+#   0004 (hidden): the delivered result is applied (losses, fates).
+#   0010 "Sails on the Horizon": the player's fleet comes upon an enemy one: attack it or sail on.
+#   0011 "Enemy Sails Bear Down": an enemy fleet comes for the player's: give battle or try to slip away.
+# root = the player. The chain carries scope:ck3xbl_sea_mine / ck3xbl_sea_theirs (and _att / _def from 0001 on).
+
+namespace = ck3xbl_sea
+
+ck3xbl_sea.0001 = {
+	type = character_event
+	hidden = yes
+	immediate = { ck3xbl_sea_begin_effect = yes }
+}
+
+ck3xbl_sea.0002 = {
+	type = character_event
+	title = ck3xbl_sea.0002.t
+	desc = ck3xbl_sea.0002.desc
+	theme = battle
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	right_portrait = {
+		character = scope:ck3xbl_enemy_leader
+		animation = war_attacker
+	}
+	widget = {
+		gui = "ck3xbl_keypad"
+		container = "custom_widgets_container"
+	}
+
+	option = {	# Always clickable (as battle event 0002): before word arrives it simply keeps waiting.
+		name = ck3xbl_sea.0002.a
+		hidden_effect = { trigger_event = ck3xbl_sea.0004 }
+	}
+	option = {	# The bridge or Bannerlord failed: the fleets part without a battle.
+		name = ck3xbl_sea.0002.b
+		trigger = {
+			NOT = { ck3xbl_result_applied_trigger = yes }
+		}
+		hidden_effect = { ck3xbl_abandon_battle_effect = yes }
+	}
+}
+
+ck3xbl_sea.0004 = {
+	type = character_event
+	hidden = yes
+	immediate = {
+		if = {
+			limit = { ck3xbl_result_ready_trigger = yes }
+			ck3xbl_sea_apply_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_alive = yes
+				NOT = { ck3xbl_result_applied_trigger = yes }
+			}
+			trigger_event = ck3xbl_sea.0002
+		}
+	}
+}
+
+ck3xbl_sea.0010 = {
+	type = character_event
+	title = ck3xbl_sea.0010.t
+	desc = ck3xbl_sea.0010.desc
+	theme = war
+	left_portrait = {
+		character = root
+		animation = scheme
+	}
+	right_portrait = {
+		character = scope:ck3xbl_enemy_leader
+		animation = idle
+	}
+	trigger = {
+		ck3xbl_skirmish_available_trigger = yes
+		scope:ck3xbl_sea_mine ?= { ck3xbl_sea_fleet_near_foe_trigger = { WHO = root } }
+	}
+	immediate = {
+		scope:ck3xbl_sea_theirs = {
+			army_owner = { save_scope_as = ck3xbl_enemy_leader }
+			army_commander ?= { save_scope_as = ck3xbl_enemy_leader }
+		}
+	}
+
+	option = {	# Attack: the enemy tries to slip away; caught, the battle is fought in Bannerlord.
+		name = ck3xbl_sea.0010.a
+		custom_tooltip = ck3xbl_sea_battle_decision_effect_tt
+		hidden_effect = { ck3xbl_sea_attack_effect = yes }
+	}
+	option = {	# Sail on.
+		name = ck3xbl_sea.0010.b
+		scope:ck3xbl_sea_mine = { set_variable = { name = ck3xbl_sea_tried value = yes days = 10 } }
+	}
+}
+
+ck3xbl_sea.0011 = {
+	type = character_event
+	title = ck3xbl_sea.0011.t
+	desc = ck3xbl_sea.0011.desc
+	theme = war
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:ck3xbl_enemy_leader
+		animation = war_attacker
+	}
+	trigger = {
+		ck3xbl_skirmish_available_trigger = yes
+		exists = scope:ck3xbl_sea_mine
+		exists = scope:ck3xbl_sea_theirs
+		scope:ck3xbl_sea_mine = { is_army_in_combat = no }
+		scope:ck3xbl_sea_theirs = { is_army_in_combat = no }
+	}
+	immediate = {
+		scope:ck3xbl_sea_theirs = {
+			army_owner = { save_scope_as = ck3xbl_enemy_leader }
+			army_commander ?= { save_scope_as = ck3xbl_enemy_leader }
+		}
+	}
+
+	option = {	# Give battle in Bannerlord.
+		name = ck3xbl_sea.0011.a
+		hidden_effect = {
+			scope:ck3xbl_sea_theirs = { save_scope_as = ck3xbl_sea_att }
+			scope:ck3xbl_sea_mine = { save_scope_as = ck3xbl_sea_def }
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+			trigger_event = ck3xbl_sea.0001
+		}
+	}
+	option = {	# Try to slip away: the commanders' martial decides; caught, the battle is fought all the same.
+		name = ck3xbl_sea.0011.b
+		custom_tooltip = ck3xbl_sea.0011.b.tt
+		hidden_effect = { ck3xbl_sea_flee_effect = yes }
+	}
+}

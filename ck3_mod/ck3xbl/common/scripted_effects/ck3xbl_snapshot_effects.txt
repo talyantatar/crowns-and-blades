@@ -1,0 +1,634 @@
+﻿# Battle snapshot (docs/PROTOCOL.md 1.2): tagging, values, and the record wrappers around the generated chains.
+# Saved scopes persist for the rest of an effect, so optional scopes always come with a 0/1 sentinel value.
+
+# Increments the global counter $NAME$ (creating it at 1).
+ck3xbl_bump_global_counter_effect = {
+	if = {
+		limit = { has_global_variable = $NAME$ }
+		change_global_variable = { name = $NAME$ add = 1 }
+	}
+	else = {
+		set_global_variable = { name = $NAME$ value = 1 }
+	}
+}
+
+# this = a combat the player takes part in (ck3xbl_combat_wanted_trigger) without a snapshot, or a steered combat whose
+# loser side was reinforced (a second clash, PROTOCOL 14.6). Emits the snapshot, then pauses the game in this very tick
+# (toast with the auto-pause filter ck3xbl_battle, docs/PROTOCOL.md 1.4) and opens the call to arms.
+ck3xbl_begin_battle_effect = {
+	ck3xbl_snapshot_effect = yes
+	if = {
+		limit = { exists = scope:ck3xbl_player }
+		scope:ck3xbl_player = {
+			if = {
+				limit = { scope:ck3xbl_clash >= 2 }
+				send_interface_toast = {
+					type = msg_ck3xbl_reinforcements
+					title = msg_ck3xbl_reinforcements_title
+					desc = msg_ck3xbl_reinforcements_desc
+					left_icon = scope:ck3xbl_player
+					right_icon = scope:ck3xbl_joiner_leader
+				}
+			}
+			else = {
+				send_interface_toast = {
+					type = msg_ck3xbl_battle_begins
+					title = msg_ck3xbl_battle_begins_title
+					desc = msg_ck3xbl_battle_begins_desc
+					left_icon = scope:ck3xbl_player
+					right_icon = scope:ck3xbl_enemy_leader
+				}
+			}
+			trigger_event = ck3xbl_battle.0001
+		}
+	}
+}
+
+# this = combat. B|BEGIN, L lines + LV, both sides (S, A, AX, R, RX, C, CX), B|END.
+# B|BEGIN also carries the battle clock keys (PROTOCOL 14.5): ck3xbl_parent_bid = the steering bid this snapshot continues
+# (0 = none) and ck3xbl_clash (1 for the combat's first snapshot, which also starts its day markers).
+ck3xbl_snapshot_effect = {
+	ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_bid value = global_var:ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_parent_bid value = 0 }
+	if = {
+		limit = { has_variable = ck3xbl_st_bid }
+		save_scope_value_as = { name = ck3xbl_parent_bid value = var:ck3xbl_st_bid }
+	}
+	if = {
+		limit = { has_variable = ck3xbl_clash }
+		save_scope_value_as = { name = ck3xbl_clash value = { value = var:ck3xbl_clash add = 1 } }
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_clash value = 1 }
+		ck3xbl_set_day_markers_effect = yes
+	}
+	set_variable = { name = ck3xbl_clash value = scope:ck3xbl_clash }
+	set_variable = { name = ck3xbl_bid value = scope:ck3xbl_bid }
+	combat_attacker = { set_variable = { name = ck3xbl_bid value = scope:ck3xbl_bid } }
+	combat_defender = { set_variable = { name = ck3xbl_bid value = scope:ck3xbl_bid } }
+	save_scope_as = ck3xbl_combat
+	save_scope_value_as = { name = ck3xbl_year value = current_year }
+	save_scope_value_as = { name = ck3xbl_month value = current_month }
+	save_scope_value_as = { name = ck3xbl_day value = current_day }
+	location = {
+		save_scope_as = ck3xbl_prov
+		county ?= { save_scope_as = ck3xbl_county }
+		barony ?= { save_scope_as = ck3xbl_barony }
+	}
+	combat_war ?= { save_scope_as = ck3xbl_war }
+	random_player = { save_scope_as = ck3xbl_player }
+	ck3xbl_save_battle_sides_effect = yes
+	ck3xbl_save_relief_effect = yes
+	info_log = "CK3XBL|B|BEGIN"
+	info_log_scopes = yes
+	location = { ck3xbl_emit_location_effect = yes }
+	ck3xbl_emit_side_att_effect = yes
+	ck3xbl_emit_side_def_effect = yes
+	info_log = "CK3XBL|B|END"
+	info_log_scopes = yes
+}
+
+# this = combat. A relief (docs/PROTOCOL.md 40): the first clash of a battle fought where a foreign army besieges a holding of the
+# player or of one of his vassals. ck3xbl_relief = 1 then, with the siege facts (ck3xbl_sg_fort, _garrison, _days, _men) the
+# bridge needs to fight it at the walls.
+ck3xbl_save_relief_effect = {
+	save_scope_value_as = { name = ck3xbl_relief value = 0 }
+	if = {
+		limit = {
+			exists = scope:ck3xbl_player
+			scope:ck3xbl_clash = 1
+			scope:ck3xbl_prov = {
+				province_owner ?= {
+					OR = {
+						this = scope:ck3xbl_player
+						target_is_liege_or_above = scope:ck3xbl_player
+					}
+				}
+				any_army_in_location = {
+					is_army_in_siege = yes
+					army_owner = {
+						NOT = { this = scope:ck3xbl_player }
+						NOT = { target_is_liege_or_above = scope:ck3xbl_player }
+					}
+				}
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_relief value = 1 }
+		scope:ck3xbl_prov = {
+			save_scope_value_as = { name = ck3xbl_sg_fort value = ck3xbl_fort_level_value }
+			save_scope_value_as = { name = ck3xbl_sg_garrison value = ck3xbl_garrison_value }
+			save_scope_value_as = { name = ck3xbl_sg_days value = 0 }
+			save_scope_value_as = { name = ck3xbl_sg_men value = 0 }
+			ordered_army_in_location = {
+				limit = { is_army_in_siege = yes }
+				order_by = army_size
+				save_scope_value_as = { name = ck3xbl_sg_men value = army_size }
+				if = {
+					limit = { has_variable = ck3xbl_enter_day }
+					save_scope_value_as = { name = ck3xbl_sg_days value = { value = ck3xbl_day_number_value subtract = var:ck3xbl_enter_day min = 0 } }
+				}
+			}
+		}
+	}
+}
+
+# this = combat. Saves both sides, the player's side and the enemy leader shown in the events.
+ck3xbl_save_battle_sides_effect = {
+	combat_attacker = {
+		save_scope_as = ck3xbl_att_side
+		side_primary_participant ?= { save_scope_as = ck3xbl_att_primary }
+	}
+	combat_defender = {
+		save_scope_as = ck3xbl_def_side
+		side_primary_participant ?= { save_scope_as = ck3xbl_def_primary }
+	}
+	# The player's side (1 attacker, 2 defender): where the player physically is, else where the player is a
+	# participant, commander or knight, else the side whose leader is on the player's side of the combat's war, else
+	# opposite the side that is at war with the player (the player's war, or rebels), else where the player's loyal realm fights (a participant, commander or knight of it, then an army it owns),
+	# else the defender.
+	save_scope_value_as = { name = ck3xbl_player_present value = 0 }
+	save_scope_value_as = { name = ck3xbl_my_side_code value = 0 }
+	if = {
+		limit = { exists = scope:ck3xbl_player }
+		scope:ck3xbl_player = {
+			commanding_army ?= { ck3xbl_save_player_army_side_effect = yes }
+			if = {
+				limit = { scope:ck3xbl_player_present = 0 }
+				knight_army ?= { ck3xbl_save_player_army_side_effect = yes }
+			}
+		}
+	}
+	if = {
+		limit = { scope:ck3xbl_my_side_code = 0 }
+		if = {
+			limit = { combat_attacker = { ck3xbl_side_has_player_trigger = yes } }
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+		}
+		else_if = {
+			limit = { combat_defender = { ck3xbl_side_has_player_trigger = yes } }
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+		}
+		else_if = {
+			limit = {
+				exists = scope:ck3xbl_player
+				exists = scope:ck3xbl_war
+				combat_attacker = { ck3xbl_side_with_player_in_war_trigger = yes }
+			}
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+		}
+		else_if = {
+			limit = {
+				exists = scope:ck3xbl_player
+				exists = scope:ck3xbl_war
+				combat_defender = { ck3xbl_side_with_player_in_war_trigger = yes }
+			}
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+		}
+		else_if = {
+			limit = {
+				exists = scope:ck3xbl_player
+				combat_attacker = { ck3xbl_side_against_player_trigger = yes }
+			}
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+		}
+		else_if = {
+			limit = {
+				exists = scope:ck3xbl_player
+				combat_defender = { ck3xbl_side_against_player_trigger = yes }
+			}
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+		}
+		else_if = {
+			limit = { combat_attacker = { ck3xbl_side_involves_player_trigger = yes } }
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+		}
+		else_if = {
+			limit = { combat_defender = { ck3xbl_side_involves_player_trigger = yes } }
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+		}
+		else_if = {
+			limit = { ck3xbl_realm_army_on_side_trigger = { ATT = yes } }
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+		}
+		else = {
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+		}
+	}
+	if = {
+		limit = { scope:ck3xbl_my_side_code = 1 }
+		combat_attacker = { save_scope_as = ck3xbl_my_side }
+		combat_defender = { save_scope_as = ck3xbl_enemy_side }
+	}
+	else = {
+		combat_defender = { save_scope_as = ck3xbl_my_side }
+		combat_attacker = { save_scope_as = ck3xbl_enemy_side }
+	}
+	scope:ck3xbl_my_side = { save_scope_value_as = { name = ck3xbl_my_men value = side_army_size } }
+	scope:ck3xbl_enemy_side = { save_scope_value_as = { name = ck3xbl_enemy_men value = side_army_size } }
+	# Enemy leader: the commander of the largest enemy army, else the enemy war leader, else that army's owner.
+	location = {
+		ordered_army_in_location = {
+			limit = {
+				is_army_in_combat = yes
+				involved_combat_side = { NOT = { this = scope:ck3xbl_my_side } }
+			}
+			order_by = army_size
+			army_commander ?= { save_scope_as = ck3xbl_enemy_leader }
+			army_owner = { save_scope_as = ck3xbl_enemy_army_owner }
+		}
+	}
+	if = {
+		limit = { NOT = { exists = scope:ck3xbl_enemy_leader } }
+		scope:ck3xbl_enemy_side = {
+			side_primary_participant ?= { save_scope_as = ck3xbl_enemy_leader }
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = scope:ck3xbl_enemy_leader }
+			exists = scope:ck3xbl_enemy_army_owner
+		}
+		scope:ck3xbl_enemy_army_owner = { save_scope_as = ck3xbl_enemy_leader }
+	}
+}
+
+# this = an army of the player. If it fights at the battle site, the player is present on its side.
+ck3xbl_save_player_army_side_effect = {
+	if = {
+		limit = {
+			is_army_in_combat = yes
+			location = scope:ck3xbl_prov
+		}
+		save_scope_value_as = { name = ck3xbl_player_present value = 1 }
+		if = {
+			limit = { involved_combat_side = { is_combat_side_attacker = yes } }
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+		}
+		else = {
+			save_scope_value_as = { name = ck3xbl_my_side_code value = 2 }
+		}
+	}
+}
+
+# this = the battle province. Where did the attacker come from? Prefers the largest attacking army; takes its
+# current location variable when it differs from the battle site, else the previous one (the relative order of
+# on_army_enter_province and on_combat_start does not matter).
+ck3xbl_save_attacker_origin_effect = {
+	save_scope_value_as = { name = ck3xbl_l_has_origin value = 0 }
+	ordered_army_in_location = {
+		limit = {
+			ck3xbl_army_in_combat_side_trigger = { ATT = yes }
+			has_variable = ck3xbl_cur_loc
+			NOT = { var:ck3xbl_cur_loc = scope:ck3xbl_prov }
+		}
+		order_by = army_size
+		var:ck3xbl_cur_loc = { save_scope_as = ck3xbl_l_origin }
+		save_scope_value_as = { name = ck3xbl_l_has_origin value = 1 }
+	}
+	if = {
+		limit = { scope:ck3xbl_l_has_origin = 0 }
+		ordered_army_in_location = {
+			limit = {
+				ck3xbl_army_in_combat_side_trigger = { ATT = yes }
+				has_variable = ck3xbl_prev_loc
+				NOT = { var:ck3xbl_prev_loc = scope:ck3xbl_prov }
+			}
+			order_by = army_size
+			var:ck3xbl_prev_loc = { save_scope_as = ck3xbl_l_origin }
+			save_scope_value_as = { name = ck3xbl_l_has_origin value = 1 }
+		}
+	}
+	# A landing (docs/PROTOCOL.md 44): the attackers came straight off the sea.
+	save_scope_value_as = { name = ck3xbl_l_landing value = 0 }
+	if = {
+		limit = {
+			scope:ck3xbl_l_has_origin = 1
+			scope:ck3xbl_l_origin = { is_sea_province = yes }
+		}
+		save_scope_value_as = { name = ck3xbl_l_landing value = 1 }
+	}
+}
+
+# this = an army in the combat; needs scope:ck3xbl_bid and scope:ck3xbl_side_code. Every tagging draws a new
+# ck3xbl_aid from the global counter ck3xbl_aseq. An army still tagged for the battle being fought in Bannerlord keeps
+# that tag (the pending result must find it) and is logged with it. A steered army (in a second-clash snapshot of its
+# combat, PROTOCOL 14.6) keeps its tag and side and takes the new bid, so that clash's result finds it and the bridge caps it.
+ck3xbl_tag_army_effect = {
+	if = {
+		limit = { NOT = { ck3xbl_army_of_pending_battle_trigger = yes } }
+		if = {
+			limit = { has_variable = ck3xbl_st_bid }
+			set_variable = { name = ck3xbl_bid value = scope:ck3xbl_bid }
+		}
+		else = {
+			ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_aseq }
+			set_variable = { name = ck3xbl_aid value = global_var:ck3xbl_aseq }
+			set_variable = { name = ck3xbl_bid value = scope:ck3xbl_bid }
+			set_variable = { name = ck3xbl_aside value = scope:ck3xbl_side_code }
+		}
+	}
+	if = {
+		limit = { NOT = { is_target_in_global_variable_list = { name = ck3xbl_armies target = this } } }
+		add_to_global_variable_list = { name = ck3xbl_armies target = this }
+	}
+}
+
+# this = a tagged army. Values of the A and J records.
+ck3xbl_save_army_values_effect = {
+	save_scope_value_as = { name = ck3xbl_a_tag value = var:ck3xbl_aid }
+	save_scope_value_as = { name = ck3xbl_a_size value = army_size }
+	# army_size counts levies and men-at-arms; levies = army_size - sum of the MaA regiments' current men
+	save_scope_value_as = {
+		name = ck3xbl_a_levies
+		value = {
+			value = army_size
+			every_army_maa_regiment = { subtract = maa_current_troops_count }
+			min = 0
+		}
+	}
+	army_owner = { save_scope_as = ck3xbl_a_owner }
+	# Development of the owner's capital county (-1 = none): how well his levies are armed (PROTOCOL 19).
+	save_scope_value_as = { name = ck3xbl_a_dev value = -1 }
+	army_owner = {
+		capital_county ?= { save_scope_value_as = { name = ck3xbl_a_dev value = development_level } }
+	}
+	save_scope_value_as = { name = ck3xbl_a_has_cmd value = 0 }
+	army_commander ?= {
+		save_scope_as = ck3xbl_a_cmd
+		save_scope_value_as = { name = ck3xbl_a_has_cmd value = 1 }
+	}
+}
+
+# this = a tagged army. One R record per men-at-arms regiment; hired regiments add the RX lines of their owner.
+ck3xbl_emit_regiments_effect = {
+	every_army_maa_regiment = {
+		save_scope_value_as = { name = ck3xbl_r_cur value = maa_current_troops_count }
+		save_scope_value_as = { name = ck3xbl_r_max value = maa_max_troops_count }
+		if = {
+			limit = { is_hired_maa_regiment = yes }
+			save_scope_value_as = { name = ck3xbl_r_hired value = 1 }
+		}
+		else = {
+			save_scope_value_as = { name = ck3xbl_r_hired value = 0 }
+		}
+		info_log = "CK3XBL|R"
+		info_log_scopes = yes
+		if = {
+			limit = { is_hired_maa_regiment = yes }
+			regiment_owner ?= { ck3xbl_emit_rx_effect = yes }
+		}
+	}
+}
+
+# this = army owner. AX lines after the army's A/J record (and its army-scope AX lines).
+ck3xbl_emit_ax_effect = {
+	culture ?= { ck3xbl_emit_ax_culture_effect = yes }
+	if = {
+		limit = { government_has_flag = government_is_nomadic }
+		info_log = "CK3XBL|AX|nomadic|yes"
+	}
+	else = {
+		info_log = "CK3XBL|AX|nomadic|no"
+	}
+	ck3xbl_emit_ax_owner_combat_effect = yes
+}
+
+# this = owner of a hired regiment.
+ck3xbl_emit_rx_effect = {
+	culture ?= { ck3xbl_emit_rx_culture_effect = yes }
+}
+
+# this = a character right after its C record: look, then the knights facts (combat traits, accolade, artifacts).
+ck3xbl_emit_cx_effect = {
+	culture ?= { ck3xbl_emit_cx_culture_effect = yes }
+	ck3xbl_emit_cx_ethnicity_effect = yes
+	ck3xbl_emit_cx_traits_effect = yes
+	ck3xbl_emit_cx_combat_effect = yes
+	ck3xbl_emit_accolade_effect = yes
+	ck3xbl_emit_cx_artifacts_effect = yes
+	ck3xbl_emit_cx_gear_effect = yes
+}
+
+# this = character; needs scope:ck3xbl_bid and scope:ck3xbl_side_code. Tags the character (stable ck3xbl_tag),
+# marks it as listed in this battle (ck3xbl_cbid, the snapshot's de-duplication marker; ck3xbl_cside) and saves the
+# values of the C record. A commander joining the battle being fought in Bannerlord is pinned to it right away
+# (ck3xbl_pin_battle_characters_effect).
+ck3xbl_save_char_values_effect = {
+	if = {
+		limit = { NOT = { has_variable = ck3xbl_tag } }
+		ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_cseq }
+		set_variable = { name = ck3xbl_tag value = global_var:ck3xbl_cseq }
+	}
+	if = {
+		limit = { NOT = { is_target_in_global_variable_list = { name = ck3xbl_chars target = this } } }
+		add_to_global_variable_list = { name = ck3xbl_chars target = this }
+	}
+	set_variable = { name = ck3xbl_cbid value = scope:ck3xbl_bid }
+	set_variable = { name = ck3xbl_cside value = scope:ck3xbl_side_code }
+	if = {
+		limit = { ck3xbl_bid_is_pending_trigger = yes }
+		set_variable = { name = ck3xbl_fside value = scope:ck3xbl_side_code }
+	}
+	save_scope_value_as = { name = ck3xbl_c_tag value = var:ck3xbl_tag }
+	save_scope_value_as = { name = ck3xbl_c_age value = age }
+	if = {
+		limit = { is_female = yes }
+		save_scope_value_as = { name = ck3xbl_c_female value = 1 }
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_c_female value = 0 }
+	}
+	save_scope_value_as = { name = ck3xbl_c_prowess value = prowess }
+	save_scope_value_as = { name = ck3xbl_c_martial value = martial }
+	save_scope_value_as = { name = ck3xbl_c_health value = health }
+	save_scope_value_as = { name = ck3xbl_c_weight value = current_weight }
+	save_scope_value_as = { name = ck3xbl_c_tier value = highest_held_title_tier }
+	if = {
+		limit = {
+			exists = scope:ck3xbl_player
+			this = scope:ck3xbl_player
+		}
+		save_scope_value_as = { name = ck3xbl_c_is_player value = 1 }
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_c_is_player value = 0 }
+	}
+	# The tagged army of this battle the character commands or rides with, else 0.
+	save_scope_value_as = { name = ck3xbl_c_army value = 0 }
+	commanding_army ?= {
+		if = {
+			limit = { ck3xbl_army_of_battle_trigger = yes }
+			save_scope_value_as = { name = ck3xbl_c_army value = var:ck3xbl_aid }
+		}
+	}
+	knight_army ?= {
+		if = {
+			limit = { ck3xbl_army_of_battle_trigger = yes }
+			save_scope_value_as = { name = ck3xbl_c_army value = var:ck3xbl_aid }
+		}
+	}
+	# 1 when the character is not physically in this battle (PROTOCOL 15): no tagged army of it is commanded or ridden with,
+	# and for the player also no army of his fights at the battle site (ck3xbl_player_present: an army still tagged for the
+	# battle being fought in Bannerlord keeps that tag). A war leader at home (C|PRIMARY) or the player emitted as C|PLAYER.
+	save_scope_value_as = { name = ck3xbl_c_absent value = 1 }
+	if = {
+		limit = {
+			OR = {
+				scope:ck3xbl_c_army > 0
+				AND = {
+					scope:ck3xbl_c_is_player = 1
+					exists = scope:ck3xbl_player_present
+					scope:ck3xbl_player_present = 1
+				}
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_c_absent value = 0 }
+	}
+	save_scope_value_as = { name = ck3xbl_c_has_title value = 0 }
+	primary_title ?= {
+		save_scope_as = ck3xbl_c_title
+		save_scope_value_as = { name = ck3xbl_c_has_title value = 1 }
+	}
+	save_scope_value_as = { name = ck3xbl_c_has_house value = 0 }
+	house ?= {
+		save_scope_as = ck3xbl_c_house
+		save_scope_value_as = { name = ck3xbl_c_has_house value = 1 }
+	}
+}
+
+# this = the combat side that scope:army joined; its combat already has a snapshot. J record (+AX, R, RX) and
+# the C record of the joining army's commander. The J dump carries the owner's knight effectiveness like an A dump.
+ck3xbl_log_join_effect = {
+	combat = { save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_bid } }
+	random_player = { save_scope_as = ck3xbl_player }
+	if = {
+		limit = { is_combat_side_attacker = yes }
+		save_scope_value_as = { name = ck3xbl_side_code value = 1 }
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_side_code value = 2 }
+	}
+	scope:army = {
+		ck3xbl_tag_army_effect = yes
+		ck3xbl_save_army_values_effect = yes
+		army_owner = { ck3xbl_save_knight_eff_effect = yes }
+		if = {
+			limit = { scope:ck3xbl_side_code = 1 }
+			info_log = "CK3XBL|J|att"
+		}
+		else = {
+			info_log = "CK3XBL|J|def"
+		}
+		info_log_scopes = yes
+		clear_saved_scope = ck3xbl_a_ke
+		ck3xbl_emit_ax_army_effect = yes
+		army_owner = { ck3xbl_emit_ax_effect = yes }
+		ck3xbl_emit_regiments_effect = yes
+		army_commander ?= {
+			if = {
+				limit = { NOT = { ck3xbl_char_emitted_trigger = yes } }
+				ck3xbl_save_char_values_effect = yes
+				if = {
+					limit = { scope:ck3xbl_side_code = 1 }
+					info_log = "CK3XBL|C|CMD|att"
+				}
+				else = {
+					info_log = "CK3XBL|C|CMD|def"
+				}
+				info_log_scopes = yes
+				ck3xbl_emit_cx_effect = yes
+			}
+		}
+	}
+}
+
+# this = a combat side at the end of a tagged combat. Values of the END records; ck3xbl_end_st_bid = the steering bid of a
+# steered combat (0 = not steered), which may differ from the bid of its latest snapshot (PROTOCOL 14.5).
+ck3xbl_save_combat_end_values_effect = {
+	combat = {
+		save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_bid }
+		save_scope_value_as = { name = ck3xbl_end_st_bid value = 0 }
+		if = {
+			limit = { has_variable = ck3xbl_st_bid }
+			save_scope_value_as = { name = ck3xbl_end_st_bid value = var:ck3xbl_st_bid }
+		}
+	}
+	if = {
+		limit = {
+			exists = scope:wipe
+			scope:wipe = yes
+		}
+		save_scope_value_as = { name = ck3xbl_end_wipe value = 1 }
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_end_wipe value = 0 }
+	}
+	save_scope_value_as = { name = ck3xbl_end_has_primary value = 0 }
+	side_primary_participant ?= {
+		save_scope_as = ck3xbl_end_primary
+		save_scope_value_as = { name = ck3xbl_end_has_primary value = 1 }
+	}
+}
+
+# scope:ck3xbl_bid = a battle CK3 has just finished. Unless it is being fought in Bannerlord (a late result still
+# needs its tags), its armies and characters are released.
+ck3xbl_release_unfought_battle_effect = {
+	if = {
+		limit = { NOT = { ck3xbl_bid_is_pending_trigger = yes } }
+		ck3xbl_cleanup_battle_effect = yes
+	}
+}
+
+# scope:ck3xbl_bid = the battle to forget: its armies leave ck3xbl_armies and lose their tags, then the characters
+# nobody needs any more leave ck3xbl_chars. Armies the battle clock steers stay: its fix releases them (ck3xbl_st_fix_effect).
+ck3xbl_cleanup_battle_effect = {
+	every_in_global_list = {
+		variable = ck3xbl_armies
+		limit = {
+			ck3xbl_army_of_battle_trigger = yes
+			NOT = { has_variable = ck3xbl_st_bid }
+		}
+		save_temporary_scope_as = ck3xbl_release_army
+		remove_list_global_variable = { name = ck3xbl_armies target = scope:ck3xbl_release_army }
+		clear_saved_scope = ck3xbl_release_army
+		remove_variable = ck3xbl_aid
+		remove_variable = ck3xbl_bid
+		remove_variable = ck3xbl_aside
+	}
+	ck3xbl_purge_characters_effect = yes
+}
+
+# A character leaves ck3xbl_chars when it is not pinned to the battle being fought in Bannerlord (ck3xbl_fside) and
+# the battle that listed it last (ck3xbl_cbid) has no tagged army left, i.e. is over. A character listed by several
+# concurrent battles thus stays findable until the last of them is over. ck3xbl_tag is kept: it is stable for the
+# whole campaign.
+ck3xbl_purge_characters_effect = {
+	every_in_global_list = {
+		variable = ck3xbl_chars
+		limit = { NOT = { has_variable = ck3xbl_fside } }
+		save_temporary_scope_as = ck3xbl_release_char
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_variable = ck3xbl_cbid }
+					NOT = {
+						any_in_global_list = {
+							variable = ck3xbl_armies
+							has_variable = ck3xbl_bid
+							var:ck3xbl_bid = scope:ck3xbl_release_char.var:ck3xbl_cbid
+						}
+					}
+				}
+			}
+			remove_list_global_variable = { name = ck3xbl_chars target = scope:ck3xbl_release_char }
+			# A character who died meanwhile is gone from the game: nothing of him to clean (error.log 2026-10-18).
+			if = {
+				limit = { is_alive = yes }
+				remove_variable = ck3xbl_cbid
+				remove_variable = ck3xbl_cside
+			}
+		}
+		clear_saved_scope = ck3xbl_release_char
+	}
+}

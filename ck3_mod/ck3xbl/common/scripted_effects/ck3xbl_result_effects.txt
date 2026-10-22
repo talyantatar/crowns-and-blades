@@ -1,0 +1,513 @@
+﻿# Player choices and the hand-written parts of applying a Bannerlord result (docs/PROTOCOL.md 1.3, 2.1).
+# The generated driver is ck3xbl_apply_effect (ck3xbl_gen_apply_effects.txt). root = the player throughout.
+
+# Event ck3xbl_battle.0001, options a/c (only while ck3xbl_field_available_trigger holds): the battle of the event
+# chain is fought in Bannerlord. A stale pending battle is given up first. The battle site, both war leaders, the
+# player and the time of the choice are stored globally, so the result can be applied even after CK3 ended the combat
+# itself, from a dev-mode run file that has no event chain, and so a pending battle nobody can finish is recognised.
+ck3xbl_take_field_effect = {
+	if = {
+		limit = {
+			has_global_variable = ck3xbl_pending_bid
+			global_var:ck3xbl_pending_bid > 0
+			NOT = { global_var:ck3xbl_pending_bid = scope:ck3xbl_bid }
+		}
+		ck3xbl_drop_stale_pending_effect = yes
+	}
+	set_global_variable = { name = ck3xbl_pending_bid value = scope:ck3xbl_bid }
+	set_global_variable = { name = ck3xbl_pending_my_side value = scope:ck3xbl_my_side_code }
+	set_global_variable = { name = ck3xbl_pending_prov value = scope:ck3xbl_prov }
+	set_global_variable = { name = ck3xbl_pending_player value = root }
+	set_global_variable = { name = ck3xbl_pending_fresh value = yes days = 7 }
+	remove_global_variable = ck3xbl_pending_att_primary
+	remove_global_variable = ck3xbl_pending_def_primary
+	scope:ck3xbl_att_primary ?= { set_global_variable = { name = ck3xbl_pending_att_primary value = this } }
+	scope:ck3xbl_def_primary ?= { set_global_variable = { name = ck3xbl_pending_def_primary value = this } }
+	ck3xbl_pin_battle_characters_effect = yes
+	ck3xbl_keypad_reset_effect = yes
+	set_variable = { name = ck3xbl_ready value = 0 }
+}
+ck3xbl_choose_field_effect = {
+	ck3xbl_take_field_effect = yes
+	info_log = "CK3XBL|CHOICE|FIELD"
+	info_log_scopes = yes
+}
+
+# Event ck3xbl_battle.0001, options d/e of a relief (docs/PROTOCOL.md 40): the battle is fought at the walls in Bannerlord,
+# behind them after breaking into the holding (DEFEND) or against the besiegers' camp (CAMP).
+ck3xbl_choose_field_defend_effect = {
+	ck3xbl_take_field_effect = yes
+	set_variable = { name = ck3xbl_wall_defence_bid value = scope:ck3xbl_bid }
+	info_log = "CK3XBL|CHOICE|FIELD_DEFEND"
+	info_log_scopes = yes
+}
+
+ck3xbl_choose_field_camp_effect = {
+	ck3xbl_take_field_effect = yes
+	info_log = "CK3XBL|CHOICE|FIELD_CAMP"
+	info_log_scopes = yes
+}
+
+# The pending battle in global_var:ck3xbl_pending_bid is stale (ck3xbl_pending_stale_trigger) and another one takes
+# its place: it is abandoned (CHOICE|ABANDON with its bid, CK3 resolves it natively) and forgotten; a stale second-clash
+# offer hands its parent back to CK3 (battle clock, PROTOCOL 14.6). The parent resumes before the cleanup, so the reinforcement
+# that opened the offer is still tagged and becomes a steered joiner, which the cleanup keeps. scope:ck3xbl_bid is restored
+# afterwards, so the caller's event chain is unchanged.
+ck3xbl_drop_stale_pending_effect = {
+	save_scope_value_as = { name = ck3xbl_chosen_bid value = scope:ck3xbl_bid }
+	save_scope_value_as = { name = ck3xbl_bid value = global_var:ck3xbl_pending_bid }
+	info_log = "CK3XBL|CHOICE|ABANDON"
+	info_log_scopes = yes
+	ck3xbl_release_pending_effect = yes
+	ck3xbl_st_stale_offer_effect = yes
+	ck3xbl_cleanup_battle_effect = yes
+	save_scope_value_as = { name = ck3xbl_bid value = scope:ck3xbl_chosen_bid }
+}
+
+# CHOICE|FIELD: pins the characters of the battle in scope:ck3xbl_bid. A pinned character carries its side in this
+# battle (ck3xbl_fside) and stays in ck3xbl_chars until the result is applied or the battle abandoned, whatever later
+# snapshots do to ck3xbl_cbid / ck3xbl_cside. Everyone this snapshot listed last is pinned from the list; the people
+# fighting in the combat, both war leaders and the player are pinned explicitly, because a concurrent snapshot in the
+# same tick may already have listed them for another battle.
+ck3xbl_pin_battle_characters_effect = {
+	every_in_global_list = {
+		variable = ck3xbl_chars
+		limit = { ck3xbl_char_emitted_trigger = yes }
+		set_variable = { name = ck3xbl_fside value = var:ck3xbl_cside }
+	}
+	if = {
+		limit = {
+			exists = scope:ck3xbl_combat
+			ck3xbl_battle_live_trigger = { BID = scope:ck3xbl_bid }
+		}
+		scope:ck3xbl_combat = {
+			combat_attacker = {
+				every_side_commander = { ck3xbl_pin_character_effect = { SIDE = 1 } }
+				every_side_knight = { ck3xbl_pin_character_effect = { SIDE = 1 } }
+			}
+			combat_defender = {
+				every_side_commander = { ck3xbl_pin_character_effect = { SIDE = 2 } }
+				every_side_knight = { ck3xbl_pin_character_effect = { SIDE = 2 } }
+			}
+		}
+	}
+	scope:ck3xbl_att_primary ?= { ck3xbl_pin_character_effect = { SIDE = 1 } }
+	scope:ck3xbl_def_primary ?= { ck3xbl_pin_character_effect = { SIDE = 2 } }
+	ck3xbl_pin_character_effect = { SIDE = scope:ck3xbl_my_side_code }
+}
+
+# this = a character; $SIDE$ = 1 attacker, 2 defender. Only characters a snapshot has tagged can receive a fate.
+ck3xbl_pin_character_effect = {
+	if = {
+		limit = { has_variable = ck3xbl_tag }
+		set_variable = { name = ck3xbl_fside value = $SIDE$ }
+		if = {
+			limit = { NOT = { is_target_in_global_variable_list = { name = ck3xbl_chars target = this } } }
+			add_to_global_variable_list = { name = ck3xbl_chars target = this }
+		}
+	}
+}
+
+# The pending battle is over for the mod (applied, abandoned or dropped): its characters are unpinned and the pending
+# globals cleared. The caller cleans up the battle's tags.
+ck3xbl_release_pending_effect = {
+	every_in_global_list = {
+		variable = ck3xbl_chars
+		limit = { has_variable = ck3xbl_fside }
+		remove_variable = ck3xbl_fside
+	}
+	set_global_variable = { name = ck3xbl_pending_bid value = 0 }
+	remove_global_variable = ck3xbl_pending_my_side
+	remove_global_variable = ck3xbl_pending_prov
+	remove_global_variable = ck3xbl_pending_att_primary
+	remove_global_variable = ck3xbl_pending_def_primary
+	remove_global_variable = ck3xbl_pending_player
+	remove_global_variable = ck3xbl_pending_fresh
+}
+
+# Event ck3xbl_battle.0001, option b: CK3 resolves the battle; its tags are released when the combat ends.
+ck3xbl_choose_auto_effect = {
+	info_log = "CK3XBL|CHOICE|AUTO"
+	info_log_scopes = yes
+}
+
+# Event ck3xbl_battle.0002, option b: stop waiting for Bannerlord; CK3 resolves the battle natively. The registers and
+# the ready state belong to the pending battle, so they are only cleared when this is it (an old window of a battle
+# that was dropped must not withdraw the payload of the current one).
+ck3xbl_abandon_battle_effect = {
+	info_log = "CK3XBL|CHOICE|ABANDON"
+	info_log_scopes = yes
+	if = {
+		limit = { ck3xbl_bid_is_pending_trigger = yes }
+		ck3xbl_release_pending_effect = yes
+		ck3xbl_keypad_clear_effect = yes
+		set_variable = { name = ck3xbl_ready value = 0 }
+	}
+	# If CK3 already ended the combat, on_combat_end kept the tags for a late result: release them now.
+	if = {
+		limit = { NOT = { ck3xbl_battle_live_trigger = { BID = scope:ck3xbl_bid } } }
+		ck3xbl_cleanup_battle_effect = yes
+	}
+}
+
+# Needs scope:ck3xbl_bid and scope:ck3xbl_res_outcome. Finds the live combat (if CK3 has not finished it) and
+# saves the battle site, the war leaders, the winner and the captor.
+ck3xbl_res_prepare_effect = {
+	every_in_global_list = {
+		variable = ck3xbl_armies
+		limit = {
+			ck3xbl_army_of_battle_trigger = yes
+			is_army_in_combat = yes
+		}
+		involved_combat_side = {
+			combat = {
+				if = {
+					limit = {
+						has_variable = ck3xbl_bid
+						var:ck3xbl_bid = scope:ck3xbl_bid
+					}
+					save_scope_as = ck3xbl_res_combat
+				}
+			}
+		}
+	}
+	save_scope_value_as = { name = ck3xbl_res_has_prov value = 0 }
+	if = {
+		limit = { has_global_variable = ck3xbl_pending_prov }
+		global_var:ck3xbl_pending_prov = { save_scope_as = ck3xbl_res_prov }
+		save_scope_value_as = { name = ck3xbl_res_has_prov value = 1 }
+	}
+	save_scope_value_as = { name = ck3xbl_res_has_primaries value = 0 }
+	if = {
+		limit = {
+			has_global_variable = ck3xbl_pending_att_primary
+			has_global_variable = ck3xbl_pending_def_primary
+		}
+		global_var:ck3xbl_pending_att_primary = { save_scope_as = ck3xbl_res_att_primary }
+		global_var:ck3xbl_pending_def_primary = { save_scope_as = ck3xbl_res_def_primary }
+		save_scope_value_as = { name = ck3xbl_res_has_primaries value = 1 }
+	}
+	if = {
+		limit = { has_global_variable = ck3xbl_pending_my_side }
+		save_scope_value_as = { name = ck3xbl_res_my_side value = global_var:ck3xbl_pending_my_side }
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_res_my_side value = 1 }
+	}
+	# Winner code (1 attacker, 2 defender, 0 none), the captor, and the side assumed for a character whose side
+	# in this battle is unknown (the loser, or the player's enemy when there is no winner).
+	save_scope_value_as = { name = ck3xbl_res_has_captor value = 0 }
+	save_scope_value_as = { name = ck3xbl_res_winner_code value = 0 }
+	if = {
+		limit = { scope:ck3xbl_res_outcome = 1 }
+		save_scope_value_as = { name = ck3xbl_res_winner_code value = 1 }
+		save_scope_value_as = { name = ck3xbl_res_default_vside value = 2 }
+		if = {
+			limit = { scope:ck3xbl_res_has_primaries = 1 }
+			scope:ck3xbl_res_att_primary = { save_scope_as = ck3xbl_captor }
+			scope:ck3xbl_res_def_primary = { save_scope_as = ck3xbl_res_loser_primary }
+			save_scope_value_as = { name = ck3xbl_res_has_captor value = 1 }
+		}
+	}
+	else_if = {
+		limit = { scope:ck3xbl_res_outcome = 2 }
+		save_scope_value_as = { name = ck3xbl_res_winner_code value = 2 }
+		save_scope_value_as = { name = ck3xbl_res_default_vside value = 1 }
+		if = {
+			limit = { scope:ck3xbl_res_has_primaries = 1 }
+			scope:ck3xbl_res_def_primary = { save_scope_as = ck3xbl_captor }
+			scope:ck3xbl_res_att_primary = { save_scope_as = ck3xbl_res_loser_primary }
+			save_scope_value_as = { name = ck3xbl_res_has_captor value = 1 }
+		}
+	}
+	else_if = {
+		limit = { scope:ck3xbl_res_my_side = 1 }
+		save_scope_value_as = { name = ck3xbl_res_default_vside value = 2 }
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_res_default_vside value = 1 }
+	}
+}
+
+# One character slot. $TAG$, $FATE$, $KILLER$ = names of the registers holding the character tag, the fate
+# (1 wounded, 2 maimed, 3 captured, 4 killed, 5 severely wounded) and the killer's tag (0 = none).
+ck3xbl_apply_char_slot_effect = {
+	if = {
+		limit = {
+			var:$TAG$ > 0
+			var:$FATE$ > 0
+		}
+		save_scope_value_as = { name = ck3xbl_res_fate value = var:$FATE$ }
+		save_scope_value_as = { name = ck3xbl_res_has_killer value = 0 }
+		if = {
+			limit = { var:$KILLER$ > 0 }
+			every_in_global_list = {
+				variable = ck3xbl_chars
+				limit = {
+					has_variable = ck3xbl_tag
+					var:ck3xbl_tag = root.var:$KILLER$
+				}
+				save_scope_as = ck3xbl_killer
+				save_scope_value_as = { name = ck3xbl_res_has_killer value = 1 }
+			}
+		}
+		every_in_global_list = {
+			variable = ck3xbl_chars
+			limit = {
+				has_variable = ck3xbl_tag
+				var:ck3xbl_tag = root.var:$TAG$
+				is_alive = yes
+			}
+			ck3xbl_apply_fate_effect = yes
+		}
+	}
+}
+
+# this = the character of a slot; scope:ck3xbl_res_fate, scope:ck3xbl_res_has_killer (+ scope:ck3xbl_killer).
+# Vanilla effects as used by vanilla combat events: wounds, maiming, prisoners of war, battle deaths.
+# The victim's side is the one it was pinned with at CHOICE|FIELD (ck3xbl_pin_battle_characters_effect).
+ck3xbl_apply_fate_effect = {
+	save_scope_as = ck3xbl_victim
+	if = {
+		limit = { has_variable = ck3xbl_fside }
+		save_scope_value_as = { name = ck3xbl_res_vside value = var:ck3xbl_fside }
+	}
+	else = {
+		save_scope_value_as = { name = ck3xbl_res_vside value = scope:ck3xbl_res_default_vside }
+	}
+	# Without a war between the war leaders nobody takes prisoners: the character gets away unharmed.
+	if = {
+		limit = {
+			scope:ck3xbl_res_fate = 3
+			NOT = { ck3xbl_res_can_capture_trigger = yes }
+		}
+		save_scope_value_as = { name = ck3xbl_res_fate value = 0 }
+	}
+	ck3xbl_res_battle_event_effect = yes
+	ck3xbl_res_trophy_effect = yes
+	if = {
+		limit = { scope:ck3xbl_res_fate = 1 }
+		increase_wounds_no_death_effect = { REASON = fight }
+	}
+	else_if = {
+		# The player's severe wound from a fall in Bannerlord (PROTOCOL 32): two wound levels at once.
+		limit = { scope:ck3xbl_res_fate = 5 }
+		increase_wounds_no_death_effect = { REASON = fight }
+		increase_wounds_no_death_effect = { REASON = fight }
+	}
+	else_if = {
+		limit = { scope:ck3xbl_res_fate = 2 }
+		maimed_in_battle_effect = yes
+	}
+	else_if = {
+		limit = { scope:ck3xbl_res_fate = 3 }
+		scope:ck3xbl_captor = {
+			imprison = {
+				target = scope:ck3xbl_victim
+				type = house_arrest
+			}
+		}
+	}
+	else_if = {
+		limit = { scope:ck3xbl_res_fate = 4 }
+		ck3xbl_res_save_death_variables_effect = yes
+		if = {
+			limit = {
+				scope:ck3xbl_res_has_killer = 1
+				NOT = { scope:ck3xbl_killer = this }
+			}
+			death = {
+				death_reason = death_battle
+				killer = scope:ck3xbl_killer
+			}
+		}
+		else = {
+			death = { death_reason = death_battle }
+		}
+	}
+}
+
+# this = scope:ck3xbl_victim (PROTOCOL 34). Trophies: when the player struck the victim down himself, he may take one of the
+# victim's personal artifacts (inventory, never court artifacts): 60 % from a man killed or taken prisoner, 25 % from one wounded
+# or maimed. Before the fate itself, so a dead man's artifact is not inherited first.
+ck3xbl_res_trophy_effect = {
+	if = {
+		limit = {
+			scope:ck3xbl_res_fate > 0
+			scope:ck3xbl_res_has_killer = 1
+			NOT = { scope:ck3xbl_killer = this }
+			scope:ck3xbl_killer = { is_ai = no }
+			any_character_artifact = { category = inventory }
+		}
+		save_scope_value_as = { name = ck3xbl_res_trophy_chance value = 25 }
+		if = {
+			limit = { OR = { scope:ck3xbl_res_fate = 3 scope:ck3xbl_res_fate = 4 } }
+			save_scope_value_as = { name = ck3xbl_res_trophy_chance value = 60 }
+		}
+		random = {
+			chance = scope:ck3xbl_res_trophy_chance
+			random_character_artifact = {
+				limit = { category = inventory }
+				save_scope_as = ck3xbl_trophy
+			}
+			scope:ck3xbl_killer = {
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = ck3xbl_trophy_toast
+					left_icon = scope:ck3xbl_victim
+					scope:ck3xbl_trophy = { set_owner = { target = scope:ck3xbl_killer } }
+				}
+			}
+		}
+	}
+}
+
+# this = scope:ck3xbl_victim. A line in the combat summary on the victim's side, while the combat still exists.
+# The engine appends _friendly / _enemy (and _player variants) to the key.
+ck3xbl_res_battle_event_effect = {
+	if = {
+		limit = {
+			exists = scope:ck3xbl_res_combat
+			scope:ck3xbl_res_fate > 0
+		}
+		if = {
+			limit = { scope:ck3xbl_res_vside = 1 }
+			scope:ck3xbl_res_combat = { combat_attacker = { save_scope_as = ck3xbl_res_victim_side } }
+		}
+		else = {
+			scope:ck3xbl_res_combat = { combat_defender = { save_scope_as = ck3xbl_res_victim_side } }
+		}
+		scope:ck3xbl_res_victim_side = {
+			if = {
+				limit = { scope:ck3xbl_res_fate = 3 }
+				battle_event = {
+					key = "ck3xbl_captured"
+					left_portrait = scope:ck3xbl_victim
+					right_portrait = scope:ck3xbl_captor
+					type = imprison
+				}
+			}
+			else_if = {
+				limit = { scope:ck3xbl_res_has_killer = 1 }
+				if = {
+					limit = { OR = { scope:ck3xbl_res_fate = 1 scope:ck3xbl_res_fate = 5 } }
+					battle_event = {
+						key = "ck3xbl_wounded_by"
+						left_portrait = scope:ck3xbl_victim
+						right_portrait = scope:ck3xbl_killer
+						type = wound
+					}
+				}
+				else_if = {
+					limit = { scope:ck3xbl_res_fate = 2 }
+					battle_event = {
+						key = "ck3xbl_maimed_by"
+						left_portrait = scope:ck3xbl_victim
+						right_portrait = scope:ck3xbl_killer
+						type = wound
+					}
+				}
+				else = {
+					battle_event = {
+						key = "ck3xbl_slain_by"
+						left_portrait = scope:ck3xbl_victim
+						right_portrait = scope:ck3xbl_killer
+						type = death
+					}
+				}
+			}
+			else_if = {
+				limit = { OR = { scope:ck3xbl_res_fate = 1 scope:ck3xbl_res_fate = 5 } }
+				battle_event = {
+					key = "ck3xbl_wounded"
+					left_portrait = scope:ck3xbl_victim
+					type = wound
+				}
+			}
+			else_if = {
+				limit = { scope:ck3xbl_res_fate = 2 }
+				battle_event = {
+					key = "ck3xbl_maimed"
+					left_portrait = scope:ck3xbl_victim
+					type = wound
+				}
+			}
+			else = {
+				battle_event = {
+					key = "ck3xbl_slain"
+					left_portrait = scope:ck3xbl_victim
+					type = death
+				}
+			}
+		}
+	}
+}
+
+# this = a character about to die in battle: the variables vanilla death events read (war leaders, place).
+ck3xbl_res_save_death_variables_effect = {
+	if = {
+		limit = {
+			scope:ck3xbl_res_has_primaries = 1
+			scope:ck3xbl_res_has_prov = 1
+		}
+		if = {
+			limit = { scope:ck3xbl_res_vside = 1 }
+			save_died_in_battle_variables_effect = {
+				ENEMY = scope:ck3xbl_res_def_primary
+				LEADER = scope:ck3xbl_res_att_primary
+				LOCATION = scope:ck3xbl_res_prov
+			}
+		}
+		else = {
+			save_died_in_battle_variables_effect = {
+				ENEMY = scope:ck3xbl_res_att_primary
+				LEADER = scope:ck3xbl_res_def_primary
+				LOCATION = scope:ck3xbl_res_prov
+			}
+		}
+	}
+}
+
+# Payloads 2 and 3 (payload 4 ends through the battle clock, PROTOCOL 14.1).
+# The winner, last: the loser may retreat without pursuit (no day-0 stack wipe), then the winner wins
+# instantly, which ends the combat and runs on_combat_end_*. Vanilla's on_combat_end_winner still rolls its own
+# post-battle captures and knight deaths on the losing side (combat_event.1001, docs/PROTOCOL.md 10.5).
+ck3xbl_apply_outcome_effect = {
+	if = {
+		limit = { exists = scope:ck3xbl_res_combat }
+		if = {
+			limit = { scope:ck3xbl_res_outcome = 1 }
+			scope:ck3xbl_res_combat = {
+				combat_defender = {
+					set_allow_early_retreat = yes
+					set_skip_pursuit = yes
+				}
+				combat_attacker = { force_win = yes }
+			}
+		}
+		else_if = {
+			limit = { scope:ck3xbl_res_outcome = 2 }
+			scope:ck3xbl_res_combat = {
+				combat_attacker = {
+					set_allow_early_retreat = yes
+					set_skip_pursuit = yes
+				}
+				combat_defender = { force_win = yes }
+			}
+		}
+	}
+}
+
+# After RES|END: forget the battle, the pending state and the registers. ck3xbl_ready = 2 means "applied", and
+# ck3xbl_applied_bid tells event 0002 which battle that was. Characters are unpinned before the cleanup purges them; armies
+# the battle clock now steers keep their tags until its fix (ck3xbl_cleanup_battle_effect).
+ck3xbl_finish_battle_effect = {
+	if = {
+		limit = { ck3xbl_bid_is_pending_trigger = yes }
+		ck3xbl_release_pending_effect = yes
+	}
+	ck3xbl_cleanup_battle_effect = yes
+	ck3xbl_keypad_clear_effect = yes
+	set_variable = { name = ck3xbl_ready value = 2 }
+	set_variable = { name = ck3xbl_applied_bid value = scope:ck3xbl_bid }
+}

@@ -1,0 +1,289 @@
+﻿# Tournament bouts in Bannerlord (docs/PROTOCOL.md 29). The player's pivotal moment of a single combat (tourney code 1), a
+# wrestling bout (2) or a grand melee (3) got the option "Compete in Bannerlord yourself" (tools/gen/tourney/contest_hooks.mjs),
+# which saves scope:ck3xbl_d_tourney and opens ck3xbl_tourney.0001. The chain carries the contest event's scopes (scope:activity,
+# scope:pivotal_contestant, scope:versus_contestant).
+
+# root = the player. The bout is logged as a single combat (ck3xbl_kind = 2, ck3xbl_d_tourney, practice: nobody dies in
+# Bannerlord), the field is taken at once and the waiting event opens. A grand melee logs both teams, at most 8 more per side.
+ck3xbl_tourney_begin_effect = {
+	root = { save_scope_as = sc_attacker }
+	save_scope_value_as = { name = fatality value = flag:practice }
+	if = {
+		limit = { scope:ck3xbl_d_tourney = 3 }
+		# The player's team and the other one; the other team's captain (its best fighter) stands for it.
+		if = {
+			limit = {
+				scope:activity = { any_guest_subset = { name = team_alpha phase = tournament_phase_melee this = root } }
+			}
+			save_scope_value_as = { name = ck3xbl_t_team value = 1 }
+			scope:activity = {
+				ordered_guest_subset = {
+					name = team_beta
+					phase = tournament_phase_melee
+					order_by = prowess
+					save_scope_as = sc_defender
+				}
+			}
+		}
+		else = {
+			save_scope_value_as = { name = ck3xbl_t_team value = 2 }
+			scope:activity = {
+				ordered_guest_subset = {
+					name = team_alpha
+					phase = tournament_phase_melee
+					order_by = prowess
+					save_scope_as = sc_defender
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { scope:ck3xbl_d_tourney = 5 }
+		# The archery contest has no bout: its best other archer is the mark to beat.
+		scope:activity = {
+			ordered_guest_subset = {
+				name = qualified
+				phase = tournament_phase_archery
+				limit = { NOT = { this = root } }
+				order_by = prowess
+				save_scope_as = sc_defender
+			}
+		}
+	}
+	else = {
+		scope:versus_contestant = { save_scope_as = sc_defender }
+	}
+	if = {
+		limit = { exists = scope:sc_defender }
+		ck3xbl_tourney_log_effect = yes
+	}
+	else = {
+		# Nobody to fight (an empty team): the bout stays CK3's.
+		remove_character_flag = ck3xbl_tourney_bl
+		if = {
+			limit = { ck3xbl_tourney_bout_trigger = yes }
+			trigger_event = { id = contest_events.0802 days = 1 }
+		}
+	}
+}
+
+# The bout's records and the waiting event; scope:sc_attacker (the player) and scope:sc_defender are saved.
+ck3xbl_tourney_log_effect = {
+	ck3xbl_duel_log_effect = yes
+	if = {
+		limit = { scope:ck3xbl_d_tourney = 3 }
+		ck3xbl_tourney_emit_teams_effect = yes
+	}
+	info_log = "CK3XBL|B|END"
+	info_log_scopes = yes
+	ck3xbl_choose_field_effect = yes
+	scope:ck3xbl_player = {
+		send_interface_toast = {
+			type = msg_ck3xbl_battle_begins
+			title = msg_ck3xbl_tourney_begins_title
+			desc = msg_ck3xbl_tourney_begins_desc
+			left_icon = scope:ck3xbl_player
+			right_icon = scope:ck3xbl_enemy_leader
+		}
+		trigger_event = ck3xbl_tourney.0002
+	}
+}
+
+# The team mates of a grand melee, each side's best 8 beside the player and the other captain.
+ck3xbl_tourney_emit_teams_effect = {
+	if = {
+		limit = { scope:ck3xbl_t_team = 1 }
+		scope:activity = {
+			ordered_guest_subset = {
+				name = team_alpha
+				phase = tournament_phase_melee
+				limit = { NOT = { this = root } }
+				order_by = prowess
+				max = 8
+				check_range_bounds = no
+				ck3xbl_duel_emit_knight_effect = { CODE = 1 }
+			}
+			ordered_guest_subset = {
+				name = team_beta
+				phase = tournament_phase_melee
+				limit = { NOT = { this = scope:sc_defender } }
+				order_by = prowess
+				max = 8
+				check_range_bounds = no
+				ck3xbl_duel_emit_knight_effect = { CODE = 2 }
+			}
+		}
+	}
+	else = {
+		scope:activity = {
+			ordered_guest_subset = {
+				name = team_beta
+				phase = tournament_phase_melee
+				limit = { NOT = { this = root } }
+				order_by = prowess
+				max = 8
+				check_range_bounds = no
+				ck3xbl_duel_emit_knight_effect = { CODE = 1 }
+			}
+			ordered_guest_subset = {
+				name = team_alpha
+				phase = tournament_phase_melee
+				limit = { NOT = { this = scope:sc_defender } }
+				order_by = prowess
+				max = 8
+				check_range_bounds = no
+				ck3xbl_duel_emit_knight_effect = { CODE = 2 }
+			}
+		}
+	}
+}
+
+# root = the player, event ck3xbl_tourney.0004: the result is committed. r2 = 1 the player's side won, 2 the other side, 3/4 no
+# winner. The bout is finished like a battle, then the contest goes on with that winner (PROTOCOL 29.3):
+#   versus   the loser's progress-to-victory score is set far below zero for the bout CK3 now resolves (contest_events.0802), so its
+#            weighted draw can only pick the winner; ck3xbl_tourney.0005 restores both scores the day after.
+#   melee    the winning team's progress to victory is the player's, raised (or the losing team's, lowered), for the contest's end.
+ck3xbl_tourney_apply_effect = {
+	save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_r1 }
+	save_scope_value_as = { name = ck3xbl_res_outcome value = var:ck3xbl_r2 }
+	info_log = "CK3XBL|RES|BEGIN"
+	info_log_scopes = yes
+	info_log = "CK3XBL|RES|END"
+	info_log_scopes = yes
+	ck3xbl_finish_battle_effect = yes
+	remove_character_flag = ck3xbl_tourney_bl
+	ck3xbl_tourney_feats_effect = yes
+	if = {
+		limit = { scope:ck3xbl_d_tourney = 3 }
+		if = {
+			limit = { scope:ck3xbl_res_outcome = 1 }
+			set_variable = { name = progress_to_victory value = 100000 }
+		}
+		else_if = {
+			limit = { scope:ck3xbl_res_outcome = 2 }
+			set_variable = { name = progress_to_victory value = -100000 }
+		}
+	}
+	else_if = {
+		# Archery (PROTOCOL 36): hitting the mark in Bannerlord wins the contest; missing it leaves no progress of one's own.
+		limit = { scope:ck3xbl_d_tourney = 5 }
+		if = {
+			limit = { scope:ck3xbl_res_outcome = 1 }
+			set_variable = { name = progress_to_victory value = 100000 }
+		}
+		else_if = {
+			limit = { scope:ck3xbl_res_outcome = 2 }
+			set_variable = { name = progress_to_victory value = 0 }
+		}
+	}
+	else = {
+		if = {
+			limit = { scope:ck3xbl_res_outcome <= 2 }
+			ck3xbl_tourney_keep_score_effect = yes
+			if = {
+				limit = { scope:ck3xbl_res_outcome = 1 }
+				set_variable = { name = progress_to_victory_score value = 100000 }
+				scope:versus_contestant = { set_variable = { name = progress_to_victory_score value = -100000 } }
+			}
+			else = {
+				set_variable = { name = progress_to_victory_score value = -100000 }
+				scope:versus_contestant = { set_variable = { name = progress_to_victory_score value = 100000 } }
+			}
+			trigger_event = { id = ck3xbl_tourney.0005 days = 2 }
+		}
+		trigger_event = { id = contest_events.0802 days = 1 }
+	}
+}
+
+# Remembers both bout scores (ck3xbl_t_score) for ck3xbl_tourney_restore_score_effect.
+ck3xbl_tourney_keep_score_effect = {
+	if = {
+		limit = { has_variable = progress_to_victory_score }
+		set_variable = { name = ck3xbl_t_score value = var:progress_to_victory_score }
+	}
+	else = { set_variable = { name = ck3xbl_t_score value = 0 } }
+	scope:versus_contestant = {
+		if = {
+			limit = { has_variable = progress_to_victory_score }
+			set_variable = { name = ck3xbl_t_score value = var:progress_to_victory_score }
+		}
+		else = { set_variable = { name = ck3xbl_t_score value = 0 } }
+	}
+}
+
+# this = a bout contestant: the score from before the Bannerlord bout comes back (it never carries into the next round).
+ck3xbl_tourney_restore_score_effect = {
+	if = {
+		limit = { has_variable = ck3xbl_t_score }
+		set_variable = { name = progress_to_victory_score value = var:ck3xbl_t_score }
+		remove_variable = ck3xbl_t_score
+	}
+}
+
+# The bout goes back to CK3 (the bridge or Bannerlord failed): the held resolution runs as vanilla's would have.
+ck3xbl_tourney_to_ck3_effect = {
+	ck3xbl_abandon_battle_effect = yes
+	remove_character_flag = ck3xbl_tourney_bl
+	if = {
+		limit = { ck3xbl_tourney_bout_trigger = yes }
+		trigger_event = { id = contest_events.0802 days = 1 }
+	}
+}
+
+# The prize of a contest winner (PROTOCOL 38): with 30 % the winner of a martial contest also gets a piece of battle gear that
+# fits the contest: a bow for archery, a horse (or main weapon) for the race and the joust, a weapon for the single combat, armour
+# for wrestling and the melee. this = the winner; scope:activity = the tournament (vanilla's prestige reward effects call it).
+ck3xbl_tourney_prize_effect = {
+	if = {
+		limit = {
+			exists = scope:activity
+			scope:activity = {
+				OR = {
+					has_current_phase = tournament_phase_archery
+					has_current_phase = tournament_phase_horse_race
+					has_current_phase = tournament_phase_joust
+					has_current_phase = tournament_phase_duel
+					has_current_phase = tournament_phase_wrestling
+					has_current_phase = tournament_phase_melee
+				}
+			}
+		}
+		random = {
+			chance = 30
+			if = {
+				limit = { scope:activity = { has_current_phase = tournament_phase_archery } }
+				ck3xbl_roll_event_bow_own_effect = yes
+			}
+			else_if = {
+				limit = { scope:activity = { has_current_phase = tournament_phase_horse_race } }
+				ck3xbl_roll_shop_horse_own_effect = yes
+			}
+			else_if = {
+				limit = { scope:activity = { has_current_phase = tournament_phase_joust } }
+				random_list = {
+					50 = { ck3xbl_roll_shop_horse_own_effect = yes }
+					50 = { ck3xbl_roll_shop_main_own_effect = yes }
+				}
+			}
+			else_if = {
+				limit = { scope:activity = { has_current_phase = tournament_phase_duel } }
+				ck3xbl_roll_event_weapon_own_effect = yes
+			}
+			else = {
+				ck3xbl_roll_event_armor_own_effect = yes
+			}
+			if = {
+				limit = { is_ai = no }
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = ck3xbl_tourney_prize_toast
+					left_icon = this
+					ck3xbl_create_item_effect = yes
+				}
+			}
+			else = {
+				ck3xbl_create_item_effect = yes
+			}
+		}
+	}
+}

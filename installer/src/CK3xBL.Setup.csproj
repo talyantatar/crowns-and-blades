@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- CK3xBL-Setup.exe: the player installer. .NET Framework 4.8 (preinstalled on Windows 10/11), so it needs no runtime download.
+       The payload (bridge, data, CK3 mod, Bannerlord module) is appended to the built exe by the pack tool; see ../PAYLOAD_LAYOUT.md. -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>CK3xBL-Setup</AssemblyName>
+    <RootNamespace>CK3xBL.Setup</RootNamespace>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ApplicationManifest>..\assets\app.manifest</ApplicationManifest>
+    <ApplicationIcon Condition="Exists('..\assets\CK3xBL.ico')">..\assets\CK3xBL.ico</ApplicationIcon>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <GenerateSupportedRuntime>false</GenerateSupportedRuntime>
+
+    <VersionPrefix>0.9.0</VersionPrefix>
+    <VersionSuffix>beta</VersionSuffix>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <Product>Crowns &amp; Blades</Product>
+    <AssemblyTitle>Crowns &amp; Blades Setup</AssemblyTitle>
+    <Company>TaLyAn</Company>
+    <Copyright>Copyright (c) 2026 TaLyAn</Copyright>
+
+    <!-- No absolute build paths in the binary (the public build must not carry the builder's folders). -->
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildProjectDirectory)=/_/installer/src</PathMap>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CK3xBL.Setup.Tests" />
+  </ItemGroup>
+</Project>

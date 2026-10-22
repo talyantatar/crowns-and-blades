@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CK3xBL.Appearance</RootNamespace>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>CS8618;CS8601;CS8602;CS8603;CS8604;CS8625</NoWarn>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup><ProjectReference Include="..\CK3xBL.Core\CK3xBL.Core.csproj" /></ItemGroup>
+  <ItemGroup>
+    <!-- The self-test exercises the save reader, renderer and builders directly. -->
+    <InternalsVisibleTo Include="CK3xBL.SelfTest" />
+    <!-- Built-in tables; a file with the same name in bridge/data overrides them at runtime. -->
+    <EmbeddedResource Include="Tables\*.json" LogicalName="CK3xBL.Appearance.Tables.%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

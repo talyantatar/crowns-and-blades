@@ -1,0 +1,163 @@
+﻿# ck3xbl on_action hooks. Our entries are appended to the vanilla lists (on_action lists merge).
+# The log records written from here are specified in docs/PROTOCOL.md section 1 (battle clock: section 14).
+
+# Root = combat. Fires when a combat starts, after all starting armies joined their sides.
+on_combat_start = {
+	on_actions = { ck3xbl_on_combat_start }
+}
+
+# Root = combat side, scope:army = the army that joined after the start.
+on_combat_unit_join_side = {
+	on_actions = { ck3xbl_on_combat_join }
+}
+
+# Root = winning / losing combat side, scope:wipe = whether the losing side was wiped out.
+on_combat_end_winner = {
+	on_actions = { ck3xbl_on_combat_end_winner }
+}
+on_combat_end_loser = {
+	on_actions = { ck3xbl_on_combat_end_loser }
+}
+
+# Root = army owner, scope:army = the army. Remembers where an army came from (the L|origin fact).
+on_army_enter_province = {
+	on_actions = { ck3xbl_on_army_enter_province }
+}
+
+# Root = the occupant, scope:barony / scope:county = what fell. A holding the player stormed in Bannerlord (his storming party
+# modifier is still on) offers the choice of its fate (docs/PROTOCOL.md 41).
+on_siege_completion = {
+	on_actions = { ck3xbl_on_siege_completion }
+}
+
+ck3xbl_on_siege_completion = {
+	trigger = {
+		is_ai = no
+		has_character_modifier = ck3xbl_storming_party
+		exists = scope:county
+	}
+	effect = {
+		remove_character_modifier = ck3xbl_storming_party
+		trigger_event = ck3xbl_siege.0010
+	}
+}
+
+# Root = a playable (ruler) character, once a year. AI rulers buy battle gear for their knights or themselves (PROTOCOL 16.5).
+yearly_playable_pulse = {
+	on_actions = { ck3xbl_yearly_gear_pulse }
+}
+
+ck3xbl_yearly_gear_pulse = {
+	trigger = {
+		is_ai = yes
+		is_imprisoned = no
+		gold >= 600
+	}
+	effect = {
+		random = {
+			chance = 25
+			ck3xbl_ai_outfit_effect = yes
+		}
+	}
+}
+
+# Root = the new player character (vanilla player_change_on_actions.txt). Re-arms the battle clock's pulse chain.
+on_player_character_change = {
+	on_actions = { ck3xbl_on_player_character_change }
+}
+
+ck3xbl_on_combat_start = {
+	trigger = { ck3xbl_combat_wanted_trigger = yes }
+	effect = { ck3xbl_begin_battle_effect = yes }
+}
+
+# A join to a tagged combat is classified for the battle clock (ck3xbl_j_steer in the J dump), logged, and then joins the
+# steering or opens a second clash (PROTOCOL 14.5, 14.6).
+ck3xbl_on_combat_join = {
+	trigger = {
+		exists = scope:army
+		combat ?= {
+			OR = {
+				has_variable = ck3xbl_bid
+				ck3xbl_combat_wanted_trigger = yes
+			}
+		}
+	}
+	effect = {
+		if = {
+			limit = { combat = { has_variable = ck3xbl_bid } }
+			ck3xbl_st_classify_join_effect = yes
+			ck3xbl_log_join_effect = yes
+			ck3xbl_st_after_join_effect = yes
+		}
+		else = {
+			# A player host joined a battle that did not involve the player before: it becomes a new battle.
+			combat = { ck3xbl_begin_battle_effect = yes }
+		}
+	}
+}
+
+# A steered combat arms the battle clock's fix; any other tagged combat releases its tags (unless fought in Bannerlord).
+ck3xbl_on_combat_end_winner = {
+	trigger = { combat ?= { has_variable = ck3xbl_bid } }
+	effect = {
+		ck3xbl_save_combat_end_values_effect = yes
+		info_log = "CK3XBL|END|winner"
+		info_log_scopes = yes
+		ck3xbl_st_on_combat_end_effect = { WRONG_ROLE = 2 }
+	}
+}
+
+ck3xbl_on_combat_end_loser = {
+	trigger = { combat ?= { has_variable = ck3xbl_bid } }
+	effect = {
+		ck3xbl_save_combat_end_values_effect = yes
+		info_log = "CK3XBL|END|loser"
+		info_log_scopes = yes
+		ck3xbl_st_on_combat_end_effect = { WRONG_ROLE = 1 }
+	}
+}
+
+ck3xbl_on_army_enter_province = {
+	trigger = { exists = scope:army }
+	effect = {
+		scope:army = {
+			if = {
+				limit = { has_variable = ck3xbl_cur_loc }
+				set_variable = { name = ck3xbl_prev_loc value = var:ck3xbl_cur_loc }
+			}
+			set_variable = { name = ck3xbl_cur_loc value = location }
+			# The day it arrived, the start of a siege there (PROTOCOL 39: the mod estimates the siege's progress from it).
+			set_variable = { name = ck3xbl_enter_day value = ck3xbl_day_number_value }
+		}
+		# Fleets meeting at sea (PROTOCOL 44).
+		if = {
+			limit = {
+				scope:army = {
+					location = { is_sea_province = yes }
+					is_army_in_combat = no
+					NOT = { has_variable = ck3xbl_sea_sighted }
+				}
+			}
+			ck3xbl_sea_on_enter_effect = yes
+		}
+		# The battle clock's pulse chain lost its delayed event (a load, a crash): its heartbeat expired while steering runs.
+		if = {
+			limit = {
+				has_global_variable = ck3xbl_clock_running
+				global_var:ck3xbl_clock_running = 1
+				NOT = { has_global_variable = ck3xbl_clock_alive }
+			}
+			random_player = { ck3xbl_st_ensure_chain_effect = yes }
+		}
+	}
+}
+
+# The old player's delayed pulse never fires and its heartbeat is still alive, so the chain is re-armed on the new player at once.
+ck3xbl_on_player_character_change = {
+	trigger = {
+		has_global_variable = ck3xbl_clock_running
+		global_var:ck3xbl_clock_running = 1
+	}
+	effect = { ck3xbl_st_force_rearm_effect = yes }
+}

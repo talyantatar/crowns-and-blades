@@ -1,0 +1,6589 @@
+{
+ "meta": {
+  "what": "CK3 accolade attributes (Tours & Tournaments) with their per-level effects, what to read at battle time, the Bannerlord mapping of each attribute level, and the glory write-back.",
+  "generator": "tools/gen/knights/gen_ck3_accolade_types.mjs",
+  "ck3_version": "1.20.1.1",
+  "game_dir": "<CK3 install>/game",
+  "sources": [
+   "common/accolade_types/*.txt",
+   "common/accolade_names/*.txt",
+   "common/accolade_icons/*.txt",
+   "common/men_at_arms_types/01_accolade_maa_types.txt",
+   "common/scripted_triggers/04_ep2_accolade_triggers.txt",
+   "common/script_values/*.txt",
+   "common/defines/00_defines.txt (NAccolade)",
+   "common/combat_phase_events/00_knight_phase_events.txt",
+   "events/war_events/combat_events.txt",
+   "common/on_action/combat_on_actions.txt",
+   "localization/english/**.yml",
+   "bridge/data/mapping.json",
+   "bridge/data/bl_troops_customgame.json",
+   "bridge/data/ck3_catalog.json",
+   "bridge/data/ck3_maa_index.json"
+  ],
+  "counts": {
+   "types": 31,
+   "by_tier": {
+    "common": 9,
+    "eminent": 4,
+    "men_at_arms": 12,
+    "skilled": 6
+   },
+   "accolade_maa": 11,
+   "name_templates": 16,
+   "icons": 0
+  },
+  "unclassified_army_modifiers": [],
+  "liege_modifiers_without_battle_effect": [
+   "barons_and_minor_landholders_opinion",
+   "belligerent_opinion",
+   "capital_fort_level",
+   "character_travel_safety",
+   "courtly_opinion",
+   "dread_baseline_add",
+   "dread_per_tyranny_add",
+   "glory_hound_opinion",
+   "intrigue_scheme_phase_duration",
+   "levy_maintenance",
+   "levy_reinforcement_rate",
+   "lifestyle_reveler_xp_gain_mult",
+   "mercenary_hire_cost_mult",
+   "minority_opinion",
+   "monthly_dynasty_prestige_mult",
+   "monthly_martial_lifestyle_xp_gain_mult",
+   "monthly_prestige_gain_per_dread_mult",
+   "monthly_prestige_gain_per_knight_mult",
+   "parochial_opinion",
+   "seduce_scheme_phase_duration_add",
+   "tourney_participant_xp_gain_mult",
+   "trait_track_hunter_xp_gain_mult",
+   "trait_track_lifestyle_blademaster_xp_gain_mult",
+   "vassal_herd_contribution_mult",
+   "zealot_opinion"
+  ]
+ },
+ "model": {
+  "attributes": "An accolade has up to 3 attributes (NAccolade.ACCOLADE_MAX_TYPES) of 3 levels each. Each accolade rank (1..6, glory thresholds below) lets the owner add an attribute or raise one by a level, so the levels of all attributes sum to at most the rank; losing a rank disables one level (game concept accolade_rank). The first attribute is the primary one (initial_type; it only names the accolade); primary and secondary attributes work the same.",
+  "level_blocks": "ranks = { 1 = {...} 2 = {...} 3 = {...} } of an attribute are its levels 1..3, not glory values (the .info file's glory-keyed example is outdated). INFERRED: only the highest unlocked level's modifiers apply (not cumulative): several attributes repeat the same value at every level (horse_archer screen 0.25 at levels 1-3, elephantry damage 0.2 at levels 2-3), which only makes sense if each level replaces the previous one. Parameters are checked with has_accolade_parameter over all unlocked levels, and vanilla picks the highest of low/medium/high itself.",
+  "knight_army_modifier": "applies to the army the acclaimed knight is in (accolade_type.info). Liege modifiers apply to the owner. No 1.20 attribute uses knight_modifier, terrain_bonus, winter_bonus or holding_bonus (kept in the schema for patches).",
+  "active": "Only active accolades (owner.any_active_accolade, max_active_accolades) give bonuses.",
+  "max_one_maa_attribute": "An accolade may hold only one men_at_arms attribute (single_maa_attribute_allowance in the fit triggers).",
+  "acclaimed_fate": {
+   "combat_phase": "knight_none chance x1.25 for acclaimed knights (00_knight_phase_events.txt:17-19): fewer combat-phase events of any kind; as the victim of berserker/shieldmaiden attacks they are picked x0.75.",
+   "post_battle": "combat_event.1001 (on_combat_end_winner, runs after force_win): acclaimed commanders get +500 on the 90 \"no effect\" weight vs 10 capture (events/war_events/combat_events.txt:663-664); acclaimed knights capture x0.1 (:853-854) and death x0.5 (:944-945).",
+   "bridge_rule": "For heroes the BL battle downed, the bridge rolls the CK3 fate itself (FateResolver): multiply the wounded/maimed/killed weights of an acclaimed knight by 0.8 against the unchanged \"nothing\" outcome when the fate model has one, else killed and maimed weights by 0.8 (1/1.25), and capture probability by 0.1 (knights) or 10/600 / (10/100) = 0.17 (commanders)."
+  }
+ },
+ "read_at_battle": {
+  "per_character": [
+   {
+    "what": "acclaimed?",
+    "script": "is_acclaimed = yes",
+    "doc": "triggers.log:4970",
+    "scope": "character"
+   },
+   {
+    "what": "the accolade",
+    "script": "accolade",
+    "doc": "event_targets.log:372",
+    "scope": "character -> accolade"
+   },
+   {
+    "what": "active?",
+    "script": "accolade_owner ?= { any_active_accolade = { acclaimed_knight ?= scope:<knight> } }",
+    "doc": "event_targets.log:1488, triggers.log:1250, event_targets.log:1482",
+    "scope": "accolade"
+   },
+   {
+    "what": "rank 0..6",
+    "script": "accolade_rank >= n (also usable as a value: save_scope_value_as = { name = x value = accolade_rank }, vanilla 00_accolade_interactions.txt:88-89)",
+    "doc": "triggers.log:11436",
+    "scope": "accolade"
+   },
+   {
+    "what": "attribute held",
+    "script": "has_accolade_type = <type>",
+    "doc": "triggers.log:11455",
+    "scope": "accolade"
+   },
+   {
+    "what": "attribute level 0..3",
+    "script": "accolade_attribute_level = { type = <type> level >= n }",
+    "doc": "triggers.log:11414",
+    "scope": "accolade"
+   },
+   {
+    "what": "primary attribute",
+    "script": "initial_type = { this = accolade_type:<type> }",
+    "doc": "event_targets.log:1524 (+ accolade_type global link event_targets.log:5)",
+    "scope": "accolade"
+   },
+   {
+    "what": "category / parameter",
+    "script": "has_accolade_category = <flag> / has_accolade_parameter = <flag>",
+    "doc": "triggers.log:11443 / 11449",
+    "scope": "accolade"
+   },
+   {
+    "what": "glory",
+    "script": "none (no trigger, link or script value); rank + rank_thresholds bound it",
+    "doc": "add_glory effects.log:15972 is write-only",
+    "scope": "accolade"
+   }
+  ],
+  "record_proposal": {
+   "status": "PROPOSAL - not emitted by the mod yet; owner: CK3 mod generator (tools/gen/gen_ck3_mod.mjs). Parsers already ignore unknown CX/AX fields (BattleSnapshotBuilder.CharacterFact/ArmyFact), so adding the lines cannot break the bridge.",
+   "where": "After the CX lines of every C record (any role: an acclaimed knight may also be an army commander), in that character's scope; AX|uncontrolled after the AX lines of every A/J army.",
+   "records": {
+    "CX|acc_active|yes|no": "is_acclaimed = yes and the accolade is one of its owner's active accolades (accolade_owner.any_active_accolade). Inactive accolades give no bonuses.",
+    "CX|acc_rank|<0..6>": "accolade_rank (triggers.log:11436), static chain >= 6 .. >= 1, else 0.",
+    "CX|acc_primary|<type>": "initial_type (event_targets.log:1524) = { this = accolade_type:<type> } (vanilla compare form, common/accolade_names/00_accolade_names.txt:1243).",
+    "CX|acc_type|<type>|<0..3>": "one line per has_accolade_type (triggers.log:11455) with the level from accolade_attribute_level = { type = <type> level >= n } (triggers.log:11414).",
+    "AX|uncontrolled|yes|no": "army scope: location.barony_controller (event_targets.log:1536) is not the army_owner. Only needed for marauder_attribute (uncontrolled_province_advantage)."
+   },
+   "no_glory_value": "The accolade's current glory has no trigger or script value in triggers.log/event_targets.log. The rank (with glory.rank_thresholds) bounds it; var:lifetime_glory on the accolade is vanilla bookkeeping of the net change under the current knight (reset at succession), not the glory.",
+   "type_keys": [
+    "marauder_attribute",
+    "idealist_attribute",
+    "charmer_attribute",
+    "thug_attribute",
+    "disciplinarian_attribute",
+    "fanatic_attribute",
+    "valiant_attribute",
+    "stalwart_attribute",
+    "scoundrel_attribute",
+    "huntsmaster_attribute",
+    "blademaster_attribute",
+    "master_of_revels_attribute",
+    "house_knight_attribute",
+    "archer_attribute",
+    "skirmisher_attribute",
+    "pike_attribute",
+    "outrider_attribute",
+    "vanguard_attribute",
+    "lancer_attribute",
+    "crossbowmen_attribute",
+    "besieger_attribute",
+    "camelry_attribute",
+    "elephantry_attribute",
+    "horse_archer_attribute",
+    "gunpowder_attribute",
+    "politicker_attribute",
+    "tactician_attribute",
+    "reeve_attribute",
+    "manipulator_attribute",
+    "mentor_attribute",
+    "contender_attribute"
+   ]
+  }
+ },
+ "bannerlord": {
+  "formation_classes": {
+   "Infantry": 0,
+   "Ranged": 1,
+   "Cavalry": 2,
+   "HorseArcher": 3,
+   "Skirmisher": 4,
+   "HeavyInfantry": 5,
+   "LightCavalry": 6,
+   "HeavyCavalry": 7,
+   "General": 8,
+   "Bodyguard": 9
+  },
+  "formation_classes_source": "TaleWorlds.Core.FormationClass (Bannerlord 1.4.8). Troop default groups: infantry/ranged/cavalry/horsearcher (bl_troops_customgame.json \"group\").",
+  "base_type_formation": {
+   "heavy_infantry": {
+    "formation": "Infantry",
+    "formationClassId": 0,
+    "share": {
+     "Infantry": 1
+    },
+    "ladder": "maa_ladders.heavy_infantry"
+   },
+   "pikemen": {
+    "formation": "Infantry",
+    "formationClassId": 0,
+    "share": {
+     "Infantry": 1
+    },
+    "ladder": "maa_ladders.pikemen"
+   },
+   "archers": {
+    "formation": "Ranged",
+    "formationClassId": 1,
+    "share": {
+     "Ranged": 1
+    },
+    "ladder": "maa_ladders.archers"
+   },
+   "skirmishers": {
+    "formation": "Infantry",
+    "formationClassId": 0,
+    "share": {
+     "Infantry": 0.93,
+     "Ranged": 0.07
+    },
+    "ladder": "maa_ladders.skirmishers"
+   },
+   "light_cavalry": {
+    "formation": "Cavalry",
+    "formationClassId": 2,
+    "share": {
+     "Cavalry": 0.92,
+     "HorseArcher": 0.08
+    },
+    "ladder": "maa_ladders.light_cavalry"
+   },
+   "heavy_cavalry": {
+    "formation": "Cavalry",
+    "formationClassId": 2,
+    "share": {
+     "Cavalry": 1
+    },
+    "ladder": "maa_ladders.heavy_cavalry"
+   },
+   "archer_cavalry": {
+    "formation": "HorseArcher",
+    "formationClassId": 3,
+    "share": {
+     "HorseArcher": 1
+    },
+    "ladder": "maa_ladders.archer_cavalry"
+   },
+   "camel_cavalry": {
+    "formation": "Cavalry",
+    "formationClassId": 2,
+    "share": {
+     "Cavalry": 1
+    },
+    "ladder": "shared_ladders.camel"
+   },
+   "elephant_cavalry": {
+    "formation": "Cavalry",
+    "formationClassId": 2,
+    "share": {
+     "Cavalry": 1
+    },
+    "ladder": "maa_ladders.heavy_cavalry",
+    "note": "no elephants in Bannerlord: heavy cavalry substitute, tier measured against armored_horsemen"
+   },
+   "gunpowder": {
+    "formation": "Ranged",
+    "formationClassId": 1,
+    "share": {
+     "Ranged": 1
+    },
+    "ladder": "maa_ladders.crossbowmen",
+    "note": "no single-player firearms: crossbow substitute; ref crossbowmen sits at tier 4.6 on the archer scale"
+   },
+   "nomadic_horde": {
+    "formation": "HorseArcher",
+    "formationClassId": 3,
+    "share": {
+     "HorseArcher": 1
+    },
+    "ladder": "maa_ladders.archer_cavalry"
+   },
+   "peasant_militia": {
+    "formation": "Infantry",
+    "formationClassId": 0,
+    "share": {
+     "Infantry": 1
+    },
+    "ladder": "maa_ladders.militia"
+   },
+   "siege_weapon": {
+    "formation": null,
+    "note": "fights_in_main_phase = no for all 9 siege MaA: never spawned in a field battle"
+   }
+  },
+  "modes": {
+   "tier": "DEFAULT, bridge only (works with the current module): add tierDelta to the resolved tier of every matching group before TroopResolver picks rungs (same rule as the MaA tier rule: tier = ref + log2((damage/ref)(toughness/ref)), i.e. delta = log2((1+damage_mult)(1+toughness_mult))). Clamp the result to the ladder like any tier; above the top rung the agent multiplier (2^(over/2), cap 2) applies as for every MaA.",
+   "agent": "Module stat model (when available): damageMult on the outgoing damage of agents of matching groups (CK3ApplyDamageModel : CustomAgentApplyDamageModel, override ApplyGeneralDamageModifiers, AttackInformation.AttackerAgent -> group), healthMult on their HealthLimit/Health at spawn (as heroes' healthMultiplier). K = 0.5 of the CK3 multiplier (INFERRED, calibrate). Never both modes for the same group.",
+   "writeback": "pursuitMult / screenMult multiply the ck3_catalog pursuit / screen of the matching MaA in the bridge's casualty conversion (CasualtyModel), independent of the mode."
+  },
+  "matching_groups": "A level effect with scope maa_base_type covers the request groups maa:<maaKey>#<armyTag>#<regimentId> whose ck3_catalog maa_types[maaKey].base_type is the baseType and whose armyTag is the acclaimed knight's ck3xbl_c_army (knights) or his army (commanders). scope army covers levy#<armyTag> and every maa:*#<armyTag>#*. A knight with c_army = 0 buffs nothing.",
+  "captain": "The acclaimed knight captains the formation of his linked groups (bannerlord.captain per type). Stock GeneralsAndCaptainsAssignmentLogic (TaleWorlds.MountAndBlade.dll) assigns heroes by Character.GetPower() to the largest formation whose mounted-ness matches the hero (PickBestRegularFormationToLead, protected virtual) and sets formation.Captain. Proposal for the module: optional HeroSpec field captainOf (FormationClass name); a subclass overriding PickBestRegularFormationToLead returns that formation first. Without module support the bridge may set HeroSpec.formation to the class (default_group) and, for a foot formation, Horse/HorseHarness = \"\" so the stock logic can match him.",
+  "rank_presence": "INFERRED design (no CK3 counterpart): every agent of the formation an ACTIVE acclaimed knight captains gets initial morale +2 x accolade rank (rank 1..6 -> +2..+12; Bannerlord initial morale is 35 + random 0..29 + additions, clamped 15..100, CommonAIComponent.InitializeMorale), applied with Agent.ChangeMorale (AgentComponentExtensions) once the captain is assigned (OnDeploymentFinished) and to reinforcements of that formation as they spawn.",
+  "morale_per_rank": 2,
+  "k_agent": 0.5
+ },
+ "glory": {
+  "rank_thresholds": [
+   100,
+   300,
+   600,
+   1000,
+   1500,
+   2100
+  ],
+  "rank_thresholds_source": "common/defines/00_defines.txt:1755 (NAccolade.ACCOLADE_GLORY_LEVELS; rank n needs thresholds[n-1] glory)",
+  "starting_glory": 100,
+  "max_attributes": 3,
+  "levels_per_attribute": 3,
+  "ranks": 6,
+  "succession_glory_loss": {
+   "small": 0.15,
+   "large": 0.3,
+   "script_value": "accolade_succession_glory_loss",
+   "script_value_source": "common/script_values/04_ep2_accolade_values.txt:993",
+   "honourable_deaths_skip_it": "common/on_action/accolade_on_actions.txt on_accolade_new_acclaimed_knight: no loss when the old knight died with death_reason death_battle (the mod's battle deaths use it) and similar"
+  },
+  "values": {
+   "sub_minimal_glory_value": 5,
+   "sub_minimal_glory_gain": 5,
+   "minimal_glory_value": 10,
+   "minimal_glory_gain": 10,
+   "minimal_glory_loss": -10,
+   "minor_glory_value": 25,
+   "minor_glory_gain": 25,
+   "minor_glory_loss": -25,
+   "medium_glory_value": 50,
+   "medium_glory_gain": 50,
+   "medium_glory_loss": -50,
+   "major_glory_value": 100,
+   "major_glory_gain": 100,
+   "major_glory_loss": -100,
+   "massive_glory_value": 150,
+   "massive_glory_gain": 150,
+   "massive_glory_loss": -150,
+   "monumental_glory_value": 250,
+   "monumental_glory_gain": 250,
+   "monumental_glory_loss": -250
+  },
+  "values_source": "common/script_values/00_basic_values.txt:2258",
+  "battle_sources": [
+   {
+    "source": "common/combat_phase_events/00_knight_phase_events.txt:177",
+    "event": "knight_berserker_attack",
+    "recipient": "scope:enemy_knight",
+    "amount": "minimal_glory_gain",
+    "value": 10,
+    "meaning": "a berserker knight (root) attacks an enemy knight; the ATTACKED knight's accolade gains (as written in 1.20)"
+   },
+   {
+    "source": "common/combat_phase_events/00_knight_phase_events.txt:381",
+    "event": "knight_become_berserker",
+    "recipient": "root",
+    "amount": "minimal_glory_gain",
+    "value": 10,
+    "meaning": "root turns berserker in battle; root's own accolade gains"
+   },
+   {
+    "source": "common/combat_phase_events/00_knight_phase_events.txt:508",
+    "event": "knight_shieldmaiden_attack",
+    "recipient": "scope:enemy_knight",
+    "amount": "minor_glory_gain",
+    "value": 25,
+    "meaning": "a shieldmaiden (root) attacks an enemy knight; the ATTACKED knight's accolade gains (as written in 1.20)"
+   },
+   {
+    "source": "common/combat_phase_events/00_knight_phase_events.txt:741",
+    "event": "knight_wounded",
+    "recipient": "scope:enemy_knight",
+    "amount": "minimal_glory_gain",
+    "value": 10,
+    "meaning": "root is wounded by an enemy knight; the wounding knight's accolade gains"
+   },
+   {
+    "source": "common/combat_phase_events/00_knight_phase_events.txt:952",
+    "event": "knight_maimed",
+    "recipient": "scope:enemy_knight",
+    "amount": "minimal_glory_gain",
+    "value": 10,
+    "meaning": "root is maimed by an enemy knight; the maiming knight's accolade gains"
+   },
+   {
+    "source": "common/combat_phase_events/00_knight_phase_events.txt:1265",
+    "event": "knight_killed",
+    "recipient": "scope:enemy_knight",
+    "amount": "minor_glory_gain",
+    "value": 25,
+    "meaning": "root is killed by an enemy knight; the killing knight's accolade gains (if acclaimed)"
+   },
+   {
+    "source": "common/combat_phase_events/00_knight_phase_events.txt:1344",
+    "event": "knight_killed",
+    "recipient": "root",
+    "amount": "minor_glory_gain",
+    "value": 25,
+    "meaning": "root is killed; root's own accolade gains (after death = { }), so the successor inherits it"
+   },
+   {
+    "source": "events/war_events/combat_events.txt:2088",
+    "event": "combat_event.2101",
+    "recipient": "every acclaimed side_knight / side_commander",
+    "amount": "minor_glory_gain",
+    "value": 25,
+    "meaning": "battle won: every acclaimed side knight and side commander of the winning side (fired by on_combat_end_winner)"
+   },
+   {
+    "source": "events/war_events/combat_events.txt:2094",
+    "event": "combat_event.2101",
+    "recipient": "every acclaimed side_knight / side_commander",
+    "amount": "minor_glory_gain",
+    "value": 25,
+    "meaning": "battle won: every acclaimed side knight and side commander of the winning side (fired by on_combat_end_winner)"
+   },
+   {
+    "source": "events/war_events/combat_events.txt:2120",
+    "event": "combat_event.2111",
+    "recipient": "every acclaimed side_knight / side_commander",
+    "amount": "minimal_glory_loss",
+    "value": -10,
+    "meaning": "battle lost: every acclaimed side knight and side commander of the losing side (fired by on_combat_end_loser)"
+   },
+   {
+    "source": "events/war_events/combat_events.txt:2126",
+    "event": "combat_event.2111",
+    "recipient": "every acclaimed side_knight / side_commander",
+    "amount": "minimal_glory_loss",
+    "value": -10,
+    "meaning": "battle lost: every acclaimed side knight and side commander of the losing side (fired by on_combat_end_loser)"
+   }
+  ]
+ },
+ "write_back": {
+  "effect": "add_glory = <value or script value block> in accolade scope (effects.log:15972; block form as in common/scripted_effects/00_accolades_scripted_effects.txt:371). Guard like vanilla: is_acclaimed = yes, then accolade = { add_glory = ... } (accolade_minimal_glory_gain_with_checks_effect, :1648).",
+  "automatic": "Do NOT send battle-outcome glory: vanilla on_combat_end_winner/loser fire combat_event.2101 (+25 minor_glory_gain to every acclaimed knight and commander of the winner) and combat_event.2111 (-10 minimal_glory_loss for the loser) after the mod's force_win (PROTOCOL 10.5). Outcome 3 (abort) has no winner, so no outcome glory.",
+  "per_knight_rule": {
+   "hero_downs": "for every enemy hero whose result killedBy is this acclaimed knight: CK3 fate killed -> +25 (minor_glory_gain, as knight_killed :1265), wounded / maimed / captured -> +10 (minimal_glory_gain, as knight_wounded :741 and knight_maimed :952)",
+   "troop_kills": "min(25, round(2 * sqrt(kills - hero downs))) (INFERRED: vanilla has no per-soldier glory; 4 kills -> 4, 30 -> 11, 100 -> 20; never more than one minor gain)",
+   "own_death": "+25 when his own CK3 fate is killed (knight_killed :1344 adds minor_glory_gain to the dying knight's accolade); the successor keeps it and death_battle avoids the succession loss",
+   "cap": 100,
+   "floor": 0,
+   "both_sides": true
+  },
+  "registers": "PROPOSAL (owner: CK3 mod, tools/gen/lib/registers.mjs): 8 glory pairs (character tag, 1000 + glory) in the free registers r122..r129 and r190..r197; r198 stays free. The checksum already covers r0..r198. Apply them before the character slots (snippet tools/gen/knights/ck3_accolade_emit_snippet.txt).",
+  "register_slots": [
+   [
+    122,
+    123
+   ],
+   [
+    124,
+    125
+   ],
+   [
+    126,
+    127
+   ],
+   [
+    128,
+    129
+   ],
+   [
+    190,
+    191
+   ],
+   [
+    192,
+    193
+   ],
+   [
+    194,
+    195
+   ],
+   [
+    196,
+    197
+   ]
+  ],
+  "offset": 1000,
+  "related": "Prestige for kills (knight_prestige_gain_on_kill) and knight_increase_prowess_chance_effect are the other write-back items of backlog item 6; acclaimed_knight_prestige_from_victory is automatic (parameters table)."
+ },
+ "modifier_kinds": {
+  "maa_stat": "knight_army_modifier on one MaA base type of the army the acclaimed knight is in: damage/toughness -> Bannerlord buff of that army's MaA groups of the base type (tier or agent multipliers); pursuit/screen -> the bridge's casualty conversion (write-back side).",
+  "army_stat": "knight_army_modifier on every regiment of the knight's army (levies and MaA): damage/toughness -> Bannerlord buff of all CK3 troop groups of that army.",
+  "counter_efficiency": "CK3 counter strength of the army's MaA: optional module damage bonus of that army's MaA agents against agents of base types their CK3 MaA counter (ck3_catalog maa_types[].counters). No tier equivalent.",
+  "advantage_uncontrolled": "Advantage while in a province the army owner does not control: feeds the commander-advantage mechanic of the mapper for the knight's side (needs the proposed AX|uncontrolled line).",
+  "siege": "Siege value: no effect (sieges stay in CK3, PROTOCOL section 0).",
+  "strategic": "Map movement, attrition or siege timing: no effect on a field battle.",
+  "economy": "Liege MaA economy (regiment cap, maintenance): no battle effect; the extra regiments already show in the army snapshot.",
+  "skill": "Liege skill modifier: already contained in the logged CK3 skill values (C record ck3xbl_c_martial etc.).",
+  "knight_effectiveness": "Liege modifier on all of his knights: belongs in the knight-effectiveness reconstruction (bridge/data/ck3_knight_effectiveness_sources.json, backlog item 4).",
+  "knight_count": "More knights for the liege: already visible as more C|KNIGHT records.",
+  "other": "No field-battle effect."
+ },
+ "parameters": {
+  "accolade_increase_hostile_knight_death_low": {
+   "battle": "fate",
+   "effect": "enemy_knight_death_weight",
+   "factor": 1.25,
+   "source": "common/combat_phase_events/00_knight_phase_events.txt:1039",
+   "note": "Chance factor of event knight_killed for every knight of the OTHER side while this side has a knight or commander with the parameter; only the highest of low/medium/high applies."
+  },
+  "accolade_increase_hostile_knight_death_medium": {
+   "battle": "fate",
+   "effect": "enemy_knight_death_weight",
+   "factor": 1.5,
+   "source": "common/combat_phase_events/00_knight_phase_events.txt:1053",
+   "note": "see _low"
+  },
+  "accolade_increase_hostile_knight_death_high": {
+   "battle": "fate",
+   "effect": "enemy_knight_death_weight",
+   "factor": 1.75,
+   "source": "common/combat_phase_events/00_knight_phase_events.txt:1054",
+   "note": "see _low"
+  },
+  "accolade_defends_family_low": {
+   "battle": "fate",
+   "effect": "own_house_knight_harm_weight",
+   "factor": 0.75,
+   "source": "common/combat_phase_events/00_knight_phase_events.txt:618",
+   "note": "Chance factor of knight_wounded, knight_maimed and knight_killed for knights of the same side whose house is the liege's house; only the highest of low/medium/high applies."
+  },
+  "accolade_defends_family_medium": {
+   "battle": "fate",
+   "effect": "own_house_knight_harm_weight",
+   "factor": 0.5,
+   "source": "common/combat_phase_events/00_knight_phase_events.txt:633",
+   "note": "see _low"
+  },
+  "accolade_defends_family_high": {
+   "battle": "fate",
+   "effect": "own_house_knight_harm_weight",
+   "factor": 0.25,
+   "source": "common/combat_phase_events/00_knight_phase_events.txt:634",
+   "note": "see _low"
+  },
+  "acclaimed_knight_prestige_from_victory": {
+   "battle": "automatic",
+   "effect": "army_owner_prestige_on_win",
+   "amount": 35,
+   "source": "common/on_action/combat_on_actions.txt:332",
+   "note": "Vanilla on_combat_end_winner; runs by itself after the mod's force_win. Nothing to do."
+  },
+  "acclaimed_knight_prestige_from_victory_high": {
+   "battle": "automatic",
+   "effect": "army_owner_prestige_on_win",
+   "amount": 75,
+   "source": "common/on_action/combat_on_actions.txt:372",
+   "note": "see above"
+  },
+  "acclaimed_knight_piety_from_battle": {
+   "battle": "none",
+   "note": "Read at war end (religious war casus belli, alliance interactions), not per battle."
+  },
+  "acclaimed_knight_piety_from_battle_high": {
+   "battle": "none",
+   "note": "see above"
+  },
+  "accolade_organize_army_bonus": {
+   "battle": "none",
+   "note": "Marshal council task (common/council_tasks/00_marshal_tasks.txt)."
+  }
+ },
+ "categories": {
+  "fightiness": [
+   "militant",
+   "courtly"
+  ],
+  "morality": [
+   "ethical",
+   "amoral"
+  ],
+  "presence": [
+   "champion",
+   "leader"
+  ],
+  "inclination": [
+   "defensive",
+   "aggressive"
+  ],
+  "subtlety": [
+   "subtle",
+   "forceful"
+  ],
+  "horsey": [
+   "equestrian"
+  ],
+  "tier": [
+   "common",
+   "skilled",
+   "exceptional",
+   "eminent"
+  ],
+  "set": [
+   "personality",
+   "skill",
+   "culture",
+   "men_at_arms"
+  ],
+  "warrior_type": [
+   "heavy_fighter",
+   "light_fighter",
+   "cavalry",
+   "infantry",
+   "ranged_fighter",
+   "siege"
+  ],
+  "sociability": [
+   "social",
+   "antisocial"
+  ],
+  "fighting_role": [
+   "agile",
+   "tough"
+  ],
+  "detailed_morality": [
+   "righteous",
+   "benevolent",
+   "unscrupulous",
+   "villainous"
+  ],
+  "skill": [
+   "diplomacy",
+   "martial",
+   "stewardship",
+   "intrigue",
+   "learning",
+   "prowess"
+  ],
+  "bonus_type": [
+   "stress_loss",
+   "foreign_relations",
+   "educator",
+   "maa_bonus",
+   "tournaments",
+   "vassal_manager",
+   "hostile_schemer",
+   "dreadful",
+   "army_bonus",
+   "personal_schemer",
+   "activities",
+   "piety"
+  ],
+  "malus_type": [
+   "army_penalty",
+   "treacherous",
+   "disliked",
+   "causes_stress"
+  ]
+ },
+ "accolade_maa": {
+  "accolade_maa_archers": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:23",
+   "base_type": "archers",
+   "requires": {
+    "accolade_type": "archer_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 30,
+   "toughness": 15,
+   "pursuit": 0,
+   "screen": 0,
+   "terrain_bonus": {
+    "hills": {
+     "damage": 20,
+     "toughness": 8
+    },
+    "forest": {
+     "toughness": 8,
+     "screen": 8
+    },
+    "taiga": {
+     "toughness": 8,
+     "screen": 8
+    }
+   },
+   "winter_bonus": {},
+   "counters": {
+    "skirmishers": 2
+   },
+   "stack": 100,
+   "in_maa_index": 60,
+   "name": "Retinue Archers"
+  },
+  "accolade_maa_skirmishers": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:78",
+   "base_type": "skirmishers",
+   "requires": {
+    "accolade_type": "skirmisher_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 20,
+   "toughness": 20,
+   "pursuit": 16,
+   "screen": 20,
+   "terrain_bonus": {
+    "forest": {
+     "damage": 8,
+     "toughness": 12
+    },
+    "taiga": {
+     "damage": 8,
+     "toughness": 12
+    },
+    "jungle": {
+     "damage": 8,
+     "toughness": 12
+    }
+   },
+   "winter_bonus": {},
+   "counters": {
+    "heavy_infantry": 2
+   },
+   "stack": 100,
+   "in_maa_index": 61,
+   "name": "Retinue Skirmishers"
+  },
+  "accolade_maa_pikes": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:134",
+   "base_type": "pikemen",
+   "requires": {
+    "accolade_type": "pike_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 30,
+   "toughness": 30,
+   "pursuit": 0,
+   "screen": 0,
+   "terrain_bonus": {
+    "mountains": {
+     "toughness": 24
+    },
+    "desert_mountains": {
+     "toughness": 24
+    },
+    "hills": {
+     "toughness": 16
+    }
+   },
+   "winter_bonus": {},
+   "counters": {
+    "light_cavalry": 2,
+    "heavy_cavalry": 2,
+    "camel_cavalry": 2,
+    "elephant_cavalry": 2
+   },
+   "stack": 100,
+   "in_maa_index": 62,
+   "name": "Retinue Pikemen"
+  },
+  "accolade_maa_outriders": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:192",
+   "base_type": "light_cavalry",
+   "requires": {
+    "accolade_type": "outrider_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 30,
+   "toughness": 20,
+   "pursuit": 40,
+   "screen": 40,
+   "terrain_bonus": {
+    "plains": {
+     "damage": 30
+    },
+    "drylands": {
+     "damage": 30
+    },
+    "hills": {
+     "damage": -3
+    },
+    "mountains": {
+     "damage": -5,
+     "pursuit": -10
+    },
+    "desert_mountains": {
+     "damage": -8,
+     "pursuit": -10
+    },
+    "wetlands": {
+     "damage": -8,
+     "toughness": -5,
+     "pursuit": -15,
+     "screen": -15
+    }
+   },
+   "winter_bonus": {
+    "harsh_winter": {
+     "damage": -5,
+     "toughness": -2
+    }
+   },
+   "counters": {
+    "archers": 2,
+    "gunpowder": 2
+   },
+   "stack": 100,
+   "in_maa_index": 63,
+   "name": "Retinue Outriders"
+  },
+  "accolade_maa_vanguards": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:255",
+   "base_type": "heavy_infantry",
+   "requires": {
+    "accolade_type": "vanguard_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 45,
+   "toughness": 35,
+   "pursuit": 0,
+   "screen": 0,
+   "terrain_bonus": {},
+   "winter_bonus": {},
+   "counters": {
+    "pikemen": 2,
+    "peasant_militia": 4
+   },
+   "stack": 100,
+   "in_maa_index": 64,
+   "name": "Retinue Vanguard"
+  },
+  "accolade_maa_lancers": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:308",
+   "base_type": "heavy_cavalry",
+   "requires": {
+    "accolade_type": "lancer_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 200,
+   "toughness": 70,
+   "pursuit": 40,
+   "screen": 0,
+   "terrain_bonus": {
+    "plains": {
+     "damage": 60
+    },
+    "drylands": {
+     "damage": 60
+    },
+    "hills": {
+     "damage": -10
+    },
+    "mountains": {
+     "damage": -35
+    },
+    "desert_mountains": {
+     "damage": -35
+    },
+    "wetlands": {
+     "damage": -35,
+     "toughness": -5,
+     "pursuit": -5
+    }
+   },
+   "winter_bonus": {
+    "normal_winter": {
+     "damage": -10,
+     "toughness": -5
+    },
+    "harsh_winter": {
+     "damage": -20,
+     "toughness": -10
+    }
+   },
+   "counters": {
+    "archers": 2,
+    "gunpowder": 2
+   },
+   "stack": 50,
+   "in_maa_index": 65,
+   "name": "Retinue Lancers"
+  },
+  "accolade_maa_crossbowers": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:375",
+   "base_type": "archers",
+   "requires": {
+    "accolade_type": "crossbowmen_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 60,
+   "toughness": 30,
+   "pursuit": 0,
+   "screen": 0,
+   "terrain_bonus": {
+    "hills": {
+     "damage": 20
+    },
+    "plains": {
+     "toughness": -4
+    },
+    "drylands": {
+     "toughness": -4
+    },
+    "desert": {
+     "toughness": -4
+    }
+   },
+   "winter_bonus": {},
+   "counters": {
+    "heavy_infantry": 2,
+    "heavy_cavalry": 2,
+    "archer_cavalry": 1
+   },
+   "stack": 100,
+   "in_maa_index": 66,
+   "name": "Retinue Crossbowmen"
+  },
+  "accolade_maa_cameliers": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:433",
+   "base_type": "camel_cavalry",
+   "requires": {
+    "accolade_type": "camelry_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 30,
+   "toughness": 20,
+   "pursuit": 30,
+   "screen": 30,
+   "terrain_bonus": {
+    "desert": {
+     "damage": 40,
+     "toughness": 16
+    },
+    "drylands": {
+     "damage": 30,
+     "toughness": 16
+    },
+    "oasis": {
+     "damage": 30
+    },
+    "floodplains": {
+     "damage": 10
+    },
+    "hills": {
+     "damage": -5
+    },
+    "desert_mountains": {
+     "damage": -5,
+     "pursuit": -5
+    },
+    "mountains": {
+     "damage": -8,
+     "pursuit": -10
+    },
+    "wetlands": {
+     "damage": -8,
+     "toughness": -5,
+     "pursuit": -10,
+     "screen": -10
+    }
+   },
+   "winter_bonus": {
+    "normal_winter": {
+     "damage": -3
+    },
+    "harsh_winter": {
+     "damage": -5,
+     "toughness": -2
+    }
+   },
+   "counters": {
+    "light_cavalry": 2
+   },
+   "stack": 100,
+   "in_maa_index": 67,
+   "name": "Retinue Camel Riders"
+  },
+  "accolade_maa_elephantiers": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:489",
+   "base_type": "elephant_cavalry",
+   "requires": {
+    "accolade_type": "elephantry_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 400,
+   "toughness": 100,
+   "pursuit": 0,
+   "screen": 0,
+   "terrain_bonus": {
+    "jungle": {
+     "damage": 100
+    },
+    "terraced_hills": {
+     "damage": 25
+    },
+    "mountains": {
+     "damage": -100
+    },
+    "desert_mountains": {
+     "damage": -100
+    },
+    "wetlands": {
+     "damage": -150,
+     "toughness": -20
+    }
+   },
+   "winter_bonus": {
+    "normal_winter": {
+     "damage": -30,
+     "toughness": -5
+    },
+    "harsh_winter": {
+     "damage": -60,
+     "toughness": -10
+    }
+   },
+   "counters": {
+    "skirmishers": 2,
+    "heavy_infantry": 2
+   },
+   "stack": 25,
+   "in_maa_index": 68,
+   "name": "Retinue War Elephants"
+  },
+  "accolade_maa_horse_archers": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:549",
+   "base_type": "archer_cavalry",
+   "requires": {
+    "accolade_type": "horse_archer_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 45,
+   "toughness": 20,
+   "pursuit": 40,
+   "screen": 30,
+   "terrain_bonus": {
+    "steppe": {
+     "damage": 45
+    },
+    "plains": {
+     "damage": 20
+    },
+    "drylands": {
+     "damage": 20
+    },
+    "jungle": {
+     "damage": -20,
+     "pursuit": -20
+    },
+    "wetlands": {
+     "damage": -30,
+     "pursuit": -30
+    },
+    "mountains": {
+     "damage": -30,
+     "pursuit": -30
+    },
+    "desert_mountains": {
+     "damage": -30,
+     "pursuit": -30
+    }
+   },
+   "winter_bonus": {},
+   "counters": {
+    "skirmishers": 2,
+    "heavy_infantry": 2
+   },
+   "stack": 100,
+   "in_maa_index": 69,
+   "name": "Retinue Horse Archers"
+  },
+  "accolade_maa_handgunners": {
+   "source": "common/men_at_arms_types/01_accolade_maa_types.txt:600",
+   "base_type": "gunpowder",
+   "requires": {
+    "accolade_type": "gunpowder_attribute",
+    "level": ">= 2"
+   },
+   "max_regiments": 1,
+   "damage": 56,
+   "toughness": 20,
+   "pursuit": 0,
+   "screen": 5,
+   "terrain_bonus": [],
+   "winter_bonus": {},
+   "counters": {
+    "heavy_infantry": 1
+   },
+   "stack": 100,
+   "in_maa_index": 70,
+   "name": "Retinue Handgunners"
+  }
+ },
+ "fit_triggers": {
+  "marauder_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:13",
+   "traits": [
+    "sadistic",
+    "callous",
+    "vengeful"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:marauder_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "idealist_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:25",
+   "traits": [
+    "compassionate",
+    "forgiving",
+    "trusting",
+    "generous"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:idealist_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "charmer_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:38",
+   "traits": [
+    "lustful",
+    "seducer"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:charmer_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "thug_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:49",
+   "traits": [
+    "wrathful",
+    "arbitrary",
+    "impatient",
+    "arrogant",
+    "reaver"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:thug_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "disciplinarian_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:63",
+   "traits": [
+    "stubborn",
+    "diligent",
+    "temperate",
+    "organizer",
+    "overseer"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:disciplinarian_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "fanatic_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:77",
+   "traits": [
+    "zealous",
+    "holy_warrior"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:fanatic_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "valiant_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:89",
+   "traits": [
+    "brave",
+    "berserker",
+    "reckless"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:valiant_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "stalwart_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:101",
+   "traits": [
+    "honest",
+    "just",
+    "patient",
+    "unyielding_defender"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:stalwart_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "scoundrel_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:114",
+   "traits": [
+    "ambitious",
+    "gregarious",
+    "greedy",
+    "deceitful",
+    "adventurer"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:scoundrel_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "politicker_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:128",
+   "traits": [
+    "diplomat"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "diplomacy >= 15"
+   ],
+   "culture": [],
+   "other": [
+    "var:politicker_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "tactician_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:139",
+   "traits": [
+    "strategist"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "martial >= 15"
+   ],
+   "culture": [],
+   "other": [
+    "var:tactician_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "reeve_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:150",
+   "traits": [
+    "administrator"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "stewardship >= 15"
+   ],
+   "culture": [],
+   "other": [
+    "var:reeve_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "manipulator_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:161",
+   "traits": [
+    "schemer"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "intrigue >= 15"
+   ],
+   "culture": [],
+   "other": [
+    "var:manipulator_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "mentor_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:172",
+   "traits": [
+    "whole_of_body"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "learning >= 15"
+   ],
+   "culture": [],
+   "other": [
+    "var:mentor_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "contender_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:183",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.bow >= 50",
+    "tourney_participant.horse >= 50",
+    "tourney_participant.foot >= 50",
+    "tourney_participant.wit >= 50"
+   ],
+   "skills": [
+    "prowess >= 24"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "archer_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:212",
+   "traits": [
+    "forest_fighter"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.bow >= 30"
+   ],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:archer_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "skirmisher_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:238",
+   "traits": [
+    "winter_soldier",
+    "jungle_stalker"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.bow >= 30",
+    "tourney_participant.foot >= 30"
+   ],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:skirmisher_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "pike_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:270",
+   "traits": [
+    "rough_terrain_expert"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.foot >= 30"
+   ],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:pike_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "outrider_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:296",
+   "traits": [
+    "open_terrain_expert"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 30"
+   ],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:outrider_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "vanguard_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:322",
+   "traits": [
+    "strong",
+    "athletic",
+    "physique_good"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.foot >= 30"
+   ],
+   "skills": [],
+   "culture": [
+    "has_innovation=innovation_quilted_armor",
+    "has_cultural_tradition=tradition_fp1_coastal_warriors",
+    "has_cultural_tradition=tradition_hird",
+    "has_cultural_tradition=tradition_futuwaa",
+    "has_cultural_tradition=tradition_druzhina",
+    "has_cultural_tradition=tradition_khadga_puja",
+    "has_cultural_tradition=tradition_garuda_warriors",
+    "has_cultural_tradition=tradition_himalayan_settlers",
+    "has_cultural_tradition=tradition_mubarizuns",
+    "has_cultural_tradition=tradition_burman_royal_army",
+    "has_cultural_tradition=tradition_mountaineer_ruralism",
+    "has_innovation=innovation_sarawit",
+    "has_innovation=innovation_legionnaires",
+    "has_cultural_parameter=unlock_zhanmadao",
+    "has_cultural_parameter=unlock_burenjia"
+   ],
+   "other": [
+    "var:vanguard_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "lancer_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:372",
+   "traits": [
+    "aggressive_attacker"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 30"
+   ],
+   "skills": [],
+   "culture": [
+    "has_innovation=innovation_arched_saddle",
+    "has_cultural_tradition=tradition_caucasian_wolves",
+    "has_cultural_tradition=tradition_roman_legacy",
+    "has_innovation=innovation_valets",
+    "has_cultural_tradition=tradition_ep3_audacious_cadets",
+    "has_cultural_tradition=tradition_ep3_imperial_tagmata",
+    "has_cultural_parameter=unlock_maa_cataphract_archers",
+    "has_innovation=innovation_tiefutu",
+    "has_cultural_parameter=unlock_maa_black_armor_cavalry"
+   ],
+   "other": [
+    "var:lancer_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "crossbowmen_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:414",
+   "traits": [
+    "cautious_leader"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.bow >= 30"
+   ],
+   "skills": [],
+   "culture": [
+    "has_innovation=innovation_advanced_bowmaking",
+    "has_innovation=innovation_repeating_crossbow"
+   ],
+   "other": [
+    "var:crossbowmen_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "besieger_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:449",
+   "traits": [
+    "military_engineer",
+    "logistician"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [
+    "has_innovation=innovation_catapult"
+   ],
+   "other": [
+    "var:besieger_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "camelry_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:472",
+   "traits": [
+    "desert_warrior"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 30"
+   ],
+   "skills": [],
+   "culture": [
+    "has_innovation=innovation_war_camels"
+   ],
+   "other": [
+    "var:camelry_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "elephantry_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:499",
+   "traits": [
+    "jungle_stalker"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 30"
+   ],
+   "skills": [],
+   "culture": [
+    "has_innovation=innovation_elephantry"
+   ],
+   "other": [
+    "var:elephantry_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "horse_archer_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:526",
+   "traits": [
+    "flexible_leader",
+    "nomadic_philosophy"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 30",
+    "tourney_participant.bow >= 30"
+   ],
+   "skills": [],
+   "culture": [
+    "has_cultural_parameter=unlock_maa_horse_archers",
+    "has_cultural_parameter=unlock_maa_mangudai",
+    "has_cultural_parameter=unlock_emishi_horse_archers_units",
+    "has_cultural_parameter=unlock_mounted_samurai_units",
+    "has_cultural_parameter=unlock_maa_cataphract_archers"
+   ],
+   "other": [
+    "var:horse_archer_attribute_unlock (unlocked by an event)",
+    "government_has_flag=government_is_nomadic"
+   ]
+  },
+  "gunpowder_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:576",
+   "traits": [
+    "erudite"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "learning >= 12"
+   ],
+   "culture": [
+    "has_innovation=innovation_gunpowder",
+    "has_innovation=innovation_fire_medicine"
+   ],
+   "other": [
+    "var:gunpowder_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "huntsmaster_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:607",
+   "traits": [
+    "lifestyle_hunter"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [
+    "has_cultural_tradition=tradition_vegetarianism"
+   ],
+   "other": [
+    "var:huntsmaster_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "blademaster_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:629",
+   "traits": [
+    "lifestyle_blademaster"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "lifestyle_blademaster >= 100"
+   ],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "master_of_revels_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:637",
+   "traits": [
+    "lifestyle_reveler"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "var:master_of_revels_attribute_unlock (unlocked by an event)"
+   ]
+  },
+  "house_knight_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:647",
+   "traits": [
+    "loyal"
+   ],
+   "not_traits": [
+    "denounced"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "has_dynasty_perk=kin_legacy_4"
+   ]
+  },
+  "marauder_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:667",
+   "traits": [],
+   "not_traits": [
+    "forgiving",
+    "compassionate"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "idealist_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:680",
+   "traits": [],
+   "not_traits": [
+    "sadistic",
+    "callous",
+    "vengeful",
+    "greedy"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "charmer_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:695",
+   "traits": [
+    "seducer"
+   ],
+   "not_traits": [
+    "chaste"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "thug_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:706",
+   "traits": [
+    "reaver"
+   ],
+   "not_traits": [
+    "calm",
+    "just",
+    "patient",
+    "humble"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "disciplinarian_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:722",
+   "traits": [
+    "organizer",
+    "overseer"
+   ],
+   "not_traits": [
+    "fickle",
+    "lazy",
+    "gluttonous"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "fanatic_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:738",
+   "traits": [
+    "holy_warrior"
+   ],
+   "not_traits": [
+    "cynical"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "valiant_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:749",
+   "traits": [
+    "berserker",
+    "reckless"
+   ],
+   "not_traits": [
+    "craven"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "stalwart_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:761",
+   "traits": [
+    "unyielding_defender"
+   ],
+   "not_traits": [
+    "deceitful",
+    "arbitrary",
+    "impatient"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "scoundrel_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:775",
+   "traits": [
+    "adventurer"
+   ],
+   "not_traits": [
+    "content",
+    "shy",
+    "generous",
+    "honest"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "politicker_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:792",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "diplomacy >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "tactician_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:796",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "reeve_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:800",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "stewardship >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "manipulator_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:804",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "intrigue >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "mentor_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:808",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "learning >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "contender_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:812",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.bow >= 30",
+    "tourney_participant.horse >= 30",
+    "tourney_participant.foot >= 30",
+    "tourney_participant.wit >= 30"
+   ],
+   "skills": [
+    "prowess >= 15"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "archer_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:838",
+   "traits": [
+    "forest_fighter"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.bow >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "skirmisher_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:850",
+   "traits": [
+    "winter_soldier",
+    "jungle_stalker"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.bow >= 20",
+    "tourney_participant.foot >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "pike_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:868",
+   "traits": [
+    "rough_terrain_expert"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.foot >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "outrider_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:880",
+   "traits": [
+    "open_terrain_expert"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [],
+   "other": []
+  },
+  "vanguard_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:892",
+   "traits": [
+    "strong",
+    "athletic",
+    "physique_good"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.foot >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [
+    "has_innovation=innovation_quilted_armor",
+    "has_cultural_tradition=tradition_fp1_coastal_warriors",
+    "has_cultural_tradition=tradition_hird",
+    "has_cultural_tradition=tradition_futuwaa",
+    "has_cultural_tradition=tradition_druzhina",
+    "has_cultural_tradition=tradition_khadga_puja",
+    "has_cultural_tradition=tradition_garuda_warriors",
+    "has_cultural_tradition=tradition_himalayan_settlers",
+    "has_cultural_tradition=tradition_mubarizuns",
+    "has_cultural_tradition=tradition_burman_royal_army",
+    "has_cultural_tradition=tradition_mountaineer_ruralism",
+    "has_innovation=innovation_sarawit",
+    "has_innovation=innovation_legionnaires",
+    "has_cultural_parameter=unlock_zhanmadao",
+    "has_cultural_parameter=unlock_burenjia"
+   ],
+   "other": []
+  },
+  "lancer_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:925",
+   "traits": [
+    "aggressive_attacker"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [
+    "has_innovation=innovation_arched_saddle",
+    "has_cultural_tradition=tradition_caucasian_wolves",
+    "has_cultural_tradition=tradition_roman_legacy",
+    "has_innovation=innovation_valets",
+    "has_cultural_tradition=tradition_ep3_audacious_cadets",
+    "has_cultural_tradition=tradition_ep3_imperial_tagmata",
+    "has_cultural_parameter=unlock_maa_cataphract_archers",
+    "has_innovation=innovation_tiefutu",
+    "has_cultural_parameter=unlock_maa_black_armor_cavalry"
+   ],
+   "other": []
+  },
+  "crossbowmen_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:950",
+   "traits": [
+    "cautious_leader"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.bow >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [
+    "has_innovation=innovation_advanced_bowmaking",
+    "has_innovation=innovation_repeating_crossbow"
+   ],
+   "other": []
+  },
+  "besieger_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:968",
+   "traits": [
+    "military_engineer",
+    "logistician"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [
+    "has_innovation=innovation_catapult"
+   ],
+   "other": []
+  },
+  "camelry_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:977",
+   "traits": [
+    "desert_warrior"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [
+    "has_innovation=innovation_war_camels"
+   ],
+   "other": []
+  },
+  "elephantry_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:990",
+   "traits": [
+    "jungle_stalker"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [
+    "has_innovation=innovation_elephantry"
+   ],
+   "other": []
+  },
+  "horse_archer_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:1003",
+   "traits": [
+    "flexible_leader",
+    "nomadic_philosophy"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "tourney_participant.horse >= 20",
+    "tourney_participant.bow >= 20"
+   ],
+   "skills": [
+    "martial >= 12"
+   ],
+   "culture": [
+    "has_cultural_parameter=unlock_maa_horse_archers",
+    "has_cultural_parameter=unlock_maa_mangudai",
+    "has_cultural_parameter=unlock_emishi_horse_archers_units",
+    "has_cultural_parameter=unlock_mounted_samurai_units",
+    "has_cultural_parameter=unlock_maa_cataphract_archers"
+   ],
+   "other": [
+    "government_has_flag=government_is_nomadic"
+   ]
+  },
+  "gunpowder_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:1036",
+   "traits": [
+    "erudite"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [
+    "learning >= 10"
+   ],
+   "culture": [
+    "has_innovation=innovation_gunpowder",
+    "has_innovation=innovation_fire_medicine"
+   ],
+   "other": []
+  },
+  "huntsmaster_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:1049",
+   "traits": [
+    "lifestyle_hunter"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [
+    "has_cultural_tradition=tradition_vegetarianism"
+   ],
+   "other": []
+  },
+  "blademaster_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:1060",
+   "traits": [
+    "lifestyle_blademaster"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [
+    "lifestyle_blademaster >= 25"
+   ],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "master_of_revels_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:1068",
+   "traits": [
+    "lifestyle_reveler"
+   ],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "house_knight_attribute_acceptable_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:1072",
+   "traits": [
+    "loyal"
+   ],
+   "not_traits": [
+    "denounced"
+   ],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": [
+    "has_dynasty_perk=kin_legacy_4"
+   ]
+  },
+  "can_unlock_accolade_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:1300",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  },
+  "accolade_has_unsuitable_maa_attribute_trigger": {
+   "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:1568",
+   "traits": [],
+   "not_traits": [],
+   "tourney_tracks": [],
+   "skills": [],
+   "culture": [],
+   "other": []
+  }
+ },
+ "types": {
+  "marauder_attribute": {
+   "name": "Marauder",
+   "adjective": "Marauding",
+   "noun": "Marauder",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:18",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "villainous",
+    "martial",
+    "intrigue",
+    "dreadful",
+    "disliked",
+    "army_bonus",
+    "amoral",
+    "forceful",
+    "aggressive",
+    "militant"
+   ],
+   "skills": [
+    "martial",
+    "intrigue"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "marauder_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "marauder_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:13",
+    "traits": [
+     "sadistic",
+     "callous",
+     "vengeful"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:marauder_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_aggressive_red.dds",
+   "portrait_pose": "throne_room_one_handed_passive_2",
+   "adjective_loc": "accolade_marauding",
+   "noun_loc": "accolade_marauder",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "monthly_prestige_gain_per_dread_mult": 0.001
+     },
+     "knight_army_modifier": {
+      "uncontrolled_province_advantage": 2
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:191"
+    },
+    "2": {
+     "liege_modifier": {
+      "monthly_prestige_gain_per_dread_mult": 0.002
+     },
+     "knight_army_modifier": {
+      "uncontrolled_province_advantage": 3
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:199"
+    },
+    "3": {
+     "liege_modifier": {
+      "monthly_prestige_gain_per_dread_mult": 0.003
+     },
+     "knight_army_modifier": {
+      "uncontrolled_province_advantage": 5
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:207"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own_army_wide",
+     "linkedBaseType": null,
+     "note": "Army-wide effect: the knight keeps his own formation (HeroSpec.formation); the buff covers every CK3 troop group of his army."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "advantageIfUncontrolled": 2
+     },
+     "2": {
+      "groups": [],
+      "advantageIfUncontrolled": 3
+     },
+     "3": {
+      "groups": [],
+      "advantageIfUncontrolled": 5
+     }
+    }
+   }
+  },
+  "idealist_attribute": {
+   "name": "Idealist",
+   "adjective": "Idealistic",
+   "noun": "Idealist",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:218",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "benevolent",
+    "social",
+    "diplomacy",
+    "vassal_manager",
+    "foreign_relations",
+    "courtly",
+    "ethical",
+    "defensive",
+    "leader"
+   ],
+   "skills": [
+    "diplomacy"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "idealist_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "idealist_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:25",
+    "traits": [
+     "compassionate",
+     "forgiving",
+     "trusting",
+     "generous"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:idealist_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_leadership_green.dds",
+   "portrait_pose": "personality_compassionate",
+   "adjective_loc": "accolade_idealistic",
+   "noun_loc": "accolade_idealist",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "courtly_opinion": 5,
+      "minority_opinion": 3,
+      "barons_and_minor_landholders_opinion": 3
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:396"
+    },
+    "2": {
+     "liege_modifier": {
+      "courtly_opinion": 8,
+      "minority_opinion": 6,
+      "barons_and_minor_landholders_opinion": 6
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:403"
+    },
+    "3": {
+     "liege_modifier": {
+      "courtly_opinion": 10,
+      "minority_opinion": 10,
+      "barons_and_minor_landholders_opinion": 10
+     },
+     "accolade_parameters": [
+      "accolade_champions_white_peace"
+     ],
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:410"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "charmer_attribute": {
+   "name": "Charmer",
+   "adjective": "Charming",
+   "noun": "Charmer",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:423",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "unscrupulous",
+    "social",
+    "diplomacy",
+    "intrigue",
+    "personal_schemer",
+    "disliked",
+    "courtly",
+    "subtle"
+   ],
+   "skills": [
+    "diplomacy",
+    "intrigue"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "charmer_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "charmer_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:38",
+    "traits": [
+     "lustful",
+     "seducer"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:charmer_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_courtly_purple.dds",
+   "portrait_pose": "flirtation_left",
+   "adjective_loc": "accolade_charming",
+   "noun_loc": "accolade_charmer",
+   "name_templates": 11,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "seduce_scheme_phase_duration_add": -10
+     },
+     "accolade_parameters": [
+      "accolade_court_seduction_vulnerability"
+     ],
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:578"
+    },
+    "2": {
+     "liege_modifier": {
+      "seduce_scheme_phase_duration_add": -20
+     },
+     "accolade_parameters": [
+      "accolade_court_seduction_vulnerability",
+      "accolade_party_fertility"
+     ],
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:586"
+    },
+    "3": {
+     "liege_modifier": {
+      "seduce_scheme_phase_duration_add": -40
+     },
+     "accolade_parameters": [
+      "accolade_court_seduction_vulnerability",
+      "accolade_party_fertility_high"
+     ],
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:595"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "thug_attribute": {
+   "name": "Thug",
+   "adjective": "Thuggish",
+   "noun": "Thug",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:607",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "unscrupulous",
+    "prowess",
+    "hostile_schemer",
+    "activities",
+    "dreadful",
+    "disliked",
+    "amoral",
+    "forceful",
+    "aggressive",
+    "champion"
+   ],
+   "skills": [
+    "prowess"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "thug_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "thug_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:49",
+    "traits": [
+     "wrathful",
+     "arbitrary",
+     "impatient",
+     "arrogant",
+     "reaver"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:thug_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_forceful_red.dds",
+   "portrait_pose": "threatening",
+   "adjective_loc": "accolade_thuggish",
+   "noun_loc": "accolade_thug",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "dread_per_tyranny_add": 0.2
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:805"
+    },
+    "2": {
+     "liege_modifier": {
+      "dread_per_tyranny_add": 0.4
+     },
+     "accolade_parameters": [
+      "accolade_imprisonment_chance"
+     ],
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:810"
+    },
+    "3": {
+     "liege_modifier": {
+      "dread_per_tyranny_add": 0.8
+     },
+     "accolade_parameters": [
+      "accolade_imprisonment_chance_high"
+     ],
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:818"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "disciplinarian_attribute": {
+   "name": "Disciplinarian",
+   "adjective": "Disciplined",
+   "noun": "Disciplinarian",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:829",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "righteous",
+    "stewardship",
+    "martial",
+    "army_bonus",
+    "causes_stress",
+    "ethical",
+    "forceful",
+    "militant",
+    "leader"
+   ],
+   "skills": [
+    "martial",
+    "stewardship"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "disciplinarian_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "disciplinarian_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:63",
+    "traits": [
+     "stubborn",
+     "diligent",
+     "temperate",
+     "organizer",
+     "overseer"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:disciplinarian_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_ethical_red.dds",
+   "portrait_pose": "map_dismissal",
+   "adjective_loc": "accolade_disciplined",
+   "noun_loc": "accolade_disciplinarian",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "levy_reinforcement_rate": 0.1,
+      "vassal_herd_contribution_mult": 0.02
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:967"
+    },
+    "2": {
+     "liege_modifier": {
+      "levy_reinforcement_rate": 0.2,
+      "levy_maintenance": -0.1,
+      "vassal_herd_contribution_mult": 0.05
+     },
+     "knight_army_modifier": {
+      "hostile_county_attrition": -0.4
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:973"
+    },
+    "3": {
+     "liege_modifier": {
+      "levy_reinforcement_rate": 0.3,
+      "levy_maintenance": -0.2,
+      "vassal_herd_contribution_mult": 0.1
+     },
+     "knight_army_modifier": {
+      "hostile_county_attrition": -0.8
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:983"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "noFieldEffect": [
+       "hostile_county_attrition (strategic)"
+      ],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "noFieldEffect": [
+       "hostile_county_attrition (strategic)"
+      ],
+      "none": true
+     }
+    }
+   }
+  },
+  "fanatic_attribute": {
+   "name": "Fanatic",
+   "adjective": "Fanatical",
+   "noun": "Fanatic",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:996",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "righteous",
+    "learning",
+    "army_bonus",
+    "disliked",
+    "militant",
+    "ethical",
+    "forceful",
+    "aggressive"
+   ],
+   "skills": [
+    "learning"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "fanatic_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "fanatic_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:77",
+    "traits": [
+     "zealous",
+     "holy_warrior"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:fanatic_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_ethical_blue.dds",
+   "portrait_pose": "wedding_priest",
+   "adjective_loc": "accolade_fanatical",
+   "noun_loc": "accolade_fanatic",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "zealot_opinion": 10
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1218"
+    },
+    "2": {
+     "liege_modifier": {
+      "zealot_opinion": 15
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_piety_from_battle"
+     ],
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1223"
+    },
+    "3": {
+     "liege_modifier": {
+      "zealot_opinion": 25
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_piety_from_battle_high"
+     ],
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1231"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "valiant_attribute": {
+   "name": "Valiant",
+   "adjective": "Valiant",
+   "noun": "Valiant",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:1242",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "righteous",
+    "prowess",
+    "army_bonus",
+    "army_penalty",
+    "militant",
+    "forceful",
+    "aggressive",
+    "militant",
+    "champion"
+   ],
+   "skills": [
+    "prowess"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "valiant_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "valiant_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:89",
+    "traits": [
+     "brave",
+     "berserker",
+     "reckless"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:valiant_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_forceful_blue.dds",
+   "portrait_pose": "celebrate_sword",
+   "adjective_loc": "accolade_valiant",
+   "noun_loc": "accolade_valiant",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "knight_army_modifier": {
+      "army_damage_mult": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1410"
+    },
+    "2": {
+     "liege_modifier": {
+      "glory_hound_opinion": 15
+     },
+     "knight_army_modifier": {
+      "army_damage_mult": 0.2
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1415"
+    },
+    "3": {
+     "liege_modifier": {
+      "glory_hound_opinion": 25
+     },
+     "knight_army_modifier": {
+      "army_damage_mult": 0.3
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1423"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own_army_wide",
+     "linkedBaseType": null,
+     "note": "Army-wide effect: the knight keeps his own formation (HeroSpec.formation); the buff covers every CK3 troop group of his army."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "army",
+        "baseType": null,
+        "tierDelta": 0.14,
+        "damageMult": 1.05,
+        "healthMult": 1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "army_damage_mult": 0.1,
+         "army_toughness_mult": 0,
+         "army_pursuit_mult": 0,
+         "army_screen_mult": 0
+        }
+       }
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "army",
+        "baseType": null,
+        "tierDelta": 0.26,
+        "damageMult": 1.1,
+        "healthMult": 1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "army_damage_mult": 0.2,
+         "army_toughness_mult": 0,
+         "army_pursuit_mult": 0,
+         "army_screen_mult": 0
+        }
+       }
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "army",
+        "baseType": null,
+        "tierDelta": 0.38,
+        "damageMult": 1.15,
+        "healthMult": 1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "army_damage_mult": 0.3,
+         "army_toughness_mult": 0,
+         "army_pursuit_mult": 0,
+         "army_screen_mult": 0
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  "stalwart_attribute": {
+   "name": "Stalwart",
+   "adjective": "Stalwart",
+   "noun": "Stalwart",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:1434",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "righteous",
+    "army_bonus",
+    "ethical",
+    "forceful",
+    "defensive",
+    "leader",
+    "benevolent"
+   ],
+   "skills": [],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "stalwart_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "stalwart_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:101",
+    "traits": [
+     "honest",
+     "just",
+     "patient",
+     "unyielding_defender"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:stalwart_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_defensive_blue.dds",
+   "portrait_pose": "war_defender",
+   "adjective_loc": "accolade_stalwart",
+   "noun_loc": "accolade_stalwart",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "character_travel_safety": 5
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1584"
+    },
+    "2": {
+     "liege_modifier": {
+      "character_travel_safety": 10
+     },
+     "knight_army_modifier": {
+      "army_toughness_mult": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1589"
+    },
+    "3": {
+     "liege_modifier": {
+      "character_travel_safety": 15
+     },
+     "knight_army_modifier": {
+      "army_toughness_mult": 0.15
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1597"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own_army_wide",
+     "linkedBaseType": null,
+     "note": "Army-wide effect: the knight keeps his own formation (HeroSpec.formation); the buff covers every CK3 troop group of his army."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "army",
+        "baseType": null,
+        "tierDelta": 0.14,
+        "damageMult": 1,
+        "healthMult": 1.05,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "army_damage_mult": 0,
+         "army_toughness_mult": 0.1,
+         "army_pursuit_mult": 0,
+         "army_screen_mult": 0
+        }
+       }
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "army",
+        "baseType": null,
+        "tierDelta": 0.2,
+        "damageMult": 1,
+        "healthMult": 1.075,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "army_damage_mult": 0,
+         "army_toughness_mult": 0.15,
+         "army_pursuit_mult": 0,
+         "army_screen_mult": 0
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  "scoundrel_attribute": {
+   "name": "Scoundrel",
+   "adjective": "Scoundrel",
+   "noun": "Scoundrel",
+   "source": "common/accolade_types/04_ep2_common_attributes.txt:1608",
+   "tier": "common",
+   "tier_field": null,
+   "set": "personality",
+   "categories": [
+    "common",
+    "personality",
+    "amoral",
+    "martial",
+    "intrigue",
+    "army_bonus",
+    "subtle",
+    "unscrupulous"
+   ],
+   "skills": [
+    "martial",
+    "intrigue"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "scoundrel_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "scoundrel_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:114",
+    "traits": [
+     "ambitious",
+     "gregarious",
+     "greedy",
+     "deceitful",
+     "adventurer"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:scoundrel_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_amoral_red.dds",
+   "portrait_pose": "hunting_knife_start",
+   "adjective_loc": "accolade_scoundrel",
+   "noun_loc": "accolade_scoundrel",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "mercenary_hire_cost_mult": -0.1
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1770"
+    },
+    "2": {
+     "liege_modifier": {
+      "martial_per_stress_level": 2,
+      "mercenary_hire_cost_mult": -0.2
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1775"
+    },
+    "3": {
+     "liege_modifier": {
+      "martial_per_stress_level": 5,
+      "mercenary_hire_cost_mult": -0.3
+     },
+     "source": "common/accolade_types/04_ep2_common_attributes.txt:1781"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "huntsmaster_attribute": {
+   "name": "Huntsmaster",
+   "adjective": "Hunt-Leading",
+   "noun": "Huntsmaster",
+   "source": "common/accolade_types/04_ep2_eminent_attributes.txt:26",
+   "tier": "eminent",
+   "tier_field": null,
+   "set": "rare_traits",
+   "categories": [
+    "eminent",
+    "rare_traits",
+    "prowess",
+    "ranged_fighter",
+    "activities",
+    "hunting",
+    "educator",
+    "logistics",
+    "subtle",
+    "courtly",
+    "leader",
+    "equestrian"
+   ],
+   "skills": [
+    "prowess"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "huntsmaster_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "huntsmaster_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:607",
+    "traits": [
+     "lifestyle_hunter"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [
+     "has_cultural_tradition=tradition_vegetarianism"
+    ],
+    "other": [
+     "var:huntsmaster_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_ranged_fighter_green.dds",
+   "portrait_pose": "hunting_falcon",
+   "adjective_loc": "accolade_hunt_leading",
+   "noun_loc": "accolade_huntsmaster",
+   "name_templates": 14,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "trait_track_hunter_xp_gain_mult": 0.15
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_hunting"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:122"
+    },
+    "2": {
+     "liege_modifier": {
+      "trait_track_hunter_xp_gain_mult": 0.25
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_hunting",
+      "acclaimed_knight_reduces_hunting_danger"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:129"
+    },
+    "3": {
+     "liege_modifier": {
+      "trait_track_hunter_xp_gain_mult": 0.35
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_hunting",
+      "acclaimed_knight_reduces_hunting_danger_high"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:139"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "blademaster_attribute": {
+   "name": "Blademaster",
+   "adjective": "Blade-Besting",
+   "noun": "Blademaster",
+   "source": "common/accolade_types/04_ep2_eminent_attributes.txt:152",
+   "tier": "eminent",
+   "tier_field": null,
+   "set": "rare_traits",
+   "categories": [
+    "eminent",
+    "rare_traits",
+    "prowess",
+    "infantry",
+    "educator",
+    "army_bonus",
+    "knights_bonus",
+    "tournaments",
+    "activities",
+    "militant",
+    "champion",
+    "aggressive"
+   ],
+   "skills": [
+    "prowess"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "blademaster_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "blademaster_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:629",
+    "traits": [
+     "lifestyle_blademaster"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "lifestyle_blademaster >= 100"
+    ],
+    "skills": [],
+    "culture": [],
+    "other": []
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_ethical_green.dds",
+   "portrait_pose": "inspect_weapon",
+   "adjective_loc": "accolade_blade_besting",
+   "noun_loc": "accolade_blademaster",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "trait_track_lifestyle_blademaster_xp_gain_mult": 0.15
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_swordfighting",
+      "accolade_increase_hostile_knight_death_low"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:279"
+    },
+    "2": {
+     "liege_modifier": {
+      "trait_track_lifestyle_blademaster_xp_gain_mult": 0.25,
+      "knight_effectiveness_mult": 0.4
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_swordfighting",
+      "accolade_increase_hostile_knight_death_medium"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:289"
+    },
+    "3": {
+     "liege_modifier": {
+      "trait_track_lifestyle_blademaster_xp_gain_mult": 0.35,
+      "knight_effectiveness_mult": 0.8
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_swordfighting",
+      "acclaimed_knight_tournament_invite_acceptance_bonus",
+      "accolade_increase_hostile_knight_death_high"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:300"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "fateFactors": {
+       "enemy_knight_death_weight": 1.25
+      }
+     },
+     "2": {
+      "groups": [],
+      "fateFactors": {
+       "enemy_knight_death_weight": 1.5
+      },
+      "liegeKnightEffectiveness": {
+       "knight_effectiveness_mult": 0.4
+      }
+     },
+     "3": {
+      "groups": [],
+      "fateFactors": {
+       "enemy_knight_death_weight": 1.75
+      },
+      "liegeKnightEffectiveness": {
+       "knight_effectiveness_mult": 0.8
+      }
+     }
+    }
+   }
+  },
+  "master_of_revels_attribute": {
+   "name": "Master of Revels",
+   "adjective": "Revel-Leading",
+   "noun": "Master of Revels",
+   "source": "common/accolade_types/04_ep2_eminent_attributes.txt:315",
+   "tier": "eminent",
+   "tier_field": null,
+   "set": "rare_traits",
+   "categories": [
+    "eminent",
+    "rare_traits",
+    "social",
+    "diplomacy",
+    "activities",
+    "foreign_relations",
+    "vassal_manager",
+    "educator",
+    "army_bonus",
+    "prestige",
+    "courtly",
+    "leader",
+    "subtle"
+   ],
+   "skills": [
+    "diplomacy"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "master_of_revels_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "master_of_revels_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:637",
+    "traits": [
+     "lifestyle_reveler"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:master_of_revels_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_courtly_red.dds",
+   "portrait_pose": "dancing",
+   "adjective_loc": "accolade_revel_leading",
+   "noun_loc": "accolade_master_of_revels",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "lifestyle_reveler_xp_gain_mult": 0.15
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_reveling"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:489"
+    },
+    "2": {
+     "liege_modifier": {
+      "lifestyle_reveler_xp_gain_mult": 0.25
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_reveling",
+      "acclaimed_knight_prestige_from_victory"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:496"
+    },
+    "3": {
+     "liege_modifier": {
+      "lifestyle_reveler_xp_gain_mult": 0.35
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_trains_reveling",
+      "acclaimed_knight_feast_wedding_invite_acceptance_bonus",
+      "acclaimed_knight_prestige_from_victory_high"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:506"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "house_knight_attribute": {
+   "name": "House Paragon",
+   "adjective": "House",
+   "noun": "House Paragon",
+   "source": "common/accolade_types/04_ep2_eminent_attributes.txt:520",
+   "tier": "eminent",
+   "tier_field": null,
+   "set": "relationship",
+   "categories": [
+    "eminent",
+    "relationship",
+    "dynasty",
+    "educator",
+    "defensive",
+    "champion"
+   ],
+   "skills": [],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "house_knight_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "house_knight_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:647",
+    "traits": [
+     "loyal"
+    ],
+    "not_traits": [
+     "denounced"
+    ],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "has_dynasty_perk=kin_legacy_4"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_champion_blue.dds",
+   "portrait_pose": "personality_honorable",
+   "adjective_loc": "accolade_house",
+   "noun_loc": "accolade_house_knight",
+   "name_templates": 11,
+   "levels": {
+    "1": {
+     "accolade_parameters": [
+      "accolade_defends_family_low"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:628"
+    },
+    "2": {
+     "liege_modifier": {
+      "monthly_dynasty_prestige_mult": 0.05
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_inspires_family",
+      "accolade_defends_family_medium"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:634"
+    },
+    "3": {
+     "liege_modifier": {
+      "monthly_dynasty_prestige_mult": 0.15
+     },
+     "accolade_parameters": [
+      "acclaimed_knight_inspires_family_high",
+      "accolade_defends_family_high"
+     ],
+     "source": "common/accolade_types/04_ep2_eminent_attributes.txt:639"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "fateFactors": {
+       "own_house_knight_harm_weight": 0.75
+      }
+     },
+     "2": {
+      "groups": [],
+      "fateFactors": {
+       "own_house_knight_harm_weight": 0.5
+      }
+     },
+     "3": {
+      "groups": [],
+      "fateFactors": {
+       "own_house_knight_harm_weight": 0.25
+      }
+     }
+    }
+   }
+  },
+  "archer_attribute": {
+   "name": "Archer",
+   "adjective": "Bow-Leading",
+   "noun": "Archer",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:224",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "leader",
+    "subtle",
+    "ranged_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "archers"
+   ],
+   "battle_base_types": [
+    "archers"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_archers"
+   ],
+   "squire_perfect_fit": [
+    "archer_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "archer_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:212",
+    "traits": [
+     "forest_fighter"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.bow >= 30"
+    ],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:archer_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_ranged_fighter_red.dds",
+   "portrait_pose": "hunting_shortbow_aim_arrow_default",
+   "adjective_loc": "accolade_bow_leading",
+   "noun_loc": "accolade_archer",
+   "name_templates": 15,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "archers_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "archers_damage_mult": 0.1,
+      "archers_toughness_mult": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:337"
+    },
+    "2": {
+     "liege_modifier": {
+      "archers_maintenance_mult": -0.15,
+      "archers_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "archers_damage_mult": 0.4,
+      "archers_toughness_mult": 0.2
+     },
+     "men_at_arms": [
+      "accolade_maa_archers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:346"
+    },
+    "3": {
+     "liege_modifier": {
+      "archers_maintenance_mult": -0.25,
+      "archers_max_size_add": 3
+     },
+     "knight_army_modifier": {
+      "archers_damage_mult": 0.6,
+      "archers_toughness_mult": 0.3
+     },
+     "men_at_arms": [
+      "accolade_maa_archers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:358"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Ranged",
+     "formationClassId": 1,
+     "rule": "linked_maa",
+     "linkedBaseType": "archers",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is archers; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archers",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archers",
+        "tierDelta": 0.75,
+        "damageMult": 1.2,
+        "healthMult": 1.1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.4,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archers",
+        "tierDelta": 1.06,
+        "damageMult": 1.3,
+        "healthMult": 1.15,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.6,
+         "toughness_mult": 0.3,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  "skirmisher_attribute": {
+   "name": "Skirmisher",
+   "adjective": "Skirmishing",
+   "noun": "Skirmisher",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:373",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "champion",
+    "subtle",
+    "ranged_fighter",
+    "infantry"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "skirmishers"
+   ],
+   "battle_base_types": [
+    "skirmishers"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_skirmishers"
+   ],
+   "squire_perfect_fit": [
+    "skirmisher_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "skirmisher_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:238",
+    "traits": [
+     "winter_soldier",
+     "jungle_stalker"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.bow >= 30",
+     "tourney_participant.foot >= 30"
+    ],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:skirmisher_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_subtle_red.dds",
+   "portrait_pose": "throne_room_one_handed_passive_3",
+   "adjective_loc": "accolade_skirmishing",
+   "noun_loc": "accolade_skirmisher",
+   "name_templates": 15,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "skirmishers_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "skirmishers_damage_mult": 0.1,
+      "skirmishers_toughness_mult": 0.1,
+      "skirmishers_screen_mult": 0.1,
+      "winter_movement_speed": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:487"
+    },
+    "2": {
+     "liege_modifier": {
+      "skirmishers_maintenance_mult": -0.15,
+      "skirmishers_max_size_add": 3
+     },
+     "knight_army_modifier": {
+      "skirmishers_damage_mult": 0.4,
+      "skirmishers_toughness_mult": 0.2,
+      "skirmishers_screen_mult": 0.3,
+      "winter_movement_speed": 0.15
+     },
+     "men_at_arms": [
+      "accolade_maa_skirmishers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:498"
+    },
+    "3": {
+     "liege_modifier": {
+      "skirmishers_maintenance_mult": -0.25,
+      "skirmishers_max_size_add": 4
+     },
+     "knight_army_modifier": {
+      "skirmishers_damage_mult": 0.6,
+      "skirmishers_toughness_mult": 0.3,
+      "skirmishers_screen_mult": 0.5,
+      "winter_movement_speed": 0.2
+     },
+     "men_at_arms": [
+      "accolade_maa_skirmishers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:511"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Infantry",
+     "formationClassId": 0,
+     "rule": "linked_maa",
+     "linkedBaseType": "skirmishers",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is skirmishers; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "skirmishers",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1,
+        "screenMult": 1.1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0,
+         "screen_mult": 0.1
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "winter_movement_speed (strategic)"
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "skirmishers",
+        "tierDelta": 0.75,
+        "damageMult": 1.2,
+        "healthMult": 1.1,
+        "pursuitMult": 1,
+        "screenMult": 1.3,
+        "ck3": {
+         "damage_mult": 0.4,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0,
+         "screen_mult": 0.3
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "winter_movement_speed (strategic)"
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "skirmishers",
+        "tierDelta": 1.06,
+        "damageMult": 1.3,
+        "healthMult": 1.15,
+        "pursuitMult": 1,
+        "screenMult": 1.5,
+        "ck3": {
+         "damage_mult": 0.6,
+         "toughness_mult": 0.3,
+         "pursuit_mult": 0,
+         "screen_mult": 0.5
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "winter_movement_speed (strategic)"
+      ]
+     }
+    }
+   }
+  },
+  "pike_attribute": {
+   "name": "Pike Captain",
+   "adjective": "Pike-Leading",
+   "noun": "Pike Captain",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:528",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "leader",
+    "defensive",
+    "forceful",
+    "infantry"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "pikemen"
+   ],
+   "battle_base_types": [
+    "pikemen"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_pikes"
+   ],
+   "squire_perfect_fit": [
+    "pike_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "pike_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:270",
+    "traits": [
+     "rough_terrain_expert"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.foot >= 30"
+    ],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:pike_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_champion_red.dds",
+   "portrait_pose": "relaxed_spear",
+   "adjective_loc": "accolade_pike_leading",
+   "noun_loc": "accolade_pike_captain",
+   "name_templates": 15,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "pikemen_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "pikemen_damage_mult": 0.1,
+      "pikemen_toughness_mult": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:641"
+    },
+    "2": {
+     "liege_modifier": {
+      "pikemen_maintenance_mult": -0.1,
+      "pikemen_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "pikemen_damage_mult": 0.3,
+      "pikemen_toughness_mult": 0.4
+     },
+     "men_at_arms": [
+      "accolade_maa_pikes"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:650"
+    },
+    "3": {
+     "liege_modifier": {
+      "pikemen_maintenance_mult": -0.2,
+      "pikemen_max_size_add": 3
+     },
+     "knight_army_modifier": {
+      "pikemen_damage_mult": 0.5,
+      "pikemen_toughness_mult": 0.6
+     },
+     "men_at_arms": [
+      "accolade_maa_pikes"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:661"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Infantry",
+     "formationClassId": 0,
+     "rule": "linked_maa",
+     "linkedBaseType": "pikemen",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is pikemen; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "pikemen",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "pikemen",
+        "tierDelta": 0.86,
+        "damageMult": 1.15,
+        "healthMult": 1.2,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.3,
+         "toughness_mult": 0.4,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "pikemen",
+        "tierDelta": 1.26,
+        "damageMult": 1.25,
+        "healthMult": 1.3,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.5,
+         "toughness_mult": 0.6,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  "outrider_attribute": {
+   "name": "Outrider",
+   "adjective": "Outriding",
+   "noun": "Outrider",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:676",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "equestrian",
+    "subtle",
+    "champion",
+    "aggressive",
+    "cavalry",
+    "light_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "light_cavalry"
+   ],
+   "battle_base_types": [
+    "light_cavalry"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_outriders"
+   ],
+   "squire_perfect_fit": [
+    "outrider_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "outrider_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:296",
+    "traits": [
+     "open_terrain_expert"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.horse >= 30"
+    ],
+    "skills": [],
+    "culture": [],
+    "other": [
+     "var:outrider_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_equestrian_red.dds",
+   "portrait_pose": "jockey_walk",
+   "adjective_loc": "accolade_outriding",
+   "noun_loc": "accolade_outrider",
+   "name_templates": 14,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "light_cavalry_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "light_cavalry_damage_mult": 0.1,
+      "light_cavalry_toughness_mult": 0.1,
+      "light_cavalry_pursuit_mult": 0.1,
+      "movement_speed": 0.05
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:793"
+    },
+    "2": {
+     "liege_modifier": {
+      "light_cavalry_maintenance_mult": -0.1,
+      "light_cavalry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "light_cavalry_damage_mult": 0.4,
+      "light_cavalry_toughness_mult": 0.2,
+      "light_cavalry_pursuit_mult": 0.2,
+      "movement_speed": 0.1
+     },
+     "men_at_arms": [
+      "accolade_maa_outriders"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:804"
+    },
+    "3": {
+     "liege_modifier": {
+      "light_cavalry_maintenance_mult": -0.2,
+      "light_cavalry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "light_cavalry_damage_mult": 0.6,
+      "light_cavalry_toughness_mult": 0.3,
+      "light_cavalry_pursuit_mult": 0.4,
+      "movement_speed": 0.15
+     },
+     "men_at_arms": [
+      "accolade_maa_outriders"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:817"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Cavalry",
+     "formationClassId": 2,
+     "rule": "linked_maa",
+     "linkedBaseType": "light_cavalry",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is light_cavalry; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "light_cavalry",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1.1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0.1,
+         "screen_mult": 0
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "light_cavalry",
+        "tierDelta": 0.75,
+        "damageMult": 1.2,
+        "healthMult": 1.1,
+        "pursuitMult": 1.2,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.4,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0.2,
+         "screen_mult": 0
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "light_cavalry",
+        "tierDelta": 1.06,
+        "damageMult": 1.3,
+        "healthMult": 1.15,
+        "pursuitMult": 1.4,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.6,
+         "toughness_mult": 0.3,
+         "pursuit_mult": 0.4,
+         "screen_mult": 0
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     }
+    }
+   }
+  },
+  "vanguard_attribute": {
+   "name": "Vanguard",
+   "adjective": "Vanguard",
+   "noun": "Vanguard",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:834",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "forceful",
+    "aggressive",
+    "defensive",
+    "infantry",
+    "heavy_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "heavy_infantry"
+   ],
+   "battle_base_types": [
+    "heavy_infantry"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_vanguards"
+   ],
+   "squire_perfect_fit": [
+    "vanguard_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "vanguard_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:322",
+    "traits": [
+     "strong",
+     "athletic",
+     "physique_good"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.foot >= 30"
+    ],
+    "skills": [],
+    "culture": [
+     "has_innovation=innovation_quilted_armor",
+     "has_cultural_tradition=tradition_fp1_coastal_warriors",
+     "has_cultural_tradition=tradition_hird",
+     "has_cultural_tradition=tradition_futuwaa",
+     "has_cultural_tradition=tradition_druzhina",
+     "has_cultural_tradition=tradition_khadga_puja",
+     "has_cultural_tradition=tradition_garuda_warriors",
+     "has_cultural_tradition=tradition_himalayan_settlers",
+     "has_cultural_tradition=tradition_mubarizuns",
+     "has_cultural_tradition=tradition_burman_royal_army",
+     "has_cultural_tradition=tradition_mountaineer_ruralism",
+     "has_innovation=innovation_sarawit",
+     "has_innovation=innovation_legionnaires",
+     "has_cultural_parameter=unlock_zhanmadao",
+     "has_cultural_parameter=unlock_burenjia"
+    ],
+    "other": [
+     "var:vanguard_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_forceful_green.dds",
+   "portrait_pose": "marshal_shield",
+   "adjective_loc": "accolade_vanguard",
+   "noun_loc": "accolade_vanguard",
+   "name_templates": 13,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "heavy_infantry_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "heavy_infantry_damage_mult": 0.1,
+      "heavy_infantry_toughness_mult": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:952"
+    },
+    "2": {
+     "liege_modifier": {
+      "heavy_infantry_maintenance_mult": -0.1,
+      "heavy_infantry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "heavy_infantry_damage_mult": 0.4,
+      "heavy_infantry_toughness_mult": 0.2
+     },
+     "men_at_arms": [
+      "accolade_maa_vanguards"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:961"
+    },
+    "3": {
+     "liege_modifier": {
+      "heavy_infantry_maintenance_mult": -0.2,
+      "heavy_infantry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "heavy_infantry_damage_mult": 0.6,
+      "heavy_infantry_toughness_mult": 0.3
+     },
+     "men_at_arms": [
+      "accolade_maa_vanguards"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:972"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Infantry",
+     "formationClassId": 0,
+     "rule": "linked_maa",
+     "linkedBaseType": "heavy_infantry",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is heavy_infantry; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "heavy_infantry",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "heavy_infantry",
+        "tierDelta": 0.75,
+        "damageMult": 1.2,
+        "healthMult": 1.1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.4,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "heavy_infantry",
+        "tierDelta": 1.06,
+        "damageMult": 1.3,
+        "healthMult": 1.15,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.6,
+         "toughness_mult": 0.3,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  "lancer_attribute": {
+   "name": "Lancer",
+   "adjective": "Lancer",
+   "noun": "Lancer",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:987",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "forceful",
+    "aggressive",
+    "equestrian",
+    "cavalry",
+    "heavy_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "heavy_cavalry"
+   ],
+   "battle_base_types": [
+    "heavy_cavalry"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_lancers"
+   ],
+   "squire_perfect_fit": [
+    "lancer_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "lancer_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:372",
+    "traits": [
+     "aggressive_attacker"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.horse >= 30"
+    ],
+    "skills": [],
+    "culture": [
+     "has_innovation=innovation_arched_saddle",
+     "has_cultural_tradition=tradition_caucasian_wolves",
+     "has_cultural_tradition=tradition_roman_legacy",
+     "has_innovation=innovation_valets",
+     "has_cultural_tradition=tradition_ep3_audacious_cadets",
+     "has_cultural_tradition=tradition_ep3_imperial_tagmata",
+     "has_cultural_parameter=unlock_maa_cataphract_archers",
+     "has_innovation=innovation_tiefutu",
+     "has_cultural_parameter=unlock_maa_black_armor_cavalry"
+    ],
+    "other": [
+     "var:lancer_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_equestrian_blue.dds",
+   "portrait_pose": "horse_surveying",
+   "adjective_loc": "accolade_lancer",
+   "noun_loc": "accolade_lancer",
+   "name_templates": 13,
+   "levels": {
+    "1": {
+     "knight_army_modifier": {
+      "heavy_cavalry_damage_mult": 0.1,
+      "heavy_cavalry_toughness_mult": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1115"
+    },
+    "2": {
+     "liege_modifier": {
+      "heavy_cavalry_maintenance_mult": -0.1,
+      "heavy_cavalry_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "heavy_cavalry_damage_mult": 0.4,
+      "heavy_cavalry_toughness_mult": 0.2
+     },
+     "men_at_arms": [
+      "accolade_maa_lancers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1121"
+    },
+    "3": {
+     "liege_modifier": {
+      "heavy_cavalry_maintenance_mult": -0.2,
+      "heavy_cavalry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "heavy_cavalry_damage_mult": 0.6,
+      "heavy_cavalry_toughness_mult": 0.3
+     },
+     "men_at_arms": [
+      "accolade_maa_lancers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1132"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Cavalry",
+     "formationClassId": 2,
+     "rule": "linked_maa",
+     "linkedBaseType": "heavy_cavalry",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is heavy_cavalry; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "heavy_cavalry",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "heavy_cavalry",
+        "tierDelta": 0.75,
+        "damageMult": 1.2,
+        "healthMult": 1.1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.4,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "heavy_cavalry",
+        "tierDelta": 1.06,
+        "damageMult": 1.3,
+        "healthMult": 1.15,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.6,
+         "toughness_mult": 0.3,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  "crossbowmen_attribute": {
+   "name": "Crossbow Captain",
+   "adjective": "Crossbow-Leading",
+   "noun": "Crossbow Captain",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:1147",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "defensive",
+    "leader",
+    "subtle",
+    "ranged_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "archers"
+   ],
+   "battle_base_types": [
+    "archers"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_crossbowers"
+   ],
+   "squire_perfect_fit": [
+    "crossbowmen_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "crossbowmen_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:414",
+    "traits": [
+     "cautious_leader"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.bow >= 30"
+    ],
+    "skills": [],
+    "culture": [
+     "has_innovation=innovation_advanced_bowmaking",
+     "has_innovation=innovation_repeating_crossbow"
+    ],
+    "other": [
+     "var:crossbowmen_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_militant_green.dds",
+   "portrait_pose": "crossbow",
+   "adjective_loc": "accolade_crossbow_leading",
+   "noun_loc": "accolade_crossbow_captain",
+   "name_templates": 16,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "capital_fort_level": 1
+     },
+     "knight_army_modifier": {
+      "archers_siege_value_add": 0.1,
+      "archers_screen_mult": 0.3
+     },
+     "accolade_parameters": [
+      "accolade_increase_hostile_knight_death_low"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1260"
+    },
+    "2": {
+     "liege_modifier": {
+      "capital_fort_level": 2
+     },
+     "knight_army_modifier": {
+      "archers_siege_value_add": 0.3,
+      "archers_screen_mult": 0.6
+     },
+     "men_at_arms": [
+      "accolade_maa_crossbowers"
+     ],
+     "accolade_parameters": [
+      "accolade_increase_hostile_knight_death_medium"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1270"
+    },
+    "3": {
+     "liege_modifier": {
+      "capital_fort_level": 3
+     },
+     "knight_army_modifier": {
+      "archers_siege_value_add": 0.3,
+      "archers_screen_mult": 1
+     },
+     "men_at_arms": [
+      "accolade_maa_crossbowers"
+     ],
+     "accolade_parameters": [
+      "accolade_increase_hostile_knight_death_high"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1281"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Ranged",
+     "formationClassId": 1,
+     "rule": "linked_maa",
+     "linkedBaseType": "archers",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is archers; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archers",
+        "tierDelta": 0,
+        "damageMult": 1,
+        "healthMult": 1,
+        "pursuitMult": 1,
+        "screenMult": 1.3,
+        "ck3": {
+         "damage_mult": 0,
+         "toughness_mult": 0,
+         "pursuit_mult": 0,
+         "screen_mult": 0.3
+        }
+       }
+      ],
+      "fateFactors": {
+       "enemy_knight_death_weight": 1.25
+      },
+      "noFieldEffect": [
+       "archers_siege_value_add (siege)"
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archers",
+        "tierDelta": 0,
+        "damageMult": 1,
+        "healthMult": 1,
+        "pursuitMult": 1,
+        "screenMult": 1.6,
+        "ck3": {
+         "damage_mult": 0,
+         "toughness_mult": 0,
+         "pursuit_mult": 0,
+         "screen_mult": 0.6
+        }
+       }
+      ],
+      "fateFactors": {
+       "enemy_knight_death_weight": 1.5
+      },
+      "noFieldEffect": [
+       "archers_siege_value_add (siege)"
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archers",
+        "tierDelta": 0,
+        "damageMult": 1,
+        "healthMult": 1,
+        "pursuitMult": 1,
+        "screenMult": 2,
+        "ck3": {
+         "damage_mult": 0,
+         "toughness_mult": 0,
+         "pursuit_mult": 0,
+         "screen_mult": 1
+        }
+       }
+      ],
+      "fateFactors": {
+       "enemy_knight_death_weight": 1.75
+      },
+      "noFieldEffect": [
+       "archers_siege_value_add (siege)"
+      ]
+     }
+    }
+   }
+  },
+  "besieger_attribute": {
+   "name": "Besieger",
+   "adjective": "Besieging",
+   "noun": "Besieger",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:1296",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "aggressive",
+    "subtle",
+    "leader",
+    "ranged_fighter",
+    "siege"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "siege_weapon"
+   ],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "besieger_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "besieger_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:449",
+    "traits": [
+     "military_engineer",
+     "logistician"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [],
+    "culture": [
+     "has_innovation=innovation_catapult"
+    ],
+    "other": [
+     "var:besieger_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_defensive_red.dds",
+   "portrait_pose": "thinking",
+   "adjective_loc": "accolade_besieging",
+   "noun_loc": "accolade_besieger",
+   "name_templates": 13,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "siege_weapon_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "siege_phase_time": -0.1,
+      "siege_morale_loss": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1390"
+    },
+    "2": {
+     "liege_modifier": {
+      "siege_weapon_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "siege_phase_time": -0.15,
+      "siege_morale_loss": 0.15
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1397"
+    },
+    "3": {
+     "liege_modifier": {
+      "siege_weapon_max_size_add": 4
+     },
+     "knight_army_modifier": {
+      "siege_phase_time": -0.2,
+      "siege_morale_loss": 0.2
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1404"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": "siege_weapon",
+     "note": "siege_weapon never fights in a field battle: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "noFieldEffect": [
+       "siege_phase_time (strategic)",
+       "siege_morale_loss (strategic)"
+      ],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "noFieldEffect": [
+       "siege_phase_time (strategic)",
+       "siege_morale_loss (strategic)"
+      ],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "noFieldEffect": [
+       "siege_phase_time (strategic)",
+       "siege_morale_loss (strategic)"
+      ],
+      "none": true
+     }
+    }
+   }
+  },
+  "camelry_attribute": {
+   "name": "Camelier",
+   "adjective": "Camel-Riding",
+   "noun": "Camelier",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:1415",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "aggressive",
+    "defensive",
+    "cavalry",
+    "light_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "camel_cavalry"
+   ],
+   "battle_base_types": [
+    "camel_cavalry"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_cameliers"
+   ],
+   "squire_perfect_fit": [
+    "camelry_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "camelry_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:472",
+    "traits": [
+     "desert_warrior"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.horse >= 30"
+    ],
+    "skills": [],
+    "culture": [
+     "has_innovation=innovation_war_camels"
+    ],
+    "other": [
+     "var:camelry_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_champion_green.dds",
+   "portrait_pose": "throne_room_two_handed_passive_1",
+   "adjective_loc": "accolade_camel_riding",
+   "noun_loc": "accolade_camelier",
+   "name_templates": 15,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "camel_cavalry_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "camel_cavalry_damage_mult": 0.1,
+      "camel_cavalry_toughness_mult": 0.1,
+      "camel_cavalry_pursuit_mult": 0.1,
+      "camel_cavalry_screen_mult": 0.1,
+      "movement_speed": 0.05
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1519"
+    },
+    "2": {
+     "liege_modifier": {
+      "camel_cavalry_maintenance_mult": -0.1,
+      "camel_cavalry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "camel_cavalry_damage_mult": 0.4,
+      "camel_cavalry_toughness_mult": 0.2,
+      "camel_cavalry_pursuit_mult": 0.2,
+      "camel_cavalry_screen_mult": 0.2,
+      "movement_speed": 0.1
+     },
+     "men_at_arms": [
+      "accolade_maa_cameliers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1531"
+    },
+    "3": {
+     "liege_modifier": {
+      "camel_cavalry_maintenance_mult": -0.2,
+      "camel_cavalry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "camel_cavalry_damage_mult": 0.6,
+      "camel_cavalry_toughness_mult": 0.3,
+      "camel_cavalry_pursuit_mult": 0.3,
+      "camel_cavalry_screen_mult": 0.3,
+      "movement_speed": 0.15
+     },
+     "men_at_arms": [
+      "accolade_maa_cameliers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1545"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Cavalry",
+     "formationClassId": 2,
+     "rule": "linked_maa",
+     "linkedBaseType": "camel_cavalry",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is camel_cavalry; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "camel_cavalry",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1.1,
+        "screenMult": 1.1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0.1,
+         "screen_mult": 0.1
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "camel_cavalry",
+        "tierDelta": 0.75,
+        "damageMult": 1.2,
+        "healthMult": 1.1,
+        "pursuitMult": 1.2,
+        "screenMult": 1.2,
+        "ck3": {
+         "damage_mult": 0.4,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0.2,
+         "screen_mult": 0.2
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "camel_cavalry",
+        "tierDelta": 1.06,
+        "damageMult": 1.3,
+        "healthMult": 1.15,
+        "pursuitMult": 1.3,
+        "screenMult": 1.3,
+        "ck3": {
+         "damage_mult": 0.6,
+         "toughness_mult": 0.3,
+         "pursuit_mult": 0.3,
+         "screen_mult": 0.3
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     }
+    }
+   }
+  },
+  "elephantry_attribute": {
+   "name": "Elephant Rider",
+   "adjective": "Elephant-Riding",
+   "noun": "Elephant Rider",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:1563",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "forceful",
+    "leader",
+    "aggressive",
+    "defensive",
+    "cavalry",
+    "heavy_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "elephant_cavalry"
+   ],
+   "battle_base_types": [
+    "elephant_cavalry"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_elephantiers"
+   ],
+   "squire_perfect_fit": [
+    "elephantry_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "elephantry_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:499",
+    "traits": [
+     "jungle_stalker"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.horse >= 30"
+    ],
+    "skills": [],
+    "culture": [
+     "has_innovation=innovation_elephantry"
+    ],
+    "other": [
+     "var:elephantry_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_aggressive_green.dds",
+   "portrait_pose": "hunting_shortbow_rest_arrow_default",
+   "adjective_loc": "accolade_elephant_riding",
+   "noun_loc": "accolade_elephanteer",
+   "name_templates": 15,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "elephant_cavalry_maintenance_mult": -0.2
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1670"
+    },
+    "2": {
+     "liege_modifier": {
+      "elephant_cavalry_maintenance_mult": -0.35,
+      "elephant_cavalry_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "elephant_cavalry_damage_mult": 0.2
+     },
+     "men_at_arms": [
+      "accolade_maa_elephantiers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1675"
+    },
+    "3": {
+     "liege_modifier": {
+      "elephant_cavalry_maintenance_mult": -0.5,
+      "elephant_cavalry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "elephant_cavalry_damage_mult": 0.2,
+      "elephant_cavalry_toughness_mult": 0.2
+     },
+     "men_at_arms": [
+      "accolade_maa_elephantiers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1683"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Cavalry",
+     "formationClassId": 2,
+     "rule": "linked_maa",
+     "linkedBaseType": "elephant_cavalry",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is elephant_cavalry; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "elephant_cavalry",
+        "tierDelta": 0.26,
+        "damageMult": 1.1,
+        "healthMult": 1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.2,
+         "toughness_mult": 0,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "elephant_cavalry",
+        "tierDelta": 0.53,
+        "damageMult": 1.1,
+        "healthMult": 1.1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.2,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  "horse_archer_attribute": {
+   "name": "Horse Archer",
+   "adjective": "Horse-Arching",
+   "noun": "Horse Archer",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:1698",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "subtle",
+    "equestrian",
+    "aggressive",
+    "defensive",
+    "cavalry",
+    "ranged_fighter",
+    "light_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "archer_cavalry"
+   ],
+   "battle_base_types": [
+    "archer_cavalry"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_horse_archers"
+   ],
+   "squire_perfect_fit": [
+    "horse_archer_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "horse_archer_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:526",
+    "traits": [
+     "flexible_leader",
+     "nomadic_philosophy"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.horse >= 30",
+     "tourney_participant.bow >= 30"
+    ],
+    "skills": [],
+    "culture": [
+     "has_cultural_parameter=unlock_maa_horse_archers",
+     "has_cultural_parameter=unlock_maa_mangudai",
+     "has_cultural_parameter=unlock_emishi_horse_archers_units",
+     "has_cultural_parameter=unlock_mounted_samurai_units",
+     "has_cultural_parameter=unlock_maa_cataphract_archers"
+    ],
+    "other": [
+     "var:horse_archer_attribute_unlock (unlocked by an event)",
+     "government_has_flag=government_is_nomadic"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_ranged_fighter_blue.dds",
+   "portrait_pose": "horse_archer_aggressive",
+   "adjective_loc": "accolade_horse_arching",
+   "noun_loc": "accolade_horse_archer",
+   "name_templates": 15,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "archer_cavalry_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "archer_cavalry_damage_mult": 0.1,
+      "archer_cavalry_toughness_mult": 0.1,
+      "archer_cavalry_pursuit_mult": 0.1,
+      "movement_speed": 0.05
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1804"
+    },
+    "2": {
+     "liege_modifier": {
+      "archer_cavalry_maintenance_mult": -0.1,
+      "archer_cavalry_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "archer_cavalry_damage_mult": 0.4,
+      "archer_cavalry_toughness_mult": 0.2,
+      "archer_cavalry_pursuit_mult": 0.2,
+      "movement_speed": 0.1
+     },
+     "men_at_arms": [
+      "accolade_maa_horse_archers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1815"
+    },
+    "3": {
+     "liege_modifier": {
+      "archer_cavalry_maintenance_mult": -0.2,
+      "archer_cavalry_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "archer_cavalry_damage_mult": 0.6,
+      "archer_cavalry_toughness_mult": 0.3,
+      "archer_cavalry_pursuit_mult": 0.4,
+      "movement_speed": 0.15
+     },
+     "men_at_arms": [
+      "accolade_maa_horse_archers"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1828"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "HorseArcher",
+     "formationClassId": 3,
+     "rule": "linked_maa",
+     "linkedBaseType": "archer_cavalry",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is archer_cavalry; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archer_cavalry",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1.1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0.1,
+         "screen_mult": 0
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archer_cavalry",
+        "tierDelta": 0.75,
+        "damageMult": 1.2,
+        "healthMult": 1.1,
+        "pursuitMult": 1.2,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.4,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0.2,
+         "screen_mult": 0
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "archer_cavalry",
+        "tierDelta": 1.06,
+        "damageMult": 1.3,
+        "healthMult": 1.15,
+        "pursuitMult": 1.4,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.6,
+         "toughness_mult": 0.3,
+         "pursuit_mult": 0.4,
+         "screen_mult": 0
+        }
+       }
+      ],
+      "noFieldEffect": [
+       "movement_speed (strategic)"
+      ]
+     }
+    }
+   }
+  },
+  "gunpowder_attribute": {
+   "name": "Gunner",
+   "adjective": "Gunnery-Using",
+   "noun": "Master Gunner",
+   "source": "common/accolade_types/04_ep2_maa_attributes.txt:1845",
+   "tier": "men_at_arms",
+   "tier_field": null,
+   "set": "men_at_arms",
+   "categories": [
+    "men_at_arms",
+    "army_bonus",
+    "militant",
+    "leader",
+    "subtle",
+    "ranged_fighter"
+   ],
+   "skills": [],
+   "linked_base_types": [
+    "gunpowder"
+   ],
+   "battle_base_types": [
+    "gunpowder"
+   ],
+   "unlocked_maa": [
+    "accolade_maa_handgunners"
+   ],
+   "squire_perfect_fit": [
+    "gunpowder_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "gunpowder_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:576",
+    "traits": [
+     "erudite"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [
+     "learning >= 12"
+    ],
+    "culture": [
+     "has_innovation=innovation_gunpowder",
+     "has_innovation=innovation_fire_medicine"
+    ],
+    "other": [
+     "var:gunpowder_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_militant_red.dds",
+   "portrait_pose": "hunting_horn",
+   "adjective_loc": "accolade_gunpowder_leading",
+   "noun_loc": "accolade_gunpowder_captain",
+   "name_templates": 13,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "gunpowder_max_size_add": 1
+     },
+     "knight_army_modifier": {
+      "gunpowder_damage_mult": 0.1,
+      "gunpowder_toughness_mult": 0.1
+     },
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1960"
+    },
+    "2": {
+     "liege_modifier": {
+      "gunpowder_maintenance_mult": -0.1,
+      "gunpowder_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "gunpowder_damage_mult": 0.4,
+      "gunpowder_toughness_mult": 0.2
+     },
+     "men_at_arms": [
+      "accolade_maa_handgunners"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1969"
+    },
+    "3": {
+     "liege_modifier": {
+      "gunpowder_maintenance_mult": -0.25,
+      "gunpowder_max_size_add": 2
+     },
+     "knight_army_modifier": {
+      "gunpowder_damage_mult": 0.6,
+      "gunpowder_toughness_mult": 0.3
+     },
+     "men_at_arms": [
+      "accolade_maa_handgunners"
+     ],
+     "source": "common/accolade_types/04_ep2_maa_attributes.txt:1981"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": "Ranged",
+     "formationClassId": 1,
+     "rule": "linked_maa",
+     "linkedBaseType": "gunpowder",
+     "note": "Captain the Bannerlord formation that holds most agents of this battle's groups maa:<key>#<knight's army tag>#* whose CK3 base type is gunpowder; when the army has none, the default here; when the army has no such MaA at all, the knight's own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "gunpowder",
+        "tierDelta": 0.28,
+        "damageMult": 1.05,
+        "healthMult": 1.05,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.1,
+         "toughness_mult": 0.1,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "2": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "gunpowder",
+        "tierDelta": 0.75,
+        "damageMult": 1.2,
+        "healthMult": 1.1,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.4,
+         "toughness_mult": 0.2,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     },
+     "3": {
+      "groups": [
+       {
+        "scope": "maa_base_type",
+        "baseType": "gunpowder",
+        "tierDelta": 1.06,
+        "damageMult": 1.3,
+        "healthMult": 1.15,
+        "pursuitMult": 1,
+        "screenMult": 1,
+        "ck3": {
+         "damage_mult": 0.6,
+         "toughness_mult": 0.3,
+         "pursuit_mult": 0,
+         "screen_mult": 0
+        }
+       }
+      ]
+     }
+    }
+   }
+  },
+  "politicker_attribute": {
+   "name": "Politicker",
+   "adjective": "Politicking",
+   "noun": "Politicker",
+   "source": "common/accolade_types/04_ep2_skilled_attributes.txt:53",
+   "tier": "skilled",
+   "tier_field": null,
+   "set": "skill",
+   "categories": [
+    "skilled",
+    "skill",
+    "social",
+    "personality",
+    "diplomacy",
+    "vassal_manager",
+    "courtly",
+    "subtle"
+   ],
+   "skills": [
+    "diplomacy"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "politicker_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "politicker_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:128",
+    "traits": [
+     "diplomat"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [
+     "diplomacy >= 15"
+    ],
+    "culture": [],
+    "other": [
+     "var:politicker_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_courtly_blue.dds",
+   "portrait_pose": "map_love",
+   "adjective_loc": "accolade_politicking",
+   "noun_loc": "accolade_politicker",
+   "name_templates": 11,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "courtly_opinion": 3,
+      "barons_and_minor_landholders_opinion": 3,
+      "minority_opinion": 5
+     },
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:158"
+    },
+    "2": {
+     "liege_modifier": {
+      "courtly_opinion": 6,
+      "barons_and_minor_landholders_opinion": 6,
+      "minority_opinion": 8,
+      "diplomacy": 1
+     },
+     "accolade_parameters": [
+      "accolade_influences_regency"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:166"
+    },
+    "3": {
+     "liege_modifier": {
+      "courtly_opinion": 10,
+      "barons_and_minor_landholders_opinion": 10,
+      "minority_opinion": 10,
+      "diplomacy": 2
+     },
+     "accolade_parameters": [
+      "accolade_tour_end_bonus",
+      "accolade_influences_regency_high"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:178"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "tactician_attribute": {
+   "name": "Tactician",
+   "adjective": "Strategic",
+   "noun": "Tactician",
+   "source": "common/accolade_types/04_ep2_skilled_attributes.txt:194",
+   "tier": "skilled",
+   "tier_field": null,
+   "set": "skill",
+   "categories": [
+    "skilled",
+    "skill",
+    "warlike",
+    "leader",
+    "subtle",
+    "martial"
+   ],
+   "skills": [
+    "martial"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "tactician_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "tactician_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:139",
+    "traits": [
+     "strategist"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [
+     "martial >= 15"
+    ],
+    "culture": [],
+    "other": [
+     "var:tactician_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_militant_blue.dds",
+   "portrait_pose": "marshal",
+   "adjective_loc": "accolade_strategic",
+   "noun_loc": "accolade_tactician",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "monthly_martial_lifestyle_xp_gain_mult": 0.15
+     },
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:291"
+    },
+    "2": {
+     "liege_modifier": {
+      "monthly_martial_lifestyle_xp_gain_mult": 0.25,
+      "martial": 1
+     },
+     "knight_army_modifier": {
+      "counter_efficiency": 0.25
+     },
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:295"
+    },
+    "3": {
+     "liege_modifier": {
+      "monthly_martial_lifestyle_xp_gain_mult": 0.35,
+      "martial": 2
+     },
+     "knight_army_modifier": {
+      "counter_efficiency": 0.35
+     },
+     "accolade_parameters": [
+      "accolade_organize_army_bonus"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:305"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own_army_wide",
+     "linkedBaseType": null,
+     "note": "Army-wide effect: the knight keeps his own formation (HeroSpec.formation); the buff covers every CK3 troop group of his army."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "counterDamageMult": 1.125
+     },
+     "3": {
+      "groups": [],
+      "counterDamageMult": 1.175
+     }
+    }
+   }
+  },
+  "reeve_attribute": {
+   "name": "Reeve",
+   "adjective": "Calculating",
+   "noun": "Reeve",
+   "source": "common/accolade_types/04_ep2_skilled_attributes.txt:321",
+   "tier": "skilled",
+   "tier_field": null,
+   "set": "skill",
+   "categories": [
+    "skilled",
+    "skill",
+    "subtle",
+    "courtly",
+    "leader",
+    "stewardship"
+   ],
+   "skills": [
+    "stewardship"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "reeve_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "reeve_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:150",
+    "traits": [
+     "administrator"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [
+     "stewardship >= 15"
+    ],
+    "culture": [],
+    "other": [
+     "var:reeve_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_subtle_green.dds",
+   "portrait_pose": "war_over_win",
+   "adjective_loc": "accolade_calculating",
+   "noun_loc": "accolade_reeve",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "parochial_opinion": 10
+     },
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:408"
+    },
+    "2": {
+     "liege_modifier": {
+      "parochial_opinion": 15,
+      "stewardship": 1
+     },
+     "accolade_parameters": [
+      "accolade_development_growth_on_tournament_completion_low"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:414"
+    },
+    "3": {
+     "liege_modifier": {
+      "parochial_opinion": 25,
+      "stewardship": 2
+     },
+     "accolade_parameters": [
+      "accolade_development_growth_on_tournament_completion_high",
+      "accolade_increase_control_bonus"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:422"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "manipulator_attribute": {
+   "name": "Manipulator",
+   "adjective": "Manipulative",
+   "noun": "Manipulator",
+   "source": "common/accolade_types/04_ep2_skilled_attributes.txt:436",
+   "tier": "skilled",
+   "tier_field": null,
+   "set": "skill",
+   "categories": [
+    "skilled",
+    "skill",
+    "subtle",
+    "courtly",
+    "aggressive",
+    "amoral",
+    "intrigue"
+   ],
+   "skills": [
+    "intrigue"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "manipulator_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "manipulator_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:161",
+    "traits": [
+     "schemer"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [
+     "intrigue >= 15"
+    ],
+    "culture": [],
+    "other": [
+     "var:manipulator_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_amoral_purple.dds",
+   "portrait_pose": "spymaster",
+   "adjective_loc": "accolade_manipulative",
+   "noun_loc": "accolade_manipulator",
+   "name_templates": 13,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "intrigue_scheme_phase_duration": -5
+     },
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:534"
+    },
+    "2": {
+     "liege_modifier": {
+      "intrigue_scheme_phase_duration": -10,
+      "knight_effectiveness_per_dread": 0.003,
+      "intrigue": 1
+     },
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:540"
+    },
+    "3": {
+     "liege_modifier": {
+      "intrigue_scheme_phase_duration": -15,
+      "knight_effectiveness_per_dread": 0.005,
+      "dread_baseline_add": 20,
+      "intrigue": 2
+     },
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:548"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "liegeKnightEffectiveness": {
+       "knight_effectiveness_per_dread": 0.003
+      }
+     },
+     "3": {
+      "groups": [],
+      "liegeKnightEffectiveness": {
+       "knight_effectiveness_per_dread": 0.005
+      }
+     }
+    }
+   }
+  },
+  "mentor_attribute": {
+   "name": "Mentor",
+   "adjective": "Sagely",
+   "noun": "Mentor",
+   "source": "common/accolade_types/04_ep2_skilled_attributes.txt:560",
+   "tier": "skilled",
+   "tier_field": null,
+   "set": "skill",
+   "categories": [
+    "skilled",
+    "skill",
+    "subtle",
+    "courtly",
+    "ethical",
+    "leader",
+    "learning"
+   ],
+   "skills": [
+    "learning"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "mentor_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "mentor_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:172",
+    "traits": [
+     "whole_of_body"
+    ],
+    "not_traits": [],
+    "tourney_tracks": [],
+    "skills": [
+     "learning >= 15"
+    ],
+    "culture": [],
+    "other": [
+     "var:mentor_attribute_unlock (unlocked by an event)"
+    ]
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_leadership_blue.dds",
+   "portrait_pose": "personality_rational",
+   "adjective_loc": "accolade_sagely",
+   "noun_loc": "accolade_mentor",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "knight_limit": 1
+     },
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:675"
+    },
+    "2": {
+     "liege_modifier": {
+      "knight_limit": 1,
+      "learning": 1
+     },
+     "accolade_parameters": [
+      "accolade_train_commanders_bonus",
+      "accolade_wise_educator"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:681"
+    },
+    "3": {
+     "liege_modifier": {
+      "knight_limit": 2,
+      "learning": 2
+     },
+     "accolade_parameters": [
+      "accolade_train_commanders_bonus_high",
+      "accolade_wise_educator_high"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:692"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  },
+  "contender_attribute": {
+   "name": "Contender",
+   "adjective": "Fearsome",
+   "noun": "Contender",
+   "source": "common/accolade_types/04_ep2_skilled_attributes.txt:706",
+   "tier": "skilled",
+   "tier_field": null,
+   "set": "skill",
+   "categories": [
+    "skilled",
+    "skill",
+    "champion",
+    "forceful",
+    "warlike",
+    "prowess"
+   ],
+   "skills": [
+    "prowess"
+   ],
+   "linked_base_types": [],
+   "battle_base_types": [],
+   "unlocked_maa": [],
+   "squire_perfect_fit": [
+    "contender_attribute_trigger"
+   ],
+   "squire_acceptable_fit": [
+    "contender_attribute_acceptable_trigger"
+   ],
+   "fit": {
+    "source": "common/scripted_triggers/04_ep2_accolade_triggers.txt:183",
+    "traits": [],
+    "not_traits": [],
+    "tourney_tracks": [
+     "tourney_participant.bow >= 50",
+     "tourney_participant.horse >= 50",
+     "tourney_participant.foot >= 50",
+     "tourney_participant.wit >= 50"
+    ],
+    "skills": [
+     "prowess >= 24"
+    ],
+    "culture": [],
+    "other": []
+   },
+   "icon": "gfx/interface/icons/knight_badge/icons/accolade_trait_aggressive_blue.dds",
+   "portrait_pose": "menacing_wooden_sword",
+   "adjective_loc": "accolade_fearsome",
+   "noun_loc": "accolade_contender",
+   "name_templates": 12,
+   "levels": {
+    "1": {
+     "liege_modifier": {
+      "tourney_participant_xp_gain_mult": 0.1,
+      "belligerent_opinion": 3
+     },
+     "accolade_parameters": [
+      "accolade_tournament_xp_gain_contender_only_low"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:813"
+    },
+    "2": {
+     "liege_modifier": {
+      "tourney_participant_xp_gain_mult": 0.2,
+      "belligerent_opinion": 6
+     },
+     "accolade_parameters": [
+      "accolade_tournament_xp_gain_contender_only",
+      "accolade_tournament_xp_gain_all_knights"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:823"
+    },
+    "3": {
+     "liege_modifier": {
+      "monthly_prestige_gain_per_knight_mult": 0.02,
+      "tourney_participant_xp_gain_mult": 0.3,
+      "belligerent_opinion": 10
+     },
+     "accolade_parameters": [
+      "accolade_tournament_xp_gain_contender_only_high",
+      "accolade_tournament_xp_gain_all_knights_high"
+     ],
+     "source": "common/accolade_types/04_ep2_skilled_attributes.txt:834"
+    }
+   },
+   "bannerlord": {
+    "captain": {
+     "formation": null,
+     "formationClassId": null,
+     "rule": "own",
+     "linkedBaseType": null,
+     "note": "No troop-type link: the knight keeps his own formation (HeroSpec.formation)."
+    },
+    "perLevel": {
+     "1": {
+      "groups": [],
+      "none": true
+     },
+     "2": {
+      "groups": [],
+      "none": true
+     },
+     "3": {
+      "groups": [],
+      "none": true
+     }
+    }
+   }
+  }
+ },
+ "names": [
+  {
+   "key": "accolade_the_knight_of_the_animal",
+   "source": "common/accolade_names/00_accolade_names.txt:2",
+   "loc_key": "accolade_the_knight_of_the_animal",
+   "num_options": 1,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "champion",
+    "courtly",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "leader",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_the_animal_of_capital",
+   "source": "common/accolade_names/00_accolade_names.txt:548",
+   "loc_key": "accolade_the_animal_of_capital",
+   "num_options": 2,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "champion",
+    "courtly",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "leader",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_the_knight_of_the_flower",
+   "source": "common/accolade_names/00_accolade_names.txt:1124",
+   "loc_key": "accolade_the_knight_of_the_flower",
+   "num_options": 1,
+   "categories": [
+    "courtly",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_leader_of_the_culture_maa",
+   "source": "common/accolade_names/00_accolade_names.txt:1144",
+   "loc_key": "accolade_leader_of_the_culture_maa",
+   "num_options": 2,
+   "categories": [
+    "cavalry",
+    "champion",
+    "forceful",
+    "heavy_fighter",
+    "infantry",
+    "leader",
+    "light_fighter",
+    "men_at_arms",
+    "militant",
+    "ranged_fighter",
+    "siege"
+   ],
+   "types": [
+    "archer_attribute",
+    "camelry_attribute",
+    "crossbowmen_attribute",
+    "elephantry_attribute",
+    "horse_archer_attribute",
+    "huntsmaster_attribute",
+    "pike_attribute",
+    "skirmisher_attribute"
+   ]
+  },
+  {
+   "key": "accolade_leader_of_the_lieges_maa",
+   "source": "common/accolade_names/00_accolade_names.txt:1574",
+   "loc_key": "accolade_leader_of_the_lieges_maa",
+   "num_options": 2,
+   "categories": [
+    "cavalry",
+    "champion",
+    "forceful",
+    "heavy_fighter",
+    "infantry",
+    "leader",
+    "light_fighter",
+    "men_at_arms",
+    "militant",
+    "ranged_fighter",
+    "siege"
+   ],
+   "types": [
+    "archer_attribute",
+    "camelry_attribute",
+    "crossbowmen_attribute",
+    "elephantry_attribute",
+    "horse_archer_attribute",
+    "huntsmaster_attribute",
+    "lancer_attribute",
+    "outrider_attribute",
+    "pike_attribute",
+    "skirmisher_attribute",
+    "vanguard_attribute"
+   ]
+  },
+  {
+   "key": "accolade_leader_of_the_culture_unit",
+   "source": "common/accolade_names/00_accolade_names.txt:2150",
+   "loc_key": "accolade_leader_of_the_culture_unit",
+   "num_options": 2,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "champion",
+    "courtly",
+    "defensive",
+    "ethical",
+    "forceful",
+    "heavy_fighter",
+    "leader",
+    "men_at_arms",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_leader_of_the_lieges_unit",
+   "source": "common/accolade_names/00_accolade_names.txt:2461",
+   "loc_key": "accolade_leader_of_the_lieges_unit",
+   "num_options": 2,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "champion",
+    "courtly",
+    "defensive",
+    "ethical",
+    "forceful",
+    "heavy_fighter",
+    "leader",
+    "men_at_arms",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_knight_of_god",
+   "source": "common/accolade_names/00_accolade_names.txt:2757",
+   "loc_key": "accolade_knight_of_god",
+   "num_options": 2,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "champion",
+    "courtly",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "leader",
+    "learning",
+    "militant",
+    "social",
+    "stewardship",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_bearer_of_the_lieges_item",
+   "source": "common/accolade_names/00_accolade_names.txt:2969",
+   "loc_key": "accolade_bearer_of_the_lieges_item",
+   "num_options": 1,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "champion",
+    "courtly",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "leader",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_first_of_the_field",
+   "source": "common/accolade_names/00_accolade_names.txt:3093",
+   "loc_key": "accolade_first_of_the_field",
+   "num_options": 1,
+   "categories": [
+    "aggressive",
+    "champion",
+    "courtly",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "leader",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_the_warrior_in_the_terrain",
+   "source": "common/accolade_names/00_accolade_names.txt:3300",
+   "loc_key": "accolade_the_warrior_in_the_terrain",
+   "num_options": 2,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "champion",
+    "courtly",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "infantry",
+    "leader",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_the_defender_of_lieges_title",
+   "source": "common/accolade_names/00_accolade_names.txt:3595",
+   "loc_key": "accolade_the_defender_of_lieges_title",
+   "num_options": 1,
+   "categories": [
+    "amoral",
+    "cavalry",
+    "champion",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "infantry",
+    "leader",
+    "militant",
+    "ranged_fighter"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_the_foe_of_enemy_faith",
+   "source": "common/accolade_names/00_accolade_names.txt:3845",
+   "loc_key": "accolade_the_foe_of_enemy_faith",
+   "num_options": 2,
+   "categories": [
+    "aggressive",
+    "forceful",
+    "militant"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_the_knight_of_aspect",
+   "source": "common/accolade_names/00_accolade_names.txt:4085",
+   "loc_key": "accolade_the_knight_of_aspect",
+   "num_options": 1,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "champion",
+    "courtly",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "leader",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  },
+  {
+   "key": "accolade_goodest_of_knights",
+   "source": "common/accolade_names/00_accolade_names.txt:4340",
+   "loc_key": "accolade_goodest_of_knights",
+   "num_options": 2,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "cavalry",
+    "champion",
+    "courtly",
+    "defensive",
+    "diplomacy",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "infantry",
+    "intrigue",
+    "leader",
+    "learning",
+    "light_fighter",
+    "militant",
+    "stewardship",
+    "subtle"
+   ],
+   "types": [
+    "camelry_attribute",
+    "crossbowmen_attribute",
+    "elephantry_attribute",
+    "pike_attribute"
+   ]
+  },
+  {
+   "key": "accolade_the_material_knight",
+   "source": "common/accolade_names/00_accolade_names.txt:4869",
+   "loc_key": "accolade_the_material_knight",
+   "num_options": 2,
+   "categories": [
+    "aggressive",
+    "amoral",
+    "cavalry",
+    "champion",
+    "courtly",
+    "defensive",
+    "equestrian",
+    "ethical",
+    "forceful",
+    "militant",
+    "subtle"
+   ],
+   "types": []
+  }
+ ],
+ "icons": []
+}

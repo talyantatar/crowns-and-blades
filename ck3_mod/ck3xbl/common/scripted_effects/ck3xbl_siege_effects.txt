@@ -1,0 +1,287 @@
+﻿# Storming the walls in Bannerlord (docs/PROTOCOL.md 39). CK3 lets no script read a siege's progress or end it, so:
+#   - the decision ck3xbl_storm_walls_decision picks the player's besieging army; the siege's length comes from the day the army
+#     entered the province (army var ck3xbl_enter_day, on_army_enter_province), and the bridge estimates the progress with CK3's
+#     own siege rule (defender morale 100 + 75 per fort level, about 1 a day) from it;
+#   - a won assault breaks the defenders' morale (ck3xbl_siege_breach_effect): CK3 then takes the holding itself, with its own
+#     siege end, looting and occupation.
+
+# root = the player, scope:ck3xbl_siege_army = his besieging army. Snapshot (B|BEGIN with ck3xbl_kind = 4), then the field is
+# taken at once: CHOICE|FIELD and the waiting event.
+ck3xbl_siege_begin_effect = {
+	ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_bid value = global_var:ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_parent_bid value = 0 }
+	save_scope_value_as = { name = ck3xbl_clash value = 1 }
+	save_scope_value_as = { name = ck3xbl_kind value = 4 }
+	save_scope_value_as = { name = ck3xbl_year value = current_year }
+	save_scope_value_as = { name = ck3xbl_month value = current_month }
+	save_scope_value_as = { name = ck3xbl_day value = current_day }
+	save_scope_as = ck3xbl_player
+	# The besiegers attack (1); the player is with them when he leads or rides in the army.
+	save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+	save_scope_value_as = { name = ck3xbl_player_present value = 0 }
+	if = {
+		limit = {
+			OR = {
+				scope:ck3xbl_siege_army ?= { army_commander ?= root }
+				knight_army ?= scope:ck3xbl_siege_army
+			}
+		}
+		save_scope_value_as = { name = ck3xbl_player_present value = 1 }
+	}
+	scope:ck3xbl_siege_army = {
+		army_owner = { save_scope_as = ck3xbl_att_primary }
+		location = {
+			save_scope_as = ck3xbl_prov
+			county ?= { save_scope_as = ck3xbl_county }
+			barony ?= { save_scope_as = ck3xbl_barony }
+		}
+	}
+	scope:ck3xbl_prov = {
+		province_owner ?= { save_scope_as = ck3xbl_def_primary }
+		save_scope_value_as = { name = ck3xbl_sg_fort value = ck3xbl_fort_level_value }
+		save_scope_value_as = { name = ck3xbl_sg_garrison value = ck3xbl_garrison_value }
+	}
+	save_scope_value_as = { name = ck3xbl_sg_days value = 0 }
+	scope:ck3xbl_siege_army = {
+		if = {
+			limit = { has_variable = ck3xbl_enter_day }
+			save_scope_value_as = { name = ck3xbl_sg_days value = { value = ck3xbl_day_number_value subtract = var:ck3xbl_enter_day min = 0 } }
+		}
+		save_scope_value_as = { name = ck3xbl_sg_men value = army_size }
+	}
+	if = {
+		limit = { exists = scope:ck3xbl_def_primary }
+		scope:ck3xbl_def_primary = { save_scope_as = ck3xbl_enemy_leader }
+	}
+	info_log = "CK3XBL|B|BEGIN"
+	info_log_scopes = yes
+	scope:ck3xbl_prov = { ck3xbl_emit_location_effect = yes }
+	ck3xbl_siege_attackers_effect = yes
+	ck3xbl_siege_defenders_effect = yes
+	info_log = "CK3XBL|B|END"
+	info_log_scopes = yes
+	ck3xbl_choose_field_effect = yes
+	trigger_event = ck3xbl_siege.0002
+}
+
+# The besieging army: S|att, its A record with its regiments (siege weapons among them), its commander, its knights, the player.
+ck3xbl_siege_attackers_effect = {
+	save_scope_value_as = { name = ck3xbl_side_code value = 1 }
+	scope:ck3xbl_siege_army = { save_scope_value_as = { name = ck3xbl_s_size value = army_size } }
+	save_scope_value_as = { name = ck3xbl_s_has_primary value = 1 }
+	scope:ck3xbl_att_primary = { save_scope_as = ck3xbl_s_primary }
+	save_scope_value_as = { name = ck3xbl_s_player_in value = scope:ck3xbl_player_present }
+	save_scope_value_as = { name = ck3xbl_s_has_cmd value = 0 }
+	scope:ck3xbl_siege_army = {
+		army_commander ?= {
+			save_scope_as = ck3xbl_s_cmd
+			save_scope_value_as = { name = ck3xbl_s_has_cmd value = 1 }
+		}
+	}
+	save_scope_value_as = { name = ck3xbl_s_hostility_out value = 0 }
+	info_log = "CK3XBL|S|att"
+	info_log_scopes = yes
+	scope:ck3xbl_siege_army = {
+		ck3xbl_tag_army_effect = yes
+		ck3xbl_save_army_values_effect = yes
+		army_owner = { ck3xbl_save_knight_eff_effect = yes }
+		info_log = "CK3XBL|A|att"
+		info_log_scopes = yes
+		clear_saved_scope = ck3xbl_a_ke
+		ck3xbl_emit_ax_army_effect = yes
+		army_owner = { ck3xbl_emit_ax_effect = yes }
+		ck3xbl_emit_regiments_effect = yes
+		army_commander ?= {
+			if = {
+				limit = { NOT = { ck3xbl_char_emitted_trigger = yes } }
+				ck3xbl_save_char_values_effect = yes
+				info_log = "CK3XBL|C|CMD|att"
+				info_log_scopes = yes
+				ck3xbl_emit_cx_effect = yes
+			}
+		}
+		army_owner = {
+			every_knight = {
+				limit = {
+					knight_army ?= scope:ck3xbl_siege_army
+					NOT = { ck3xbl_char_emitted_trigger = yes }
+				}
+				ck3xbl_save_char_values_effect = yes
+				info_log = "CK3XBL|C|KNIGHT|att"
+				info_log_scopes = yes
+				ck3xbl_emit_cx_effect = yes
+			}
+		}
+	}
+	root = {
+		if = {
+			limit = { NOT = { ck3xbl_char_emitted_trigger = yes } }
+			ck3xbl_save_char_values_effect = yes
+			save_scope_value_as = { name = ck3xbl_c_absent value = { value = 1 subtract = scope:ck3xbl_player_present } }
+			info_log = "CK3XBL|C|PLAYER|att"
+			info_log_scopes = yes
+			ck3xbl_emit_cx_effect = yes
+		}
+	}
+}
+
+# The garrison: S|def and a men-only A record (levies of the holder's culture, tagged 900000 + 2 x bid + 2), and the holder when
+# he is inside.
+ck3xbl_siege_defenders_effect = {
+	save_scope_value_as = { name = ck3xbl_side_code value = 2 }
+	save_scope_value_as = { name = ck3xbl_s_size value = scope:ck3xbl_sg_garrison }
+	save_scope_value_as = { name = ck3xbl_s_has_primary value = 0 }
+	if = {
+		limit = { exists = scope:ck3xbl_def_primary }
+		scope:ck3xbl_def_primary = { save_scope_as = ck3xbl_s_primary }
+		save_scope_value_as = { name = ck3xbl_s_has_primary value = 1 }
+	}
+	save_scope_value_as = { name = ck3xbl_s_player_in value = 0 }
+	save_scope_value_as = { name = ck3xbl_s_has_cmd value = 0 }
+	save_scope_value_as = { name = ck3xbl_s_hostility_out value = 0 }
+	info_log = "CK3XBL|S|def"
+	info_log_scopes = yes
+	save_scope_value_as = { name = ck3xbl_a_tag value = { value = scope:ck3xbl_bid multiply = 2 add = 900002 } }
+	save_scope_value_as = { name = ck3xbl_a_size value = scope:ck3xbl_sg_garrison }
+	save_scope_value_as = { name = ck3xbl_a_levies value = scope:ck3xbl_sg_garrison }
+	save_scope_value_as = { name = ck3xbl_a_dev value = -1 }
+	save_scope_value_as = { name = ck3xbl_a_has_cmd value = 0 }
+	if = {
+		limit = { exists = scope:ck3xbl_def_primary }
+		scope:ck3xbl_def_primary = { save_scope_as = ck3xbl_a_owner }
+		info_log = "CK3XBL|A|def"
+		info_log_scopes = yes
+		scope:ck3xbl_def_primary = { ck3xbl_emit_ax_effect = yes }
+		scope:ck3xbl_def_primary = {
+			if = {
+				limit = {
+					location ?= scope:ck3xbl_prov
+					NOT = { ck3xbl_char_emitted_trigger = yes }
+				}
+				ck3xbl_save_char_values_effect = yes
+				save_scope_value_as = { name = ck3xbl_c_absent value = 0 }
+				info_log = "CK3XBL|C|PRIMARY|def"
+				info_log_scopes = yes
+				ck3xbl_emit_cx_effect = yes
+			}
+		}
+	}
+}
+
+# root = the player, ck3xbl_siege.0004: the result is committed. r2 = 1 the besiegers won, 2 the garrison held, 3/4 no winner.
+# The losses of the player's army and the fates of the fighters come from the battle apply; a won assault breaks the defenders.
+ck3xbl_siege_apply_effect = {
+	save_scope_value_as = { name = ck3xbl_sg_outcome value = var:ck3xbl_r2 }
+	# The besieged province, kept before the apply releases the pending battle.
+	if = {
+		limit = { has_global_variable = ck3xbl_pending_prov }
+		global_var:ck3xbl_pending_prov = { save_scope_as = ck3xbl_sg_prov }
+	}
+	ck3xbl_apply_effect = yes
+	if = {
+		limit = { scope:ck3xbl_sg_outcome = 1 }
+		ck3xbl_siege_breach_effect = yes
+		if = {
+			limit = { scope:ck3xbl_player_present = 1 }
+			ck3xbl_first_on_wall_effect = yes
+		}
+		send_interface_toast = {
+			type = msg_ck3xbl_battle_over
+			title = ck3xbl_siege.won
+			desc = ck3xbl_siege.won.desc
+			left_icon = root
+		}
+	}
+	else_if = {
+		limit = { scope:ck3xbl_sg_outcome = 2 }
+		send_interface_toast = {
+			type = msg_ck3xbl_battle_over
+			title = ck3xbl_siege.lost
+			desc = ck3xbl_siege.lost.desc
+			left_icon = root
+		}
+	}
+}
+
+# The walls are taken: the defenders' fort and garrison are gone for a few days (a province modifier), so CK3 ends its siege at
+# once and the holding falls to the besiegers as after any siege. The province keeps the scars a while longer.
+ck3xbl_siege_breach_effect = {
+	scope:ck3xbl_sg_prov ?= {
+		add_province_modifier = { modifier = ck3xbl_walls_stormed days = 30 }
+	}
+	add_character_modifier = { modifier = ck3xbl_storming_party days = 10 }
+}
+
+# Siege feats (docs/PROTOCOL.md 41, 45). root = the player, who fought in person. Lifelong, a rank more each time.
+# First on the Wall: every stormed holding; the third makes a military engineer (or trains one).
+ck3xbl_first_on_wall_effect = {
+	ck3xbl_feat_count_effect = { NAME = ck3xbl_storms_won }
+	add_prestige = 100
+	ck3xbl_feat_rank_effect = { FEAT = first_on_wall }
+	if = {
+		limit = { var:ck3xbl_storms_won >= 3 }
+		ck3xbl_feat_trait_effect = { TRAIT = military_engineer }
+	}
+}
+
+# Unbroken Walls: a defence of the walls (CHOICE|FIELD_DEFEND) won; the third makes an unyielding defender (or trains one).
+# Called after every battle apply; acts once, for the battle whose bid ck3xbl_choose_field_defend_effect remembered.
+ck3xbl_unbroken_walls_effect = {
+	if = {
+		limit = {
+			has_variable = ck3xbl_wall_defence_bid
+			var:ck3xbl_wall_defence_bid = scope:ck3xbl_bid
+			ck3xbl_result_applied_trigger = yes
+		}
+		remove_variable = ck3xbl_wall_defence_bid
+		if = {
+			limit = {
+				has_variable = ck3xbl_res_won
+				var:ck3xbl_res_won = 1
+				exists = scope:ck3xbl_player_present
+				scope:ck3xbl_player_present = 1
+			}
+			ck3xbl_feat_count_effect = { NAME = ck3xbl_walls_held }
+			add_prestige = 100
+			ck3xbl_feat_rank_effect = { FEAT = unbroken_walls }
+			if = {
+				limit = { var:ck3xbl_walls_held >= 3 }
+				ck3xbl_feat_trait_effect = { TRAIT = unyielding_defender }
+			}
+		}
+	}
+}
+# The sack of a stormed holding (docs/PROTOCOL.md 41, event ck3xbl_siege.0010). root = the occupant (the player),
+# scope:county = the county of the taken barony. The loot grows with the county's development.
+ck3xbl_sack_effect = {
+	add_gold = { value = scope:county.development_level multiply = 6 add = 30 }
+	add_dread = 15
+	scope:county = {
+		change_development_level = -3
+		add_county_modifier = { modifier = ck3xbl_sacked_modifier years = 10 }
+	}
+	if = {
+		limit = { scope:county.faith = root.faith }
+		add_piety = -75
+	}
+}
+
+ck3xbl_ransom_effect = {
+	add_gold = { value = scope:county.development_level multiply = 3 add = 15 }
+	add_prestige = 25
+	scope:county = {
+		add_county_modifier = { modifier = ck3xbl_ransomed_modifier years = 5 }
+	}
+}
+
+ck3xbl_spare_effect = {
+	add_prestige = 75
+	scope:county = {
+		add_county_modifier = { modifier = ck3xbl_spared_modifier years = 10 }
+	}
+	if = {
+		limit = { scope:county.faith = root.faith }
+		add_piety = 50
+	}
+}

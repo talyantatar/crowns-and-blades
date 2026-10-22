@@ -1,0 +1,230 @@
+{
+ "source": "Crusader Kings III/game/common/named_colors/default_colors.txt (CoA colours) -> nearest Bannerlord palette id (redmean RGB distance). INFERRED colour match, verify visually.",
+ "items": [
+  {
+   "ck3": "red",
+   "src": "hsv {0.02 0.8 0.45}",
+   "rgb": [
+    115,
+    34,
+    23
+   ],
+   "html": "#732217",
+   "bl_nearest": {
+    "id": 178,
+    "html": "#7c2b1a",
+    "dist": 23
+   }
+  },
+  {
+   "ck3": "blue",
+   "src": "hsv {0.58 0.8 0.4}",
+   "rgb": [
+    20,
+    63,
+    102
+   ],
+   "html": "#143f66",
+   "bl_nearest": {
+    "id": 159,
+    "html": "#26406d",
+    "dist": 29
+   }
+  },
+  {
+   "ck3": "yellow",
+   "src": "hsv {0.1 0.75 0.75}",
+   "rgb": [
+    191,
+    134,
+    48
+   ],
+   "html": "#bf8630",
+   "bl_nearest": {
+    "id": 198,
+    "html": "#cc8324",
+    "dist": 29
+   }
+  },
+  {
+   "ck3": "green",
+   "src": "hsv {0.35 0.6 0.3}",
+   "rgb": [
+    31,
+    77,
+    35
+   ],
+   "html": "#1f4d23",
+   "bl_nearest": {
+    "id": 2,
+    "html": "#284e19",
+    "dist": 22
+   }
+  },
+  {
+   "ck3": "black",
+   "src": "hsv {0.1 0.25 0.1}",
+   "rgb": [
+    26,
+    23,
+    19
+   ],
+   "html": "#1a1713",
+   "bl_nearest": {
+    "id": 149,
+    "html": "#211f1f",
+    "dist": 28
+   }
+  },
+  {
+   "ck3": "white",
+   "src": "hsv {0.08 0.02 0.8}",
+   "rgb": [
+    204,
+    202,
+    200
+   ],
+   "html": "#cccac8",
+   "bl_nearest": {
+    "id": 110,
+    "html": "#cacccb",
+    "dist": 7
+   }
+  },
+  {
+   "ck3": "purple",
+   "src": "hsv {0.9 0.7 0.35}",
+   "rgb": [
+    89,
+    27,
+    64
+   ],
+   "html": "#591b40",
+   "bl_nearest": {
+    "id": 8,
+    "html": "#591645",
+    "dist": 13
+   }
+  },
+  {
+   "ck3": "orange",
+   "src": "hsv {0.064 1 0.6}",
+   "rgb": [
+    153,
+    59,
+    0
+   ],
+   "html": "#993b00",
+   "bl_nearest": {
+    "id": 91,
+    "html": "#a34402",
+    "dist": 24
+   }
+  },
+  {
+   "ck3": "grey",
+   "src": "hsv {0 0 0.5}",
+   "rgb": [
+    128,
+    128,
+    128
+   ],
+   "html": "#808080",
+   "bl_nearest": {
+    "id": 167,
+    "html": "#85827f",
+    "dist": 9
+   }
+  },
+  {
+   "ck3": "brown",
+   "src": "hsv360 {21 74 45}",
+   "rgb": [
+    115,
+    60,
+    30
+   ],
+   "html": "#733c1e",
+   "bl_nearest": {
+    "id": 92,
+    "html": "#714214",
+    "dist": 20
+   }
+  },
+  {
+   "ck3": "blue_light",
+   "src": "hsv {0.58 0.7 0.55}",
+   "rgb": [
+    42,
+    93,
+    140
+   ],
+   "html": "#2a5d8c",
+   "bl_nearest": {
+    "id": 202,
+    "html": "#2a5599",
+    "dist": 27
+   }
+  },
+  {
+   "ck3": "green_light",
+   "src": "hsv {0.35 0.5 0.4}",
+   "rgb": [
+    51,
+    102,
+    56
+   ],
+   "html": "#336638",
+   "bl_nearest": {
+    "id": 210,
+    "html": "#335f22",
+    "dist": 39
+   }
+  },
+  {
+   "ck3": "yellow_light",
+   "src": "hsv {0.1 0.8 1}",
+   "rgb": [
+    255,
+    173,
+    51
+   ],
+   "html": "#ffad33",
+   "bl_nearest": {
+    "id": 171,
+    "html": "#ffb53e",
+    "dist": 22
+   }
+  },
+  {
+   "ck3": "red_dark",
+   "src": "hsv {0 0.9 0.3}",
+   "rgb": [
+    77,
+    8,
+    8
+   ],
+   "html": "#4d0808",
+   "bl_nearest": {
+    "id": 209,
+    "html": "#4a100c",
+    "dist": 18
+   }
+  },
+  {
+   "ck3": "blue_dark",
+   "src": "hsv {0.58 0.9 0.3}",
+   "rgb": [
+    8,
+    43,
+    77
+   ],
+   "html": "#082b4d",
+   "bl_nearest": {
+    "id": 205,
+    "html": "#1c2a50",
+    "dist": 29
+   }
+  }
+ ]
+}

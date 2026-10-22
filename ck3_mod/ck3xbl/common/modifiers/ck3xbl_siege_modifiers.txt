@@ -1,0 +1,34 @@
+﻿# Sieges in Bannerlord (docs/PROTOCOL.md 39).
+
+# Province: its walls were stormed in Bannerlord. No fort and no garrison left, so CK3 ends the siege at once; the breach is
+# repaired within a month.
+ck3xbl_walls_stormed = {
+	icon = martial_negative
+	fort_level = -100
+	garrison_size = -0.99
+}
+
+# Character: the storming party is inside; whatever defence is left breaks within days.
+ck3xbl_storming_party = {
+	icon = martial_positive
+	siege_morale_loss = 1000
+	siege_phase_time = -0.9
+}
+
+# Siege feats (docs/PROTOCOL.md 41): ck3xbl_feat_first_on_wall and ck3xbl_feat_unbroken_walls are in ck3xbl_feat_modifiers.txt.
+
+# The fate of a stormed holding (docs/PROTOCOL.md 41), on its county.
+ck3xbl_sacked_modifier = {
+	icon = county_modifier_development_negative
+	development_growth_factor = -0.5
+	county_opinion_add = -20
+	tax_mult = -0.25
+}
+ck3xbl_ransomed_modifier = {
+	icon = county_modifier_development_negative
+	county_opinion_add = -10
+}
+ck3xbl_spared_modifier = {
+	icon = county_modifier_opinion_positive
+	county_opinion_add = 15
+}

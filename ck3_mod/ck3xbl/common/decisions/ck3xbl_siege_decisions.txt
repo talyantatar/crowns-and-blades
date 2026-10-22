@@ -1,0 +1,35 @@
+﻿# Storm the walls in Bannerlord (docs/PROTOCOL.md 39): always open while the player's army besieges a holding; the longer the
+# siege has run, the more siege works the besiegers bring to the assault (ladders, towers, a ram, a breach).
+ck3xbl_storm_walls_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_siege_warfare.dds" }
+	desc = ck3xbl_storm_walls_decision_desc
+	selection_tooltip = ck3xbl_storm_walls_decision_tooltip
+	is_shown = {
+		is_ai = no
+		OR = {
+			commanding_army ?= { is_army_in_siege = yes }
+			any_army = { is_army_in_siege = yes }
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		ck3xbl_skirmish_available_trigger = yes
+	}
+	effect = {
+		if = {
+			limit = { commanding_army ?= { is_army_in_siege = yes } }
+			commanding_army = { save_scope_as = ck3xbl_siege_army }
+		}
+		else = {
+			ordered_army = {
+				limit = { is_army_in_siege = yes }
+				order_by = army_size
+				save_scope_as = ck3xbl_siege_army
+			}
+		}
+		custom_tooltip = ck3xbl_storm_walls_decision_effect_tt
+		hidden_effect = { trigger_event = ck3xbl_siege.0001 }
+	}
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
