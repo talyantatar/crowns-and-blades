@@ -37,7 +37,11 @@ The source code is all here. Every claim below can be checked in it.
 | Where | What |
 |---|---|
 | `%LOCALAPPDATA%\ck3xbl\` | Settings (`config.json`), logs, the battle archive, rendered coat-of-arms images, remembered volume levels (`audio.json`), and the files it exchanges with Bannerlord |
-| CK3's `dlc_load.json` | Only when you choose **Enable and launch** before a launch. It adds one entry and keeps a one-time backup. |
+| CK3's `dlc_load.json` | When you choose **Enable and launch** before a launch, or when Melty's **Play** starts it. It adds one entry and keeps a one-time backup. |
+| CK3's `mod\ck3xbl.mod` | Only when the mod folder is there without it (an install through Melty): the descriptor, pointing at the mod folder |
+| Bannerlord's `Modules\CK3Bridge.Naval` | Only when War Sails is installed: copied from the bridge's own files |
+| Bannerlord's `Modules\CK3Bridge.Elephants` | Only when Burning Empires' `BurningEmpires_Elephants` is installed: built from its elephant files (copies or hard links) |
+| Open Source Armory, Saddlery and Terra Armarium in `Modules` | Only when they are installed: a `Shaders` folder built for another game version is renamed `Shaders.ck3xbl_off` (it crashes Bannerlord v1.4.8), and Terra Armarium's `SubModule.xml` gets `CustomGame` so its items load in custom battles (the original kept as `SubModule.xml.ck3xbl_bak`). Each change is logged. |
 | CK3's `run\ck3xbl_apply.txt` | Only in **Dev mode**: the result as a script file for the console |
 | `HKEY_CURRENT_USER\...\Run` | Only if you tick **Start with Windows** |
 
@@ -45,8 +49,8 @@ The source code is all here. Every claim below can be checked in it.
 
 - **Key presses into CK3.** After a battle, the bridge types the result into CK3 with Windows' `SendInput`: Ctrl+Shift+Alt
   combined with digits, F1, F2, F3 and F5, the modder hotkeys the mod's hidden buttons listen to. It does this only after you
-  chose to fight the battle, only while CK3 is the foreground window (it checks before every key), and only when you are not
-  holding a key. In **Dev mode** it also opens CK3's console, types one `run` command and closes it.
+  chose to fight the battle, only while CK3 is the foreground window (it checks before every key), only when you are not
+  holding a key, and only after two probe keys showed that the battle window answers (so nothing lands in CK3's own menus). In **Dev mode** it also opens CK3's console, types one `run` command and closes it.
 - **Holding back your input.** While it types, the bridge uses low-level keyboard and mouse hooks to hold back your own key
   presses, mouse clicks and wheel turns, so they cannot mix with its keys. Each block lasts at most 4 seconds and ends by
   itself; mouse movement and key releases always pass. The hooks are installed only around the switch between the games and
@@ -70,10 +74,15 @@ The source code is all here. Every claim below can be checked in it.
 
 ### Programs
 
-- The bridge starts `ck3.exe` (from the tray menu) and `Bannerlord.exe` (hidden, with our module) itself.
-- It closes its own Bannerlord gracefully. It ends it by force only when its window has not responded for 30 seconds.
+- The bridge starts `ck3.exe` (from the tray menu, or at Melty's **Play**) and `Bannerlord.exe` (hidden, with our module) itself.
+- It closes its own Bannerlord gracefully. It ends it by force only when its window has not responded for 30 seconds, or when
+  its module has sent no sign of life for a minute past its limit (a frozen engine); then it starts a fresh one.
 - A Bannerlord you started yourself is never sent commands, closed or ended.
-- After a Bannerlord crash, Bannerlord asks whether to start in safe mode; the bridge answers "No" in a Bannerlord it started.
+- After a Bannerlord crash, Bannerlord asks whether to start in safe mode; the bridge answers "No" in a Bannerlord it started,
+  and confirms its "Mod change detected" notice.
+- **Memory:** to make room for a big battle, the bridge may ask Windows to move CK3's unused memory pages to the page file
+  (`EmptyWorkingSet`) when free RAM is low, and does the same for its own idle Bannerlord. Nothing in that memory is read or
+  changed; CK3 pages it back in as it needs it.
 
 ## The installer (CK3xBL-Setup.exe)
 

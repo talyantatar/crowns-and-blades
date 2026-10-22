@@ -5,8 +5,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting! Please check [Troubleshooting](https://github.com/graff0n/ck3-bannerlord-bridge/blob/main/docs/TROUBLESHOOTING.md) first.
-        For a **security** problem, do not open an issue: see [SECURITY.md](https://github.com/graff0n/ck3-bannerlord-bridge/blob/main/SECURITY.md).
+        Thanks for reporting! Please check [Troubleshooting](https://github.com/talyantatar/crowns-and-blades/blob/main/docs/TROUBLESHOOTING.md) first.
+        For a **security** problem, do not open an issue: see [SECURITY.md](https://github.com/talyantatar/crowns-and-blades/blob/main/SECURITY.md).
 
   - type: textarea
     id: what

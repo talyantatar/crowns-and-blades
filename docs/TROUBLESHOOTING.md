@@ -1,7 +1,7 @@
 # Troubleshooting
 
 Start here when something does not work. If your problem is not listed, please
-[open an issue](https://melty.gg/m/crowns-blades) with the versions and logs described below.
+report it on the [Melty page](https://melty.gg/m/crowns-blades) with the versions and logs described below.
 
 ## First checks
 
@@ -41,14 +41,14 @@ Crowns & Blades is not code-signed yet, so **SmartScreen** says "Windows protect
 **Run anyway**. Some antivirus programs are also wary of what the bridge legitimately does (it presses keys in CK3 and briefly
 holds back keyboard input while it types; see [SECURITY.md](../SECURITY.md)).
 
-Only download from the [releases page](https://melty.gg/m/crowns-blades), and check the file before you
-run it. In PowerShell, in your download folder:
+Installed through Melty, the files are checked by Melty. If you got the installer as a file, check it before you run it. In
+PowerShell, in your download folder:
 
 ```powershell
 Get-FileHash .\CK3xBL-Setup-0.9.0-beta.exe -Algorithm SHA256
 ```
 
-Compare the result with the line for that file in `SHA256SUMS.txt` from the same release page. If they differ, do not run the
+Compare the result with the line for that file in the `SHA256SUMS.txt` that came with it. If they differ, do not run the
 file.
 
 ### Smart App Control blocks the exe
@@ -114,8 +114,10 @@ the wrong window.
 
 After a battle, the event "The Armies Clash" should say "The dispatch has arrived." within a few seconds.
 
-- **Do not use the keyboard or mouse while the result is sent.** The bridge waits for a quiet moment and holds back your input
-  briefly while it types. Holding a key or a mouse button delays the delivery.
+- **Leave the keyboard and mouse alone while the result is sent.** The bridge waits for a quiet moment and holds back your
+  input briefly while it types. Holding a key or a mouse button delays the delivery.
+- **The battle window must be in front.** Before typing, the bridge checks that CK3's battle window answers. If another window
+  or menu covers it (a notice says so), close it; the bridge tries again a little later, or when you come back to CK3.
 - **CK3 must be in front.** If you switched to another program, the delivery waits until CK3 is back.
 - **The abort hotkey is shared.** If another program uses Ctrl+Alt+Shift+End or the Ctrl+Shift+Alt combinations, it may
   intercept keys. The bridge log says when the hotkey is taken.
@@ -155,4 +157,4 @@ Please include:
 - **Copy diagnostics** from the About window, and `bridge.log` and `bannerlord.log` if you can;
 - for a battle problem, that battle's folder from `%LOCALAPPDATA%\ck3xbl\battles\`.
 
-The [bug report form](https://melty.gg/m/crowns-blades) asks for exactly this.
+Post it on the [Melty page](https://melty.gg/m/crowns-blades).

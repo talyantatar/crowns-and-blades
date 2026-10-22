@@ -1,6 +1,7 @@
 # Building Crowns & Blades from source
 
-This page is for contributors and maintainers. Players should use the installer: see [INSTALL.md](INSTALL.md).
+This page is for contributors and maintainers. Players should install through Melty or the installer: see
+[INSTALL.md](INSTALL.md).
 
 ## Prerequisites
 
@@ -101,6 +102,16 @@ cmd /c mklink /J "<Bannerlord root>\Modules\CK3Bridge" "<repository>\bannerlord_
 Close Bannerlord before you build: a running game locks the DLL. The installer recognises such a link and never writes
 through it.
 
+The naval module (`bannerlord_module/CK3Bridge.Naval`, sea battles and landings through War Sails) builds the same way and needs
+War Sails installed:
+
+```powershell
+dotnet build bannerlord_module/CK3Bridge.Naval/src/CK3Bridge.Naval.csproj -c Release -p:BannerlordDir="<Bannerlord root>"
+```
+
+The release puts it under `app/naval/`; the bridge copies it into `Modules` only on PCs that have War Sails. The elephant module
+is not built here at all: the bridge assembles it on the player's PC from Burning Empires' own files.
+
 ## The CK3 mod
 
 The mod's data-driven parts (culture and terrain chains, the 200 keypad registers, the apply and battle-clock code, the knights
@@ -151,6 +162,14 @@ The version comes only from `tools/release/version.json`. The steps:
 | `manual` | `dist/CK3xBL-<version>-manual.zip` |
 | `sums` | `dist/SHA256SUMS.txt`, and a last leak scan of the release files |
 
+### The Melty package
+
+Melty installs from a zip of the payload folder itself (`app/`, `ck3mod/`, `blmodule/`, as the release build stages it in
+`%TEMP%\ck3xbl-release\<version>\payload`). Melty's recipe maps `ck3mod/ck3xbl/` to the CK3 `mod` folder, `blmodule/CK3Bridge/`
+to Bannerlord's `Modules`, and `app/` to its own folder, and launches `CK3xBL.exe --launch-ck3 --ck3-dir <CK3> --bannerlord-dir
+<Bannerlord>`. Its release test runs `CK3xBL.exe --melty-test <slug>` (see `bridge/CK3xBL/MeltyTest.cs`): five checks,
+including a battle staged from `bridge/data/melty_test_snapshot.json`.
+
 `--skip`, `--only` and `--until` select steps; `--bl <dir>` names the Bannerlord root. Every command is printed before it runs.
 Builds are deterministic and carry no build-machine paths: `Directory.Build.props` maps the source folder to `/_/`, release
 builds ship no `.pdb` files, and the `gate` step checks the binaries.
@@ -166,9 +185,7 @@ It fails on anything that must never be published: paths into a Windows user pro
 stray binaries and logs. It warns on large files, open work markers and every image (images need a look by eye: no desktop,
 taskbar or personal data). `--profile release` also opens archives and reads the strings inside binaries.
 
-**For maintainers:** the public repository is exported from the maintainer's working tree by an explicit allowlist. Only listed
-files are copied, each through the leak scan; a new file that is not classified stops the export. The release build runs from
-that exported copy, so a release contains exactly what is published.
+**Before every push:** run the leak scan over the tracked files only (a copy of `git ls-files`), not the working folder.
 
 **For contributors:** run the leak scan over a clean clone of your branch before you open a pull request (a working folder
 also holds `bin/` and `obj/`, which the scan rejects; see [CONTRIBUTING.md](../CONTRIBUTING.md)), and never commit game files, script_docs dumps, saves, logs or screenshots that show

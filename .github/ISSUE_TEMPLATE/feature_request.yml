@@ -5,8 +5,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for the idea! Some limits are deliberate: sieges stay in CK3, and Normal mode must never cost players their
-        achievements. See the [Known limitations](https://github.com/graff0n/ck3-bannerlord-bridge#known-limitations).
+        Thanks for the idea! Some limits are deliberate: Normal mode must never cost players their
+        achievements. See the [Known limitations](https://github.com/talyantatar/crowns-and-blades#known-limitations).
 
   - type: textarea
     id: idea

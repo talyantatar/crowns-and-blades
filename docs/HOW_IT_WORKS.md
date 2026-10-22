@@ -94,8 +94,10 @@ mod brings its own input device:
 - The registers have fixed meanings: the outcome, the losses of up to 8 armies (levies and each men-at-arms type), the fates of
   up to 20 characters, rewards for up to 8 heroes, the kill targets and pace of the battle clock.
 
-The bridge presses the keys with `SendInput`, by scan code, so the keyboard layout does not matter. Before every burst and every
-key it checks that CK3 is the foreground window and that the player is not holding a key; it waits for a quiet moment and holds
+The bridge presses the keys with `SendInput`, by scan code, so the keyboard layout does not matter. It first sends a probe
+(F3, F2) and types the result only if the mod answers with an `IN` record: without the battle window in front, the chords would
+reach CK3's own hotkeys (windows, game speed, menu items). Before every burst and every key it checks that CK3 is the
+foreground window and that the player is not holding a key; it waits for a quiet moment and holds
 back physical key presses and clicks for at most a few seconds while it types. In the play tests a result was 100 to 200
 keys and took 3 to 7 seconds; big battles with many armies and characters take longer.
 
@@ -124,8 +126,11 @@ both clashes' losses together.
 The bridge starts Bannerlord directly, without the launcher:
 
 ```
-Bannerlord.exe /singleplayer _MODULES_*Native*SandBoxCore*CustomBattle*CK3Bridge*_MODULES_
+Bannerlord.exe /singleplayer _MODULES_*Native*SandBoxCore*CustomBattle*SandBox*CK3Bridge*_MODULES_
 ```
+
+To that list it adds what it finds in `Modules`: Open Source Armory and Saddlery and Terra Armarium for costumes, the elephant
+module it builds from Burning Empires, and War Sails with its own `CK3Bridge.Naval` module.
 
 It sets the environment variable `CK3XBL_HOST` on that process. The module is **inactive unless it finds it** (or a fresh launch
 note from a running bridge), so a player who ticks "CK3 Bridge" for their own campaign gets an untouched game.
@@ -135,9 +140,11 @@ When active, the module:
 - skips the intro and menus and waits on a black, silent screen, hidden (cloaked) and with a low frame rate;
 - writes a **heartbeat** to `bannerlord_status.json` about every second: `idle`, `loading`, `held`, `visible`, `fighting`,
   `result`, and so on;
-- takes `request.json`, builds a custom battle from it (scene, season, time of day, troops per group, heroes with faces,
-  equipment, skills and banners, captains, buffs), loads it and **holds** it paused behind a black card until the bridge sends
-  `go`;
+- takes `request.json`, builds the mission it asks for: a field battle, a siege assault (`CK3Siege`, with engines, garrison and
+  waves), a duel in an arena or a clearing, a tournament bout, a skirmish or hideout fight, or a sea battle or landing
+  (`CK3Naval`, `CK3NavalRaid`, through War Sails). It sets the scene, season, time of day, troops per group, heroes with faces,
+  equipment, skills and banners, captains and buffs, loads it and **holds** it paused behind a black card until the bridge
+  sends `go`;
 - counts every soldier by the CK3 group it came from (levies of an army, one men-at-arms regiment, a knight's retinue), and
   every hero's kills and who struck them down;
 - shows the result line and countdown, then writes `result.json`, fades to black and goes back to its idle screen.

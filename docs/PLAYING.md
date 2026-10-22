@@ -56,12 +56,17 @@ What is on the field:
 
 - **Your armies, as they are in CK3.** Every army in the battle, with its levies and each men-at-arms regiment, becomes
   Bannerlord troops of the closest culture and kind (archers stay archers, heavy cavalry stays heavy cavalry). Large battles
-  are scaled down: by default up to 1,000 soldiers across both sides, at most 500 on the field at once (Bannerlord brings the
-  rest in as reinforcements). Each side keeps its proportions, and the losses are scaled back up.
-- **You**, with your face (rebuilt from your CK3 genes), your age and build, and equipment fitting your culture and rank.
-- **Your commanders and knights** as named heroes, on both sides. Their names show in the kill feed and the scoreboard.
+  are scaled down: by default up to 1,000 soldiers across both sides, at most 600 on the field at once (Bannerlord brings the
+  rest in as reinforcements; `battle.battleSize` goes up to 1,000, bigger froze Bannerlord in testing). Each side keeps its
+  proportions, and the losses are scaled back up. Professionals take the field first, levies last. When free memory runs low,
+  the bridge puts fewer men on the field at once (`battle.memoryGuard`).
+- **You**, with your face (rebuilt from your CK3 genes), your age and build, and your CK3 battle gear (or equipment fitting
+  your culture and rank).
+- **Your commanders and knights** as named heroes, on both sides, each under their own coat of arms. Their names show in the
+  kill feed and the scoreboard.
 - **Your coat of arms** on your side's banners. The enemy's colours are adjusted, when needed, so the two sides are easy to
   tell apart.
+- **War elephants** for elephant men-at-arms, when Burning Empires is installed (one elephant per four men).
 - **The ground:** a Bannerlord battle map chosen for the CK3 terrain, climate and holding, in the right season and a matching
   time of day.
 - **The objective**, as Bannerlord shows it: "Rout the Host of ...", "Break the siege of ..." or "Hold the siege lines
@@ -90,9 +95,12 @@ for 515 of your men. The battle continues in Crusader Kings III. Click 'The dust
 ### 7. Back in CK3
 
 CK3 comes back to the front, still paused, with an event: **"The Armies Clash"**. While you read it, the bridge types the
-result into CK3 through the mod's hidden buttons. This takes a few seconds. **Do not use the keyboard or mouse during it**: the
-bridge waits for a quiet moment, then briefly holds back your key presses and clicks while it types. The event's status line
-changes to **"The dispatch has arrived."** when CK3 has the result.
+result into CK3 through the mod's hidden buttons. This takes a few seconds. **Leave the keyboard and mouse alone during it**:
+the bridge waits for a quiet moment, then briefly holds back your key presses and clicks while it types. Before typing it
+checks that the battle window answers; if another window or menu covers it, nothing is typed and a notice asks you to close
+it (the bridge tries again a little later, or when you come back to CK3). If you switch away, typing stops and starts again
+when CK3 is back in front; a won battle is never lost that way. The event's status line changes to **"The dispatch has
+arrived."** when CK3 has the result.
 
 | Option | What happens |
 |---|---|
@@ -148,16 +156,21 @@ Your knights and commanders, and the enemy's, are not just faces:
 - **Accolades** (Tours & Tournaments) strengthen the troops their knight leads; **artifacts** such as weapons and armour are
   carried into battle as matching Bannerlord gear.
 - **Traits** such as strong, giant or wounded change how a hero fights.
+- **Prowess** raises a hero's damage, health and weapon skill on soft caps: damage x2 at 40 prowess and x2.75 at 100, health
+  up to x5 at 100, weapon skill 330 at 34 and up to 400. Heroes get a little speed from prowess and lose some with age over 50.
+- **Martial** of a commander gives the whole army up to +30% damage and health and some morale.
+- **Acclaimed knights** give their formation an aura (2.5% per rank) while they live.
 
-All effects are capped so that no hero becomes invincible. This part is the least tested in the beta.
+All effects are capped so that no hero becomes invincible.
 
 ### Single combat
 
-Whenever you are one of the two fighters of a CK3 single combat (a challenge, a trial by combat, a tournament bout, a quarrel at
-court), CK3 pauses and asks: **I will fight with my own hand!** opens the duel in Bannerlord, the two of you alone on the field;
-**Let fate decide** leaves it to CK3 as before. The winner in Bannerlord is the winner in CK3, and CK3 then plays out its usual
-rounds and consequences. Death follows CK3's rules: in a duel that may kill, whoever falls dead in Bannerlord dies in CK3; a
-practice bout kills nobody.
+Whenever you are one of the two fighters of a CK3 single combat (a challenge, a trial by combat, a court duel, a duel inside a
+battle), CK3 pauses and asks: **I will fight with my own hand!** opens the duel in Bannerlord; **Let fate decide** leaves it to
+CK3 as before. Nobles fight in a city arena before an audience; lowborn duels are fought in a forest clearing. In a duel the
+fighter with more prowess gets 1% more damage per point of difference (at most +50%). The winner in Bannerlord is the winner in
+CK3, and CK3 then plays out its usual rounds and consequences. Death follows CK3's rules: in a duel that may kill, whoever
+falls dead in Bannerlord dies in CK3; a practice bout kills nobody.
 
 What a duel fought in Bannerlord earns:
 
@@ -166,15 +179,53 @@ What a duel fought in Bannerlord earns:
 - **Brave** for beating someone with more prowess than you; a craven loses that trait instead.
 - **Berserker** for the tenth duel won.
 - Half the time the winner takes one of the loser's **artifacts** (never a court artifact).
+- Duel **feats** (see [Feats](#feats)).
+
+### Tournaments
+
+When you compete in a CK3 tournament, the melee, joust and archery contests get an option to fight your bout in Bannerlord's
+arena. A versus bout is decided by who wins in Bannerlord; the melee by how you fare in it; archery by your score at the targets.
+Tournament feats are earned there.
+
+### Sieges
+
+- **Storm the walls.** While your army besieges a holding, the decision **Storm the Walls in Bannerlord** leads the assault in
+  person. Each of your CK3 siege regiments brings one siege engine; the longer the siege has run, the more siege works stand
+  ready (ladders, towers, a ram, a breach). The defenders are a professional garrison sized by the fort level, with bonuses
+  from the walls, and you attack in waves of about 2.5 attackers per defender. Win, and the holding falls within days; you then
+  choose its fate: sack it, ransom it or spare it. Lose, and the siege goes on with your losses counted. An early assault is
+  brutal, a late one is winnable.
+- **Relieve a siege.** When your relief army reaches a besieged holding, the call to arms offers to **defend the walls** with the
+  garrison, to **strike the besiegers' camp** (a field battle with the besiegers shaken and a sally from the garrison), or to
+  fight before the walls.
+
+### Sea battles and landings
+
+With the War Sails DLC:
+
+- **At sea.** When an enemy fleet is near, the decision **Attack the Enemy Fleet in Bannerlord** brings your ships alongside
+  (events "Sails on the Horizon" and "Enemy Sails Bear Down" offer the same when fleets meet). The enemy may slip away first: the
+  better its commander's martial against yours, the likelier. Each side sails ships of its own culture (Norse drakkars for the
+  North Germanic heritage), up to 8 a side; half the men who flee the losing ships drown.
+- **Landings.** A battle your army fights right off its ships is a beach landing from at most 3 shallow-water ships. A landing
+  the enemy makes against you is fought as a battle on the shore.
+
+### Feats
+
+What you do yourself in Bannerlord earns lifelong feats: CK3 character modifiers in three ranks, kept for life. There are 22,
+for example Reaper (fifty foes cut down in one battle), Carnage, Living Legend (a thousand foes in a lifetime), Slayer of
+Commanders, Miracle on the Field (won against twice your numbers), Invulnerable (ten battles without a scratch), and feats for
+duels, sea battles, sieges and tournaments. Earning a feat again raises its rank. Turn them off with `battle.feats`.
 
 ### Costumes
 
 Your soldiers dress like CK3's: the armour of each regiment comes from its CK3 culture and era (no plate before the late
 medieval era), levies wear cloth, riders mail, archers hoods. Each piece has about the protection of the troop's own, so the
-look changes and the fight does not. For far more variety install **Open Source Armory** and **Open Source Saddlery** (Nexus
-Mods) into `<Bannerlord>\Modules`; the bridge finds and loads them by itself. If Bannerlord crashes while loading with them
-(its log says "Shader cache version of the external module (OpenSourceArmory) is invalid"), rename or remove the `Shaders`
-folder inside both mods: their shader cache was built for another Bannerlord version. After such a crash the bridge starts
+look changes and the fight does not. Heroes are dressed in the nearest armour of their look. For far more variety install
+**Open Source Armory** and **Open Source Saddlery**, or **Terra Armarium** (Nexus Mods), into `<Bannerlord>\Modules`; the bridge
+finds and loads them by itself. Their `Shaders` folders, built for another Bannerlord version, crash v1.4.8 at start, so the
+bridge renames them `Shaders.ck3xbl_off` before the first battle; it also lets Terra Armarium's items load in custom battles
+(see [SECURITY.md](../SECURITY.md#what-it-writes)). If Bannerlord still crashes while loading with them, the bridge starts
 Bannerlord without them and remembers it in `%LOCALAPPDATA%\ck3xbl\armory_failed.txt`; delete that file to try them again. Turn costumes off with `"costumes": false` in the
 `battle` section of the bridge config.
 
@@ -183,13 +234,13 @@ Bannerlord without them and remembers it in `%LOCALAPPDATA%\ck3xbl\armory_failed
 When a travel danger brings you face to face with armed men (bandits, deserters, an assassin, soldiers who want to seize you,
 zealots), the event has one more option: **Draw steel and fight it out in Bannerlord!** You, the knights travelling with you and
 your guards meet the band on the spot, 50 fighters at most. Win, and the road is clear (gold, prestige, and sometimes the foe's
-artifact); lose, and your purse pays for it. Wounds and deaths of the fighters follow CK3's battle odds. All the vanilla options
-of the event are still there.
+artifact); lose, and your purse pays for it. Wounds and deaths of the fighters follow CK3's battle odds. Some bands are met in
+their hideout instead of on the road. All the vanilla options of the event are still there.
 
 ### Battle gear and the armory
 
-Open your inventory and click **Battle Gear** (top right of the equipped side). Ten slots appear: main weapon, three sidearms,
-helmet, body armour, gloves, boots, cloak and horse. Every artifact that fits them is one Bannerlord item, and in Bannerlord you
+Open your inventory and click **Battle Gear** (top right of the equipped side). Ten slots appear: main weapon, three weapon
+slots that take any weapon or shield, helmet, body armour, gloves, boots, cloak and horse. Every artifact that fits them is one Bannerlord item, and in Bannerlord you
 carry exactly that item. Empty slots keep the equipment of your culture and rank; a horse in its slot makes you ride, even if
 your culture's nobles fight on foot; a bow or crossbow brings matching arrows or bolts.
 
@@ -282,6 +333,11 @@ is never overwritten, and the defaults are used until you fix it.
 | `gameDir` | `""` | The Bannerlord install folder (the one with `bin` and `Modules`). Empty = find it automatically. |
 | `modules` | `["Native", "SandBoxCore", "CustomBattle", "CK3Bridge"]` | The modules Bannerlord is started with. |
 | `fallbackModules` | the above plus `"SandBox"`, `"StoryMode"` | Used once if Bannerlord does not start with the first list. |
+| `armoryModules` | `true` | Load Open Source Armory and Saddlery (with the SandBox and StoryMode they need) when they are in `Modules`. |
+| `navalModules` | `true` | Load War Sails and the bridge's naval module for sea battles and landings when War Sails is installed. |
+| `arenaModule` | `true` | Load SandBox, home of the arenas where noble duels and tournament bouts are fought. |
+| `trimWhenIdle` | `true` | Give the RAM of the Bannerlord waiting hidden for the next battle back to CK3. |
+| `recycleAboveMb` | `8000` | Restart the idle Bannerlord when the memory it keeps from earlier battles grows above this many MB; `0` = never. |
 | `preloadOnStart` | `true` | Start Bannerlord hidden when the bridge starts, so the first battle loads quickly. |
 | `keepRunning` | `true` | Start Bannerlord again in the background after it exits or crashes. |
 | `heartbeatTimeoutSeconds` | `5` | Bannerlord counts as unresponsive when its module has not reported for this long. |
@@ -295,7 +351,7 @@ is never overwritten, and the defaults are used until you fix it.
 |---|---|---|
 | `maxAgentsTotal` | `1000` | Most Bannerlord soldiers across both sides (heroes not counted). Bigger CK3 armies are scaled down. |
 | `minAgentsPerSide` | `40` | Fewest soldiers a side gets, so a small force is not reduced to a handful. |
-| `battleSize` | `500` | Most soldiers on the field at once; the rest arrive as reinforcements. Rounded to Bannerlord's nearest option (200 to 1000). |
+| `battleSize` | `600` | Most soldiers on the field at once; the rest arrive as reinforcements (200 to 1000; bigger froze Bannerlord in testing). |
 | `playerDeathIsReal` | `false` | `true`: your character can really die or be captured when you fall in Bannerlord. |
 | `killedToCk3DeadShareWinner` | `0.45` | Share of the winning side's Bannerlord casualties that are dead in CK3. |
 | `killedToCk3DeadShareLoser` | `0.65` | The same for the losing side. |
@@ -307,6 +363,13 @@ is never overwritten, and the defaults are used until you fix it.
 | `strengthBalance` | `true` | Even the sides out so that a straight clash in Bannerlord ends as CK3 would decide it: the side Bannerlord's numbers would favour too little gets damage and health. Your command still decides the day. |
 | `strengthTiersPerDoubling` | `3` | How much less Bannerlord values elite troops than CK3 (higher = elite men-at-arms get more help). Tuned from the `[balance]` lines of the bridge log. |
 | `strengthMaxFactor` | `4` | Most help a side gets (4 = damage and health x2 each). |
+| `costumes` | `true` | Troops wear the armour of their CK3 culture, era and role, at the stock protection. |
+| `heroArms` | `true` | Knights and commanders carry their own CK3 coats of arms. |
+| `feats` | `true` | Your own deeds in Bannerlord earn lifelong feats in CK3. |
+| `trimCk3Memory` | `true` | Free CK3's RAM for Bannerlord once a battle has started (only when free RAM is low). |
+| `memoryGuard` | `true` | Put fewer men on the field at once when free memory (RAM plus page file) would not hold `battleSize`. |
+| `memoryReserveMb` | `2000` | Memory (MB) the memory guard leaves free for Windows and other programs. |
+| `language` | `"auto"` | Language of the battle cards and Bannerlord texts: `"auto"` (CK3's language), `"en"` or `"ru"`. |
 
 ### `delivery`
 

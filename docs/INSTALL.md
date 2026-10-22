@@ -1,6 +1,26 @@
 # Installing Crowns & Blades
 
-There are two downloads on the [releases page](https://melty.gg/m/crowns-blades):
+## With Melty (recommended)
+
+Install **Crowns & Blades** from its [Melty page](https://melty.gg/m/crowns-blades) and press **Play**. Melty finds both games
+and puts the three parts in place:
+
+| What | Where |
+|---|---|
+| The CK3 mod | `Documents\Paradox Interactive\Crusader Kings III\mod\ck3xbl\` |
+| The Bannerlord module | `<Bannerlord>\Modules\CK3Bridge\` |
+| The bridge app | Melty's own folder for the mashup |
+
+**Play** starts the bridge with the game folders Melty found. The bridge writes `mod\ck3xbl.mod`, adds the mod to CK3's mod list
+and starts CK3. If you start CK3 from the Paradox Launcher instead, add "Crowns & Blades Battles" to your playset
+([below](#enable-the-mod-in-the-paradox-launcher)). Updates come through Melty; uninstall from Melty too.
+
+The optional Bannerlord content (War Sails, Burning Empires, Open Source Armory, Terra Armarium) is not installed by Melty;
+see [Optional Bannerlord content](../README.md#optional-bannerlord-content).
+
+## With the installer or the zip
+
+A release built from source (see [BUILDING.md](BUILDING.md)) gives these files:
 
 | File | What it is |
 |---|---|
@@ -94,7 +114,10 @@ Other mods in the playset are fine, but mods that change armies, cultures or com
   after an update, Bannerlord shows one-time notices before its first game. The bridge starts Bannerlord hidden, so it cannot
   click those away for you yet.
 - **Safe-mode question:** after Bannerlord crashes or is killed, it asks at the next start whether to start in safe mode. In a
-  Bannerlord the bridge started, the bridge answers "No" for you. When you start Bannerlord yourself, answer it yourself.
+  Bannerlord the bridge started, the bridge answers "No" for you, and it also confirms Bannerlord's "Mod change detected"
+  notice. When you start Bannerlord yourself, answer them yourself.
+- **Other modules:** the bridge chooses Bannerlord's module list itself. It adds War Sails, Burning Empires' elephants, Open
+  Source Armory and Saddlery, and Terra Armarium when they are in `Modules`; nothing needs enabling in the Bannerlord launcher.
 - **Your own Bannerlord campaign:** while you play Bannerlord yourself, the bridge leaves that game alone and waits for you to
   close it. Battles from CK3 cannot be offered in the meantime.
 

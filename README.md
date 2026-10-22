@@ -7,9 +7,8 @@ feats.
 
 ![The CK3 call to arms: "The Battle of Apulia", with the choice to take the field yourself](docs/images/ck3-event.jpg)
 
-> **Status: 0.9.0 (beta).** Field battles, duels, sieges and the install through Melty have been played and tested in the
-> real games. Several newer features have automated tests or bench runs but no full in-game check yet. Read
-> [Status](#status) before you start a campaign you care about.
+> **Status: 0.9.0 (beta).** Every feature below has been played in the real games: one long campaign and many shorter test
+> campaigns in Dev mode. It is still a beta, so read [Status](#status) before you start a campaign you care about.
 
 ## What it does
 
@@ -66,18 +65,22 @@ See [docs/PLAYING.md](docs/PLAYING.md) for the details.
 
 ## Status
 
-This is an honest beta, tested on CK3 1.20.1.2 and Bannerlord v1.4.8 (Steam, Windows 11).
+Tested on CK3 1.20.1.2 and Bannerlord v1.4.8 (Steam, Windows 11): one long campaign and many shorter test campaigns in Dev
+mode, on top of the automated tests and bench runs.
 
 | Feature | Status |
 |---|---|
 | Field battles, the seamless switch, your real armies, results back to CK3, the battle clock | Played in game |
 | Duels in the arena, heroes' prowess and gear | Played in game |
-| Siege defence and assault | Played in game; the harder garrison and wave assault are tested on the bench |
+| Siege assaults with garrison, wall bonuses and waves; relief of a siege | Played in game |
+| Sea battles and landings (War Sails) | Played in game |
+| Tournaments, skirmishes on the road, bandit hideouts | Played in game |
+| Feat ranks, battle gear, the armory, AI gear purchases | Played in game |
 | War elephants (with Burning Empires), extra costumes (with Open Source Armory, Terra Armarium) | Played in game |
-| Install, launch and a battle through Melty, with and without the optional Bannerlord mods | Tested by Melty's release test |
-| Sea battles and landings | Tested on the bench in Bannerlord; not yet started from a real CK3 campaign |
-| Tournaments, skirmishes, bandit hideouts | Automated tests; not yet played in game |
-| Feat ranks, armory, AI gear purchases | Automated tests; partly seen in game |
+| Install, launch and a battle through Melty, with and without the optional Bannerlord mods | Played, and passed Melty's release test |
+
+It is still a beta: the newest fixes (the result delivery's battle-window check, the Melty install) have fewer hours behind
+them than the rest, and balance may still change.
 
 If something goes wrong, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
