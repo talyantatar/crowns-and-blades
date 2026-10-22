@@ -26,7 +26,7 @@ Shared folder: `%LOCALAPPDATA%\ck3xbl\` (below: `$X`). All JSON is UTF-8 without
 
 ---
 
-> **Design decision: sieges stay in CK3.** CK3 keeps its own siege/assault mechanics. Only CK3 *combats* (field battles)
+> **Superseded by §39 (siege assaults) and §40 (relief battles); kept for the field-battle contract.** Original design decision: sieges stay in CK3. CK3 keeps its own siege/assault mechanics. Only CK3 *combats* (field battles)
 > are fought in Bannerlord, and they are always Bannerlord **field** battles: `kind` is always `"field"`, `siege` is `null`, and the
 > module never opens siege missions. A combat at a besieged holding (relief army vs besiegers, sortie) is still a field battle; the
 > location facts (holding, fort level, siege flag) may only influence the scene choice (e.g. terrain near a settlement) and presentation.

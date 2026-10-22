@@ -5,7 +5,7 @@ the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Reporting bugs
 
-Use the [bug report form](https://github.com/graff0n/ck3-bannerlord-bridge/issues/new/choose). The most useful reports include:
+Use the [bug report form](https://melty.gg/m/crowns-blades). The most useful reports include:
 
 - the versions: Crowns & Blades, CK3, Bannerlord, and where your games come from (Steam, GOG, Epic);
 - **Copy diagnostics** from the tray menu's About window;
@@ -21,8 +21,8 @@ did not helps a lot.
 
 ## Suggesting features
 
-Use the [feature request form](https://github.com/graff0n/ck3-bannerlord-bridge/issues/new/choose). Describe what you would like
-to happen in the game, not only how to build it. Some limits are deliberate: sieges stay in CK3, and nothing may cost players
+Use the [feature request form](https://melty.gg/m/crowns-blades). Describe what you would like
+to happen in the game, not only how to build it. Some limits are deliberate: nothing may cost players
 their achievements in Normal mode.
 
 ## Working on the code

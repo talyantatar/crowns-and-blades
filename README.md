@@ -1,13 +1,15 @@
 # Crowns & Blades
 
-**Lead your Crusader Kings III armies in person.** When a battle you are part of starts in CK3, you can fight it yourself in
-Mount & Blade II: Bannerlord, as your own character, with your knights at your side. Then the result goes back into your
-campaign: losses, wounds, deaths, captives, prestige and war score.
+**Lead your Crusader Kings III armies in person.** When a battle, duel, tournament bout, siege assault or sea battle you take
+part in starts in CK3, you can fight it yourself in Mount & Blade II: Bannerlord, as your own character, with your knights at
+your side. Then the result goes back into your campaign: losses, wounds, deaths, captives, prestige, war score and lifelong
+feats.
 
 ![The CK3 call to arms: "The Battle of Apulia", with the choice to take the field yourself](docs/images/ck3-event.jpg)
 
-> **Status: 0.9.0-beta.** The full loop works and has been played end to end in the real games. Several in-game checks are
-> still open, and the installer is new in this release. Read [Status](#status) before you start a campaign you care about.
+> **Status: 0.9.0 (beta).** Field battles, duels, sieges and the install through Melty have been played and tested in the
+> real games. Several newer features have automated tests or bench runs but no full in-game check yet. Read
+> [Status](#status) before you start a campaign you care about.
 
 ## What it does
 
@@ -22,134 +24,127 @@ A battle goes like this:
 1. Armies meet in CK3 and you are involved. CK3 pauses and asks: **"I will take the field myself!"** or **"Let my
    commanders decide the day."**
 2. You take the field. CK3 freezes, a title card ("The Battle of Apulia") fades in, and Bannerlord, already loaded in the
-   background, appears behind it. No menus and no loading screens.
+   background, appears behind it.
 3. You deploy and fight as your CK3 character. Your real armies are on the field: levies and men-at-arms matched to
-   Bannerlord troops of the closest culture, your commanders and knights as named heroes, your coat of arms on the banners.
+   Bannerlord troops of the closest culture, your commanders and knights as named heroes in the gear they carry in CK3, your
+   coat of arms on the banners, on a field that matches the province's terrain and season.
 4. When the battle is over, a result card shows the outcome and you are back in CK3, at the moment you left.
 5. CK3 fights the battle out over the next days of game time with the losses from Bannerlord, so war score, the battle
    summary and the aftermath are CK3's own. If fresh troops reach the losing side, you may get a second clash.
 
 See [docs/PLAYING.md](docs/PLAYING.md) for the details.
 
+## What you can fight
+
+| Kind | How it starts in CK3 | In Bannerlord |
+|---|---|---|
+| **Field battles** | your armies meet an enemy army | your levies, men-at-arms and knights, up to 1000 soldiers |
+| **Duels** | challenges, trials by combat, court duels, duels inside battles | one on one; nobles fight in an arena before an audience |
+| **Tournaments** | melee, joust and archery bouts of a CK3 tournament | the matching arena bout |
+| **Siege assaults** | the decision "Storm the Walls" | a siege with engines from your CK3 regiments, a professional garrison by fort level, wall bonuses and waves of attackers |
+| **Relief of a siege** | a relief army reaches a besieged holding | defend the walls, strike the besiegers' camp, or fight before the walls |
+| **Sea battles and landings** | the sea decision and sighting events (War Sails DLC) | ships of your culture; a landing fought from the ships onto a beach |
+| **Skirmishes** | danger events during travel | a small fight in a forest or a bandit hideout |
+
+## Also adds
+
+- **Battle gear:** ten slots on a Battle Gear page of the CK3 inventory (main weapon, three universal weapon slots, helmet,
+  body armour, gloves, boots, cloak, horse). What you equip in CK3 you carry in Bannerlord.
+- **The armory:** the decision "Visit the Armory" sells weapons, armour and horses; AI rulers buy gear for their knights.
+- **Lifelong feats:** 22 battle, duel, sea and tournament feats with three ranks each, earned by what you do in Bannerlord.
+- **Strength balance:** prowess, martial, health and age shape your heroes; a lopsided CK3 battle stays lopsided in Bannerlord.
+- **Russian and English** text, following the language CK3 runs in.
+
 ## Screenshots
 
 | | |
 |---|---|
 | ![The bridge's title card: "The Battle of Apulia" with both coats of arms](docs/images/title-card.jpg) | ![Fighting the Battle of Apulia in Bannerlord](docs/images/bannerlord-battle.jpg) |
-| The title card, drawn in CK3's style with both coats of arms | The same battle in Bannerlord: "Break the siege of Apulia" |
+| The title card, drawn in CK3's style with both coats of arms | The same battle in Bannerlord |
 | ![The result card: "Victory at Apulia: 1,457 of the enemy fell for 515 of your men"](docs/images/result-card.jpg) | ![CK3 after the steered battle: "Victory at Apulia", war score +50%](docs/images/ck3-steered-victory.jpg) |
 | The result card on the way back to CK3 | CK3 fights it out and records the victory, with native war score |
 
-![A second clash: "Reinforcements Arrive!"](docs/images/reinforcements.jpg)
+## Status
 
-*When fresh troops reach the side that lost in Bannerlord, CK3 offers a second clash.*
-
-## Features
+This is an honest beta, tested on CK3 1.20.1.2 and Bannerlord v1.4.8 (Steam, Windows 11).
 
 | Feature | Status |
 |---|---|
-| Battles you or your own armies take part in can be fought in Bannerlord | Verified in game |
-| Seamless switch: freeze frame, title card, Bannerlord preloaded and hidden in the background | Verified in game |
-| Your real armies: levies and men-at-arms by type and culture, scaled to Bannerlord's battle size | Verified in game |
-| You fight as your own character; your face and coat of arms are read from your save and your CK3 install | Verified in game |
-| Commanders and knights as named heroes; knight effectiveness, commander traits, accolades and artifacts shape them | Partly verified (knight effectiveness checked in game; most trait and accolade effects are not yet) |
-| Results back to CK3: losses per army and men-at-arms type, wounds, maimings, deaths and captures, prestige, glory, prowess | Verified in game (awards are new and less tested) |
-| Battle clock: CK3 fights the battle out over about 12 days, so war score and the battle summary are native | Verified in game |
-| Reinforcements: a second Bannerlord clash when the losing side is reinforced | Verified in game; some fixes since then still need a check in game |
-| Achievements: the normal mode never uses the console or debug mode | Verified on CK3 1.20.0.3; re-check on 1.20.0.4 pending |
-| One-file installer, no .NET install needed, clean uninstall | New in 0.9.0-beta; tested with automated tests only |
+| Field battles, the seamless switch, your real armies, results back to CK3, the battle clock | Played in game |
+| Duels in the arena, heroes' prowess and gear | Played in game |
+| Siege defence and assault | Played in game; the harder garrison and wave assault are tested on the bench |
+| War elephants (with Burning Empires), extra costumes (with Open Source Armory, Terra Armarium) | Played in game |
+| Install, launch and a battle through Melty, with and without the optional Bannerlord mods | Tested by Melty's release test |
+| Sea battles and landings | Tested on the bench in Bannerlord; not yet started from a real CK3 campaign |
+| Tournaments, skirmishes, bandit hideouts | Automated tests; not yet played in game |
+| Feat ranks, armory, AI gear purchases | Automated tests; partly seen in game |
 
-## Status
-
-This is an honest beta. What has been played in the real games, in test campaigns (CK3 1.20.0.3, Bannerlord v1.4.8, Steam,
-Windows 11):
-the full loop from the call to arms to the result in CK3, the battle clock with native war score, a second clash after
-reinforcements, and achievements still available after battles.
-
-Still open:
-
-- Several fixes from the last play test have automated tests but no in-game check yet: playing as yourself when no army of
-  your side has a commander, the wording of a second clash, war score when a leaderless loser is steered, and bridge start-up.
-- Most knight and commander effects (traits, accolades, artifacts, faith hostility) are tested in code, not yet in game.
-- Achievements were checked on CK3 1.20.0.3. CK3 has since updated to 1.20.0.4; a re-check is pending.
-- The installer, the installed layout and the GOG and Epic detection are new in 0.9.0-beta. They are covered by automated
-  tests in sandbox folders, not yet by many real installs.
-
-If something goes wrong, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) and please
-[open an issue](https://github.com/graff0n/ck3-bannerlord-bridge/issues) with your logs.
+If something goes wrong, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
 ## Requirements
 
-- **Crusader Kings III 1.20.x.** No DLC is required. It was developed on an install with the DLCs; content from DLCs you own
-  (for example accolades from Tours & Tournaments) is used when it is there.
-- **Mount & Blade II: Bannerlord v1.4.8.** Other 1.4.x patches are accepted without a warning but are untested; other versions
-  get a warning and may break.
+- **Crusader Kings III 1.20.x.** No DLC is required; content from DLCs you own (for example accolades from Tours &
+  Tournaments) is used when it is there.
+- **Mount & Blade II: Bannerlord v1.4.8.** Other 1.4.x patches are untested.
 - **Windows 10 or 11, 64-bit**, with a PC that can keep both games open at the same time.
 - **Steam** versions of both games are what this was built and tested with. GOG and Epic installs are detected but untested.
   The Xbox app / Game Pass versions are not supported.
 - You need your own copies of both games. No game files are included.
 
+### Optional Bannerlord content
+
+Everything works without these. Put any of them into Bannerlord's `Modules` folder and the bridge uses it on the next battle;
+there is no need to enable it in the Bannerlord launcher.
+
+| Add-on | What it adds | Without it |
+|---|---|---|
+| War Sails DLC | sea battles and landings | a sea clash is fought as a battle on the shore |
+| Burning Empires (its `BurningEmpires_Elephants` module) | war elephants for elephant men-at-arms | elephants fight as regular cavalry |
+| Open Source Armory, Open Source Saddlery | many more armours, weapons and horse harness | stock Bannerlord equipment |
+| Terra Armarium (Universal Core, Byzantine, Rus & Mongols, Late Medieval) | era- and culture-specific armour | stock Bannerlord equipment |
+
 ## Install
 
-1. Download `CK3xBL-Setup-0.9.0-beta.exe` from the [releases page](https://github.com/graff0n/ck3-bannerlord-bridge/releases).
-   The exe is not code-signed, so Windows SmartScreen may warn you: click **More info**, then **Run anyway**. You can check
-   the file against `SHA256SUMS.txt` first ([how](docs/TROUBLESHOOTING.md#windows-or-the-antivirus-warns-about-the-exe)).
-   Windows 11's **Smart App Control**, when it is on, blocks unsigned programs with no way around it
-   ([what to do](docs/TROUBLESHOOTING.md#smart-app-control-blocks-the-exe)).
-2. Run it. It installs for your Windows user only and needs no administrator rights. It finds both games and installs the
-   bridge, the CK3 mod and the Bannerlord module.
-3. In the **Paradox Launcher**, add **"Crowns & Blades Battles"** to the playset you play with. The launcher rewrites CK3's
-   mod list every time you press Play, so this step matters.
-4. Start **Bannerlord** once from its own launcher and reach the main menu, then close it. This gets its first-start notices
-   out of the way.
+**With Melty (one click):** install Crowns & Blades in Melty and press **Play**. Melty puts the CK3 mod, the Bannerlord module
+and the bridge in place; Play starts the bridge, which enables the mod and starts CK3. If you start CK3 from the Paradox
+Launcher instead, add **"Crowns & Blades Battles"** to your playset.
 
-Prefer to copy files yourself? There is a manual zip too. Everything, including uninstall and upgrades, is in
-[docs/INSTALL.md](docs/INSTALL.md).
+**With the installer:** run `CK3xBL-Setup-0.9.0-beta.exe`. It installs for your Windows user only, needs no administrator
+rights, finds both games and installs the bridge, the CK3 mod and the Bannerlord module. The exe is not code-signed, so
+Windows SmartScreen may warn you: click **More info**, then **Run anyway**. Then add **"Crowns & Blades Battles"** to your
+Paradox Launcher playset. A manual zip and every detail are in [docs/INSTALL.md](docs/INSTALL.md).
 
 ## Quick start
 
-1. Start **Crowns & Blades** from the Start menu. Its icon (crossed swords) appears in the notification area. It starts
-   Bannerlord hidden in the background, so the first battle loads quickly.
-2. Right-click the icon, **Launch Crusader Kings III**, **Normal (achievements)**. (Starting CK3 from the Paradox Launcher
-   works too, as long as the mod is in your playset.)
-3. Play. When your armies meet, choose **"I will take the field myself!"** and fight.
-4. After the battle, click **"The dust settles..."** in CK3 and resume the game. CK3 fights the battle out over the next days.
+1. Start **Crowns & Blades** (Melty's Play, or the Start menu). Its icon appears in the notification area, and Bannerlord
+   loads hidden in the background so the first battle starts quickly.
+2. Play CK3. When your armies meet, choose **"I will take the field myself!"** and fight.
+3. After the battle, click **"The dust settles..."** in CK3 and resume the game. CK3 fights the battle out over the next days.
 
 **Ctrl+Alt+Shift+End** aborts a battle at any point and hands it back to CK3.
 
-For the best result run CK3 in **Fullscreen** (its video options). In a window, you see the desktop around the cards.
+For the best result run CK3 in **Fullscreen** (its video options).
 
 ## Achievements
 
-The normal mode was designed around CK3's achievement rules:
-
-- CK3 starts in release mode, without `-debug_mode`, and the console is never opened.
-- Results go into CK3 through the mod's own hidden buttons on CK3's modder hotkeys (Ctrl+Shift+Alt with digits and F-keys),
-  not through the console.
-- In our tests, the pause menu said "Achievements Available" with the mod enabled, and still did after full Bannerlord
-  battles (CK3 1.20.0.3).
-
-**Dev mode** (tray menu, Launch, Dev mode) starts CK3 with `-debug_mode` and uses the console. Achievements are off for a
-game played that way. Do not mix Normal and Dev launches on the same save if you care about achievements. CK3's own
-achievement rules still apply to everything else.
+The normal mode was designed around CK3's achievement rules: CK3 starts in release mode, the console is never opened, and
+results go into CK3 through the mod's own hidden buttons on CK3's modder hotkeys (Ctrl+Shift+Alt with digits and F-keys).
+**Dev mode** (tray menu, Launch, Dev mode) uses the console, so achievements are off for a game played that way.
 
 ## Known limitations
 
-- **Sieges stay in CK3.** Only field battles go to Bannerlord. A battle at a besieged holding (a relief army against the
-  besiegers) is fought as a field battle before the walls.
 - **Single player only.** CK3 multiplayer is not supported.
 - **One Bannerlord battle at a time.** Other battles wait in line or are resolved by CK3 as usual. Battles you are not part of
   are always CK3's.
+- **Battle size is capped at 1000.** Bigger battles froze Bannerlord's engine in testing.
 - **Your faces and banners are close, not exact.** Faces are rebuilt from CK3 genes for you and your heir; others get a
-  matching stand-in. Banner divisions and colours match; charges are the nearest Bannerlord icon of the right kind.
+  matching stand-in. Charges are the nearest Bannerlord icon of the right kind.
 - **CK3's own post-battle rolls still happen.** After the battle, CK3 may still capture or kill some of the defeated side's
   commanders and knights, on top of what happened in Bannerlord.
-- **Do not type during the result delivery.** For a few seconds after a battle, the bridge presses keys in CK3. It waits for
-  a quiet moment and briefly holds back your keyboard and mouse clicks while it types.
-- **English only.** The mod's event texts exist in English only for now.
-- **Other mods:** not tested with mods that change armies, cultures or combat. Unknown men-at-arms types or cultures get
-  fallback troops.
-- **Unsigned exe:** SmartScreen and some antivirus programs may warn. See [Troubleshooting](docs/TROUBLESHOOTING.md).
+- **Result delivery types keys.** For a few seconds after a battle, the bridge types the result into CK3's battle window. It
+  first checks that the window answers, waits for a quiet moment and briefly holds back your clicks while it types.
+- **Other mods:** tested with a playset of 13 CK3 mods without conflicts, but not with mods that change armies, cultures or
+  combat deeply. Unknown men-at-arms types or cultures get fallback troops.
 
 ## Documentation
 
@@ -161,26 +156,21 @@ achievement rules still apply to everything else.
 | [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md) | The architecture, for the curious |
 | [docs/PROTOCOL.md](docs/PROTOCOL.md) | The exact contract between the three components |
 | [docs/BUILDING.md](docs/BUILDING.md) | Building, testing and releasing from source |
-| [SECURITY.md](SECURITY.md) | Exactly what the bridge does on your PC, and how to report a vulnerability |
-| [installer/README.md](installer/README.md) | The installer in depth, including its command line |
+| [CHANGELOG.md](CHANGELOG.md) | Everything added since the original bridge |
+| [SECURITY.md](SECURITY.md) | Exactly what the bridge does on your PC |
 
 ## FAQ
 
 **Do I have to fight every battle?** No. Every time, you can choose "Let my commanders decide the day" and CK3 resolves it
 as usual.
 
-**What if I am not with the army?** You get "I will lead this host in person." and play the army's commander. If no army of
-your side has a commander, you play your own character, and nothing that happens to you in Bannerlord harms you in CK3.
-
 **Can I die?** Your character can fall in Bannerlord. By default that becomes a wound or a maiming in CK3, never death or
 capture. Set `battle.playerDeathIsReal` to `true` for the hard way. Knights and commanders use CK3's own odds.
 
 **Does it change my game files?** No. The mod goes into your CK3 `mod` folder in Documents and the module into Bannerlord's
-`Modules` folder. Both are removed by the uninstaller.
+`Modules` folder.
 
-**Does it go online?** No. The bridge has no network code and sends no telemetry. See [SECURITY.md](SECURITY.md).
-
-More answers in [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
+**Does it go online?** No. The bridge has no network code and sends no telemetry.
 
 ## Building from source
 
@@ -193,28 +183,22 @@ dotnet run --project bridge/CK3xBL.SelfTest -c Release
 node tools/release/build_release.mjs        # the full release: tests, installer, manual zip, checksums
 ```
 
-The full guide, with environment variables and the leak scan, is [docs/BUILDING.md](docs/BUILDING.md).
-
-## Contributing
-
-Bug reports, tests on other setups (GOG, Epic, other CK3 languages, other hardware) and pull requests are welcome. Please
-read [CONTRIBUTING.md](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md).
+The full guide is [docs/BUILDING.md](docs/BUILDING.md).
 
 ## License, disclaimer and credits
 
 - **License:** [MIT](LICENSE), Copyright (c) 2026 TaLyAn. Based on [ck3-bannerlord-bridge](https://github.com/graff0n/ck3-bannerlord-bridge) by graff0n (MIT).
 - **Disclaimer:** Crowns & Blades is a free fan project. It is not affiliated with, endorsed by or sponsored by Paradox
   Interactive or TaleWorlds Entertainment. Crusader Kings III is a trademark of Paradox Interactive AB. Mount & Blade II:
-  Bannerlord is a trademark of TaleWorlds Entertainment. All other trademarks belong to their owners. You need legally owned
-  copies of both games. No game files are included: game fonts, textures and data are read from your own installs at run
-  time.
-- **Credits:** Paradox Interactive and TaleWorlds Entertainment for two games worth bridging, and for making both of them
-  open to mods. The cards use the Fondamento typeface, read from your CK3 install (not shipped). The bridge exe includes the
-  .NET runtime (see `THIRD-PARTY-NOTICES.txt` in the release).
+  Bannerlord is a trademark of TaleWorlds Entertainment. You need legally owned copies of both games. No game files are
+  included: game fonts, textures and data are read from your own installs at run time.
+- **Credits:** graff0n for the original bridge; Paradox Interactive and TaleWorlds Entertainment for two games worth
+  bridging and open to mods; the authors of Open Source Armory, Terra Armarium and Burning Empires, whose mods the bridge
+  can use when you have them. The bridge exe includes the .NET runtime (see `THIRD-PARTY-NOTICES.txt` in the release).
 
 ### How this was made (AI disclosure)
 
 This project was built with Anthropic's Claude, through Claude Code, as the engineering agent: it wrote most of the code,
-the tests and these documents, and ran most of the in-game tests by driving both games, under the direction of graff0n, who
-set the goals, made the design calls, played test battles and decides what ships. Every result described as verified here
-was checked in the running games, not only by the agent's own tests.
+the tests and these documents, and ran bench tests by driving both games. The original bridge was directed by graff0n;
+Crowns & Blades is directed by TaLyAn, who sets the goals, makes the design calls, plays the test campaigns and decides what
+ships.

@@ -1,6 +1,6 @@
 # Installing Crowns & Blades
 
-There are two downloads on the [releases page](https://github.com/graff0n/ck3-bannerlord-bridge/releases):
+There are two downloads on the [releases page](https://melty.gg/m/crowns-blades):
 
 | File | What it is |
 |---|---|

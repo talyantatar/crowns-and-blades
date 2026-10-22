@@ -19,8 +19,8 @@ This page follows one battle from start to finish, then explains the tray menu, 
 A battle is offered when you take part in it (as a participant, an army commander or a knight), or when it belongs to a war
 you are fighting. Battles of your vassals in their own wars, and every battle you have nothing to do with, stay with CK3.
 
-Only field battles go to Bannerlord. Sieges and assaults stay in CK3. A battle at a besieged holding, such as your relief army
-against the besiegers, is fought as a field battle on the ground before the walls.
+Field battles, duels, tournament bouts, siege assaults (the decision "Storm the Walls") and sea battles go to Bannerlord. A relief
+army that reaches a besieged holding can defend the walls, strike the besiegers' camp, or fight before the walls.
 
 ### 2. The call to arms
 

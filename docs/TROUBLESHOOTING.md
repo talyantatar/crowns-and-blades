@@ -1,7 +1,7 @@
 # Troubleshooting
 
 Start here when something does not work. If your problem is not listed, please
-[open an issue](https://github.com/graff0n/ck3-bannerlord-bridge/issues/new/choose) with the versions and logs described below.
+[open an issue](https://melty.gg/m/crowns-blades) with the versions and logs described below.
 
 ## First checks
 
@@ -41,7 +41,7 @@ Crowns & Blades is not code-signed yet, so **SmartScreen** says "Windows protect
 **Run anyway**. Some antivirus programs are also wary of what the bridge legitimately does (it presses keys in CK3 and briefly
 holds back keyboard input while it types; see [SECURITY.md](../SECURITY.md)).
 
-Only download from the [releases page](https://github.com/graff0n/ck3-bannerlord-bridge/releases), and check the file before you
+Only download from the [releases page](https://melty.gg/m/crowns-blades), and check the file before you
 run it. In PowerShell, in your download folder:
 
 ```powershell
@@ -71,8 +71,8 @@ Crowns & Blades has not been tested with Smart App Control on.
 - **The mod is not enabled.** The Paradox Launcher rewrites CK3's mod list every time you press Play. Add "Crowns & Blades
   Battles" to your playset (see [INSTALL.md](INSTALL.md#enable-the-mod-in-the-paradox-launcher)). The tray warns when CK3
   starts without the mod.
-- **The battle does not involve you.** Only battles you take part in, or that one of your own armies fights, are offered; allies' battles in your war are left to CK3. Sieges stay in
-  CK3.
+- **The battle does not involve you.** Only battles you take part in, or that one of your own armies fights, are offered; allies' battles in your war are left to CK3. A siege goes
+  to Bannerlord only when you storm it yourself (the decision "Storm the Walls").
 - **Another battle is being fought.** Only one battle at a time goes to Bannerlord.
 - **The bridge is not running,** or started after a problem. Look at its balloon or the About window.
 
@@ -155,4 +155,4 @@ Please include:
 - **Copy diagnostics** from the About window, and `bridge.log` and `bannerlord.log` if you can;
 - for a battle problem, that battle's folder from `%LOCALAPPDATA%\ck3xbl\battles\`.
 
-The [bug report form](https://github.com/graff0n/ck3-bannerlord-bridge/issues/new/choose) asks for exactly this.
+The [bug report form](https://melty.gg/m/crowns-blades) asks for exactly this.
