@@ -128,6 +128,14 @@ versions follow [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- 0.9.1, from players' crash reports on Melty:
+  - When ck3.exe is set to run as administrator, the bridge could not start CK3 and said only "the requested operation requires
+    elevation". It now offers to restart itself as administrator (Windows asks to confirm), so it can start CK3 and enter battle
+    results into it; or the player unticks the setting. Nobody else ever sees an administrator prompt.
+  - When Bannerlord dies before the bridge module answers, Bannerlord's own log of that run is copied into the bridge log, so a
+    crash report shows the cause.
+  - The boot failure notice no longer says "Bannerlord v1.4.8 may not be supported (this release was built for v1.4.8)"; on the
+    supported version it points to Bannerlord's own log and launcher instead.
 - Back in CK3 after a battle, the result could be typed while the battle window was not in front: the keys then reached CK3's
   own hotkeys, opening the character, realm, military and court windows, changing the speed and pressing menu items, over and
   over. The bridge now first checks that the battle window answers (two keys) and types the result only then; otherwise it asks

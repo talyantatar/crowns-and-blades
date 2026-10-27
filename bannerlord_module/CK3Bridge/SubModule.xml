@@ -3,7 +3,7 @@
   <Name value="Crowns &amp; Blades"/>
   <Id value="CK3Bridge"/>
   <!-- The Crowns & Blades release (bridge/Directory.Build.props; the bridge's self test release.versions_agree checks it). -->
-  <Version value="v0.9.0"/>
+  <Version value="v0.9.1"/>
   <SingleplayerModule value="true"/>
   <MultiplayerModule value="false"/>
   <ModuleCategory value="Singleplayer"/>

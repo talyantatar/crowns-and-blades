@@ -26,6 +26,8 @@ internal sealed class StartupActions
 {
     public bool LaunchCk3;
     public string? MeltyTestSlug;
+    /// <summary>The command line, to start the same way again (as administrator).</summary>
+    public IReadOnlyList<string> Args = Array.Empty<string>();
 }
 
 internal static class Ck3ModSetup

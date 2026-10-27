@@ -26,6 +26,12 @@ internal static class Program
         if (HasFlag(args, "--quit")) return SignalQuit();
 
         using var mutex = new Mutex(initiallyOwned: true, SingleInstanceMutex, out bool firstInstance);
+        // Restarted as administrator: the old copy is still quitting (it closes its Bannerlord first), so wait for it.
+        if (!firstInstance && HasFlag(args, Elevation.RestartedFlag))
+        {
+            try { firstInstance = mutex.WaitOne(QuitWait * 2); }
+            catch (AbandonedMutexException) { firstInstance = true; }
+        }
         if (!firstInstance)
         {
             MessageBox.Show("Crowns & Blades is already running. Look for its icon in the notification area.", "Crowns & Blades",
@@ -63,7 +69,9 @@ internal static class Program
         {
             LaunchCk3 = HasFlag(args, "--launch-ck3"),
             MeltyTestSlug = Argument(args, "--melty-test"),
+            Args = args,
         };
+        if (Elevation.IsElevated) journal.Info("app", "running as administrator");
         journal.Info("app", $"CK3xBL {BridgeVersion.Full} starting: mode {config.Mode}, {(paths.IsDevTree ? "source checkout" : "installed")} " +
                             $"in {paths.InstallDir}, config {paths.ConfigFile}, CK3 {config.Ck3.GameDir}, Bannerlord {config.Bannerlord.GameDir}, " +
                             $"shared {paths.SharedDir}");

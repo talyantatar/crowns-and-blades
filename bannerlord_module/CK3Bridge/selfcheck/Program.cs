@@ -829,7 +829,7 @@ namespace CK3Bridge.SelfCheck
             string moduleDir = Meta("ModuleDir");
             var subModule = System.Xml.Linq.XDocument.Load(Path.Combine(moduleDir, "SubModule.xml")).Root;
             string declared = subModule?.Element("Version")?.Attribute("value")?.Value;
-            Equal("v0.9.0", declared, "SubModule.xml Version");
+            Equal("v0.9.1", declared, "SubModule.xml Version");
             string dll = Path.Combine(moduleDir, "bin", "Win64_Shipping_Client", "CK3Bridge.dll");
             if (File.Exists(dll)) Equal(declared, "v" + AssemblyName.GetAssemblyName(dll).Version.ToString(3), "CK3Bridge.dll carries the SubModule.xml version");
             else Check(false, "CK3Bridge.dll not built: build ../src/CK3Bridge.csproj first");

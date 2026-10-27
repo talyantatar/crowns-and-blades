@@ -17,7 +17,7 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>..\bin\Win64_Shipping_Client\</OutputPath>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <VersionPrefix>0.9.0</VersionPrefix>
+    <VersionPrefix>0.9.1</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
     <Authors>TaLyAn</Authors>
     <Company>TaLyAn</Company>

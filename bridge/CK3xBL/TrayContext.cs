@@ -179,7 +179,7 @@ internal sealed class TrayContext : ApplicationContext, INotifier
             else if (_startup.LaunchCk3 && !_host.Ck3Running)
             {
                 _ck3LaunchedByTray = DateTime.UtcNow;
-                if (_host.LaunchCk3(_host.Mode) is { } problem) Notify("Crusader Kings III", problem, NoticeKind.Warning);
+                if (_host.LaunchCk3(_host.Mode) is { } problem) Post(() => ShowLaunchProblem(problem));
             }
         }
         catch (Exception e)
@@ -228,13 +228,33 @@ internal sealed class TrayContext : ApplicationContext, INotifier
         var problem = _host.LaunchCk3(mode);
         if (problem is not null)
         {
-            Notify("Crusader Kings III", problem, NoticeKind.Warning);
+            ShowLaunchProblem(problem);
             return;
         }
         _ck3LaunchedByTray = DateTime.UtcNow;
         if (mode == BridgeMode.Dev)
             Notify("Dev mode", "CK3 runs with -debug_mode and results go through the console: achievements are off for games played this way.",
                 NoticeKind.Warning);
+    }
+
+    /// <summary>A failed CK3 launch. When ck3.exe may only run as administrator, the player is asked once whether to restart the bridge
+    /// as administrator (Windows' own prompt follows); nobody else ever sees an administrator prompt.</summary>
+    private void ShowLaunchProblem(string problem)
+    {
+        if (!_host.Ck3NeedsElevation || Elevation.IsElevated)
+        {
+            Notify("Crusader Kings III", problem, NoticeKind.Warning);
+            return;
+        }
+        var answer = MessageBox.Show(
+            "Crusader Kings III is set to run as administrator. Crowns & Blades can only start it, and enter battle results into it, " +
+            "when it runs as administrator too.\n\nRestart Crowns & Blades as administrator now? Windows will ask you to confirm.\n\n" +
+            "(Or choose No and untick 'Run this program as an administrator' in the Compatibility tab of ck3.exe's properties.)",
+            BridgeVersion.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        if (answer != DialogResult.Yes) { Notify("Crusader Kings III", problem, NoticeKind.Warning); return; }
+        _journal.Info("app", "restarting as administrator (CK3 requires it)");
+        if (Elevation.RestartAsAdministrator(_startup.Args, out string? why)) _ = QuitAsync();
+        else Notify("Crowns & Blades", why ?? "Could not restart as administrator.", NoticeKind.Warning);
     }
 
     /// <summary>CK3 loads the mods dlc_load.json lists when it starts. When our mod is installed but not listed, ask before launching:

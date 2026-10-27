@@ -213,10 +213,14 @@ internal sealed class BridgeHost : IAsyncDisposable
         _journal.Info("app", $"ready (mode {_mode}, OUT channel {_monitor.LogPath}, session {_monitor.SessionKey})");
     }
 
+    /// <summary>The last launch failed because ck3.exe may only run as administrator.</summary>
+    public bool Ck3NeedsElevation { get; private set; }
+
     /// <summary>Launches CK3 in the given mode; the result channel follows the mode from now on. Returns a problem or null.</summary>
     public string? LaunchCk3(BridgeMode mode)
     {
-        var problem = Ck3Launcher.Launch(_config.Ck3.GameDir, mode, _config.Ck3.ContinueLastSave, _journal);
+        var problem = Ck3Launcher.Launch(_config.Ck3.GameDir, mode, _config.Ck3.ContinueLastSave, _journal, out bool needsElevation);
+        Ck3NeedsElevation = needsElevation;
         if (problem is null) _mode = mode;
         return problem;
     }

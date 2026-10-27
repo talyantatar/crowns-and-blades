@@ -431,9 +431,13 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
     {
         if (_bootFailureReported) return;
         _bootFailureReported = true;
-        string version = GameInstall.BannerlordVersion(_o.GameDir) is { } v ? $"Bannerlord {v}" : "This Bannerlord version";
-        string text = $"Bannerlord could not start the CK3 bridge module ({why}). {version} may not be supported " +
-                      $"(this release was built for {BridgeVersion.BannerlordTarget}).";
+        string? installed = GameInstall.BannerlordVersion(_o.GameDir);
+        // A supported version is not the cause: say so instead of blaming it (players' reports 2026-10-24/26: "v1.4.8 may not be
+        // supported (this release was built for v1.4.8)").
+        string hint = installed is not null && installed.StartsWith(BridgeVersion.BannerlordTarget, StringComparison.OrdinalIgnoreCase)
+            ? "Start Bannerlord once from its own launcher to see what stops it (an update to finish, a dialog, a broken mod in Modules); Bannerlord's own log is in the bridge log."
+            : $"{(installed is not null ? $"Bannerlord {installed}" : "This Bannerlord version")} may not be supported (this release was built for {BridgeVersion.BannerlordTarget}).";
+        string text = $"Bannerlord could not start the CK3 bridge module ({why}). {hint}";
         _journal.Error("bannerlord", text);
         BootFailed?.Invoke(text);
     }
@@ -583,6 +587,7 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
         bool neverBooted = !_bootedOnce;
         if (requested) _journal.Info("bannerlord", "exited (requested)");
         else _journal.Warn("bannerlord", $"exited unexpectedly (code {code}){(neverBooted ? " before its first heartbeat" : "")}");
+        if (!requested && neverBooted) JournalGameLog(_lastExitedPid);
         Lost?.Invoke(BannerlordLoss.Exited, requested ? "Bannerlord was closed" : $"Bannerlord exited (code {code})");
         if (requested) return;
         if (neverBooted && _launchedWithArmory)
@@ -607,6 +612,30 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
             _usingFallback = true;
         }
         lock (_gate) _relaunchAt = DateTime.UtcNow + _o.RelaunchDelay;
+    }
+
+    /// <summary>Bannerlord's own log of a process that died before our module answered (rgl_log_&lt;pid&gt;.txt, its last lines and the
+    /// errors log), copied into the bridge log: players' crash reports carry the bridge log only, and the cause is in Bannerlord's.</summary>
+    private void JournalGameLog(int pid)
+    {
+        if (pid <= 0) return;
+        try
+        {
+            string dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Mount and Blade II Bannerlord", "logs");
+            foreach (var (file, lines) in new[] { ($"rgl_log_errors_{pid}.txt", 40), ($"rgl_log_{pid}.txt", 60) })
+            {
+                string path = Path.Combine(dir, file);
+                if (!File.Exists(path)) { _journal.Info("bannerlord", $"{file}: not written"); continue; }
+                using var s = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+                using var r = new StreamReader(s);
+                var tail = r.ReadToEnd().Split('\n').Select(l => l.TrimEnd('\r')).Where(l => l.Length > 0).TakeLast(lines).ToList();
+                _journal.Warn("bannerlord", $"{file}, last {tail.Count} lines:\n    " + string.Join("\n    ", tail));
+            }
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            _journal.Warn("bannerlord", $"Bannerlord's log of pid {pid} unreadable: {e.Message}");
+        }
     }
 
     private void AnswerSafeModeQuestion(int pid)

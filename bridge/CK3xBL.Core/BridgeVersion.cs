@@ -16,10 +16,10 @@ public static class BridgeVersion
     public static readonly string Display = Full.Split('+')[0];
 
     /// <summary>version= of the CK3 mod's descriptor.mod shipped with this bridge.</summary>
-    public const string Mod = "0.9.0-beta";
+    public const string Mod = "0.9.1-beta";
 
     /// <summary>Version/@value of the Bannerlord module's SubModule.xml shipped with this bridge.</summary>
-    public const string Module = "v0.9.0";
+    public const string Module = "v0.9.1";
 
     /// <summary>The game versions this release was built and tested for. Others get a warning, never a refusal.</summary>
     public const string Ck3Target = "1.20";
