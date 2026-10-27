@@ -24,8 +24,8 @@ The [releases page](https://github.com/talyantatar/crowns-and-blades/releases) h
 
 | File | What it is |
 |---|---|
-| `CK3xBL-Setup-0.9.0-beta.exe` | The installer. One file; it installs everything and can uninstall it again. Recommended. |
-| `CK3xBL-0.9.0-beta-manual.zip` | The same files in folders, for copying by hand. |
+| `CK3xBL-Setup-0.9.1-beta.exe` | The installer. One file; it installs everything and can uninstall it again. Recommended. |
+| `CK3xBL-0.9.1-beta-manual.zip` | The same files in folders, for copying by hand. |
 | `SHA256SUMS.txt` | Checksums of both, to check your download. |
 
 Both contain the same three parts: the bridge app (`CK3xBL.exe`, self-contained, so you need no .NET install), the CK3 mod
@@ -176,9 +176,9 @@ The installer can run silently, write a plan without changing anything, or insta
 
 ```powershell
 # write the plan to ck3xbl-plan.log in this folder, change nothing
-Start-Process .\CK3xBL-Setup-0.9.0-beta.exe -ArgumentList '/silent','/dry-run','/log=ck3xbl-plan.log' -Wait
+Start-Process .\CK3xBL-Setup-0.9.1-beta.exe -ArgumentList '/silent','/dry-run','/log=ck3xbl-plan.log' -Wait
 # install with the defaults
-Start-Process .\CK3xBL-Setup-0.9.0-beta.exe -ArgumentList '/silent' -Wait
+Start-Process .\CK3xBL-Setup-0.9.1-beta.exe -ArgumentList '/silent' -Wait
 ```
 
 `/dry-run` without `/silent` opens the wizard in plan-only mode instead.

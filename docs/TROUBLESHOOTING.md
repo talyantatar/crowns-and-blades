@@ -45,7 +45,7 @@ Installed through Melty, the files are checked by Melty. If you got the installe
 PowerShell, in your download folder:
 
 ```powershell
-Get-FileHash .\CK3xBL-Setup-0.9.0-beta.exe -Algorithm SHA256
+Get-FileHash .\CK3xBL-Setup-0.9.1-beta.exe -Algorithm SHA256
 ```
 
 Compare the result with the line for that file in the `SHA256SUMS.txt` that came with it. If they differ, do not run the

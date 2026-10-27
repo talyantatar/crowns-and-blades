@@ -7,7 +7,7 @@ feats.
 
 ![The CK3 call to arms: "The Battle of Apulia", with the choice to take the field yourself](docs/images/ck3-event.jpg)
 
-> **Status: 0.9.0 (beta).** Every feature below has been played in the real games: one long campaign and many shorter test
+> **Status: 0.9.1 (beta).** Every feature below has been played in the real games: one long campaign and many shorter test
 > campaigns in Dev mode. It is still a beta, so read [Status](#status) before you start a campaign you care about.
 
 ## What it does
@@ -112,7 +112,7 @@ there is no need to enable it in the Bannerlord launcher.
 and the bridge in place; Play starts the bridge, which enables the mod and starts CK3. If you start CK3 from the Paradox
 Launcher instead, add **"Crowns & Blades Battles"** to your playset.
 
-**With the installer:** download `CK3xBL-Setup-0.9.0-beta.exe` from the
+**With the installer:** download `CK3xBL-Setup-0.9.1-beta.exe` from the
 [releases page](https://github.com/talyantatar/crowns-and-blades/releases) and run it. It installs for your Windows user only, needs no administrator
 rights, finds both games and installs the bridge, the CK3 mod and the Bannerlord module. The exe is not code-signed, so
 Windows SmartScreen may warn you: click **More info**, then **Run anyway**. Then add **"Crowns & Blades Battles"** to your
