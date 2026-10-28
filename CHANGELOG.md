@@ -5,8 +5,10 @@ versions follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Changed after 0.9.2-beta
+### Changed in 0.9.3-beta (2026-10-28)
 
+- **Heartbeat.** A battle is given up only after 15 s without an answer from Bannerlord (was 5 s); stalls are logged with their
+  size. **Banners:** CK3 yellow shows as gold, not orange.
 - **The Arsenal.** A CK3 decision opens an arena where you choose, slot by slot, what you carry into battle: your battle
   gear, equipped or not, your kit and ammunition, with Bannerlord's pictures and numbers. The choice is kept for your later battles. The armory's wares are sold there too, and battle
   gear no longer wears out.

@@ -1857,8 +1857,8 @@ and ranged damage and 1 % less damage taken per point of the gap, at most 50 %, 
 - **Request.** `arsenal = { hero, items[], current }`: `items` are his battle gear, equipped or not (`source` artifact, with its
   `quality`), what he wears and his kit (`source` kit), and ammunition for every bow and crossbow among them; `slot` is Weapon, Head,
   Body, Gloves, Leg, Cape or Horse. `current` is what he wears now (slot -> item id, `""` empty, the harness left out).
-- **Module.** `CK3Arsenal`: the player is alone (the partner never spawns), cannot be hurt, and the arena border does not end the
-  visit. The slot menu opens at the start and on I (a slot, then its item, with Bannerlord's picture and numbers); the player is
+- **Module.** `CK3Arsenal`: the player is alone (the partner never spawns), cannot be hurt.
+  The slot menu opens at the start and on I (a slot, then its item, with Bannerlord's picture and numbers); the player is
   re-dressed at once, a horse only in the next battle. "Save" keeps the loadout and leaves him to try it out; Tab or "Leave" ends the
   visit as a stock retreat (ending the mission from the menu's callback crashed, live 2026-10-28). `result.loadout` is the saved
   loadout (every slot, `""` empty), null when he left without saving.
