@@ -96,6 +96,8 @@ public sealed class OrchestratorOptions
     public TimeSpan LoadWaitTimeout = TimeSpan.FromSeconds(90);
     /// <summary>PROTOCOL §24: give CK3's RAM to Bannerlord once the battle has started (CK3 is paused behind it meanwhile).</summary>
     public bool TrimCk3Memory = true;
+    /// <summary>CK3 runs at below-normal priority in Windows' efficiency mode while Bannerlord fights (2026-10-28).</summary>
+    public bool BackgroundCk3 = true;
     /// <summary>How long after 'go' the trim runs: Bannerlord has the foreground and CK3 has stopped drawing its last frames.</summary>
     public TimeSpan TrimCk3Delay = TimeSpan.FromSeconds(3);
     /// <summary>CK3's memory is trimmed only when less RAM than this (MB) is free as the battle starts.</summary>
@@ -196,6 +198,8 @@ public sealed class BattleOrchestrator : IAsyncDisposable
     private int _ck3MutedPid, _bannerlordMutedPid;
     /// <summary>CK3's working set was trimmed for the current battle: it is warmed up before the result is typed.</summary>
     private volatile bool _ck3Trimmed;
+    /// <summary>The CK3 process put in the background for the fight (ProcessMemory.Background), 0 = none.</summary>
+    private int _ck3Background;
 
     public BattleOrchestrator(OrchestratorServices services, OrchestratorOptions? options = null)
     {
@@ -1598,6 +1602,13 @@ public sealed class BattleOrchestrator : IAsyncDisposable
         if (_phase == phase) return;
         _s.Journal.Info(Area, $"phase {_phase} -> {phase}{(_active is null ? "" : " (" + _active.Id + ")")}");
         _phase = phase;
+        // CK3 waits in the background while Bannerlord fights, and is itself again for everything else (the return, the result).
+        if (_o.BackgroundCk3 && (phase == BattlePhase.Fighting) != (_ck3Background != 0))
+        {
+            int pid = phase == BattlePhase.Fighting ? _s.Ck3.Find()?.ProcessId ?? 0 : _ck3Background;
+            if (pid > 0 && ProcessMemory.Background(pid, phase == BattlePhase.Fighting) is { } error) _s.Journal.Warn("memory", $"CK3 background mode: {error}");
+            _ck3Background = phase == BattlePhase.Fighting ? pid : 0;
+        }
         try { PhaseChanged?.Invoke(phase, _active?.Id); }
         catch (Exception e) { _s.Journal.Warn(Area, $"PhaseChanged handler: {e.Message}"); }
     }

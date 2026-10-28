@@ -41,6 +41,61 @@ public static class ProcessMemory
         return (before, WorkingSetMb(pid), null);
     }
 
+    /// <summary>
+    /// Puts <paramref name="pid"/> in the background while Bannerlord fights (2026-10-28: a paused CK3 still took much of the PC):
+    /// below-normal priority and Windows' efficiency mode (EcoQoS power throttling); <paramref name="on"/> = false puts both back.
+    /// Returns an error text or null; never throws.
+    /// </summary>
+    public static string? Background(int pid, bool on)
+    {
+        if (pid <= 0) return "no process";
+        try
+        {
+            using var p = System.Diagnostics.Process.GetProcessById(pid);
+            p.PriorityClass = on ? System.Diagnostics.ProcessPriorityClass.BelowNormal : System.Diagnostics.ProcessPriorityClass.Normal;
+        }
+        catch (ArgumentException)
+        {
+            return null;   // the process is gone: nothing to put back either
+        }
+        catch (Exception e) when (e is InvalidOperationException or System.ComponentModel.Win32Exception)
+        {
+            return $"priority: {e.Message}";
+        }
+        nint h = OpenProcess(PROCESS_SET_INFORMATION, false, (uint)pid);
+        if (h == 0) return $"OpenProcess failed ({Marshal.GetLastWin32Error()})";
+        try
+        {
+            var state = new PowerThrottlingState
+            {
+                Version = PowerThrottlingCurrentVersion,
+                ControlMask = PowerThrottlingExecutionSpeed,
+                StateMask = on ? PowerThrottlingExecutionSpeed : 0,
+            };
+            if (!SetProcessInformation(h, ProcessPowerThrottling, ref state, (uint)Marshal.SizeOf<PowerThrottlingState>()))
+                return $"efficiency mode failed ({Marshal.GetLastWin32Error()})";
+        }
+        finally
+        {
+            CloseHandle(h);
+        }
+        return null;
+    }
+
+    private const uint PROCESS_SET_INFORMATION = 0x0200;
+    private const int ProcessPowerThrottling = 4;
+    private const uint PowerThrottlingCurrentVersion = 1, PowerThrottlingExecutionSpeed = 0x1;
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct PowerThrottlingState
+    {
+        public uint Version, ControlMask, StateMask;
+    }
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool SetProcessInformation(nint process, int infoClass, ref PowerThrottlingState info, uint size);
+
     [StructLayout(LayoutKind.Sequential)]
     private struct MemoryStatusEx
     {

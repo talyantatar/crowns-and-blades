@@ -113,8 +113,8 @@ internal static partial class MappingTests
         Expect.True(!string.IsNullOrEmpty(fresh.FallbackScene) && fresh.FallbackScene != fresh.Scene, "the field stays as the fallback");
         var s = fresh.Siege!;
         Expect.Equal(2, s.SceneUpgradeLevel, "fort 4: a castle of level 2");
-        Expect.False(s.AttackerMachines.Contains("SiegeTower") || s.AttackerMachines.Contains("Ram"), "day one: ladders only");
-        Expect.Equal("Trebuchet,Onager", string.Join(",", s.AttackerMachines), "one engine per siege regiment, the strongest first");
+        Expect.Equal("SiegeTower,Ram,Trebuchet,Onager", string.Join(",", s.AttackerMachines),
+            "day one: a tower and a ram (2026-10-28), then one engine per siege regiment, the strongest first");
         Expect.Equal("Ballista", string.Join(",", s.DefenderMachines));
         Expect.Equal(1f, s.WallHitpointPercentages.Min(), "walls whole");
 
@@ -257,6 +257,17 @@ internal static partial class MappingTests
         Expect.True(after >= 1 && Math.Abs(after - before / (double)CK3xBL.Mapping.Planning.ElephantPlanner.MenPerElephant) <= elephants.Count,
             $"one elephant per {CK3xBL.Mapping.Planning.ElephantPlanner.MenPerElephant} agents ({before} -> {after})");
         Expect.True(req.Attacker.Troops.Concat(req.Defender.Troops).Where(t => !t.Group!.Contains("war_elephant")).All(t => t.Mount is null), "nobody else rides one");
+        string lancer = CK3xBL.Mapping.Planning.ElephantPlanner.Lancers[req.Attacker.Culture];
+        Expect.True(elephants.All(t => t.Id == lancer), $"a heavy lancer rides a war elephant ({lancer})");
+
+        // An assault: elephants climb no walls, their crews storm on foot, every man of them.
+        battle.IsSiege = true;
+        battle.SiegeFort = 4;
+        battle.Location.Holding = "castle_holding";
+        var siege = Mapper.BuildRequest(battle, new MapperOptions { Elephants = true });
+        Expect.Equal("siege", siege.Kind);
+        Expect.True(siege.Attacker.Troops.All(t => t.Mount is null), "no elephants at the walls");
+        battle.IsSiege = false;
 
         // The outcome still counts the regiment's CK3 men: a win with few elephants lost costs few men.
         var o = Mapper.BuildOutcome(battle, req, Synthetic(req, "attacker"), new MapperOptions { Elephants = true });

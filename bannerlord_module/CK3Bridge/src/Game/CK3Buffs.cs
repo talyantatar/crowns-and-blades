@@ -225,6 +225,8 @@ namespace CK3Bridge
         /// </summary>
         public static float GeneralDamage(float damage, in AttackInformation attackInformation, in AttackCollisionData collisionData)
         {
+            // The archery rival shoots at pots only: should an arrow of his find a man, it does no harm.
+            if (CK3ArenaArcheryController.Rival != null && attackInformation.AttackerAgent == CK3ArenaArcheryController.Rival) return 0f;
             if (!CK3BuffRegistry.Active || collisionData.IsFallDamage || attackInformation.IsFriendlyFire || attackInformation.IsVictimAgentMount)
                 return damage;
             try
@@ -315,8 +317,9 @@ namespace CK3Bridge
 
         /// <summary>
         /// PROTOCOL §33: a hero with heroes[].buffs.cleave (CK3 prowess over 30) swings through the man he hits into the next one,
-        /// like the "cut through" mods: an unblocked, unparried melee swing that strikes a man is sliced through instead of stopping.
-        /// Blocks, parries, thrusts, missiles and hits on the world keep the stock reaction.
+        /// like the "cut through" mods: an unblocked, unparried melee swing or thrust that strikes a man goes through him instead of
+        /// stopping (thrusts too since 2026-10-28: a spear or lance pierces the first man).
+        /// Blocks, parries, missiles and hits on the world keep the stock reaction.
         /// </summary>
         public static void CollisionReaction(Agent attacker, Agent defender, in AttackCollisionData collisionData, ref MeleeCollisionReaction colReaction)
         {
@@ -347,7 +350,8 @@ namespace CK3Bridge
         {
             if (!CK3BuffRegistry.Active || attacker == null || victim == null || collisionData.IsMissile || !collisionData.IsColliderAgent) return false;
             if (collisionData.AttackBlockedWithShield || collisionData.CollisionResult != CombatCollisionResult.StrikeAgent) return false;
-            if (collisionData.StrikeType != (int)StrikeType.Swing || collisionData.IsHorseCharge || collisionData.IsFallDamage) return false;
+            if (collisionData.StrikeType != (int)StrikeType.Swing && collisionData.StrikeType != (int)StrikeType.Thrust) return false;
+            if (collisionData.IsHorseCharge || collisionData.IsFallDamage) return false;
             Agent striker = attacker.IsMount ? attacker.RiderAgent : attacker;
             return CK3BuffRegistry.Hero(striker)?.Buffs?.Cleave == true;
         }
@@ -360,6 +364,8 @@ namespace CK3Bridge
         {
             try
             {
+                // A war elephant walks faster than Burning Empires' beast (the user's choice, 2026-10-28: CK3's elephants are swift).
+                if (agent.IsMount && IsElephant(agent)) agentDrivenProperties.MountSpeed *= ElephantSpeedMult;
                 HeroBuffs hero = CK3BuffRegistry.Hero(agent)?.Buffs;
                 if (hero == null)
                 {
@@ -384,6 +390,15 @@ namespace CK3Bridge
             {
                 CK3BuffRegistry.Report(nameof(AgentStats), e);
             }
+        }
+
+        public const float ElephantSpeedMult = 1.35f;
+
+        /// <summary>A mount agent that is an elephant (the item CK3Bridge.Elephants seats elephant regiments on).</summary>
+        private static bool IsElephant(Agent mount)
+        {
+            string item = mount.SpawnEquipment[EquipmentIndex.Horse].Item?.StringId;
+            return item == "elephant" || (mount.Monster?.StringId?.IndexOf("elephant", StringComparison.OrdinalIgnoreCase) ?? -1) >= 0;
         }
 
         /// <summary>

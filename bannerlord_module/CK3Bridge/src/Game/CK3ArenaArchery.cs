@@ -13,7 +13,8 @@ namespace CK3Bridge
     /// archery set (entity tag tournament_archery: pots with a DestructableComponent and archers' stands tagged sp_arena); SandBox's own
     /// archery controller needs a campaign, so this one runs the contest: the set is shown, the player stands at its stand with a bow
     /// and two quivers, and has <see cref="TimeLimit"/> seconds to hit <c>par</c> different pots (the bridge sets the mark from the
-    /// best other archer's prowess). The rival stands beside him and does not shoot. The loser leaves the lists (fades out, which no
+    /// best other archer's prowess). The rival stands beside him and shoots the pots nearer his own stand (cosmetic: his pots never
+    /// count, and he hurts nobody). The loser leaves the lists (fades out, which no
     /// fate counts), so BattleEndLogic ends the mission with the right winner, as in a duel. Like the duel it is the mission's
     /// IMissionAgentSpawnLogic.
     /// </summary>
@@ -30,6 +31,8 @@ namespace CK3Bridge
         private readonly string _hitFormat;
         private readonly HashSet<DestructableComponent> _hit = new HashSet<DestructableComponent>();
         private readonly List<DestructableComponent> _targets = new List<DestructableComponent>();
+        private readonly List<DestructableComponent> _rivalTargets = new List<DestructableComponent>();
+        private DestructableComponent _rivalTarget;
         private bool _spawned;
         private bool _decided;
         private float _start = -1f;
@@ -60,7 +63,12 @@ namespace CK3Bridge
                     Setup();
                     return;
                 }
-                if (!_decided) Judge();
+                if (!_decided)
+                {
+                    Judge();
+                    // A pot can also fall to a stray arrow: the rival moves on to the next one.
+                    if (_rivalTarget != null && _rivalTarget.IsDestroyed) NextRivalTarget();
+                }
             }
             catch (Exception e)
             {
@@ -84,17 +92,24 @@ namespace CK3Bridge
                 .Where(p => set == null || p.Distance(center) < SetRadius).OrderBy(p => p.Distance(center)).ToList();
             Vec3 me = stands.Count > 0 ? stands[0] : center;
             Vec3 rival = stands.Count > 1 ? stands[1] : me + new Vec3(2f, 0f, 0f);
-            Vec2 facing = set != null ? set.GetGlobalFrame().rotation.f.AsVec2 : Vec2.Forward;
-            facing = facing.Length > 0.01f ? facing.Normalized() : Vec2.Forward;
+            // Both face the pots (2026-10-28: the set's own frame turned them away from them).
+            Vec3 aim = _targets.Count > 0
+                ? _targets.Aggregate(Vec3.Zero, (sum, d) => sum + d.GameEntity.GlobalPosition) * (1f / _targets.Count)
+                : center + (set != null ? set.GetGlobalFrame().rotation.f : new Vec3(0f, 1f, 0f)) * 10f;
+            // The rival shoots the pots nearer his stand; the player's are the others (a pot the rival breaks counts for nobody).
+            _rivalTargets.AddRange(_targets.Where(d => d.GameEntity.GlobalPosition.Distance(rival) < d.GameEntity.GlobalPosition.Distance(me)));
 
             foreach (BattleSideEnum side in new[] { BattleSideEnum.Attacker, BattleSideEnum.Defender })
             {
                 IAgentOriginBase origin = _suppliers[(int)side]?.SupplyTroops(1).FirstOrDefault();
                 if (origin == null) continue;
                 bool mine = side == _playerSide;
+                Vec3 at = mine ? me : rival;
+                Vec2 facing = (aim - at).AsVec2;
+                facing = facing.Length > 0.01f ? facing.Normalized() : Vec2.Forward;
                 Agent agent = Mission.SpawnTroop(origin, mine, hasFormation: true, spawnWithHorse: false, isReinforcement: false,
                     formationTroopCount: 1, formationTroopIndex: 0, isAlarmed: false, wieldInitialWeapons: true,
-                    initialPosition: mine ? me : rival, initialDirection: facing, specialActionSetSuffix: null, bannerItem: null,
+                    initialPosition: at, initialDirection: facing, specialActionSetSuffix: null, bannerItem: null,
                     formationIndex: FormationClass.Ranged, useTroopClassForSpawn: false);
                 if (agent == null) continue;
                 if (mine)
@@ -108,10 +123,13 @@ namespace CK3Bridge
                 }
                 else
                 {
-                    // The mark to beat watches: no AI, no harm.
+                    // The rival shoots his own pots (2026-10-28: he stood and did nothing); he cannot be hurt and hurts nobody
+                    // (CK3CombatHooks.GeneralDamage), and his hits never count for the player.
                     _rival = agent;
-                    agent.Controller = AgentControllerType.None;
+                    Rival = agent;
                     agent.ToggleInvulnerable();
+                    agent.SetWatchState(Agent.WatchState.Alarmed);
+                    NextRivalTarget();
                 }
             }
             Mission.SetMissionMode(MissionMode.Battle, true);
@@ -127,8 +145,32 @@ namespace CK3Bridge
             foreach (GameEntity child in entity.GetChildren()) ShowAll(child);
         }
 
+        /// <summary>The rival of the contest being shot: his blows deal no damage to anyone (CK3CombatHooks.GeneralDamage).</summary>
+        public static Agent Rival { get; private set; }
+
+        protected override void OnEndMission()
+        {
+            base.OnEndMission();
+            Rival = null;
+        }
+
+        /// <summary>The rival aims at the next of his pots still standing; none left, he stops.</summary>
+        private void NextRivalTarget()
+        {
+            if (_rival == null || !_rival.IsActive()) return;
+            DestructableComponent next = _rivalTargets.FirstOrDefault(d => !d.IsDestroyed);
+            if (next == null) return;
+            _rivalTarget = next;
+            _rival.SetScriptedTargetEntity(next.GameEntity, Agent.AISpecialCombatModeFlags.AttackEntity, false);
+        }
+
         private void OnTargetHit(DestructableComponent target, Agent attacker, in MissionWeapon weapon, ScriptComponentBehavior attackerScript, int damage)
         {
+            if (attacker != null && attacker == _rival && !_decided)
+            {
+                if (target == _rivalTarget && target.IsDestroyed) NextRivalTarget();
+                return;
+            }
             if (_decided || attacker == null || attacker != _player || !_hit.Add(target)) return;
             InformationManager.DisplayMessage(new InformationMessage(string.Format(_hitFormat, _hit.Count, _par)));
         }

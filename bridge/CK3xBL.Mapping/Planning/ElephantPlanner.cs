@@ -25,16 +25,41 @@ public static class ElephantPlanner
         _ => "be_elephant_armor_sassanid_tier_1",
     };
 
-    /// <summary>Seats the elephant regiments of both sides on elephants; returns how many groups it changed.</summary>
+    /// <summary>
+    /// Who rides a war elephant (the elephantiers too): the culture's best heavy lancer, shield and lance (the user's choice,
+    /// 2026-10-28; they rode as whatever the cavalry ladder gave).
+    /// </summary>
+    public static readonly IReadOnlyDictionary<string, string> Lancers = new Dictionary<string, string>(StringComparer.Ordinal)
+    {
+        ["vlandia"] = "vlandian_banner_knight", ["empire"] = "imperial_elite_cataphract", ["sturgia"] = "druzhinnik_champion",
+        ["aserai"] = "aserai_vanguard_faris", ["khuzait"] = "khuzait_heavy_lancer", ["battania"] = "vlandian_banner_knight",
+    };
+
+    /// <summary>Who rides a ballista elephant: the culture's best mounted archer.</summary>
+    public static readonly IReadOnlyDictionary<string, string> Archers = new Dictionary<string, string>(StringComparer.Ordinal)
+    {
+        ["empire"] = "bucellarii", ["khuzait"] = "khuzait_khans_guard", ["aserai"] = "aserai_mameluke_heavy_cavalry",
+    };
+    public const string DefaultArcher = "khuzait_khans_guard";
+
+    /// <summary>
+    /// Seats the elephant regiments of both sides on elephants; returns how many groups it changed. Not in an assault: elephants
+    /// climb no ladders and fit no tower, so their crews storm the walls on foot, every man of them (2026-10-28: 886 elephant men
+    /// went to a siege as 158 elephants that could not reach the walls).
+    /// </summary>
     public static int Mount(BattleRequest request, MappingTables t)
     {
+        if (request.Kind == "siege") return 0;
         int groups = 0;
         foreach (var side in new[] { request.Attacker, request.Defender })
         {
             if (side?.Troops is null) continue;
+            string culture = side.Culture ?? "vlandia";
             foreach (var troop in side.Troops)
             {
                 if (!GroupKey.TryParse(troop.Group, out var key) || key.Kind != GroupKind.Maa || !IsElephantMaa(t, key.MaaKey)) continue;
+                string rider = key.MaaKey == "ballista_elephant" ? Archers.GetValueOrDefault(culture, DefaultArcher) : Lancers.GetValueOrDefault(culture, Lancers["vlandia"]);
+                if (t.Troops.ContainsKey(rider)) troop.Id = rider;
                 troop.Mount = ElephantModule.ElephantItem;
                 troop.MountHarness = HarnessOf(key.MaaKey!);
                 troop.Count = Math.Max(1, (int)Math.Round(troop.Count / (double)MenPerElephant, MidpointRounding.AwayFromZero));

@@ -16,8 +16,9 @@ public static class SiegePlanner
     public const double EventsFactor = 1.25;
     private static readonly int[] FortThresholds = { 4, 6, 11, 16, 31 };
 
-    /// <summary>Progress at which each siege work joins the assault: a tower, the ram, a second tower, a breach.</summary>
-    public const double TowerAt = 0.2, RamAt = 0.4, SecondTowerAt = 0.6, BreachAt = 0.8;
+    /// <summary>Progress at which each siege work joins the assault: a ram and a tower from the start (a camp builds them in its
+    /// first days; 2026-10-28: an assault at 17 % had nothing but ladders), a second tower, a breach.</summary>
+    public const double TowerAt = 0, RamAt = 0, SecondTowerAt = 0.5, BreachAt = 0.8;
 
     /// <summary>Most ranged engines the besiegers deploy (the stock custom battle's slots).</summary>
     public const int MaxRangedEngines = 4;
