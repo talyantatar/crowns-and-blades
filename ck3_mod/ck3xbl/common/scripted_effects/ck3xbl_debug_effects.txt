@@ -1,0 +1,44 @@
+﻿# Helpers of the scenes for recording (events/ck3xbl_debug_events.txt, debug mode only).
+
+# root = the player. scope:ck3xbl_dbg_foe = a lowborn fighter where the player is: a pool character, else a new warrior (as
+# vanilla's travel dangers find their bandit).
+ck3xbl_debug_lowborn_foe_effect = {
+	random_pool_character = {
+		province = root.location
+		limit = {
+			is_available_ai_adult = yes
+			is_lowborn = yes
+		}
+		save_scope_as = ck3xbl_dbg_foe
+		add_character_flag = wear_armor
+	}
+	if = {
+		limit = { NOT = { exists = scope:ck3xbl_dbg_foe } }
+		create_character = {
+			template = new_warrior_character
+			gender_female_chance = 0
+			location = root.location
+			culture = root.location.culture
+			faith = root.location.faith
+			save_scope_as = ck3xbl_dbg_foe
+		}
+		scope:ck3xbl_dbg_foe = { add_character_flag = wear_armor }
+	}
+}
+
+# root = the player. A tournament bout ($CODE$: 1 single combat, 2 wrestling, 4 joust) against a neighbouring ruler, without a
+# tournament: ck3xbl_tourney_apply_effect leaves the contest alone when there is no scope:activity.
+ck3xbl_debug_tourney_effect = {
+	random_neighboring_top_liege_realm_owner = {
+		limit = { is_adult = yes is_imprisoned = no }
+		save_scope_as = versus_contestant
+	}
+	if = {
+		limit = { NOT = { exists = scope:versus_contestant } }
+		ck3xbl_debug_lowborn_foe_effect = yes
+		scope:ck3xbl_dbg_foe = { save_scope_as = versus_contestant }
+	}
+	add_character_flag = ck3xbl_tourney_bl
+	save_scope_value_as = { name = ck3xbl_d_tourney value = $CODE$ }
+	trigger_event = ck3xbl_tourney.0001
+}

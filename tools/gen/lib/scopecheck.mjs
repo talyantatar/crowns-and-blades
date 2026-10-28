@@ -105,6 +105,10 @@ const BLOCK_EFFECTS = {
   set_owner: { target: 'scope:character', history: 'name' },
   add_trait_xp: { trait: 'name', track: 'name', value: 'value' },
   // Battle gear (PROTOCOL 16); vanilla common/scripted_effects/00_ep1_artifact_creation_effects.txt.
+  create_character: {
+    template: 'name', gender_female_chance: 'value', location: 'scope:province', culture: 'scope:culture', faith: 'scope:faith',
+    save_scope_as: 'name',
+  },
   create_artifact: {
     name: 'name', description: 'name', type: 'name', visuals: 'name', modifier: 'name', quality: 'value', wealth: 'value',
     save_scope_as: 'name', creator: 'scope:character', template: 'name',

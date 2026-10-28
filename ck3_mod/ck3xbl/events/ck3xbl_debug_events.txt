@@ -1,0 +1,111 @@
+﻿# Scenes for recording (2026-10-28): every Bannerlord scene of the mod on demand, in CK3's debug mode only. The console command
+# "event ck3xbl_debug.0001" opens the menu; outside debug mode the event does not fire. Each option starts the scene the way the
+# game would (the same snapshot, the same Bannerlord battle), with a foe found or made for it.
+#   0001 the menu      0010 a single combat is over (the follow-up of the debug duels)
+
+namespace = ck3xbl_debug
+
+ck3xbl_debug.0001 = {
+	type = character_event
+	title = ck3xbl_debug.0001.t
+	desc = ck3xbl_debug.0001.desc
+	theme = martial
+	left_portrait = {
+		character = root
+		animation = aggressive_sword
+	}
+	trigger = { debug_only = yes }
+
+	option = {	# A noble foe: a neighbouring ruler, in an arena.
+		name = ck3xbl_debug.0001.duel_noble
+		random_neighboring_top_liege_realm_owner = {
+			limit = { is_adult = yes is_imprisoned = no }
+			save_scope_as = ck3xbl_dbg_foe
+		}
+		if = {
+			limit = { exists = scope:ck3xbl_dbg_foe }
+			configure_start_single_combat_effect = {
+				SC_INITIATOR = root
+				SC_ATTACKER = root
+				SC_DEFENDER = scope:ck3xbl_dbg_foe
+				FATALITY = no
+				FIXED = no
+				LOCALE = throne_room
+				OUTPUT_EVENT = ck3xbl_debug.0010
+				INVALIDATION_EVENT = ck3xbl_debug.0010
+			}
+		}
+	}
+	option = {	# A lowborn foe: in the woods.
+		name = ck3xbl_debug.0001.duel_lowborn
+		ck3xbl_debug_lowborn_foe_effect = yes
+		configure_start_single_combat_effect = {
+			SC_INITIATOR = root
+			SC_ATTACKER = root
+			SC_DEFENDER = scope:ck3xbl_dbg_foe
+			FATALITY = no
+			FIXED = no
+			LOCALE = wilderness_scope
+			OUTPUT_EVENT = ck3xbl_debug.0010
+			INVALIDATION_EVENT = ck3xbl_debug.0010
+		}
+	}
+	option = {	# Tournament bouts without a tournament: single combat (1), wrestling (2), joust (4).
+		name = ck3xbl_debug.0001.tourney_sword
+		ck3xbl_debug_tourney_effect = { CODE = 1 }
+	}
+	option = {
+		name = ck3xbl_debug.0001.tourney_joust
+		ck3xbl_debug_tourney_effect = { CODE = 4 }
+	}
+	option = {
+		name = ck3xbl_debug.0001.tourney_wrestling
+		ck3xbl_debug_tourney_effect = { CODE = 2 }
+	}
+	option = {	# Skirmishes on the road: bandits (a hideout where the terrain has one), soldiers (a field in the woods).
+		name = ck3xbl_debug.0001.skirmish_bandits
+		ck3xbl_debug_lowborn_foe_effect = yes
+		scope:ck3xbl_dbg_foe = { save_scope_as = ck3xbl_foe }
+		save_scope_value_as = { name = ck3xbl_sk_kind value = 1 }
+		trigger_event = ck3xbl_skirmish.0001
+	}
+	option = {
+		name = ck3xbl_debug.0001.skirmish_soldiers
+		ck3xbl_debug_lowborn_foe_effect = yes
+		scope:ck3xbl_dbg_foe = { save_scope_as = ck3xbl_foe }
+		save_scope_value_as = { name = ck3xbl_sk_kind value = 4 }
+		trigger_event = ck3xbl_skirmish.0001
+	}
+	option = {	# For wars, sieges, landings and sea battles: a pressed claim on a neighbour's county and the gold to raise an army.
+		name = ck3xbl_debug.0001.war
+		random_neighboring_top_liege_realm_owner = {
+			random_held_title = {
+				limit = { tier = tier_county }
+				save_scope_as = ck3xbl_dbg_county
+			}
+		}
+		if = {
+			limit = { exists = scope:ck3xbl_dbg_county }
+			add_pressed_claim = scope:ck3xbl_dbg_county
+		}
+		add_gold = 5000
+	}
+	option = {
+		name = ck3xbl_debug.0001.close
+	}
+}
+
+# The end of a debug duel: CK3's single combat hands its result here.
+ck3xbl_debug.0010 = {
+	type = character_event
+	title = ck3xbl_debug.0010.t
+	desc = ck3xbl_debug.0010.desc
+	theme = martial
+	left_portrait = {
+		character = root
+		animation = personality_honorable
+	}
+	option = {
+		name = ck3xbl_debug.0010.a
+	}
+}
