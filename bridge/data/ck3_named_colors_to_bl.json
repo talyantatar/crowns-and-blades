@@ -41,9 +41,10 @@
    ],
    "html": "#bf8630",
    "bl_nearest": {
-    "id": 198,
-    "html": "#cc8324",
-    "dist": 29
+    "id": 39,
+    "html": "#dcac46",
+    "dist": 29,
+    "note": "2026-10-28 by eye: the nearest (198 #cc8324) reads orange on shields; CK3 renders this yellow as gold"
    }
   },
   {

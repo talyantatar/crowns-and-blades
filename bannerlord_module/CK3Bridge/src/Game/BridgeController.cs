@@ -69,6 +69,10 @@ namespace CK3Bridge
             double now = _clock.Elapsed.TotalSeconds;
             float realDt = (float)(now - _lastTick);
             _lastTick = now;
+            // A frame this long is a stall of the game thread (live 2026-10-28: 8 s mid-battle, nothing in any log). Logged with the
+            // battle's size, so the next one can be told apart: a crowd, a scene, a load.
+            if (realDt > 2f && BattleSession.Current?.Mission is Mission stalled)
+                BridgeIo.Log($"game thread stalled {realDt:0.0} s in battle {BattleSession.Current.BattleId}: {stalled.Agents.Count} agents, mission time {stalled.CurrentTime:0} s");
             bool pollDue = now >= _nextPoll;
             if (pollDue)
             {

@@ -47,7 +47,7 @@ public sealed class BannerlordLinkOptions
     /// of the battles it has fought, and with CK3 beside it Windows runs out of commit for the next big battle (PROTOCOL §31).</summary>
     public long RecycleAboveMb = 8000;
     public TimeSpan PollInterval = TimeSpan.FromMilliseconds(200);
-    public TimeSpan HeartbeatTimeout = TimeSpan.FromSeconds(5);
+    public TimeSpan HeartbeatTimeout = TimeSpan.FromSeconds(15);
     public TimeSpan LoadingHeartbeatTimeout = TimeSpan.FromSeconds(60);
     public TimeSpan BootTimeout = TimeSpan.FromSeconds(180);
     public TimeSpan HungKill = TimeSpan.FromSeconds(30);
@@ -102,6 +102,7 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
     public bool LoadsNaval { get; private set; }
     private volatile bool _bootedOnce;            // this process sent at least one heartbeat
     private volatile bool _lostReported;
+    private TimeSpan? _cpuAtLoss;   // Bannerlord's CPU time when its heartbeat went quiet: busy or blocked, said on recovery
     private volatile bool _stopping;
     private DateTime? _hungSince;
     private DateTime? _relaunchAt;
@@ -734,6 +735,16 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
         ResultUpdated?.Invoke(result);
     }
 
+    /// <summary>How much CPU Bannerlord burnt while silent: near a core per second = a busy game thread, near nothing = blocked
+    /// (disk, a lock, the driver).</summary>
+    private string StallCpu(Process p)
+    {
+        if (_cpuAtLoss is not { } before) return "";
+        _cpuAtLoss = null;
+        try { return $" (CPU used while silent: {(p.TotalProcessorTime - before).TotalSeconds:0.0} s)"; }
+        catch (Exception e) when (e is InvalidOperationException or System.ComponentModel.Win32Exception) { return ""; }
+    }
+
     private static DateTime HeartbeatTime(BannerlordStatus s) => DateTimeOffset.FromUnixTimeMilliseconds(s.T).UtcDateTime;
 
     private TimeSpan HeartbeatLimit(BannerlordStatus s) =>
@@ -759,7 +770,7 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
                 if (_lostReported)
                 {
                     _lostReported = false;
-                    _journal.Info("bannerlord", "heartbeat recovered");
+                    _journal.Info("bannerlord", "heartbeat recovered" + StallCpu(p));
                     StatusChanged?.Invoke(s!);   // the module may have moved on while silent: let the orchestrator look again
                 }
                 _hungSince = null;
@@ -771,6 +782,7 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
         if (!_lostReported)
         {
             _lostReported = true;
+            try { _cpuAtLoss = p.TotalProcessorTime; } catch (Exception e) when (e is InvalidOperationException or System.ComponentModel.Win32Exception) { _cpuAtLoss = null; }
             _journal.Warn("bannerlord", why);
             Lost?.Invoke(BannerlordLoss.Unresponsive, why);
         }

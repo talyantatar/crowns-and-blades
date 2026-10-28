@@ -87,7 +87,9 @@ public sealed class BannerlordSettings
     public bool PreloadOnStart = true;
     /// <summary>Relaunch Bannerlord in the background after it exits or crashes.</summary>
     public bool KeepRunning = true;
-    public double HeartbeatTimeoutSeconds = 5;
+    /// <summary>A battle is given up after this much heartbeat silence (2026-10-28, the user's choice: 15 s; 5 s gave up after an 8 s
+    /// stall). A longer silence still kills the process after SilentKill.</summary>
+    public double HeartbeatTimeoutSeconds = 15;
     /// <summary>Grace for states in which the module may legitimately stall its heartbeat (booting, loading).</summary>
     public double LoadingHeartbeatTimeoutSeconds = 60;
     public double BootTimeoutSeconds = 180;
