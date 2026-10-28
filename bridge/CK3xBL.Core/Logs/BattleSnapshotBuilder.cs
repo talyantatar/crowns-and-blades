@@ -325,6 +325,12 @@ public sealed class BattleSnapshotBuilder
                 HouseName = FreshHouseName(print, d),
             };
             list.Add(c);
+            // The Arsenal's shop (PROTOCOL §51): the player's money and the armory's offers.
+            c.Gold = d.GetInt("ck3xbl_c_gold");
+            c.Prestige = d.GetInt("ck3xbl_c_prestige");
+            for (int n = 1; n <= 6; n++)
+                if (d.GetInt($"ck3xbl_c_offer{n}") is int idx and > 0)
+                    c.Offers.Add(new OfferSnapshot { N = n, Idx = idx, Gold = d.GetInt($"ck3xbl_c_offer{n}_gold") ?? 0, Prestige = d.GetInt($"ck3xbl_c_offer{n}_prestige") ?? 0 });
             if (c.Tag == 0) _warn($"{r.Raw}: character {print.Id} has no ck3xbl_c_tag; its fate cannot be applied");
         }
         else if (c.ArmyTag == 0) c.ArmyTag = d.GetInt("ck3xbl_c_army") ?? 0;

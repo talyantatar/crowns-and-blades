@@ -517,6 +517,20 @@ public sealed class KnightBuffPlanner
         ["ck3xbl_hands"] = "Gloves", ["ck3xbl_legs"] = "Leg", ["ck3xbl_cape"] = "Cape", ["ck3xbl_horse"] = "Horse",
     };
 
+    /// <summary>The Arsenal's slot of a CK3 gear slot flag (Weapon, Head, ..., Horse), or null.</summary>
+    public static string? ArsenalSlotOf(string ck3Slot) => ArsenalSlots.GetValueOrDefault(ck3Slot);
+
+    /// <summary>The armory's offers to the player, as the Arsenal's shop sells them (gear indexes the catalog knows).</summary>
+    public List<ArsenalOffer> ArsenalShop(PlannedHero h)
+    {
+        var byIdx = _t.Gear.Values.GroupBy(g => g.Idx).ToDictionary(g => g.Key, g => g.First());
+        var shop = new List<ArsenalOffer>();
+        foreach (var o in h.Character.Offers)
+            if (byIdx.TryGetValue(o.Idx, out var g) && _t.Items.ContainsKey(g.Id) && ArsenalSlotOf(g.Slot) is { } slot)
+                shop.Add(new ArsenalOffer { N = o.N, Id = g.Id, Slot = slot, Quality = GearOutfitter.QualityOf(g.Quality), Gold = o.Gold, Prestige = o.Prestige });
+        return shop;
+    }
+
     /// <summary>The player's own saved loadout; only the player hero carries one.</summary>
     private Dictionary<string, string>? LoadoutOf(PlannedHero h) =>
         h.Spec.IsPlayer && Loadouts.TryGetValue(h.Character.Ref.Ck3Id, out var l) && l.Count > 0 ? l : null;

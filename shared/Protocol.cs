@@ -314,6 +314,7 @@ namespace CK3xBL.Protocol
         public SideResult Defender = new SideResult();
         public List<HeroResult> Heroes = new List<HeroResult>();
         public string Error;
+        public List<int> Purchases;                      // PROTOCOL §51: the armory offers (N) bought in the Arsenal; null = none
         public Dictionary<string, string> Loadout;      // PROTOCOL §51: the Arsenal's chosen loadout (slot -> item id, "" = empty); null = none chosen
     }
 
@@ -323,6 +324,19 @@ namespace CK3xBL.Protocol
         public string Hero;                              // the player's HeroSpec.Key
         public List<ArsenalItem> Items = new List<ArsenalItem>();
         public Dictionary<string, string> Current = new Dictionary<string, string>();   // slot -> item id the hero wears now
+        public List<ArsenalOffer> Shop = new List<ArsenalOffer>();   // the armory's offers he may buy here (CK3 pays after the visit)
+        public int Gold;                                 // his CK3 gold and prestige, what the shop lets him spend
+        public int Prestige;
+    }
+
+    public class ArsenalOffer
+    {
+        public int N;                                    // the offer's slot in the CK3 stock (1..6): bought ones go back in result.purchases
+        public string Id;                                // Bannerlord item id
+        public string Slot;                              // as ArsenalItem.Slot
+        public string Quality;                           // the artifact's modifier quality once bought
+        public int Gold;
+        public int Prestige;
     }
 
     public class ArsenalItem

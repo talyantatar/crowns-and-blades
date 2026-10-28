@@ -16,7 +16,7 @@ public static class KeypadLayout
     /// <summary>Version 4 only: the kill targets (enemy dead CK3 must count for each side) and the steering hint (pace day).</summary>
     public const int AttackerKillTarget = 8, DefenderKillTarget = 9, SteerHint = 198;
     /// <summary>Version 3 of a single combat (PROTOCOL §18): 1 when the loser was killed in Bannerlord.</summary>
-    public const int DuelLoserKilled = 8;
+    public const int DuelLoserKilled = 8, ArsenalPurchases = 9;
     /// <summary>The pace day r198 may name; 0 = the mod's default (12).</summary>
     public const int MinPaceDays = 6, MaxPaceDays = 13;
     /// <summary>Version 3: register i is weighted (i mod WeightCycle) + 1.</summary>
@@ -98,6 +98,8 @@ public sealed class KeypadPayload
         Set(KeypadLayout.PrestigeBonus, Orchestration.FeatLedger.Register7(outcome.PrestigeBonus, outcome.FeatMask), "prestige_bonus");
         // A single combat (PROTOCOL §18) is payload 3; r8 (0 there for a battle) says whether the loser was killed in Bannerlord.
         if (outcome.IsDuel && !steer) Set(KeypadLayout.DuelLoserKilled, outcome.DuelLoserKilled ? 1 : 0, "duel_loser_killed");
+        // The Arsenal (PROTOCOL §51) is logged as a single combat; r9 (a steering register) carries the offers bought there.
+        if (outcome.IsDuel && !steer && outcome.ArsenalPurchases > 0) Set(KeypadLayout.ArsenalPurchases, outcome.ArsenalPurchases, "arsenal_purchases");
         if (steer)
         {
             Set(KeypadLayout.AttackerKillTarget, outcome.AttackerKillTarget, "attacker_kill_target");

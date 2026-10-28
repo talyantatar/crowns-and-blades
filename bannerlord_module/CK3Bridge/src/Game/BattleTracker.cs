@@ -286,7 +286,8 @@ namespace CK3Bridge
             float end = _resultTime >= 0f ? _resultTime : Mission.CurrentTime;
             float start = _fightStart >= 0f ? _fightStart : 0f;
             BattleResult result = _accounting.Snapshot(status, winner, _retreated && !_resultReady, end - start, null);
-            if (Arsenal != null) result.Loadout = Arsenal.Loadout();
+            if (Arsenal?.Saved != null) result.Loadout = Arsenal.Saved;
+            if (Arsenal?.Bought != null) result.Purchases = Arsenal.Bought;
             return result;
         }
 

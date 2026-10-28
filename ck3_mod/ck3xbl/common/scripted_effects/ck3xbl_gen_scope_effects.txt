@@ -22,6 +22,8 @@ ck3xbl_st_clear_carried_scopes_effect = {
 	if = { limit = { exists = scope:ck3xbl_ai_gold } clear_saved_scope = ck3xbl_ai_gold }
 	if = { limit = { exists = scope:ck3xbl_ai_need_gold } clear_saved_scope = ck3xbl_ai_need_gold }
 	if = { limit = { exists = scope:ck3xbl_ai_need_prestige } clear_saved_scope = ck3xbl_ai_need_prestige }
+	if = { limit = { exists = scope:ck3xbl_ars_bit } clear_saved_scope = ck3xbl_ars_bit }
+	if = { limit = { exists = scope:ck3xbl_ars_bought } clear_saved_scope = ck3xbl_ars_bought }
 	if = { limit = { exists = scope:ck3xbl_ars_partner } clear_saved_scope = ck3xbl_ars_partner }
 	if = { limit = { exists = scope:ck3xbl_att_primary } clear_saved_scope = ck3xbl_att_primary }
 	if = { limit = { exists = scope:ck3xbl_att_side } clear_saved_scope = ck3xbl_att_side }
@@ -35,6 +37,7 @@ ck3xbl_st_clear_carried_scopes_effect = {
 	if = { limit = { exists = scope:ck3xbl_c_army } clear_saved_scope = ck3xbl_c_army }
 	if = { limit = { exists = scope:ck3xbl_c_diplomacy } clear_saved_scope = ck3xbl_c_diplomacy }
 	if = { limit = { exists = scope:ck3xbl_c_female } clear_saved_scope = ck3xbl_c_female }
+	if = { limit = { exists = scope:ck3xbl_c_gold } clear_saved_scope = ck3xbl_c_gold }
 	if = { limit = { exists = scope:ck3xbl_c_has_house } clear_saved_scope = ck3xbl_c_has_house }
 	if = { limit = { exists = scope:ck3xbl_c_has_title } clear_saved_scope = ck3xbl_c_has_title }
 	if = { limit = { exists = scope:ck3xbl_c_health } clear_saved_scope = ck3xbl_c_health }
@@ -42,6 +45,25 @@ ck3xbl_st_clear_carried_scopes_effect = {
 	if = { limit = { exists = scope:ck3xbl_c_intrigue } clear_saved_scope = ck3xbl_c_intrigue }
 	if = { limit = { exists = scope:ck3xbl_c_is_player } clear_saved_scope = ck3xbl_c_is_player }
 	if = { limit = { exists = scope:ck3xbl_c_martial } clear_saved_scope = ck3xbl_c_martial }
+	if = { limit = { exists = scope:ck3xbl_c_offer1 } clear_saved_scope = ck3xbl_c_offer1 }
+	if = { limit = { exists = scope:ck3xbl_c_offer1_gold } clear_saved_scope = ck3xbl_c_offer1_gold }
+	if = { limit = { exists = scope:ck3xbl_c_offer1_prestige } clear_saved_scope = ck3xbl_c_offer1_prestige }
+	if = { limit = { exists = scope:ck3xbl_c_offer2 } clear_saved_scope = ck3xbl_c_offer2 }
+	if = { limit = { exists = scope:ck3xbl_c_offer2_gold } clear_saved_scope = ck3xbl_c_offer2_gold }
+	if = { limit = { exists = scope:ck3xbl_c_offer2_prestige } clear_saved_scope = ck3xbl_c_offer2_prestige }
+	if = { limit = { exists = scope:ck3xbl_c_offer3 } clear_saved_scope = ck3xbl_c_offer3 }
+	if = { limit = { exists = scope:ck3xbl_c_offer3_gold } clear_saved_scope = ck3xbl_c_offer3_gold }
+	if = { limit = { exists = scope:ck3xbl_c_offer3_prestige } clear_saved_scope = ck3xbl_c_offer3_prestige }
+	if = { limit = { exists = scope:ck3xbl_c_offer4 } clear_saved_scope = ck3xbl_c_offer4 }
+	if = { limit = { exists = scope:ck3xbl_c_offer4_gold } clear_saved_scope = ck3xbl_c_offer4_gold }
+	if = { limit = { exists = scope:ck3xbl_c_offer4_prestige } clear_saved_scope = ck3xbl_c_offer4_prestige }
+	if = { limit = { exists = scope:ck3xbl_c_offer5 } clear_saved_scope = ck3xbl_c_offer5 }
+	if = { limit = { exists = scope:ck3xbl_c_offer5_gold } clear_saved_scope = ck3xbl_c_offer5_gold }
+	if = { limit = { exists = scope:ck3xbl_c_offer5_prestige } clear_saved_scope = ck3xbl_c_offer5_prestige }
+	if = { limit = { exists = scope:ck3xbl_c_offer6 } clear_saved_scope = ck3xbl_c_offer6 }
+	if = { limit = { exists = scope:ck3xbl_c_offer6_gold } clear_saved_scope = ck3xbl_c_offer6_gold }
+	if = { limit = { exists = scope:ck3xbl_c_offer6_prestige } clear_saved_scope = ck3xbl_c_offer6_prestige }
+	if = { limit = { exists = scope:ck3xbl_c_prestige } clear_saved_scope = ck3xbl_c_prestige }
 	if = { limit = { exists = scope:ck3xbl_c_prowess } clear_saved_scope = ck3xbl_c_prowess }
 	if = { limit = { exists = scope:ck3xbl_c_stewardship } clear_saved_scope = ck3xbl_c_stewardship }
 	if = { limit = { exists = scope:ck3xbl_c_tag } clear_saved_scope = ck3xbl_c_tag }

@@ -123,6 +123,7 @@ public sealed class Ck3Outcome
     // Single combat (PROTOCOL §18): payload 3 with r2 = the winner and r8 = 1 when the loser was killed in Bannerlord.
     public bool IsDuel;
     public bool DuelLoserKilled;
+    public int ArsenalPurchases;                      // PROTOCOL §51, r9 of a single combat: bit N-1 = armory offer N bought in the Arsenal
 
     // Battle feats (PROTOCOL §32): what the CK3 player did in person in this clash (null = he did not fight it), and the feats
     // the feat ledger grants for it, sent in r7 as PrestigeBonus + FeatBase × FeatMask.

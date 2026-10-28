@@ -110,7 +110,7 @@ const BLOCK_EFFECTS = {
     save_scope_as: 'name',
   },
   create_artifact: {
-    name: 'name', description: 'name', type: 'name', visuals: 'name', modifier: 'name', quality: 'value', wealth: 'value',
+    name: 'name', description: 'name', type: 'name', visuals: 'name', modifier: 'name', quality: 'value', wealth: 'value', decaying: 'bool',
     save_scope_as: 'name', creator: 'scope:character', template: 'name',
   },
 };

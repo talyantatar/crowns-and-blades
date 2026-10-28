@@ -460,6 +460,10 @@ ck3xbl_save_char_values_effect = {
 			this = scope:ck3xbl_player
 		}
 		save_scope_value_as = { name = ck3xbl_c_is_player value = 1 }
+		# The Arsenal's shop (PROTOCOL 51): his money and the armory's offers (gear index, price).
+		save_scope_value_as = { name = ck3xbl_c_gold value = gold }
+		save_scope_value_as = { name = ck3xbl_c_prestige value = prestige }
+		ck3xbl_emit_offers_effect = yes
 	}
 	else = {
 		save_scope_value_as = { name = ck3xbl_c_is_player value = 0 }
@@ -640,5 +644,45 @@ ck3xbl_purge_characters_effect = {
 			}
 		}
 		clear_saved_scope = ck3xbl_release_char
+	}
+}
+
+# this = the player. The armory's offers as scope values of the C dump (PROTOCOL 51): gear index and price.
+ck3xbl_emit_offers_effect = {
+	if = {
+		limit = { has_variable = ck3xbl_offer_1 }
+		save_scope_value_as = { name = ck3xbl_c_offer1 value = var:ck3xbl_offer_1 }
+		save_scope_value_as = { name = ck3xbl_c_offer1_gold value = var:ck3xbl_offer_1_gold }
+		save_scope_value_as = { name = ck3xbl_c_offer1_prestige value = var:ck3xbl_offer_1_prestige }
+	}
+	if = {
+		limit = { has_variable = ck3xbl_offer_2 }
+		save_scope_value_as = { name = ck3xbl_c_offer2 value = var:ck3xbl_offer_2 }
+		save_scope_value_as = { name = ck3xbl_c_offer2_gold value = var:ck3xbl_offer_2_gold }
+		save_scope_value_as = { name = ck3xbl_c_offer2_prestige value = var:ck3xbl_offer_2_prestige }
+	}
+	if = {
+		limit = { has_variable = ck3xbl_offer_3 }
+		save_scope_value_as = { name = ck3xbl_c_offer3 value = var:ck3xbl_offer_3 }
+		save_scope_value_as = { name = ck3xbl_c_offer3_gold value = var:ck3xbl_offer_3_gold }
+		save_scope_value_as = { name = ck3xbl_c_offer3_prestige value = var:ck3xbl_offer_3_prestige }
+	}
+	if = {
+		limit = { has_variable = ck3xbl_offer_4 }
+		save_scope_value_as = { name = ck3xbl_c_offer4 value = var:ck3xbl_offer_4 }
+		save_scope_value_as = { name = ck3xbl_c_offer4_gold value = var:ck3xbl_offer_4_gold }
+		save_scope_value_as = { name = ck3xbl_c_offer4_prestige value = var:ck3xbl_offer_4_prestige }
+	}
+	if = {
+		limit = { has_variable = ck3xbl_offer_5 }
+		save_scope_value_as = { name = ck3xbl_c_offer5 value = var:ck3xbl_offer_5 }
+		save_scope_value_as = { name = ck3xbl_c_offer5_gold value = var:ck3xbl_offer_5_gold }
+		save_scope_value_as = { name = ck3xbl_c_offer5_prestige value = var:ck3xbl_offer_5_prestige }
+	}
+	if = {
+		limit = { has_variable = ck3xbl_offer_6 }
+		save_scope_value_as = { name = ck3xbl_c_offer6 value = var:ck3xbl_offer_6 }
+		save_scope_value_as = { name = ck3xbl_c_offer6_gold value = var:ck3xbl_offer_6_gold }
+		save_scope_value_as = { name = ck3xbl_c_offer6_prestige value = var:ck3xbl_offer_6_prestige }
 	}
 }

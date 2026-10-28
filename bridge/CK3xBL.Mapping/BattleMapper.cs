@@ -242,7 +242,11 @@ public sealed class BattleMapper : IBattleMapper
         p.Subtitle = me.Spec.Name;
         p.Objective = w.ArsenalObjective;
         me.Spec.Look = null;
-        request.Arsenal = new ArsenalSpec { Hero = me.Spec.Key, Items = knights.ArsenalItems(me), Current = knights.DressedNow(me) };
+        request.Arsenal = new ArsenalSpec
+        {
+            Hero = me.Spec.Key, Items = knights.ArsenalItems(me), Current = knights.DressedNow(me),
+            Shop = knights.ArsenalShop(me), Gold = me.Character.Gold ?? 0, Prestige = me.Character.Prestige ?? 0,
+        };
     }
 
     /// <summary>In a single combat or a tournament bout the duelist with more CK3 prowess hits 1 % harder and takes 1 % less per point

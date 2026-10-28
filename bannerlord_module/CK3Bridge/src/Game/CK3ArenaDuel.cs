@@ -23,16 +23,20 @@ namespace CK3Bridge
         private readonly BattleSideEnum _playerSide;
         private readonly bool _bareHands;
         private readonly bool _mounted;
+        private readonly bool _alone;
         private bool _spawned;
 
         /// <param name="bareHands">A wrestling bout (PROTOCOL.md §29): every weapon is taken from the fighters as they spawn.</param>
         /// <param name="mounted">A joust (PROTOCOL.md §36): the fighters spawn on their tournament horses, blunt lance in hand.</param>
-        public CK3ArenaDuelController(IMissionTroopSupplier[] suppliers, BattleSideEnum playerSide, bool bareHands = false, bool mounted = false)
+        /// <param name="alone">The Arsenal (PROTOCOL.md §51): only the player spawns, nobody charges, and no side is ever depleted
+        /// (the mission ends when he leaves).</param>
+        public CK3ArenaDuelController(IMissionTroopSupplier[] suppliers, BattleSideEnum playerSide, bool bareHands = false, bool mounted = false, bool alone = false)
         {
             _suppliers = suppliers;
             _playerSide = playerSide;
             _bareHands = bareHands;
             _mounted = mounted;
+            _alone = alone;
         }
 
         public BattleSideEnum PlayerSide => _playerSide;
@@ -59,7 +63,7 @@ namespace CK3Bridge
             foreach (BattleSideEnum side in new[] { BattleSideEnum.Attacker, BattleSideEnum.Defender })
             {
                 IMissionTroopSupplier supplier = _suppliers[(int)side];
-                if (supplier == null) continue;
+                if (supplier == null || (_alone && side != _playerSide)) continue;
                 Vec3 at = side == BattleSideEnum.Attacker ? a : d;
                 Vec3 facing = side == BattleSideEnum.Attacker ? d : a;
                 Vec2 direction = (facing - at).AsVec2;
@@ -85,7 +89,7 @@ namespace CK3Bridge
             }
             Mission.SetMissionMode(MissionMode.Battle, true);
             if (!Mission.IsDeploymentFinished) Mission.OnDeploymentFinished();
-            Charge();
+            if (!_alone) Charge();
             BridgeIo.Log($"arena: {count} duelist(s) spawned {a.Distance(d):0.0} m apart");
         }
 
@@ -162,7 +166,7 @@ namespace CK3Bridge
         /// <summary>After the spawn, a side is depleted when nobody of its team is still standing.</summary>
         public bool IsSideDepleted(BattleSideEnum side)
         {
-            if (!_spawned) return false;
+            if (!_spawned || _alone) return false;
             Team team = side == BattleSideEnum.Attacker ? Mission.AttackerTeam : Mission.DefenderTeam;
             return team == null || team.ActiveAgents.All(a => !a.IsHuman || !a.IsActive());
         }

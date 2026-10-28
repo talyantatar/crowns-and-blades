@@ -137,6 +137,7 @@ namespace CK3Bridge
                     BattleSizeIndex = BannerlordConfig.BattleSize,
                     Arena = true,
                     Tourney = request.Tourney,
+                    Arsenal = request.Arsenal != null,
                     TourneyPar = request.TourneyPar,
                     ArcheryHitFormat = request.Presentation?.Language == "ru" ? "Попаданий: {0} из {1}" : "Hits: {0} of {1}",
                 };

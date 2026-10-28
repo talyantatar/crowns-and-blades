@@ -34,6 +34,7 @@ internal static partial class MappingTests
         r.Add("mapping.arsenal.request_offers_gear_stash_and_kit", ArsenalRequest);
         r.Add("mapping.arsenal.loadout_dresses_the_player", ArsenalLoadout);
         r.Add("core.arsenal.loadout_store_round_trip", LoadoutStoreRoundTrip);
+        r.Add("mapping.arsenal.shop_offers_and_purchases", ArsenalShop);
         r.Add("mapping.balance.strength_matches_ck3", BalanceMatchesCk3);
         r.Add("mapping.levy.development_moves_the_era", LevyByDevelopment);
         r.Add("mapping.skirmish.fifty_at_most", SkirmishPlan);
@@ -485,6 +486,34 @@ internal static partial class MappingTests
         // Another character's loadout does not touch the foe.
         var foe = Mapper.Plan(battle, options).Request.Attacker.Heroes[0];
         Expect.False(foe.Equipment.Overrides.GetValueOrDefault("Item0") == "vlandia_noble_sword_1_t5");
+    }
+
+    /// <summary>The armory's offers are sold in the Arsenal: the request lists them with price and money; purchases ride in r9.</summary>
+    private static void ArsenalShop()
+    {
+        var battle = DuelBattle(fatality: 4);
+        battle.IsArsenal = true;
+        battle.DuelNoble = true;
+        var me = battle.Defender.Characters[0];
+        var gear = Tables.Gear.Values.First(g => g.Slot == "ck3xbl_main" && Tables.Items.ContainsKey(g.Id));
+        me.Gold = 500;
+        me.Prestige = 120;
+        me.Offers.Add(new OfferSnapshot { N = 3, Idx = gear.Idx, Gold = 200, Prestige = 10 });
+        me.Offers.Add(new OfferSnapshot { N = 5, Idx = -7, Gold = 1 });   // not in the catalog: not sold
+        var req = Mapper.Plan(battle, new MapperOptions()).Request;
+        Expect.Equal(1, req.Arsenal!.Shop.Count);
+        var o = req.Arsenal.Shop[0];
+        Expect.Equal(3, o.N);
+        Expect.Equal(gear.Id, o.Id);
+        Expect.Equal("Weapon", o.Slot);
+        Expect.Equal(200, o.Gold);
+        Expect.Equal(500, req.Arsenal.Gold);
+        Expect.Equal(120, req.Arsenal.Prestige);
+
+        var outcome = new Ck3Outcome { Bid = 40, OutcomeCode = 2, IsDuel = true, ArsenalPurchases = (1 << 2) | (1 << 4) };
+        Expect.Equal(20, KeypadPayload.Encode(outcome, null).Registers[KeypadLayout.ArsenalPurchases]);
+        outcome.ArsenalPurchases = 0;
+        Expect.Equal(0, KeypadPayload.Encode(outcome, null).Registers[KeypadLayout.ArsenalPurchases], "nothing bought: r9 stays 0");
     }
 
     private static void LoadoutStoreRoundTrip()

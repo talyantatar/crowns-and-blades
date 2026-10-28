@@ -13,15 +13,16 @@ namespace CK3Bridge
 {
     /// <summary>
     /// The Arsenal (PROTOCOL.md §51): an arena where the player tries on what he may carry (request.arsenal: his CK3 battle gear,
-    /// equipped or not, his kit and ammunition). Nobody gets hurt; the sparring partner stands still. The slot menu opens at the start
-    /// and on I: a slot, then its item (pictures from Bannerlord's own thumbnails); the player's agent is re-dressed at once (a horse
-    /// only in the next battle). "Done" ends the mission; what he wears then goes back as result.loadout (BattleTracker).
+    /// equipped or not, his kit and ammunition). He is alone and cannot be hurt. The slot menu opens at the start and on I: a slot,
+    /// then its item (pictures from Bannerlord's own thumbnails); his agent is re-dressed at once (a horse only in the next battle).
+    /// "Save" keeps the loadout and leaves him to try it out; he leaves the arena with Tab or "Leave" (a stock retreat: ending the
+    /// mission from the menu's callback crashed, live 2026-10-28). Only a saved loadout goes back as result.loadout (BattleTracker).
     /// </summary>
     internal sealed class CK3Arsenal : MissionLogic
     {
         private static readonly string[] WeaponSlots = { "Item0", "Item1", "Item2", "Item3" };
         private static readonly string[] Slots = { "Item0", "Item1", "Item2", "Item3", "Head", "Body", "Gloves", "Leg", "Cape", "Horse" };
-        private const string DoneId = "done";
+        private const string SaveId = "save", LeaveId = "leave", ShopId = "shop";
 
         private readonly ArsenalSpec _spec;
         private readonly bool _ru;
@@ -29,7 +30,16 @@ namespace CK3Bridge
         private readonly Dictionary<string, ArsenalItem> _items = new Dictionary<string, ArsenalItem>(StringComparer.Ordinal);
         private bool _ready;
         private bool _menuOpen;
-        private bool _done;
+        private bool _leave;
+        private bool _left;
+        private int _gold, _prestige;
+        private readonly List<int> _bought = new List<int>();
+
+        /// <summary>The armory offers (N) the player bought here; CK3 pays and hands them over after the visit.</summary>
+        public List<int> Bought => _bought.Count > 0 ? new List<int>(_bought) : null;
+
+        /// <summary>The loadout the player saved, or null: leaving without saving changes nothing.</summary>
+        public Dictionary<string, string> Saved { get; private set; }
 
         public CK3Arsenal(ArsenalSpec spec, string language)
         {
@@ -38,7 +48,12 @@ namespace CK3Bridge
             _loadout = new Dictionary<string, string>(spec.Current ?? new Dictionary<string, string>(), StringComparer.Ordinal);
             foreach (ArsenalItem item in spec.Items ?? new List<ArsenalItem>())
                 if (!string.IsNullOrEmpty(item?.Id) && Item(item.Id) != null && !_items.ContainsKey(item.Id)) _items[item.Id] = item;
+            _gold = spec.Gold;
+            _prestige = spec.Prestige;
         }
+
+        private IEnumerable<ArsenalOffer> Offers() =>
+            (_spec.Shop ?? new List<ArsenalOffer>()).Where(o => o != null && Item(o.Id) != null && !_bought.Contains(o.N));
 
         /// <summary>The loadout as it stands (slot -> item id, "" = empty); every slot the Arsenal knows.</summary>
         public Dictionary<string, string> Loadout()
@@ -53,7 +68,14 @@ namespace CK3Bridge
             base.OnMissionTick(dt);
             try
             {
-                if (_done) return;
+                if (_left) return;
+                if (_leave)
+                {
+                    _left = true;
+                    BridgeIo.Log("arsenal: leaving" + (Saved != null ? " with the saved loadout" : " without saving"));
+                    Mission.RetreatMission();
+                    return;
+                }
                 Agent me = Mission.MainAgent;
                 if (!_ready)
                 {
@@ -61,7 +83,7 @@ namespace CK3Bridge
                     _ready = true;
                     Calm();
                     BridgeIo.Log($"arsenal: {_items.Count} item(s) offered to {_spec.Hero}");
-                    InformationManager.DisplayMessage(new InformationMessage(T("The Arsenal: press I to choose your gear", "Арсенал: I — выбор снаряжения")));
+                    Say(T("The Arsenal: I opens the menu, Tab leaves", "Арсенал: I — меню, Tab — выход"));
                     OpenSlots();
                     return;
                 }
@@ -73,7 +95,7 @@ namespace CK3Bridge
             }
         }
 
-        /// <summary>Nobody can be hurt, and everyone but the player stands still.</summary>
+        /// <summary>Nobody can be hurt (the player is alone; a stray agent stands still).</summary>
         private void Calm()
         {
             foreach (Agent agent in Mission.Agents.ToList())
@@ -82,7 +104,6 @@ namespace CK3Bridge
                 agent.SetMortalityState(Agent.MortalityState.Invulnerable);
                 if (agent == Mission.MainAgent) continue;
                 agent.SetAutomaticTargetSelection(false);
-                agent.SetWatchState(Agent.WatchState.Patrolling);
                 agent.SetIsAIPaused(true);
             }
         }
@@ -99,13 +120,21 @@ namespace CK3Bridge
                 string title = $"{SlotName(slot)}: {(item != null ? Name(item) : T("empty", "пусто"))}";
                 elements.Add(new InquiryElement(slot, title, item != null ? new ItemImageIdentifier(item, "") : null, true, Hint(item)));
             }
-            elements.Add(new InquiryElement(DoneId, T("Done: keep this loadout", "Готово: сохранить набор"), null, true, ""));
+            if (Offers().Any())
+                elements.Add(new InquiryElement(ShopId, T("The armourer's shop", "Лавка оружейника") + Money(), null, true,
+                    T("Buy the armory's wares; you can try them on at once. CK3 takes the money when you leave.",
+                      "Купить товары оружейной; их можно сразу примерить. Деньги CK3 спишет, когда вы выйдете.")));
+            elements.Add(new InquiryElement(SaveId, T("Save this loadout", "Сохранить набор"), null, true,
+                T("Keeps it for your battles; you can still try it out here.", "Набор пойдёт с вами в бои; можно остаться и опробовать его.")));
+            elements.Add(new InquiryElement(LeaveId, Saved != null ? T("Leave the Arsenal", "Выйти из Арсенала") : T("Leave without saving", "Выйти без сохранения"), null, true, ""));
             Show(new MultiSelectionInquiryData(T("The Arsenal", "Арсенал"), T("Choose a slot.", "Выберите слот."), elements, true, 1, 1,
                 T("Choose", "Выбрать"), T("Close", "Закрыть"), chosen =>
                 {
                     _menuOpen = false;
                     string slot = chosen?.FirstOrDefault()?.Identifier as string;
-                    if (slot == DoneId) Done();
+                    if (slot == SaveId) Save();
+                    else if (slot == ShopId) OpenShop();
+                    else if (slot == LeaveId) _leave = true;   // next tick, outside the menu's callback
                     else if (slot != null) OpenItems(slot);
                 }, _ => _menuOpen = false));
         }
@@ -124,9 +153,60 @@ namespace CK3Bridge
                 T("Take", "Взять"), T("Back", "Назад"), chosen =>
                 {
                     _menuOpen = false;
-                    if (chosen?.FirstOrDefault()?.Identifier is string id) Put(slot, id);
+                    if (chosen?.FirstOrDefault()?.Identifier is string id) Guard("dress", () => Put(slot, id));
                     OpenSlots();
                 }, _ => { _menuOpen = false; OpenSlots(); }));
+        }
+
+        /// <summary>The armory's offers with their pictures, numbers and price; what he cannot pay for is shown greyed.</summary>
+        private void OpenShop()
+        {
+            var elements = new List<InquiryElement>();
+            foreach (ArsenalOffer o in Offers())
+            {
+                ItemObject item = Item(o.Id);
+                bool affordable = _gold >= o.Gold && _prestige >= o.Prestige;
+                var lines = new List<string> { Hint(item), QualityName(o.Quality), Price(o) };
+                if (!affordable) lines.Add(T("You cannot pay for it.", "Вам это не по карману."));
+                string hint = string.Join("\n", lines);
+                elements.Add(new InquiryElement(o.N, $"{SlotName(o.Slot)}: {Name(item)} — {Price(o)}", new ItemImageIdentifier(item, ""), affordable, hint));
+            }
+            if (elements.Count == 0) { OpenSlots(); return; }
+            Show(new MultiSelectionInquiryData(T("The armourer's shop", "Лавка оружейника") + Money(), T("Choose what to buy.", "Выберите, что купить."),
+                elements, true, 1, 1, T("Buy", "Купить"), T("Back", "Назад"), chosen =>
+                {
+                    _menuOpen = false;
+                    if (chosen?.FirstOrDefault()?.Identifier is int n) Guard("buy", () => Buy(n));
+                    OpenShop();
+                }, _ => { _menuOpen = false; OpenSlots(); }));
+        }
+
+        private void Buy(int n)
+        {
+            ArsenalOffer o = Offers().FirstOrDefault(x => x.N == n);
+            if (o == null || _gold < o.Gold || _prestige < o.Prestige) return;
+            _gold -= o.Gold;
+            _prestige -= o.Prestige;
+            _bought.Add(n);
+            if (!_items.ContainsKey(o.Id)) _items[o.Id] = new ArsenalItem { Id = o.Id, Slot = o.Slot, Source = "artifact", Quality = o.Quality };
+            BridgeIo.Log($"arsenal: bought offer {n} ({o.Id}) for {o.Gold} gold, {o.Prestige} prestige");
+            Say(T($"Bought: {Name(Item(o.Id))}. Try it on; CK3 takes the money when you leave.",
+                  $"Куплено: {Name(Item(o.Id))}. Примерьте; деньги CK3 спишет, когда вы выйдете."));
+        }
+
+        private string Price(ArsenalOffer o) =>
+            T($"{o.Gold} gold", $"{o.Gold} золота") + (o.Prestige > 0 ? T($", {o.Prestige} prestige", $", {o.Prestige} престижа") : "");
+
+        private string Money() => T($" (gold {_gold}, prestige {_prestige})", $" (золото {_gold}, престиж {_prestige})");
+
+        private string QualityName(string quality)
+        {
+            switch (quality)
+            {
+                case "Legendary": return T("Quality: legendary", "Качество: легендарное");
+                case "Masterwork": return T("Quality: masterwork", "Качество: мастерское");
+                default: return T("Quality: fine", "Качество: добротное");
+            }
         }
 
         private void Show(MultiSelectionInquiryData data)
@@ -148,7 +228,7 @@ namespace CK3Bridge
             BridgeIo.Log($"arsenal: {slot} = {(id.Length > 0 ? id : "(empty)")}");
             if (slot == "Horse")
             {
-                InformationManager.DisplayMessage(new InformationMessage(T("The horse comes with you in the next battle.", "Конь будет с вами в следующем бою.")));
+                Say(T("The horse comes with you in the next battle.", "Конь будет с вами в следующем бою."));
                 return;
             }
             Dress(slot, id);
@@ -175,12 +255,25 @@ namespace CK3Bridge
             me.UpdateSpawnEquipmentAndRefreshVisuals(body);
         }
 
-        private void Done()
+        private void Save()
         {
-            if (_done) return;
-            _done = true;
-            BridgeIo.Log("arsenal: done, loadout " + string.Join(", ", Loadout().Select(p => $"{p.Key}={p.Value}")));
-            Mission.EndMission();
+            Saved = Loadout();
+            BridgeIo.Log("arsenal: saved " + string.Join(", ", Saved.Select(p => $"{p.Key}={p.Value}")));
+            Say(T("Loadout saved. Try it out; I opens the menu, Tab leaves.", "Набор сохранён. Опробуйте его; I — меню, Tab — выход."));
+        }
+
+        private static void Say(string text) => InformationManager.DisplayMessage(new InformationMessage(text));
+
+        private static void Guard(string what, Action action)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception e)
+            {
+                BridgeIo.Log($"arsenal: {what} failed: {e}");
+            }
         }
 
         // ---- texts ---------------------------------------------------------------------------------------------------

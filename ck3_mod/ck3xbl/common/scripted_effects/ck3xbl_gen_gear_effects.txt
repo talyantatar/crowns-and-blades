@@ -14,6 +14,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_1_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -27,6 +28,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_2_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -40,6 +42,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_3_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -53,6 +56,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_4_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -66,6 +70,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_5_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -79,6 +84,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_6_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -92,6 +98,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_7_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -105,6 +112,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_8_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -118,6 +126,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_9_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -131,6 +140,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_10_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -144,6 +154,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_11_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -157,6 +168,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_12_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -170,6 +182,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_13_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -183,6 +196,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_14_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -196,6 +210,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_15_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -209,6 +224,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_16_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -222,6 +238,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_17_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -235,6 +252,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_18_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -248,6 +266,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_19_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -261,6 +280,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_20_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -274,6 +294,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_21_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -287,6 +308,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_22_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -300,6 +322,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_23_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -313,6 +336,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_24_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -326,6 +350,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_25_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -339,6 +364,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_26_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -352,6 +378,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_27_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -365,6 +392,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_28_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -378,6 +406,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_29_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -391,6 +420,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_30_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -404,6 +434,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_31_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -417,6 +448,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_32_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -430,6 +462,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_33_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -443,6 +476,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_34_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -456,6 +490,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_35_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -469,6 +504,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_36_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -482,6 +518,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_37_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -495,6 +532,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_38_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -508,6 +546,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_39_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -521,6 +560,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_40_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -534,6 +574,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_41_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -547,6 +588,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_42_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -560,6 +602,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_43_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -573,6 +616,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_44_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -586,6 +630,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_45_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -599,6 +644,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_46_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -612,6 +658,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_47_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -625,6 +672,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_48_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -638,6 +686,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_49_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -651,6 +700,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_50_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -664,6 +714,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_51_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -677,6 +728,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_52_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -690,6 +742,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_53_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -703,6 +756,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_54_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -716,6 +770,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_55_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -729,6 +784,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_56_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -742,6 +798,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_57_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -755,6 +812,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_58_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -768,6 +826,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_59_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -781,6 +840,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_60_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -794,6 +854,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_61_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -807,6 +868,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_62_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -820,6 +882,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_63_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -833,6 +896,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_64_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -846,6 +910,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_65_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -859,6 +924,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_66_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -872,6 +938,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_67_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -885,6 +952,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_68_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -898,6 +966,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_69_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -911,6 +980,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_70_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -924,6 +994,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_71_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -937,6 +1008,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_72_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -950,6 +1022,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_73_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -963,6 +1036,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_74_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -976,6 +1050,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_75_modifier
 			quality = 78
 			wealth = 78
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -989,6 +1064,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_76_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1002,6 +1078,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_77_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1015,6 +1092,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_78_modifier
 			quality = 33
 			wealth = 33
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1028,6 +1106,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_79_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1041,6 +1120,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_80_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1054,6 +1134,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_81_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1067,6 +1148,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_82_modifier
 			quality = 33
 			wealth = 33
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1080,6 +1162,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_83_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1093,6 +1176,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_84_modifier
 			quality = 78
 			wealth = 78
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1106,6 +1190,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_85_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1119,6 +1204,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_86_modifier
 			quality = 33
 			wealth = 33
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1132,6 +1218,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_87_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1145,6 +1232,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_88_modifier
 			quality = 78
 			wealth = 78
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1158,6 +1246,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_89_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1171,6 +1260,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_90_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1184,6 +1274,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_91_modifier
 			quality = 78
 			wealth = 78
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1197,6 +1288,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_92_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1210,6 +1302,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_93_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1223,6 +1316,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_94_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1236,6 +1330,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_95_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1249,6 +1344,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_96_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1262,6 +1358,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_97_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1275,6 +1372,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_98_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1288,6 +1386,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_99_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1301,6 +1400,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_100_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1314,6 +1414,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_101_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1327,6 +1428,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_102_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1340,6 +1442,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_103_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1353,6 +1456,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_104_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1366,6 +1470,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_105_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1379,6 +1484,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_106_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1392,6 +1498,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_107_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1405,6 +1512,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_108_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1418,6 +1526,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_109_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1431,6 +1540,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_110_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1444,6 +1554,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_111_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1457,6 +1568,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_112_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1470,6 +1582,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_113_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1483,6 +1596,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_114_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1496,6 +1610,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_115_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1509,6 +1624,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_116_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1522,6 +1638,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_117_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1535,6 +1652,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_118_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1548,6 +1666,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_119_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1561,6 +1680,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_120_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1574,6 +1694,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_121_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1587,6 +1708,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_122_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1600,6 +1722,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_123_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1613,6 +1736,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_124_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1626,6 +1750,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_125_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1639,6 +1764,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_126_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1652,6 +1778,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_127_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1665,6 +1792,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_128_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1678,6 +1806,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_129_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1691,6 +1820,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_130_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1704,6 +1834,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_131_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1717,6 +1848,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_132_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1730,6 +1862,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_133_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1743,6 +1876,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_134_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1756,6 +1890,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_135_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1769,6 +1904,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_136_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1782,6 +1918,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_137_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1795,6 +1932,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_138_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1808,6 +1946,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_139_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1821,6 +1960,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_140_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1834,6 +1974,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_141_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1847,6 +1988,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_142_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1860,6 +2002,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_143_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1873,6 +2016,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_144_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1886,6 +2030,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_145_modifier
 			quality = 33
 			wealth = 33
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1899,6 +2044,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_146_modifier
 			quality = 78
 			wealth = 78
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1912,6 +2058,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_147_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1925,6 +2072,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_148_modifier
 			quality = 33
 			wealth = 33
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1938,6 +2086,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_149_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1951,6 +2100,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_150_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1964,6 +2114,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_151_modifier
 			quality = 33
 			wealth = 33
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1977,6 +2128,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_152_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -1990,6 +2142,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_153_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2003,6 +2156,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_154_modifier
 			quality = 33
 			wealth = 33
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2016,6 +2170,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_155_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2029,6 +2184,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_156_modifier
 			quality = 78
 			wealth = 78
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2042,6 +2198,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_157_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2055,6 +2212,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_158_modifier
 			quality = 55
 			wealth = 55
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2068,6 +2226,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_159_modifier
 			quality = 78
 			wealth = 78
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2081,6 +2240,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_160_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2094,6 +2254,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_161_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2107,6 +2268,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_162_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2120,6 +2282,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_163_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2133,6 +2296,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_164_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2146,6 +2310,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_165_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2159,6 +2324,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_166_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2172,6 +2338,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_167_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2185,6 +2352,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_168_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2198,6 +2366,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_169_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2211,6 +2380,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_170_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2224,6 +2394,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_171_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2237,6 +2408,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_172_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2250,6 +2422,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_173_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2263,6 +2436,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_174_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2276,6 +2450,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_175_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2289,6 +2464,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_176_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2302,6 +2478,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_177_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2315,6 +2492,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_178_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2328,6 +2506,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_179_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2341,6 +2520,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_180_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2354,6 +2534,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_181_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2367,6 +2548,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_182_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2380,6 +2562,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_183_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2393,6 +2576,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_184_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2406,6 +2590,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_185_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2419,6 +2604,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_186_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2432,6 +2618,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_187_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2445,6 +2632,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_188_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2458,6 +2646,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_189_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2471,6 +2660,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_190_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2484,6 +2674,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_191_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2497,6 +2688,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_192_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2510,6 +2702,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_193_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2523,6 +2716,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_194_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2536,6 +2730,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_195_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2549,6 +2744,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_196_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2562,6 +2758,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_197_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2575,6 +2772,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_198_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2588,6 +2786,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_199_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2601,6 +2800,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_200_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2614,6 +2814,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_201_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2627,6 +2828,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_202_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2640,6 +2842,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_203_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2653,6 +2856,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_204_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2666,6 +2870,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_205_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2679,6 +2884,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_206_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2692,6 +2898,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_207_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2705,6 +2912,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_208_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2718,6 +2926,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_209_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2731,6 +2940,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_210_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2744,6 +2954,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_211_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2757,6 +2968,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_212_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2770,6 +2982,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_213_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2783,6 +2996,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_214_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2796,6 +3010,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_215_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2809,6 +3024,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_216_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2822,6 +3038,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_217_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2835,6 +3052,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_218_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2848,6 +3066,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_219_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2861,6 +3080,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_220_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2874,6 +3094,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_221_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2887,6 +3108,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_222_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2900,6 +3122,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_223_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2913,6 +3136,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_224_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2926,6 +3150,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_225_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2939,6 +3164,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_226_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2952,6 +3178,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_227_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2965,6 +3192,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_228_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2978,6 +3206,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_229_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -2991,6 +3220,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_230_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3004,6 +3234,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_231_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3017,6 +3248,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_232_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3030,6 +3262,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_233_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3043,6 +3276,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_234_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3056,6 +3290,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_235_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3069,6 +3304,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_236_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3082,6 +3318,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_237_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3095,6 +3332,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_238_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3108,6 +3346,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_239_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3121,6 +3360,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_240_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3134,6 +3374,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_241_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3147,6 +3388,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_242_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3160,6 +3402,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_243_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3173,6 +3416,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_244_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3186,6 +3430,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_245_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3199,6 +3444,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_246_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3212,6 +3458,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_247_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3225,6 +3472,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_248_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3238,6 +3486,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_249_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3251,6 +3500,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_250_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3264,6 +3514,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_251_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3277,6 +3528,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_252_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3290,6 +3542,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_253_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3303,6 +3556,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_254_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3316,6 +3570,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_255_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3329,6 +3584,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_256_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3342,6 +3598,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_257_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3355,6 +3612,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_258_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3368,6 +3626,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_259_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3381,6 +3640,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_260_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3394,6 +3654,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_261_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3407,6 +3668,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_262_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3420,6 +3682,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_263_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3433,6 +3696,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_264_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3446,6 +3710,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_265_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3459,6 +3724,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_266_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3472,6 +3738,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_267_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3485,6 +3752,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_268_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3498,6 +3766,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_269_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3511,6 +3780,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_270_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3524,6 +3794,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_271_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3537,6 +3808,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_272_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3550,6 +3822,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_273_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3563,6 +3836,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_274_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3576,6 +3850,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_275_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3589,6 +3864,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_276_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3602,6 +3878,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_277_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3615,6 +3892,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_278_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3628,6 +3906,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_279_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3641,6 +3920,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_280_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3654,6 +3934,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_281_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3667,6 +3948,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_282_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3680,6 +3962,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_283_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3693,6 +3976,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_284_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3706,6 +3990,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_285_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3719,6 +4004,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_286_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3732,6 +4018,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_287_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3745,6 +4032,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_288_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3758,6 +4046,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_289_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3771,6 +4060,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_290_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3784,6 +4074,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_291_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3797,6 +4088,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_292_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3810,6 +4102,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_293_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3823,6 +4116,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_294_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3836,6 +4130,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_295_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3849,6 +4144,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_296_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3862,6 +4158,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_297_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3875,6 +4172,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_298_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3888,6 +4186,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_299_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3901,6 +4200,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_300_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3914,6 +4214,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_301_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3927,6 +4228,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_302_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3940,6 +4242,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_303_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3953,6 +4256,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_304_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3966,6 +4270,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_305_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3979,6 +4284,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_306_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -3992,6 +4298,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_307_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4005,6 +4312,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_308_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4018,6 +4326,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_309_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4031,6 +4340,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_310_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4044,6 +4354,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_311_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4057,6 +4368,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_312_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4070,6 +4382,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_313_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4083,6 +4396,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_314_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4096,6 +4410,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_315_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4109,6 +4424,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_316_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4122,6 +4438,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_317_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4135,6 +4452,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_318_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4148,6 +4466,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_319_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4161,6 +4480,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_320_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4174,6 +4494,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_321_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4187,6 +4508,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_322_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4200,6 +4522,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_323_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4213,6 +4536,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_324_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4226,6 +4550,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_325_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4239,6 +4564,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_326_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4252,6 +4578,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_327_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4265,6 +4592,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_328_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4278,6 +4606,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_329_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4291,6 +4620,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_330_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4304,6 +4634,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_331_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4317,6 +4648,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_332_modifier
 			quality = 28
 			wealth = 28
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4330,6 +4662,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_333_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4343,6 +4676,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_334_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4356,6 +4690,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_335_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4369,6 +4704,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_336_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4382,6 +4718,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_337_modifier
 			quality = 64
 			wealth = 64
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4395,6 +4732,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_338_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4408,6 +4746,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_339_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4421,6 +4760,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_340_modifier
 			quality = 46
 			wealth = 46
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4434,6 +4774,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_341_modifier
 			quality = 82
 			wealth = 82
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4447,6 +4788,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_342_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4460,6 +4802,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_343_modifier
 			quality = 10
 			wealth = 10
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4473,6 +4816,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_344_modifier
 			quality = 40
 			wealth = 40
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4486,6 +4830,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_345_modifier
 			quality = 70
 			wealth = 70
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -4499,6 +4844,7 @@ ck3xbl_create_item_effect = {
 			modifier = ck3xbl_item_346_modifier
 			quality = 100
 			wealth = 100
+			decaying = no
 			save_scope_as = newly_created_artifact
 		}
 	}
@@ -5207,6 +5553,14 @@ ck3xbl_emit_cx_stash_effect = {
 		else_if = { limit = { has_artifact_modifier = ck3xbl_item_344_modifier } info_log = "CK3XBL|CX|stash|ck3xbl_horse|noble_camel" }
 		else_if = { limit = { has_artifact_modifier = ck3xbl_item_345_modifier } info_log = "CK3XBL|CX|stash|ck3xbl_horse|war_camel" }
 		else_if = { limit = { has_artifact_modifier = ck3xbl_item_346_modifier } info_log = "CK3XBL|CX|stash|ck3xbl_horse|special_camel" }
+	}
+}
+
+# this = character. Battle gear never wears out (2026-10-28, decaying = no); gear an older save made is mended every year.
+ck3xbl_mend_gear_effect = {
+	every_character_artifact = {
+		limit = { OR = { artifact_slot_type = ck3xbl_weapon artifact_slot_type = ck3xbl_head artifact_slot_type = ck3xbl_body artifact_slot_type = ck3xbl_hands artifact_slot_type = ck3xbl_legs artifact_slot_type = ck3xbl_cape artifact_slot_type = ck3xbl_horse } }
+		add_durability = 1000
 	}
 }
 

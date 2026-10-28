@@ -395,7 +395,7 @@ export function effectsText(items) {
     L.push(`\t${i === 0 ? 'if' : 'else_if'} = {`, `\t\tlimit = { scope:ck3xbl_pick = ${it.idx} }`, '\t\tcreate_artifact = {',
       `\t\t\tname = ${loc(it)}`, `\t\t\tdescription = ${loc(it)}_desc`, `\t\t\ttype = ck3xbl_${it.kind}`, `\t\t\tvisuals = ${visualsOf(it)}`,
       `\t\t\tmodifier = ${mod(it)}`, `\t\t\tquality = ${it.rarity_value}`, `\t\t\twealth = ${it.rarity_value}`,
-      '\t\t\tsave_scope_as = newly_created_artifact', '\t\t}', '\t}');
+      '\t\t\tdecaying = no', '\t\t\tsave_scope_as = newly_created_artifact', '\t\t}', '\t}');
   });
   L.push('}', '');
 
@@ -409,6 +409,10 @@ export function effectsText(items) {
   L.push(`\t\tlimit = { is_equipped = no OR = { ${SLOT_FLAGS.map((f) => `artifact_slot_type = ${f}`).join(' ')} } }`);
   items.forEach((it, i) => L.push(`\t\t${i === 0 ? 'if' : 'else_if'} = { limit = { has_artifact_modifier = ${mod(it)} } info_log = "CK3XBL|CX|stash|${it.slot}|${it.id}" }`));
   L.push('\t}', '}', '');
+  L.push('# this = character. Battle gear never wears out (2026-10-28, decaying = no); gear an older save made is mended every year.');
+  L.push('ck3xbl_mend_gear_effect = {', '\tevery_character_artifact = {');
+  L.push(`\t\tlimit = { OR = { ${SLOT_FLAGS.map((f) => `artifact_slot_type = ${f}`).join(' ')} } }`);
+  L.push('\t\tadd_durability = 1000', '\t}', '}', '');
 
   // Pools: own culture (with neutral items) per Bannerlord culture, and any culture.
   const pools = ['main', 'gear', 'armor', 'horse', 'all', 'weapon', 'bow'];
@@ -553,7 +557,8 @@ export function locText(items, language = 'english') {
 /** The armory: decision and event, with one option per offer. */
 export function decisionsText() {
   return [
-    '# The armory (PROTOCOL.md §16.4): opens the shop event; the stock lasts two years.',
+    '# The armory (PROTOCOL.md §16.4): the stock lasts two years. The player shops in the Arsenal (PROTOCOL 51: pictures, numbers,',
+    '# a fitting), the AI in the shop event.',
     'ck3xbl_visit_armory_decision = {',
     '\tpicture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }',
     '\tdesc = ck3xbl_visit_armory_decision_desc',
@@ -563,7 +568,8 @@ export function decisionsText() {
     '\tcooldown = { months = 3 }',
     '\teffect = {',
     '\t\tif = { limit = { NOT = { has_variable = ck3xbl_armory_stocked } } ck3xbl_armory_restock_effect = yes }',
-    '\t\ttrigger_event = ck3xbl_armory.0001',
+    '\t\tif = { limit = { is_ai = no } trigger_event = ck3xbl_arsenal.0001 }',
+    '\t\telse = { trigger_event = ck3xbl_armory.0001 }',
     '\t}',
     '\tai_check_interval = 36',
     '\tai_potential = { gold >= 600 }',

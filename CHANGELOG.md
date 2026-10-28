@@ -8,7 +8,8 @@ versions follow [Semantic Versioning](https://semver.org/).
 ### Changed after 0.9.2-beta
 
 - **The Arsenal.** A CK3 decision opens an arena where you choose, slot by slot, what you carry into battle: your battle
-  gear, equipped or not, your kit and ammunition, with Bannerlord's pictures and numbers. The choice is kept for your later battles.
+  gear, equipped or not, your kit and ammunition, with Bannerlord's pictures and numbers. The choice is kept for your later battles. The armory's wares are sold there too, and battle
+  gear no longer wears out.
 - **Battle gear rework.** Three CK3 weapon slots; Bannerlord's fourth is kept for a bow's or crossbow's ammunition. Artifact
   prowess is a token (+5 at most). Every artifact carries a Bannerlord quality by its CK3 rarity (fine, masterwork, legendary).
 - **Item icons.** Every battle gear artifact shows Bannerlord's own picture of its item in CK3 (rendered by the module's

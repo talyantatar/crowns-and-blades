@@ -151,6 +151,16 @@ public sealed class CharacterSnapshot
     public List<ArtifactSnapshot> Artifacts = new();  // CX|artifact (+ CX|artifact_helmet)
     public List<GearSnapshot> Stash = new();          // CX|stash: battle gear he owns but has not equipped (the player only, PROTOCOL §51)
     public List<GearSnapshot> Gear = new();           // CX|gear, in the order CK3 lists the equipped artifacts
+    public int? Gold, Prestige;                       // ck3xbl_c_gold / _prestige: the player's money (PROTOCOL §51); null = not logged
+    public List<OfferSnapshot> Offers = new();        // ck3xbl_c_offerN: the armory's offers to the player (PROTOCOL §51)
+}
+
+/// <summary>An armory offer (PROTOCOL §16.4, sold in the Arsenal §51): offer N of the stock, a gear item by its index, and its price.</summary>
+public sealed class OfferSnapshot
+{
+    public int N;                                     // 1..6, the offer's slot in the stock
+    public int Idx;                                   // the gear item index (ck3xbl_equipment.json idx)
+    public int Gold, Prestige;
 }
 
 /// <summary>An equipped battle gear artifact: a Bannerlord item (PROTOCOL §16.2 CX|gear).</summary>

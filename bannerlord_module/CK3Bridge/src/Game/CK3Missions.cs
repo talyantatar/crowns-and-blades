@@ -34,6 +34,7 @@ namespace CK3Bridge
         public SiegeInfo Siege;           // an assault on a besieged holding (PROTOCOL.md §39); null = no siege
         public NavalInfo Naval;           // a battle at sea or a landing (PROTOCOL.md §44, CK3Bridge.Naval); null = on land
         public int Tourney;               // a tournament bout (PROTOCOL.md §29, §36): 1 single combat, 2 wrestling, 3 grand melee, 4 joust, 5 archery
+        public bool Arsenal;              // the Arsenal (PROTOCOL.md §51): the player alone in the arena, nobody hurt, no border to cross
         public int TourneyPar;            // §36 archery: targets to hit
         public string ArcheryHitFormat;   // §36 archery: the hit message in the request's language
     }
@@ -131,7 +132,7 @@ namespace CK3Bridge
                     ? new CK3HideoutController(troopSuppliers, playerSide, new List<BasicCharacterObject>(armies.HeroByCharacter.Keys))
                     : setup.Tourney == 5
                         ? (MissionLogic)new CK3ArenaArcheryController(troopSuppliers, playerSide, setup.TourneyPar, setup.ArcheryHitFormat)
-                        : new CK3ArenaDuelController(troopSuppliers, playerSide, bareHands: setup.Tourney == 2, mounted: setup.Tourney == 4);
+                        : new CK3ArenaDuelController(troopSuppliers, playerSide, bareHands: setup.Tourney == 2, mounted: setup.Tourney == 4, alone: setup.Arsenal);
                 var behaviors = new List<MissionBehavior>
                 {
                     new MissionOptionsComponent(),
@@ -149,11 +150,12 @@ namespace CK3Bridge
                     new EquipmentControllerLeaveLogic(),
                     new MissionHardBorderPlacer(),
                     new MissionBoundaryPlacer(),
-                    new MissionBoundaryCrossingHandler(),
                     new BattleMissionAgentInteractionLogic(),
                     new HighlightsController(),
                     new BattleHighlightsController(),
                 });
+                // The Arsenal (PROTOCOL.md §51): stepping over the border must not end the fitting as a retreat.
+                if (!setup.Arsenal) behaviors.Add(new MissionBoundaryCrossingHandler());
                 return behaviors.ToArray();
             });
         }

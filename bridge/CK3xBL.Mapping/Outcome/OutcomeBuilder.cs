@@ -92,6 +92,13 @@ public sealed class OutcomeBuilder
                 : (outcome.DuelLoserKilled ? w.DuelStruckDown(foe) : w.DuelBested(foe));
         }
         else outcome.Summary = w.DuelUndecided(foe);
+        // The Arsenal (PROTOCOL §51): the armory offers bought there, as a mask (CK3 buys them after the visit).
+        if (_request.Arsenal is not null)
+        {
+            foreach (int n in _result.Purchases ?? new List<int>())
+                if (n is >= 1 and <= 6 && _request.Arsenal.Shop.Any(o => o.N == n)) outcome.ArsenalPurchases |= 1 << (n - 1);
+            outcome.Summary = outcome.ArsenalPurchases > 0 ? w.ArsenalBought(System.Numerics.BitOperations.PopCount((uint)outcome.ArsenalPurchases)) : w.ArsenalLeft;
+        }
         return outcome;
     }
 

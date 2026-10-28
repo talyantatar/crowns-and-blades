@@ -44,7 +44,15 @@ ck3xbl_on_siege_completion = {
 
 # Root = a playable (ruler) character, once a year. AI rulers buy battle gear for their knights or themselves (PROTOCOL 16.5).
 yearly_playable_pulse = {
-	on_actions = { ck3xbl_yearly_gear_pulse }
+	on_actions = { ck3xbl_yearly_gear_pulse ck3xbl_yearly_mend_pulse }
+}
+
+# Root = a playable character, once a year: his and his courtiers' battle gear is mended (gear never wears out, 2026-10-28).
+ck3xbl_yearly_mend_pulse = {
+	effect = {
+		ck3xbl_mend_gear_effect = yes
+		every_courtier = { ck3xbl_mend_gear_effect = yes }
+	}
 }
 
 ck3xbl_yearly_gear_pulse = {
