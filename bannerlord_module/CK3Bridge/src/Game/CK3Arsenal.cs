@@ -63,6 +63,21 @@ namespace CK3Bridge
             return loadout;
         }
 
+        /// <summary>Alone in the arena, the stock end check calls the empty enemy side fled after a few seconds and ends the visit (live
+        /// 2026-10-28: "the enemy flees", back in CK3): it is switched off; the visit ends with Tab or "Leave".</summary>
+        public override void AfterStart()
+        {
+            base.AfterStart();
+            try
+            {
+                Mission.GetMissionBehavior<BattleEndLogic>()?.ChangeCanCheckForEndCondition(false);
+            }
+            catch (Exception e)
+            {
+                BridgeIo.Log("arsenal: the end check stays on: " + e.Message);
+            }
+        }
+
         public override void OnMissionTick(float dt)
         {
             base.OnMissionTick(dt);

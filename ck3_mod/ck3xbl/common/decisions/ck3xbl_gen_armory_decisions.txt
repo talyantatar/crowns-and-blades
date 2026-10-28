@@ -2,19 +2,18 @@
 # The armory decision (PROTOCOL 16.4).
 # Inputs: bridge/data/bl_catalog.json, mapping.json culture_map (tools/gen/equipment/equipment.mjs). Regenerate: node tools/gen/gen_ck3_mod.mjs
 
-# The armory (PROTOCOL.md §16.4): the stock lasts two years. The player shops in the Arsenal (PROTOCOL 51: pictures, numbers,
-# a fitting), the AI in the shop event.
+# The armory (PROTOCOL.md §16.4): the stock lasts two years. The AI shops here; the player shops in the Arsenal (PROTOCOL 51:
+# pictures, numbers, a fitting), whose decision is his only one.
 ck3xbl_visit_armory_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
 	desc = ck3xbl_visit_armory_decision_desc
 	selection_tooltip = ck3xbl_visit_armory_decision_tooltip
-	is_shown = { is_ruler = yes }
+	is_shown = { is_ruler = yes is_ai = yes }
 	is_valid_showing_failures_only = { is_imprisoned = no }
 	cooldown = { months = 3 }
 	effect = {
 		if = { limit = { NOT = { has_variable = ck3xbl_armory_stocked } } ck3xbl_armory_restock_effect = yes }
-		if = { limit = { is_ai = no } trigger_event = ck3xbl_arsenal.0001 }
-		else = { trigger_event = ck3xbl_armory.0001 }
+		trigger_event = ck3xbl_armory.0001
 	}
 	ai_check_interval = 36
 	ai_potential = { gold >= 600 }

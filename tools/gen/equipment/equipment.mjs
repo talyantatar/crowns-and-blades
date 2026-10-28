@@ -557,19 +557,18 @@ export function locText(items, language = 'english') {
 /** The armory: decision and event, with one option per offer. */
 export function decisionsText() {
   return [
-    '# The armory (PROTOCOL.md §16.4): the stock lasts two years. The player shops in the Arsenal (PROTOCOL 51: pictures, numbers,',
-    '# a fitting), the AI in the shop event.',
+    '# The armory (PROTOCOL.md §16.4): the stock lasts two years. The AI shops here; the player shops in the Arsenal (PROTOCOL 51:',
+    '# pictures, numbers, a fitting), whose decision is his only one.',
     'ck3xbl_visit_armory_decision = {',
     '\tpicture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }',
     '\tdesc = ck3xbl_visit_armory_decision_desc',
     '\tselection_tooltip = ck3xbl_visit_armory_decision_tooltip',
-    '\tis_shown = { is_ruler = yes }',
+    '\tis_shown = { is_ruler = yes is_ai = yes }',
     '\tis_valid_showing_failures_only = { is_imprisoned = no }',
     '\tcooldown = { months = 3 }',
     '\teffect = {',
     '\t\tif = { limit = { NOT = { has_variable = ck3xbl_armory_stocked } } ck3xbl_armory_restock_effect = yes }',
-    '\t\tif = { limit = { is_ai = no } trigger_event = ck3xbl_arsenal.0001 }',
-    '\t\telse = { trigger_event = ck3xbl_armory.0001 }',
+    '\t\ttrigger_event = ck3xbl_armory.0001',
     '\t}',
     '\tai_check_interval = 36',
     '\tai_potential = { gold >= 600 }',
