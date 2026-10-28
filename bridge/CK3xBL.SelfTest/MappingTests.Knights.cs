@@ -356,7 +356,7 @@ internal static partial class MappingTests
             }
             if (g.Slot == "ck3xbl_body") Expect.Equal("BodyArmor", item!.Type, g.Id);
         }
-        Expect.Equal(20, gear.Values.Where(g => g.Slot == "ck3xbl_main").Max(g => g.Prowess), "the best main weapon gives +20");
+        Expect.Equal(5, gear.Values.Where(g => g.Slot == "ck3xbl_main").Max(g => g.Prowess), "the best main weapon gives +5 (a token since 2026-10-28)");
         Expect.True(gear.Values.Select(g => g.Name).Distinct().Count() == gear.Count, "every item has its own name");
     }
 
@@ -368,13 +368,26 @@ internal static partial class MappingTests
             ["Item0"] = "vlandia_sword_3_t4", ["Item1"] = "tall_heater_shield", ["Item2"] = "vlandia_lance_2_t4", ["Item3"] = "",
             ["Head"] = "padded_cap", ["Horse"] = "", ["HorseHarness"] = "",
         };
-        // A bow as the main weapon: the kit's sword, shield and lance follow; the bow needs arrows, so the lance makes room.
+        // A bow as the main weapon: its arrows come next (Bannerlord's fourth slot is kept for them), then the kit's sword and shield.
         var bow = o.Resolve(kit, new[] { new GearSnapshot { Slot = "ck3xbl_main", ItemId = "lowland_yew_bow" } });
         Expect.Equal("lowland_yew_bow", bow.Overrides["Item0"]);
-        Expect.Equal("vlandia_sword_3_t4", bow.Overrides["Item1"]);
-        Expect.Equal("tall_heater_shield", bow.Overrides["Item2"]);
-        Expect.Equal("Arrows", Tables.Items[bow.Overrides["Item3"]].Type, "arrows for the bow");
-        Expect.True((Tables.Items[bow.Overrides["Item3"]].Tier ?? 0) <= 4, "arrows not above the bow's tier");
+        Expect.Equal("Arrows", Tables.Items[bow.Overrides["Item1"]].Type, "arrows for the bow");
+        Expect.True((Tables.Items[bow.Overrides["Item1"]].Tier ?? 0) <= 4, "arrows not above the bow's tier");
+        Expect.Equal("vlandia_sword_3_t4", bow.Overrides["Item2"]);
+        Expect.Equal("tall_heater_shield", bow.Overrides["Item3"]);
+        Expect.Equal(GearOutfitter.QualityOf(Tables.Gear["lowland_yew_bow"].Quality), bow.Qualities["Item0"], "an artifact gets its rarity's modifier");
+        Expect.Equal("Fine", GearOutfitter.QualityOf(0.3));
+        Expect.Equal("Masterwork", GearOutfitter.QualityOf(0.7));
+        Expect.Equal("Legendary", GearOutfitter.QualityOf(0.95));
+        Expect.False(bow.Qualities.ContainsKey("Item1"), "the arrows are no artifact");
+
+        // Three weapons from CK3 at most: the fourth slot stays for the arrows.
+        var three = o.Resolve(kit, new[]
+        {
+            new GearSnapshot { Slot = "ck3xbl_main", ItemId = "lowland_yew_bow" }, new GearSnapshot { Slot = "ck3xbl_gear", ItemId = "pavise_shield" },
+            new GearSnapshot { Slot = "ck3xbl_gear", ItemId = "vlandia_lance_3_t5" }, new GearSnapshot { Slot = "ck3xbl_gear", ItemId = "vlandia_noble_sword_1_t5" },
+        });
+        Expect.Equal("Arrows", Tables.Items[three.Overrides["Item3"]].Type, "a fourth gear weapon from an old save gives way to the arrows");
         Expect.False(bow.Mounted);
         Expect.False(bow.Overrides.ContainsKey("Head"), "armour slots without gear keep the kit");
 

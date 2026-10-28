@@ -18,11 +18,6 @@ ck3xbl_gear_2 = {
 	category = inventory
 	icon = weapon
 }
-ck3xbl_gear_3 = {
-	type = ck3xbl_weapon
-	category = inventory
-	icon = weapon
-}
 ck3xbl_head = {
 	type = ck3xbl_head
 	category = inventory

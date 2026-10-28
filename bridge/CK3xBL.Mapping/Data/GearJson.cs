@@ -19,6 +19,8 @@ public sealed class GearItem
     public string Culture { get; set; } = "";
     public int Tier { get; set; }
     public int Prowess { get; set; }
+    /// <summary>0..1 within the tiers of its kind: the CK3 rarity (quality and wealth 10 + 90 q) and the Bannerlord modifier.</summary>
+    public double Quality { get; set; }
     /// <summary>The harness a horse artifact brings (null: none in the catalog).</summary>
     public string? Harness { get; set; }
     public string Name { get; set; } = "";

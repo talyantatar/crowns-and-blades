@@ -3,7 +3,8 @@
 // Every artifact is one concrete Bannerlord item, picked from bridge/data/bl_catalog.json: one item per culture, item
 // class and tier (the highest tierf wins). Its CK3 prowess, price and secondary stats come from the item's quality q, the
 // tier within the range of its kind (0 = the lowest tier of the kind, 1 = the highest):
-//   prowess = max(min, round(cap x q^1.6))           caps per kind (KINDS): main weapon 20, body 8, head 7, shield 6 ...
+//   prowess = max(min, round(cap x q^1.6))           caps per kind (KINDS): main weapon 5, body and head 3, shield 2 ...
+//                                                    (a token since 2026-10-28: the item itself is what counts in Bannerlord)
 //   gold    = 200 x (maxGold / 200)^q, to 10          maxGold per kind: main weapon 5000, horse 4000, body 3500 ...
 //   prestige = gold / 10 when q >= 0.75 (the top items)
 // The era multiplies the price (ERA_PRICE). Quality and wealth (CK3 rarity, durability) are 10 + 90 q.
@@ -21,7 +22,8 @@ export const BL_CULTURES = ['vlandia', 'empire', 'sturgia', 'battania', 'aserai'
 const CULTURE_ADJ = { vlandia: 'Vlandian', empire: 'Imperial', sturgia: 'Sturgian', battania: 'Battanian', aserai: 'Aserai', khuzait: 'Khuzait', neutral_culture: '' };
 const QUALITY_WORD = { 1: 'Plain', 2: 'Sturdy', 3: 'Fine', 4: 'Superior', 5: 'Noble', 6: 'Legendary' };
 
-/** The one slot type of every weapon: the four weapon slots take any weapon, a main weapon or a sidearm. */
+/** The one slot type of every weapon: the three weapon slots take any weapon, a main weapon or a sidearm. Bannerlord's fourth
+ * weapon slot is kept for a bow's or crossbow's ammunition (else the kit fills it), so a launcher never goes without it (2026-10-28). */
 export const WEAPON_SLOT = 'ck3xbl_weapon';
 
 /** Inventory slot keys, their slot type and the vanilla slot icon (gfx/interface/icons/inventory/<icon>.dds). */
@@ -29,7 +31,6 @@ export const SLOTS = [
   { key: 'ck3xbl_weapon_main', flag: WEAPON_SLOT, icon: 'weapon', name: 'Weapon I' },
   { key: 'ck3xbl_gear_1', flag: WEAPON_SLOT, icon: 'weapon', name: 'Weapon II' },
   { key: 'ck3xbl_gear_2', flag: WEAPON_SLOT, icon: 'weapon', name: 'Weapon III' },
-  { key: 'ck3xbl_gear_3', flag: WEAPON_SLOT, icon: 'weapon', name: 'Weapon IV' },
   { key: 'ck3xbl_head', flag: 'ck3xbl_head', icon: 'crown', name: 'Helmet' },
   { key: 'ck3xbl_body', flag: 'ck3xbl_body', icon: 'armor', name: 'Body Armour' },
   { key: 'ck3xbl_hands', flag: 'ck3xbl_hands', icon: 'armor', name: 'Gloves' },
@@ -48,27 +49,27 @@ const FLAG_NAME = {
  * prowess cap and floor, top price, secondary stat. `pool` groups the kinds for the vanilla event hooks.
  */
 export const KINDS = {
-  sword: { flag: 'ck3xbl_main', cap: 20, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Sword' },
-  greatsword: { flag: 'ck3xbl_main', cap: 20, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Greatsword' },
-  axe: { flag: 'ck3xbl_main', cap: 20, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Axe' },
-  greataxe: { flag: 'ck3xbl_main', cap: 20, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Great Axe' },
-  mace: { flag: 'ck3xbl_main', cap: 20, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Mace' },
-  greatmace: { flag: 'ck3xbl_main', cap: 20, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'War Maul' },
-  bow: { flag: 'ck3xbl_main', cap: 20, gold: 5000, extra: 'weapon', pool: 'bow', noun: 'Bow' },
-  crossbow: { flag: 'ck3xbl_main', cap: 20, gold: 5000, extra: 'weapon', pool: 'bow', noun: 'Crossbow' },
-  shield: { flag: 'ck3xbl_gear', cap: 6, gold: 1500, extra: 'shield', pool: 'weapon', noun: 'Shield' },
-  spear: { flag: 'ck3xbl_gear', cap: 4, gold: 1500, extra: null, pool: 'weapon', noun: 'Spear' },
-  lance: { flag: 'ck3xbl_gear', cap: 4, gold: 1500, extra: null, pool: 'weapon', noun: 'Lance' },
-  polearm: { flag: 'ck3xbl_gear', cap: 4, gold: 1500, extra: null, pool: 'weapon', noun: 'Polearm' },
-  thrown: { flag: 'ck3xbl_gear', cap: 3, gold: 600, extra: null, pool: 'weapon', noun: 'Javelins' },
-  dagger: { flag: 'ck3xbl_gear', cap: 2, gold: 400, extra: null, pool: 'weapon', noun: 'Dagger' },
-  helmet: { flag: 'ck3xbl_head', cap: 7, gold: 2500, extra: 'armour', pool: 'armor', noun: 'Helmet' },
-  armour: { flag: 'ck3xbl_body', cap: 8, gold: 3500, extra: 'armour', pool: 'armor', noun: 'Armour' },
-  gloves: { flag: 'ck3xbl_hands', cap: 3, gold: 800, extra: null, pool: 'armor', noun: 'Gauntlets' },
-  boots: { flag: 'ck3xbl_legs', cap: 3, gold: 800, extra: null, pool: 'armor', noun: 'Boots' },
-  cloak: { flag: 'ck3xbl_cape', cap: 2, gold: 1000, extra: 'cloak', pool: 'armor', noun: 'Cloak' },
-  horse: { flag: 'ck3xbl_horse', cap: 2, floor: 0, gold: 4000, extra: 'horse', pool: 'horse', noun: 'Horse' },
-  camel: { flag: 'ck3xbl_horse', cap: 2, floor: 0, gold: 3000, extra: 'horse', pool: 'horse', noun: 'Camel' },
+  sword: { flag: 'ck3xbl_main', cap: 5, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Sword' },
+  greatsword: { flag: 'ck3xbl_main', cap: 5, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Greatsword' },
+  axe: { flag: 'ck3xbl_main', cap: 5, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Axe' },
+  greataxe: { flag: 'ck3xbl_main', cap: 5, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Great Axe' },
+  mace: { flag: 'ck3xbl_main', cap: 5, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'Mace' },
+  greatmace: { flag: 'ck3xbl_main', cap: 5, gold: 5000, extra: 'weapon', pool: 'weapon', noun: 'War Maul' },
+  bow: { flag: 'ck3xbl_main', cap: 5, gold: 5000, extra: 'weapon', pool: 'bow', noun: 'Bow' },
+  crossbow: { flag: 'ck3xbl_main', cap: 5, gold: 5000, extra: 'weapon', pool: 'bow', noun: 'Crossbow' },
+  shield: { flag: 'ck3xbl_gear', cap: 2, gold: 1500, extra: 'shield', pool: 'weapon', noun: 'Shield' },
+  spear: { flag: 'ck3xbl_gear', cap: 2, gold: 1500, extra: null, pool: 'weapon', noun: 'Spear' },
+  lance: { flag: 'ck3xbl_gear', cap: 2, gold: 1500, extra: null, pool: 'weapon', noun: 'Lance' },
+  polearm: { flag: 'ck3xbl_gear', cap: 2, gold: 1500, extra: null, pool: 'weapon', noun: 'Polearm' },
+  thrown: { flag: 'ck3xbl_gear', cap: 1, gold: 600, extra: null, pool: 'weapon', noun: 'Javelins' },
+  dagger: { flag: 'ck3xbl_gear', cap: 1, gold: 400, extra: null, pool: 'weapon', noun: 'Dagger' },
+  helmet: { flag: 'ck3xbl_head', cap: 3, gold: 2500, extra: 'armour', pool: 'armor', noun: 'Helmet' },
+  armour: { flag: 'ck3xbl_body', cap: 3, gold: 3500, extra: 'armour', pool: 'armor', noun: 'Armour' },
+  gloves: { flag: 'ck3xbl_hands', cap: 1, gold: 800, extra: null, pool: 'armor', noun: 'Gauntlets' },
+  boots: { flag: 'ck3xbl_legs', cap: 1, gold: 800, extra: null, pool: 'armor', noun: 'Boots' },
+  cloak: { flag: 'ck3xbl_cape', cap: 1, gold: 1000, extra: 'cloak', pool: 'armor', noun: 'Cloak' },
+  horse: { flag: 'ck3xbl_horse', cap: 1, floor: 0, gold: 4000, extra: 'horse', pool: 'horse', noun: 'Horse' },
+  camel: { flag: 'ck3xbl_horse', cap: 1, floor: 0, gold: 3000, extra: 'horse', pool: 'horse', noun: 'Camel' },
 };
 
 /** Price factor by the buyer's culture era: better gear is scarcer early. */
@@ -288,12 +289,12 @@ export function slotsText() {
   return L;
 }
 
-/** The slot type an artifact kind goes into: every weapon (main or sidearm) fits any of the four weapon slots. */
+/** The slot type an artifact kind goes into: every weapon (main or sidearm) fits any of the three weapon slots. */
 export const slotTypeOf = (k) => (k.flag === 'ck3xbl_main' || k.flag === 'ck3xbl_gear' ? WEAPON_SLOT : k.flag);
 
 export function typesText() {
   const L = ['# One artifact type per gear kind; the item itself is told by its modifier (ck3xbl_item_<n>_modifier). Every weapon kind',
-    '# goes into the same slot type, so any of the four weapon slots takes any weapon.'];
+    '# goes into the same slot type, so any of the three weapon slots takes any weapon.'];
   for (const [kind, k] of Object.entries(KINDS)) L.push(`ck3xbl_${kind} = {`, `\tslot = ${slotTypeOf(k)}`, `\tdefault_visuals = ck3xbl_${kind}`, '\tcan_reforge = no', '}');
   return L;
 }
@@ -490,7 +491,7 @@ const TEXT = {
   },
   russian: {
     slots: {
-      ck3xbl_weapon_main: 'Оружие I', ck3xbl_gear_1: 'Оружие II', ck3xbl_gear_2: 'Оружие III', ck3xbl_gear_3: 'Оружие IV',
+      ck3xbl_weapon_main: 'Оружие I', ck3xbl_gear_1: 'Оружие II', ck3xbl_gear_2: 'Оружие III',
       ck3xbl_head: 'Шлем', ck3xbl_body: 'Доспех', ck3xbl_hands: 'Перчатки', ck3xbl_legs: 'Сапоги', ck3xbl_cape: 'Плащ', ck3xbl_horse: 'Конь',
     },
     flags: {
@@ -637,7 +638,6 @@ export function inventoryGuiText(vanillaText) {
     ['ck3xbl_head', 0, 0], ['ck3xbl_cape', 1, 0], ['ck3xbl_horse', 2, 0],
     ['ck3xbl_weapon_main', 0, 1], ['ck3xbl_body', 1, 1], ['ck3xbl_gear_1', 2, 1],
     ['ck3xbl_hands', 0, 2], ['ck3xbl_legs', 1, 2], ['ck3xbl_gear_2', 2, 2],
-    ['ck3xbl_gear_3', 2, 3],
   ];
   const B = [
     '',

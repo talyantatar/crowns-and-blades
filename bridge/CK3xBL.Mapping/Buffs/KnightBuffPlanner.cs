@@ -496,6 +496,7 @@ public sealed class KnightBuffPlanner
         foreach (var (slot, id) in spec.Equipment.Overrides) current[slot] = id;
         var outfit = new GearOutfitter(_t).Resolve(current, h.Character.Gear);
         foreach (var (slot, id) in outfit.Overrides) spec.Equipment.Overrides[slot] = id;
+        foreach (var (slot, quality) in outfit.Qualities) spec.Equipment.Qualities[slot] = quality;
         if (outfit.Mounted && spec.Formation is not ("Cavalry" or "HorseArcher"))
         {
             // Any weapon slot takes any weapon: a horse archer carries a bow or crossbow and no melee main weapon beside it.

@@ -296,6 +296,9 @@ namespace CK3xBL.Protocol
     {
         public string Roster;                            // BL EquipmentRoster / equipment set id
         public Dictionary<string, string> Overrides = new Dictionary<string, string>();  // slot (Item0..Item4, Head, Body, Leg, Gloves, Cape, Horse, HorseHarness) -> item id
+        public Dictionary<string, string> Qualities = new Dictionary<string, string>();  // slot -> Fine | Masterwork | Legendary: the item
+                                                                                         // modifier of that quality from the item's own
+                                                                                         // group (a CK3 artifact, by its rarity); absent = none
     }
 
     public class BattleResult

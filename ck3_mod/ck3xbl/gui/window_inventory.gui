@@ -538,12 +538,6 @@ window = {
 						parentanchor = top|left
 						position = { 330 306 }
 					}
-					widget_inventory_slot = {
-						name = "ck3xbl_gear_3_slot"
-						datacontext = "[Inventory.GetSlot('ck3xbl_gear_3')]"
-						parentanchor = top|left
-						position = { 330 444 }
-					}
 				}
 
 				button_standard = {

@@ -89,6 +89,7 @@ namespace CK3Bridge
                 Release(om.GetObject<BasicCharacterObject>(id));   // a half-deserialized object is already registered
                 throw;
             }
+            ApplyQualities(character, spec);
             BodyProperties body;
             try
             {
@@ -172,6 +173,45 @@ namespace CK3Bridge
                 equipments.AppendChild(e);
             }
             return equipments;
+        }
+
+        /// <summary>
+        /// A CK3 artifact's quality (Equipment.Qualities, by its rarity): the item gets the modifier of that quality from its own
+        /// modifier group (a legendary sword, a lordly plate), else the best one below it. Every battle set of the hero; cosmetic
+        /// failures leave the plain item and are logged.
+        /// </summary>
+        private static void ApplyQualities(BasicCharacterObject character, HeroSpec spec)
+        {
+            if (spec.Equipment?.Qualities == null || spec.Equipment.Qualities.Count == 0 || character == null) return;
+            var applied = new List<string>();
+            foreach (KeyValuePair<string, string> q in spec.Equipment.Qualities)
+            {
+                if (!EquipmentSlots.Contains(q.Key) || !Enum.TryParse(q.Value, out ItemQuality wanted)) continue;
+                EquipmentIndex index = Equipment.GetEquipmentIndexFromOldEquipmentIndexName(q.Key);
+                foreach (Equipment set in character.BattleEquipments)
+                {
+                    EquipmentElement element = set[index];
+                    ItemModifier modifier = ModifierOf(element.Item, wanted);
+                    if (element.Item == null || modifier == null) continue;
+                    set[index] = new EquipmentElement(element.Item, modifier);
+                    string note = $"{q.Key} {modifier.StringId}";
+                    if (!applied.Contains(note)) applied.Add(note);
+                }
+            }
+            if (applied.Count > 0) BridgeIo.Log($"hero {spec.Key}: artifact qualities {string.Join(", ", applied)}");
+        }
+
+        /// <summary>The item's modifier of that quality, else of the best quality below it down to Fine; null without a group.</summary>
+        private static ItemModifier ModifierOf(ItemObject item, ItemQuality wanted)
+        {
+            ItemModifierGroup group = item?.ItemComponent?.ItemModifierGroup;
+            if (group == null) return null;
+            for (ItemQuality quality = wanted; quality >= ItemQuality.Fine; quality--)
+            {
+                List<ItemModifier> found = group.GetModifiersBasedOnQuality(quality);
+                if (found != null && found.Count > 0) return found[0];
+            }
+            return null;
         }
 
         /// <summary>The requested roster when it exists, else the culture's lord kit (heroes always wear the first set).</summary>

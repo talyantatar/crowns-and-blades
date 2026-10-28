@@ -3,7 +3,7 @@
 # Inputs: bridge/data/bl_catalog.json, mapping.json culture_map (tools/gen/equipment/equipment.mjs). Regenerate: node tools/gen/gen_ck3_mod.mjs
 
 # One artifact type per gear kind; the item itself is told by its modifier (ck3xbl_item_<n>_modifier). Every weapon kind
-# goes into the same slot type, so any of the four weapon slots takes any weapon.
+# goes into the same slot type, so any of the three weapon slots takes any weapon.
 ck3xbl_sword = {
 	slot = ck3xbl_weapon
 	default_visuals = ck3xbl_sword
