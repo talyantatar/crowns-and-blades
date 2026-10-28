@@ -17,6 +17,7 @@ namespace CK3Bridge
         Background,
         HandoffTo,
         TitleInEngine,
+        Thumbnails,
     }
 
     /// <summary>One line of command.txt (PROTOCOL.md §3.3).</summary>
@@ -76,6 +77,7 @@ namespace CK3Bridge
                 case "fg": command.Kind = BridgeCommandKind.Foreground; break;
                 case "bg": command.Kind = BridgeCommandKind.Background; break;
                 case "title_in_engine": command.Kind = BridgeCommandKind.TitleInEngine; break;
+                case "thumbnails": command.Kind = BridgeCommandKind.Thumbnails; break;
                 case "handoff_to":
                     if (parts.Length >= 2 && TryParseHwnd(parts[1], out long hwnd))
                     {

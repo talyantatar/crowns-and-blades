@@ -16,6 +16,7 @@
 // The renderers below are called by tools/gen/gen_ck3_mod.mjs (OUTPUTS); buildEquipment is pure.
 
 import fs from 'node:fs';
+import { hasItemIcon, itemIconName } from './item_icons.mjs';
 import path from 'node:path';
 
 export const BL_CULTURES = ['vlandia', 'empire', 'sturgia', 'battania', 'aserai', 'khuzait'];
@@ -315,14 +316,21 @@ export const GEAR_ASSETS = {
   horse: 'ep1_generic_trophy_horse_01_a_entity', camel: 'ep1_generic_trophy_horse_01_a_entity',
 };
 
-export function visualsText() {
+/** The artifact visuals of a gear item: its own icon (Bannerlord's thumbnail of it, item_icons.mjs) when the mod has one, else its kind's. */
+export const visualsOf = (it) => (hasItemIcon(it.idx) ? `ck3xbl_item_${it.idx}` : `ck3xbl_${it.kind}`);
+
+export function visualsText(items = []) {
   const L = ['# Icons of the gear kinds: gfx/interface/icons/artifact/ck3xbl_<kind>.dds, rendered by tools/gen/equipment/make_icons.mjs',
     '# from game-icons.net (CC BY 3.0, authors in tools/gen/equipment/icons/SOURCES.md and the mod\'s CREDITS.md).',
+    '# Each item\'s own icon: ck3xbl_item_<idx>.dds, Bannerlord\'s thumbnail of exactly that item (tools/gen/equipment/item_icons.mjs).',
     '# asset: a base-game model for the artifact window (GEAR_ASSETS in tools/gen/equipment/equipment.mjs).'];
   for (const kind of Object.keys(KINDS)) {
     const asset = GEAR_ASSETS[kind];
     if (!asset) throw new Error(`equipment.mjs: no GEAR_ASSETS model for gear kind ${kind}`);
     L.push(`ck3xbl_${kind} = {`, `\ticon = "ck3xbl_${kind}.dds"`, `\tasset = ${asset}`, `\tdefault_type = ck3xbl_${kind}`, '}');
+  }
+  for (const it of items.filter((i) => hasItemIcon(i.idx))) {
+    L.push(`ck3xbl_item_${it.idx} = {`, `\ticon = "${itemIconName(it.idx)}"`, `\tasset = ${GEAR_ASSETS[it.kind]}`, `\tdefault_type = ck3xbl_${it.kind}`, '}');
   }
   return L;
 }
@@ -385,7 +393,7 @@ export function effectsText(items) {
   L.push('ck3xbl_create_item_effect = {');
   items.forEach((it, i) => {
     L.push(`\t${i === 0 ? 'if' : 'else_if'} = {`, `\t\tlimit = { scope:ck3xbl_pick = ${it.idx} }`, '\t\tcreate_artifact = {',
-      `\t\t\tname = ${loc(it)}`, `\t\t\tdescription = ${loc(it)}_desc`, `\t\t\ttype = ck3xbl_${it.kind}`, `\t\t\tvisuals = ck3xbl_${it.kind}`,
+      `\t\t\tname = ${loc(it)}`, `\t\t\tdescription = ${loc(it)}_desc`, `\t\t\ttype = ck3xbl_${it.kind}`, `\t\t\tvisuals = ${visualsOf(it)}`,
       `\t\t\tmodifier = ${mod(it)}`, `\t\t\tquality = ${it.rarity_value}`, `\t\t\twealth = ${it.rarity_value}`,
       '\t\t\tsave_scope_as = newly_created_artifact', '\t\t}', '\t}');
   });

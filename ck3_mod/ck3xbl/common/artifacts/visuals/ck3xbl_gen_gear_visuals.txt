@@ -4,6 +4,7 @@
 
 # Icons of the gear kinds: gfx/interface/icons/artifact/ck3xbl_<kind>.dds, rendered by tools/gen/equipment/make_icons.mjs
 # from game-icons.net (CC BY 3.0, authors in tools/gen/equipment/icons/SOURCES.md and the mod's CREDITS.md).
+# Each item's own icon: ck3xbl_item_<idx>.dds, Bannerlord's thumbnail of exactly that item (tools/gen/equipment/item_icons.mjs).
 # asset: a base-game model for the artifact window (GEAR_ASSETS in tools/gen/equipment/equipment.mjs).
 ck3xbl_sword = {
 	icon = "ck3xbl_sword.dds"
@@ -107,6 +108,1736 @@ ck3xbl_horse = {
 }
 ck3xbl_camel = {
 	icon = "ck3xbl_camel.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_camel
+}
+ck3xbl_item_1 = {
+	icon = "ck3xbl_item_1.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_2 = {
+	icon = "ck3xbl_item_2.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_3 = {
+	icon = "ck3xbl_item_3.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_4 = {
+	icon = "ck3xbl_item_4.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_5 = {
+	icon = "ck3xbl_item_5.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_6 = {
+	icon = "ck3xbl_item_6.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_7 = {
+	icon = "ck3xbl_item_7.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_8 = {
+	icon = "ck3xbl_item_8.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_9 = {
+	icon = "ck3xbl_item_9.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_10 = {
+	icon = "ck3xbl_item_10.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_11 = {
+	icon = "ck3xbl_item_11.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_12 = {
+	icon = "ck3xbl_item_12.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_13 = {
+	icon = "ck3xbl_item_13.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_14 = {
+	icon = "ck3xbl_item_14.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_15 = {
+	icon = "ck3xbl_item_15.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_16 = {
+	icon = "ck3xbl_item_16.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_17 = {
+	icon = "ck3xbl_item_17.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_18 = {
+	icon = "ck3xbl_item_18.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_19 = {
+	icon = "ck3xbl_item_19.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_20 = {
+	icon = "ck3xbl_item_20.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_21 = {
+	icon = "ck3xbl_item_21.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_22 = {
+	icon = "ck3xbl_item_22.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_23 = {
+	icon = "ck3xbl_item_23.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_24 = {
+	icon = "ck3xbl_item_24.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_sword
+}
+ck3xbl_item_25 = {
+	icon = "ck3xbl_item_25.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_26 = {
+	icon = "ck3xbl_item_26.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_27 = {
+	icon = "ck3xbl_item_27.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_28 = {
+	icon = "ck3xbl_item_28.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_29 = {
+	icon = "ck3xbl_item_29.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_30 = {
+	icon = "ck3xbl_item_30.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_31 = {
+	icon = "ck3xbl_item_31.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_32 = {
+	icon = "ck3xbl_item_32.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_33 = {
+	icon = "ck3xbl_item_33.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_34 = {
+	icon = "ck3xbl_item_34.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_35 = {
+	icon = "ck3xbl_item_35.dds"
+	asset = ep1_western_sword_01_a_entity
+	default_type = ck3xbl_greatsword
+}
+ck3xbl_item_36 = {
+	icon = "ck3xbl_item_36.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_37 = {
+	icon = "ck3xbl_item_37.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_38 = {
+	icon = "ck3xbl_item_38.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_39 = {
+	icon = "ck3xbl_item_39.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_40 = {
+	icon = "ck3xbl_item_40.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_41 = {
+	icon = "ck3xbl_item_41.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_42 = {
+	icon = "ck3xbl_item_42.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_43 = {
+	icon = "ck3xbl_item_43.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_44 = {
+	icon = "ck3xbl_item_44.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_45 = {
+	icon = "ck3xbl_item_45.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_46 = {
+	icon = "ck3xbl_item_46.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_47 = {
+	icon = "ck3xbl_item_47.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_48 = {
+	icon = "ck3xbl_item_48.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_axe
+}
+ck3xbl_item_49 = {
+	icon = "ck3xbl_item_49.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_greataxe
+}
+ck3xbl_item_50 = {
+	icon = "ck3xbl_item_50.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_greataxe
+}
+ck3xbl_item_51 = {
+	icon = "ck3xbl_item_51.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_greataxe
+}
+ck3xbl_item_52 = {
+	icon = "ck3xbl_item_52.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_greataxe
+}
+ck3xbl_item_53 = {
+	icon = "ck3xbl_item_53.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_greataxe
+}
+ck3xbl_item_54 = {
+	icon = "ck3xbl_item_54.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_greataxe
+}
+ck3xbl_item_55 = {
+	icon = "ck3xbl_item_55.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_greataxe
+}
+ck3xbl_item_56 = {
+	icon = "ck3xbl_item_56.dds"
+	asset = ep1_western_axe_01_a_entity
+	default_type = ck3xbl_greataxe
+}
+ck3xbl_item_57 = {
+	icon = "ck3xbl_item_57.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_58 = {
+	icon = "ck3xbl_item_58.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_59 = {
+	icon = "ck3xbl_item_59.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_60 = {
+	icon = "ck3xbl_item_60.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_61 = {
+	icon = "ck3xbl_item_61.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_62 = {
+	icon = "ck3xbl_item_62.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_63 = {
+	icon = "ck3xbl_item_63.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_64 = {
+	icon = "ck3xbl_item_64.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_65 = {
+	icon = "ck3xbl_item_65.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_66 = {
+	icon = "ck3xbl_item_66.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_67 = {
+	icon = "ck3xbl_item_67.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_68 = {
+	icon = "ck3xbl_item_68.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_69 = {
+	icon = "ck3xbl_item_69.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_70 = {
+	icon = "ck3xbl_item_70.dds"
+	asset = ep1_western_mace_01_a_entity
+	default_type = ck3xbl_mace
+}
+ck3xbl_item_71 = {
+	icon = "ck3xbl_item_71.dds"
+	asset = ep1_western_hammer_01_a_entity
+	default_type = ck3xbl_greatmace
+}
+ck3xbl_item_72 = {
+	icon = "ck3xbl_item_72.dds"
+	asset = ep1_western_hammer_01_a_entity
+	default_type = ck3xbl_greatmace
+}
+ck3xbl_item_73 = {
+	icon = "ck3xbl_item_73.dds"
+	asset = ep1_western_hammer_01_a_entity
+	default_type = ck3xbl_greatmace
+}
+ck3xbl_item_74 = {
+	icon = "ck3xbl_item_74.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_75 = {
+	icon = "ck3xbl_item_75.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_76 = {
+	icon = "ck3xbl_item_76.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_77 = {
+	icon = "ck3xbl_item_77.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_78 = {
+	icon = "ck3xbl_item_78.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_79 = {
+	icon = "ck3xbl_item_79.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_80 = {
+	icon = "ck3xbl_item_80.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_81 = {
+	icon = "ck3xbl_item_81.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_82 = {
+	icon = "ck3xbl_item_82.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_83 = {
+	icon = "ck3xbl_item_83.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_84 = {
+	icon = "ck3xbl_item_84.dds"
+	asset = ep2_long_bow_01_a_portrait_entity
+	default_type = ck3xbl_bow
+}
+ck3xbl_item_85 = {
+	icon = "ck3xbl_item_85.dds"
+	asset = ep2_crossbow_01_entity
+	default_type = ck3xbl_crossbow
+}
+ck3xbl_item_86 = {
+	icon = "ck3xbl_item_86.dds"
+	asset = ep2_crossbow_01_entity
+	default_type = ck3xbl_crossbow
+}
+ck3xbl_item_87 = {
+	icon = "ck3xbl_item_87.dds"
+	asset = ep2_crossbow_01_entity
+	default_type = ck3xbl_crossbow
+}
+ck3xbl_item_88 = {
+	icon = "ck3xbl_item_88.dds"
+	asset = ep2_crossbow_01_entity
+	default_type = ck3xbl_crossbow
+}
+ck3xbl_item_89 = {
+	icon = "ck3xbl_item_89.dds"
+	asset = ep2_crossbow_01_entity
+	default_type = ck3xbl_crossbow
+}
+ck3xbl_item_90 = {
+	icon = "ck3xbl_item_90.dds"
+	asset = ep2_crossbow_01_entity
+	default_type = ck3xbl_crossbow
+}
+ck3xbl_item_91 = {
+	icon = "ck3xbl_item_91.dds"
+	asset = ep2_crossbow_01_entity
+	default_type = ck3xbl_crossbow
+}
+ck3xbl_item_92 = {
+	icon = "ck3xbl_item_92.dds"
+	asset = ep2_crossbow_01_entity
+	default_type = ck3xbl_crossbow
+}
+ck3xbl_item_93 = {
+	icon = "ck3xbl_item_93.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_94 = {
+	icon = "ck3xbl_item_94.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_95 = {
+	icon = "ck3xbl_item_95.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_96 = {
+	icon = "ck3xbl_item_96.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_97 = {
+	icon = "ck3xbl_item_97.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_98 = {
+	icon = "ck3xbl_item_98.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_99 = {
+	icon = "ck3xbl_item_99.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_100 = {
+	icon = "ck3xbl_item_100.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_101 = {
+	icon = "ck3xbl_item_101.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_102 = {
+	icon = "ck3xbl_item_102.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_103 = {
+	icon = "ck3xbl_item_103.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_104 = {
+	icon = "ck3xbl_item_104.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_105 = {
+	icon = "ck3xbl_item_105.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_106 = {
+	icon = "ck3xbl_item_106.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_107 = {
+	icon = "ck3xbl_item_107.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_108 = {
+	icon = "ck3xbl_item_108.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_109 = {
+	icon = "ck3xbl_item_109.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_110 = {
+	icon = "ck3xbl_item_110.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_111 = {
+	icon = "ck3xbl_item_111.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_112 = {
+	icon = "ck3xbl_item_112.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_113 = {
+	icon = "ck3xbl_item_113.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_114 = {
+	icon = "ck3xbl_item_114.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_shield
+}
+ck3xbl_item_115 = {
+	icon = "ck3xbl_item_115.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_116 = {
+	icon = "ck3xbl_item_116.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_117 = {
+	icon = "ck3xbl_item_117.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_118 = {
+	icon = "ck3xbl_item_118.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_119 = {
+	icon = "ck3xbl_item_119.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_120 = {
+	icon = "ck3xbl_item_120.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_121 = {
+	icon = "ck3xbl_item_121.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_122 = {
+	icon = "ck3xbl_item_122.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_123 = {
+	icon = "ck3xbl_item_123.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_124 = {
+	icon = "ck3xbl_item_124.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_125 = {
+	icon = "ck3xbl_item_125.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_lance
+}
+ck3xbl_item_126 = {
+	icon = "ck3xbl_item_126.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_127 = {
+	icon = "ck3xbl_item_127.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_128 = {
+	icon = "ck3xbl_item_128.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_129 = {
+	icon = "ck3xbl_item_129.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_130 = {
+	icon = "ck3xbl_item_130.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_131 = {
+	icon = "ck3xbl_item_131.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_132 = {
+	icon = "ck3xbl_item_132.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_133 = {
+	icon = "ck3xbl_item_133.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_134 = {
+	icon = "ck3xbl_item_134.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_135 = {
+	icon = "ck3xbl_item_135.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_136 = {
+	icon = "ck3xbl_item_136.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_137 = {
+	icon = "ck3xbl_item_137.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_138 = {
+	icon = "ck3xbl_item_138.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_139 = {
+	icon = "ck3xbl_item_139.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_140 = {
+	icon = "ck3xbl_item_140.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_141 = {
+	icon = "ck3xbl_item_141.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_142 = {
+	icon = "ck3xbl_item_142.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_143 = {
+	icon = "ck3xbl_item_143.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_144 = {
+	icon = "ck3xbl_item_144.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_polearm
+}
+ck3xbl_item_145 = {
+	icon = "ck3xbl_item_145.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_146 = {
+	icon = "ck3xbl_item_146.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_147 = {
+	icon = "ck3xbl_item_147.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_148 = {
+	icon = "ck3xbl_item_148.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_149 = {
+	icon = "ck3xbl_item_149.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_150 = {
+	icon = "ck3xbl_item_150.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_151 = {
+	icon = "ck3xbl_item_151.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_152 = {
+	icon = "ck3xbl_item_152.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_153 = {
+	icon = "ck3xbl_item_153.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_154 = {
+	icon = "ck3xbl_item_154.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_155 = {
+	icon = "ck3xbl_item_155.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_156 = {
+	icon = "ck3xbl_item_156.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_157 = {
+	icon = "ck3xbl_item_157.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_158 = {
+	icon = "ck3xbl_item_158.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_159 = {
+	icon = "ck3xbl_item_159.dds"
+	asset = ep1_western_spear_01_a_entity
+	default_type = ck3xbl_thrown
+}
+ck3xbl_item_160 = {
+	icon = "ck3xbl_item_160.dds"
+	asset = ep1_western_dagger_01_a_entity
+	default_type = ck3xbl_dagger
+}
+ck3xbl_item_161 = {
+	icon = "ck3xbl_item_161.dds"
+	asset = ep1_western_dagger_01_a_entity
+	default_type = ck3xbl_dagger
+}
+ck3xbl_item_162 = {
+	icon = "ck3xbl_item_162.dds"
+	asset = ep1_western_dagger_01_a_entity
+	default_type = ck3xbl_dagger
+}
+ck3xbl_item_163 = {
+	icon = "ck3xbl_item_163.dds"
+	asset = ep1_western_dagger_01_a_entity
+	default_type = ck3xbl_dagger
+}
+ck3xbl_item_164 = {
+	icon = "ck3xbl_item_164.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_165 = {
+	icon = "ck3xbl_item_165.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_166 = {
+	icon = "ck3xbl_item_166.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_167 = {
+	icon = "ck3xbl_item_167.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_168 = {
+	icon = "ck3xbl_item_168.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_169 = {
+	icon = "ck3xbl_item_169.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_170 = {
+	icon = "ck3xbl_item_170.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_171 = {
+	icon = "ck3xbl_item_171.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_172 = {
+	icon = "ck3xbl_item_172.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_173 = {
+	icon = "ck3xbl_item_173.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_174 = {
+	icon = "ck3xbl_item_174.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_175 = {
+	icon = "ck3xbl_item_175.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_176 = {
+	icon = "ck3xbl_item_176.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_177 = {
+	icon = "ck3xbl_item_177.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_178 = {
+	icon = "ck3xbl_item_178.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_179 = {
+	icon = "ck3xbl_item_179.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_180 = {
+	icon = "ck3xbl_item_180.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_181 = {
+	icon = "ck3xbl_item_181.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_182 = {
+	icon = "ck3xbl_item_182.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_183 = {
+	icon = "ck3xbl_item_183.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_184 = {
+	icon = "ck3xbl_item_184.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_185 = {
+	icon = "ck3xbl_item_185.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_186 = {
+	icon = "ck3xbl_item_186.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_187 = {
+	icon = "ck3xbl_item_187.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_188 = {
+	icon = "ck3xbl_item_188.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_189 = {
+	icon = "ck3xbl_item_189.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_190 = {
+	icon = "ck3xbl_item_190.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_191 = {
+	icon = "ck3xbl_item_191.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_192 = {
+	icon = "ck3xbl_item_192.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_193 = {
+	icon = "ck3xbl_item_193.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_194 = {
+	icon = "ck3xbl_item_194.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_195 = {
+	icon = "ck3xbl_item_195.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_196 = {
+	icon = "ck3xbl_item_196.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_197 = {
+	icon = "ck3xbl_item_197.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_198 = {
+	icon = "ck3xbl_item_198.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_helmet
+}
+ck3xbl_item_199 = {
+	icon = "ck3xbl_item_199.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_200 = {
+	icon = "ck3xbl_item_200.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_201 = {
+	icon = "ck3xbl_item_201.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_202 = {
+	icon = "ck3xbl_item_202.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_203 = {
+	icon = "ck3xbl_item_203.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_204 = {
+	icon = "ck3xbl_item_204.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_205 = {
+	icon = "ck3xbl_item_205.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_206 = {
+	icon = "ck3xbl_item_206.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_207 = {
+	icon = "ck3xbl_item_207.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_208 = {
+	icon = "ck3xbl_item_208.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_209 = {
+	icon = "ck3xbl_item_209.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_210 = {
+	icon = "ck3xbl_item_210.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_211 = {
+	icon = "ck3xbl_item_211.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_212 = {
+	icon = "ck3xbl_item_212.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_213 = {
+	icon = "ck3xbl_item_213.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_214 = {
+	icon = "ck3xbl_item_214.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_215 = {
+	icon = "ck3xbl_item_215.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_216 = {
+	icon = "ck3xbl_item_216.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_217 = {
+	icon = "ck3xbl_item_217.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_218 = {
+	icon = "ck3xbl_item_218.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_219 = {
+	icon = "ck3xbl_item_219.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_220 = {
+	icon = "ck3xbl_item_220.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_221 = {
+	icon = "ck3xbl_item_221.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_222 = {
+	icon = "ck3xbl_item_222.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_223 = {
+	icon = "ck3xbl_item_223.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_224 = {
+	icon = "ck3xbl_item_224.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_225 = {
+	icon = "ck3xbl_item_225.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_226 = {
+	icon = "ck3xbl_item_226.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_227 = {
+	icon = "ck3xbl_item_227.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_228 = {
+	icon = "ck3xbl_item_228.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_229 = {
+	icon = "ck3xbl_item_229.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_230 = {
+	icon = "ck3xbl_item_230.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_231 = {
+	icon = "ck3xbl_item_231.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_232 = {
+	icon = "ck3xbl_item_232.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_233 = {
+	icon = "ck3xbl_item_233.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_234 = {
+	icon = "ck3xbl_item_234.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_235 = {
+	icon = "ck3xbl_item_235.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_236 = {
+	icon = "ck3xbl_item_236.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_237 = {
+	icon = "ck3xbl_item_237.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_238 = {
+	icon = "ck3xbl_item_238.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_239 = {
+	icon = "ck3xbl_item_239.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_240 = {
+	icon = "ck3xbl_item_240.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_241 = {
+	icon = "ck3xbl_item_241.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_242 = {
+	icon = "ck3xbl_item_242.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_243 = {
+	icon = "ck3xbl_item_243.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_244 = {
+	icon = "ck3xbl_item_244.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_245 = {
+	icon = "ck3xbl_item_245.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_246 = {
+	icon = "ck3xbl_item_246.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_247 = {
+	icon = "ck3xbl_item_247.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_248 = {
+	icon = "ck3xbl_item_248.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_249 = {
+	icon = "ck3xbl_item_249.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_250 = {
+	icon = "ck3xbl_item_250.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_251 = {
+	icon = "ck3xbl_item_251.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_252 = {
+	icon = "ck3xbl_item_252.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_253 = {
+	icon = "ck3xbl_item_253.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_254 = {
+	icon = "ck3xbl_item_254.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_255 = {
+	icon = "ck3xbl_item_255.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_256 = {
+	icon = "ck3xbl_item_256.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_257 = {
+	icon = "ck3xbl_item_257.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_258 = {
+	icon = "ck3xbl_item_258.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_259 = {
+	icon = "ck3xbl_item_259.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_260 = {
+	icon = "ck3xbl_item_260.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_261 = {
+	icon = "ck3xbl_item_261.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_262 = {
+	icon = "ck3xbl_item_262.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_263 = {
+	icon = "ck3xbl_item_263.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_264 = {
+	icon = "ck3xbl_item_264.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_265 = {
+	icon = "ck3xbl_item_265.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_266 = {
+	icon = "ck3xbl_item_266.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_267 = {
+	icon = "ck3xbl_item_267.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_268 = {
+	icon = "ck3xbl_item_268.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_269 = {
+	icon = "ck3xbl_item_269.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_270 = {
+	icon = "ck3xbl_item_270.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_armour
+}
+ck3xbl_item_271 = {
+	icon = "ck3xbl_item_271.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_272 = {
+	icon = "ck3xbl_item_272.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_273 = {
+	icon = "ck3xbl_item_273.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_274 = {
+	icon = "ck3xbl_item_274.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_275 = {
+	icon = "ck3xbl_item_275.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_276 = {
+	icon = "ck3xbl_item_276.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_277 = {
+	icon = "ck3xbl_item_277.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_278 = {
+	icon = "ck3xbl_item_278.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_279 = {
+	icon = "ck3xbl_item_279.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_280 = {
+	icon = "ck3xbl_item_280.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_281 = {
+	icon = "ck3xbl_item_281.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_282 = {
+	icon = "ck3xbl_item_282.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_283 = {
+	icon = "ck3xbl_item_283.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_284 = {
+	icon = "ck3xbl_item_284.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_285 = {
+	icon = "ck3xbl_item_285.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_286 = {
+	icon = "ck3xbl_item_286.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_gloves
+}
+ck3xbl_item_287 = {
+	icon = "ck3xbl_item_287.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_288 = {
+	icon = "ck3xbl_item_288.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_289 = {
+	icon = "ck3xbl_item_289.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_290 = {
+	icon = "ck3xbl_item_290.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_291 = {
+	icon = "ck3xbl_item_291.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_292 = {
+	icon = "ck3xbl_item_292.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_293 = {
+	icon = "ck3xbl_item_293.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_294 = {
+	icon = "ck3xbl_item_294.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_295 = {
+	icon = "ck3xbl_item_295.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_296 = {
+	icon = "ck3xbl_item_296.dds"
+	asset = ep1_western_shield_01_a_entity
+	default_type = ck3xbl_boots
+}
+ck3xbl_item_297 = {
+	icon = "ck3xbl_item_297.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_298 = {
+	icon = "ck3xbl_item_298.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_299 = {
+	icon = "ck3xbl_item_299.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_300 = {
+	icon = "ck3xbl_item_300.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_301 = {
+	icon = "ck3xbl_item_301.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_302 = {
+	icon = "ck3xbl_item_302.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_303 = {
+	icon = "ck3xbl_item_303.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_304 = {
+	icon = "ck3xbl_item_304.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_305 = {
+	icon = "ck3xbl_item_305.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_306 = {
+	icon = "ck3xbl_item_306.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_307 = {
+	icon = "ck3xbl_item_307.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_308 = {
+	icon = "ck3xbl_item_308.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_309 = {
+	icon = "ck3xbl_item_309.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_310 = {
+	icon = "ck3xbl_item_310.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_311 = {
+	icon = "ck3xbl_item_311.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_312 = {
+	icon = "ck3xbl_item_312.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_313 = {
+	icon = "ck3xbl_item_313.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_314 = {
+	icon = "ck3xbl_item_314.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_315 = {
+	icon = "ck3xbl_item_315.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_316 = {
+	icon = "ck3xbl_item_316.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_317 = {
+	icon = "ck3xbl_item_317.dds"
+	asset = ep1_generic_animal_hide_small_01_a_entity
+	default_type = ck3xbl_cloak
+}
+ck3xbl_item_318 = {
+	icon = "ck3xbl_item_318.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_319 = {
+	icon = "ck3xbl_item_319.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_320 = {
+	icon = "ck3xbl_item_320.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_321 = {
+	icon = "ck3xbl_item_321.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_322 = {
+	icon = "ck3xbl_item_322.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_323 = {
+	icon = "ck3xbl_item_323.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_324 = {
+	icon = "ck3xbl_item_324.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_325 = {
+	icon = "ck3xbl_item_325.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_326 = {
+	icon = "ck3xbl_item_326.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_327 = {
+	icon = "ck3xbl_item_327.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_328 = {
+	icon = "ck3xbl_item_328.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_329 = {
+	icon = "ck3xbl_item_329.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_330 = {
+	icon = "ck3xbl_item_330.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_331 = {
+	icon = "ck3xbl_item_331.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_332 = {
+	icon = "ck3xbl_item_332.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_333 = {
+	icon = "ck3xbl_item_333.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_334 = {
+	icon = "ck3xbl_item_334.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_335 = {
+	icon = "ck3xbl_item_335.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_336 = {
+	icon = "ck3xbl_item_336.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_337 = {
+	icon = "ck3xbl_item_337.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_338 = {
+	icon = "ck3xbl_item_338.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_339 = {
+	icon = "ck3xbl_item_339.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_340 = {
+	icon = "ck3xbl_item_340.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_341 = {
+	icon = "ck3xbl_item_341.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_342 = {
+	icon = "ck3xbl_item_342.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_horse
+}
+ck3xbl_item_343 = {
+	icon = "ck3xbl_item_343.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_camel
+}
+ck3xbl_item_344 = {
+	icon = "ck3xbl_item_344.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_camel
+}
+ck3xbl_item_345 = {
+	icon = "ck3xbl_item_345.dds"
+	asset = ep1_generic_trophy_horse_01_a_entity
+	default_type = ck3xbl_camel
+}
+ck3xbl_item_346 = {
+	icon = "ck3xbl_item_346.dds"
 	asset = ep1_generic_trophy_horse_01_a_entity
 	default_type = ck3xbl_camel
 }

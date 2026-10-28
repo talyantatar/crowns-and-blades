@@ -23,6 +23,8 @@ namespace CK3Bridge
         private readonly StatusReporter _status = new StatusReporter();
         private readonly Stopwatch _clock = Stopwatch.StartNew();
         private double _lastTick;
+        /// <summary>A running "thumbnails" job (CK3Thumbnails), ticked while no battle runs.</summary>
+        private CK3Thumbnails _thumbnails;
         private double _nextPoll;
         private double _transientUntil = -1.0;
         private double _lastGameStart = double.NegativeInfinity;
@@ -90,6 +92,11 @@ namespace CK3Bridge
                 }
                 else if (session == null && active is CK3IdleState)
                 {
+                    if (_thumbnails != null)
+                    {
+                        _thumbnails.Tick();
+                        if (_thumbnails.Done) _thumbnails = null;
+                    }
                     _gameStartAttempts = 0;
                     if (now >= _transientUntil) _status.Set("idle", null);
                     if (pollDue) TryStartBattle();
@@ -219,6 +226,10 @@ namespace CK3Bridge
                     break;
                 case BridgeCommandKind.TitleInEngine:
                     ShowTitleInEngine(session);
+                    break;
+                case BridgeCommandKind.Thumbnails:
+                    if (session == null) _thumbnails = CK3Thumbnails.Start();
+                    else BridgeIo.Log("thumbnails: not during a battle");
                     break;
                 default:
                     BridgeIo.Log("unknown command ignored");

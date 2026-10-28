@@ -1739,7 +1739,7 @@ function genInventoryGui(d) {
 const GEAR_OUTPUTS = [
   ['common/artifacts/slots/ck3xbl_gen_gear_slots.txt', gearScript('Battle gear inventory slots (PROTOCOL 16.1).', () => EQUIP.slotsText())],
   ['common/artifacts/types/ck3xbl_gen_gear_types.txt', gearScript('Battle gear artifact types (PROTOCOL 16.1).', () => EQUIP.typesText())],
-  ['common/artifacts/visuals/ck3xbl_gen_gear_visuals.txt', gearScript('Battle gear icons (PROTOCOL 16.1).', () => EQUIP.visualsText())],
+  ['common/artifacts/visuals/ck3xbl_gen_gear_visuals.txt', gearScript('Battle gear icons (PROTOCOL 16.1).', (d) => EQUIP.visualsText(d.gear.items))],
   ['common/modifiers/ck3xbl_gen_gear_modifiers.txt', gearScript('Battle gear stats, one modifier per item (PROTOCOL 16.3).', (d) => EQUIP.modifiersText(d.gear.items))],
   ['common/scripted_triggers/ck3xbl_gen_gear_triggers.txt', gearScript('Bannerlord culture of a character for the armory.', (d) => EQUIP.triggersText(d.mapping))],
   ['common/script_values/ck3xbl_gen_gear_values.txt', gearScript('Armory price factor by era (PROTOCOL 16.4).', () => EQUIP.valuesText())],

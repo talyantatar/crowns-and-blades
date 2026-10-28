@@ -5,6 +5,17 @@ versions follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed after 0.9.2-beta
+
+- **Battle gear rework.** Three CK3 weapon slots; Bannerlord's fourth is kept for a bow's or crossbow's ammunition. Artifact
+  prowess is a token (+5 at most). Every artifact carries a Bannerlord quality by its CK3 rarity (fine, masterwork, legendary).
+- **Item icons.** Every battle gear artifact shows Bannerlord's own picture of its item in CK3 (rendered by the module's
+  `thumbnails` command, `tools/gen/equipment/item_icons.mjs`).
+- **Sieges:** a ram and a tower from the first day; elephants storm on foot. **Elephants** carry heavy lancers or mounted archers
+  and walk faster. **Archery contest:** archers face the pots, the rival shoots too. **Cleave** works on thrusts.
+- **CK3 in the background** (lower priority, efficiency mode) while Bannerlord fights. **Dev mode** applies duels, skirmishes,
+  sieges and sea battles through their own events; a siege crash with mangonels is fixed.
+
 ### Changed in 0.9.2-beta (2026-10-28)
 
 - **Soft start.** The Crowns & Blades shortcut also starts CK3 (setting `ck3.launchOnStart`), and Bannerlord loads in the background
