@@ -185,3 +185,5 @@
  ck3xbl_sea.won.desc:0 "The enemy ships are taken or sunk."
  ck3xbl_sea.lost:0 "Defeat at Sea"
  ck3xbl_sea.lost.desc:0 "Our ships are beaten, and many of the men who jumped overboard never reached the shore."
+ ck3xbl_warhorse_name:0 "[ck3xbl_horse_owner.Custom('WarhorseStoryName')]"
+ ck3xbl_warhorse_desc:0 "A warhorse raised and trained by [ck3xbl_horse_owner.GetTitledFirstName]. It carries its master into battle in Bannerlord."

@@ -201,19 +201,45 @@ internal static partial class MappingTests
         Expect.True(odo.Aura is not null, "an acclaimed archer leads the shooters");
         var a = odo.Aura!;
         Expect.Equal("Ranged", a.Formation);
-        Expect.Near(1 + 3 * KnightBuffPlanner.AuraPerRank, a.RangedDamageMult, 1e-6, "rank 3: +7.5 % to arrows");
-        Expect.Near(1 - 3 * KnightBuffPlanner.AuraPerRank, a.RangedInaccuracyMult, 1e-6, "and straighter shots");
-        Expect.Near(1, a.MeleeDamageMult, 1e-6, "no melee factor for archers");
-        Expect.Near(6, a.InitialMoraleAdd, 1e-6);
+        Expect.Near(1 + CaptainAura.AccoladeStrength(3), a.BowMult, 1e-6, "rank 3: +9 % to bows");
+        Expect.True(a.RangedInaccuracyMult <= 1 - CaptainAura.AccoladeStrength(3) + 1e-6, "and straighter shots");
+        Expect.True(a.InitialMoraleAdd >= 6, "his accolade steadies them");
         Expect.True(a.MoraleLoss >= 5, "his fall shakes the formation");
-        Expect.True(req.Attacker.Heroes.Concat(req.Defender.Heroes).Where(h => h.Tag != 2).All(h => h.Aura is null), "knights without an accolade lead nobody");
+        Expect.True(req.Attacker.Heroes.Concat(req.Defender.Heroes).Where(h => h.Tag != 2 && h.Aura is not null).All(h => h.Aura!.BowMult == 1 || h.Aura!.Formation != null),
+            "every captain has an aura of his own");
 
         Character(battle, 2).Accolade = new AccoladeSnapshot { Active = true, Rank = 6, Primary = "lancer_attribute", Levels = { ["lancer_attribute"] = 3, ["archer_attribute"] = 3 } };
         var lancer = Mapper.BuildRequest(battle, new MapperOptions()).Attacker.Heroes.Single(h => h.Tag == 2).Aura!;
         Expect.Equal("Cavalry", lancer.Formation, "the primary attribute decides");
-        Expect.Near(1 + 1.5 * 6 * KnightBuffPlanner.AuraPerRank, lancer.ChargeDamageMult, 1e-6, "rank 6 lancer: +22.5 % charge");
+        Expect.True(lancer.ChargeDamageMult >= 1.249f, "rank 6 heavy horse: +25 % charge");
         Expect.Equal("HorseArcher", KnightBuffPlanner.AuraFormation("archer_cavalry"));
         Expect.Null(KnightBuffPlanner.AuraFormation("siege_weapon"));
+    }
+
+    /// <summary>PROTOCOL §49: skills, traits and accolade each give a captain's formation something of their own, capped at 25 %.</summary>
+    private static void CaptainAuraSources()
+    {
+        var c = new CharacterSnapshot { Prowess = 20, Stewardship = 10, Diplomacy = 50, Intrigue = 10 };
+        c.TraitLevels["lifestyle_blademaster"] = 2;
+        c.CommanderTraits.Add("unyielding_defender");
+        c.CommanderTraits.Add("flexible_leader");
+        var a = CaptainAura.For(c, "Infantry", "heavy_infantry", 6)!;
+        Expect.Near(1.04, a.MeleeDamageMult, 1e-6, "prowess 20: +4 % melee");
+        Expect.Near(1.05, a.HealthMult, 1e-6, "stewardship 10: +5 % health");
+        Expect.Near(0.75, a.MoraleLossMult, 1e-6, "diplomacy 50: capped at -25 % morale loss");
+        Expect.Near(0.95, a.RangedInaccuracyMult, 1e-6, "intrigue 10: straighter shots");
+        Expect.Near(1.19, a.OneHandedMult, 1e-6, "blademaster 2 (+4 %) and heavy infantry rank 6 (+15 %)");
+        Expect.Near(0.75, a.ShieldDamageTakenMult, 1e-6, "unyielding defender and the accolade: shields capped at -25 %");
+        Expect.Near(1.08, a.FlankDamageMult, 1e-6, "flexible leader: flank hits");
+        Expect.Near(5 + 12, a.InitialMoraleAdd, 1e-6, "unyielding defender +5, rank 6 +12");
+        Expect.Near(1, a.SpeedMult, 1e-6, "no speed for this one");
+
+        var rider = new CharacterSnapshot();
+        rider.TraitLevels["tourney_participant:horse"] = 2;
+        var r = CaptainAura.For(rider, "Cavalry", null, 0)!;
+        Expect.Near(1.05, r.ChargeDamageMult, 1e-6);
+        Expect.Near(1.03, r.SpeedMult, 1e-6, "a tourney horseman's horses run faster");
+        Expect.Null(CaptainAura.For(new CharacterSnapshot(), "Infantry", null, 0), "nothing to give: no aura");
     }
 
     private static void ElephantsRide()
@@ -287,6 +313,23 @@ internal static partial class MappingTests
         var ashore = Mapper.BuildOutcome(battle, landing, Synthetic(landing, "attacker"), new MapperOptions { Naval = true });
         Expect.Equal(onLand.MyLost, ashore.MyLost, "nobody drowns ashore");
         Expect.True(NavalPlanner.Fleet("nord", 5000, true).Count <= NavalPlanner.RaidMaxShips, "a landing: three ships at most");
+
+        // Live b10_6394: 18310 against 6740 landed as 96 against 270. The crews' limit now shrinks both sides by the same share.
+        var big = new BattleRequest
+        {
+            Scale = new ScaleInfo { MenPerAgent = 20 },
+            Attacker = new SideRequest { Troops = { new TroopRequest { Id = "a", Count = 600, Group = "levy#1" }, new TroopRequest { Id = "b", Count = 130, Group = "maa:x#1#2" } } },
+            Defender = new SideRequest { Troops = { new TroopRequest { Id = "c", Count = 270, Group = "levy#2" } } },
+        };
+        CK3xBL.Mapping.BattleMapper.FitLanding(big, 96);
+        int att = big.Attacker.Troops.Sum(t => t.Count), defn = big.Defender.Troops.Sum(t => t.Count);
+        Expect.Equal(96, att, "the attackers fill the three crews");
+        Expect.True(Math.Abs(att / (double)defn - 730 / 270.0) < 0.15, $"the odds stay ({att} against {defn})");
+        Expect.True(big.Attacker.Troops.All(t => t.Count >= 1), "every group still lands");
+        Expect.Near(20 * 730 / 96.0, big.Scale.MenPerAgent, 0.05, "each man stands for more soldiers");
+        var small = new BattleRequest { Attacker = new SideRequest { Troops = { new TroopRequest { Id = "a", Count = 50 } } }, Defender = new SideRequest { Troops = { new TroopRequest { Id = "c", Count = 80 } } } };
+        CK3xBL.Mapping.BattleMapper.FitLanding(small, 96);
+        Expect.Equal(80, small.Defender.Troops[0].Count, "a landing that fits stays as it is");
 
         battle.IsSiege = true;
         Expect.True(Mapper.BuildRequest(battle, new MapperOptions { Naval = true }).Kind != "naval", "a siege stays a siege");

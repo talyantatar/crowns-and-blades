@@ -1,0 +1,125 @@
+﻿# The warhorse of CK3's warfare lifestyle as a battle gear horse (PROTOCOL 50, the user's choice of 2026-10-28): a character with a
+# named warhorse (story_cycle_martial_lifestyle_warhorse) owns a horse artifact bearing its name, famed (blue) at first and
+# illustrious (purple) once the horse has grown (vanilla level_horse_modifier_effect trades horse_story_modifier for a trained one), with a
+# better Bannerlord mount. When the story ends (the horse dies or is lost) the artifact goes too. Checked every quarter
+# (ck3xbl_quarterly_warhorse_pulse) for playable characters and their knights.
+# The Bannerlord mount is the battle gear item whose modifier the artifact carries (ck3xbl_emit_cx_gear_effect): a noble destrier of
+# the owner's Bannerlord culture, a legendary one once purple.
+
+# this = a character.
+ck3xbl_warhorse_check_effect = {
+	if = {
+		limit = {
+			any_owned_story = {
+				type = story_cycle_martial_lifestyle_warhorse
+				has_variable = story_cycle_horse_name
+			}
+		}
+		save_scope_as = ck3xbl_horse_owner
+		if = {
+			# vanilla level_horse_modifier_effect swaps horse_story_modifier for a trained one when the horse grows.
+			limit = { NOT = { has_character_modifier = horse_story_modifier } }
+			save_scope_value_as = { name = ck3xbl_horse_grown value = 1 }
+		}
+		else = {
+			save_scope_value_as = { name = ck3xbl_horse_grown value = 0 }
+		}
+		if = {
+			limit = { ck3xbl_warhorse_owned_trigger = no }
+			ck3xbl_warhorse_create_effect = yes
+		}
+		else_if = {
+			limit = {
+				scope:ck3xbl_horse_grown = 1
+				var:ck3xbl_warhorse = { NOT = { has_variable = ck3xbl_warhorse_grown } }
+			}
+			# The horse has grown: the famed artifact gives way to an illustrious one.
+			destroy_artifact = var:ck3xbl_warhorse
+			remove_variable = ck3xbl_warhorse
+			ck3xbl_warhorse_create_effect = yes
+		}
+	}
+	else_if = {
+		limit = { exists = var:ck3xbl_warhorse }
+		# No warhorse any more: its artifact goes with it (only while it is still this character's).
+		if = {
+			limit = { ck3xbl_warhorse_owned_trigger = yes }
+			destroy_artifact = var:ck3xbl_warhorse
+		}
+		remove_variable = ck3xbl_warhorse
+	}
+}
+
+# this = the owner, scope:ck3xbl_horse_owner and scope:ck3xbl_horse_grown saved. Creates and equips the artifact and remembers it.
+ck3xbl_warhorse_create_effect = {
+	if = {
+		limit = { scope:ck3xbl_horse_grown = 1 }
+		if = {
+			limit = { ck3xbl_gear_culture_vlandia_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 342 QUALITY = 95 }
+		}
+		else_if = {
+			limit = { ck3xbl_gear_culture_empire_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 330 QUALITY = 95 }
+		}
+		else_if = {
+			limit = { ck3xbl_gear_culture_sturgia_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 338 QUALITY = 95 }
+		}
+		else_if = {
+			limit = { ck3xbl_gear_culture_khuzait_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 334 QUALITY = 95 }
+		}
+		else_if = {
+			limit = { ck3xbl_gear_culture_aserai_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 322 QUALITY = 95 }
+		}
+		else = {
+			ck3xbl_warhorse_make_effect = { ITEM = 326 QUALITY = 95 }
+		}
+		scope:newly_created_artifact = {
+			set_variable = { name = ck3xbl_warhorse_grown value = yes }
+		}
+	}
+	else = {
+		if = {
+			limit = { ck3xbl_gear_culture_vlandia_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 341 QUALITY = 70 }
+		}
+		else_if = {
+			limit = { ck3xbl_gear_culture_empire_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 329 QUALITY = 70 }
+		}
+		else_if = {
+			limit = { ck3xbl_gear_culture_sturgia_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 337 QUALITY = 70 }
+		}
+		else_if = {
+			limit = { ck3xbl_gear_culture_khuzait_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 333 QUALITY = 70 }
+		}
+		else_if = {
+			limit = { ck3xbl_gear_culture_aserai_trigger = yes }
+			ck3xbl_warhorse_make_effect = { ITEM = 321 QUALITY = 70 }
+		}
+		else = {
+			ck3xbl_warhorse_make_effect = { ITEM = 326 QUALITY = 70 }
+		}
+	}
+	set_variable = { name = ck3xbl_warhorse value = scope:newly_created_artifact }
+	scope:newly_created_artifact = { equip_artifact_to_owner = yes }
+}
+
+# this = the owner. Quality and wealth 70 make it famed (blue, 140), 95 illustrious (purple, 190): CK3's thresholds are 130 and 180.
+ck3xbl_warhorse_make_effect = {
+	create_artifact = {
+		name = ck3xbl_warhorse_name
+		description = ck3xbl_warhorse_desc
+		type = ck3xbl_horse
+		visuals = ck3xbl_horse
+		modifier = ck3xbl_item_$ITEM$_modifier
+		quality = $QUALITY$
+		wealth = $QUALITY$
+		save_scope_as = newly_created_artifact
+	}
+}

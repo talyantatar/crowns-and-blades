@@ -60,7 +60,8 @@ internal static partial class MappingTests
             Expect.Equal(1, req.Defender.Heroes.Count(h => h.IsPlayer));
             // Formation, kit and skills from his CK3 facts, as for any hero (prowess 14, martial 23, duke).
             Expect.True(h0.Formation.Length > 0 && h0.Equipment.Roster.Length > 0, h0.Equipment.Roster);
-            Expect.Equal(Math.Clamp(60 + 8 * 14, 60, 330), h0.Skills["OneHanded"]);
+            int band = Math.Clamp(60 + 8 * 14, 60, 330);
+            Expect.Equal(HeroPlanner.HeroSkills(new CharacterSnapshot(), h0.Formation, null, band, 0)["OneHanded"], h0.Skills["OneHanded"]);
             Expect.Equal(230, h0.Skills["Tactics"]);
             Expect.Equal("Robert de Hauteville", h0.Name);
             Expect.True(req.Presentation.Subtitle.StartsWith("Robert de Hauteville against Atuy Sipet · ", StringComparison.Ordinal), req.Presentation.Subtitle);

@@ -51,6 +51,25 @@ public class Words
 
     public virtual string When(string season, int year) => year > 0 ? $"{season} {year}" : season;
     public virtual string HostOf(string leader) => $"Host of {leader}";
+
+    // ---- soldiers' names in battle (a regiment shows its CK3 name) --------------------------------------------------------
+    /// <summary>A levy by Bannerlord formation (Infantry, Ranged, Cavalry, HorseArcher).</summary>
+    public virtual string LevyTroop(string formation) => formation switch
+    {
+        "Ranged" => "Levy archer",
+        "Cavalry" => "Levy rider",
+        "HorseArcher" => "Levy horse archer",
+        _ => "Levy spearman",
+    };
+
+    /// <summary>A knight's retainer by Bannerlord formation.</summary>
+    public virtual string RetinueTroop(string formation) => formation switch
+    {
+        "Ranged" => "Retainer archer",
+        "Cavalry" => "Mounted retainer",
+        "HorseArcher" => "Retainer horse archer",
+        _ => "Retainer",
+    };
     public virtual string AttackingHost => "Attacking host";
     public virtual string DefendingHost => "Defending host";
     public virtual string EnemyHost => "the enemy host";
@@ -189,6 +208,22 @@ public sealed class RussianWords : Words
 
     public override string When(string season, int year) => year > 0 ? $"{season} {year} г." : season;
     public override string HostOf(string leader) => $"Войско: {leader}";
+
+    public override string LevyTroop(string formation) => formation switch
+    {
+        "Ranged" => "Ополченец-лучник",
+        "Cavalry" => "Конный ополченец",
+        "HorseArcher" => "Конный лучник-ополченец",
+        _ => "Ополченец-копейщик",
+    };
+
+    public override string RetinueTroop(string formation) => formation switch
+    {
+        "Ranged" => "Дружинник-лучник",
+        "Cavalry" => "Конный дружинник",
+        "HorseArcher" => "Конный лучник-дружинник",
+        _ => "Дружинник",
+    };
     public override string AttackingHost => "Наступающее войско";
     public override string DefendingHost => "Обороняющееся войско";
     public override string EnemyHost => "вражеское войско";

@@ -250,6 +250,57 @@ public sealed class HeroPlanner
     /// <summary>Health-pool factor from CK3 prowess: 1 + P/25 to x3 at 50, then the same 0.04 per point to x5 at 100.</summary>
     public static double ProwessHealth(int prowess) => Math.Clamp(1 + Math.Max(0, prowess) / 25.0, 1, ProwessHealthMax);
 
+    /// <summary>The men-at-arms base type an acclaimed knight's primary attribute leads (heavy_infantry, archers...), or null.</summary>
+    private string? AccoladeBaseType(CharacterSnapshot c) =>
+        c.Accolade is { Rank: > 0, Primary: { } primary } && _t.Knights.Accolades.Types.GetValueOrDefault(primary)?.Bannerlord.Captain is
+            { Rule: "linked_maa", LinkedBaseType: { } baseType } ? baseType : null;
+
+    public const int OffSkill = 30, AccoladeSkillPerRank = 10;
+
+    /// <summary>
+    /// A hero's Bannerlord skills (2026-10-28: they were the same for every hero, one prowess value for all weapons). Prowess sets the
+    /// weapon band (<see cref="WeaponSkill"/>); the way he fights (his kit's formation) and his accolade's men-at-arms type raise their
+    /// weapons and riding, weapons he has no use for sit lower. Tactics follows martial, Leadership martial and diplomacy, and the
+    /// civil skills (Steward, Charm, Roguery) his other CK3 skills.
+    /// </summary>
+    public static Dictionary<string, int> HeroSkills(CharacterSnapshot c, string formation, string? accoladeBaseType, int weapon, int command)
+    {
+        var up = new Dictionary<string, int>(StringComparer.Ordinal);
+        void Add(string skill, int value) => up[skill] = up.GetValueOrDefault(skill) + value;
+        switch (formation)
+        {
+            case "Cavalry": Add("Riding", 40); Add("Polearm", 20); Add("OneHanded", 10); break;
+            case "HorseArcher": Add("Riding", 40); Add("Bow", 30); break;
+            case "Ranged": Add("Bow", 30); Add("Athletics", 10); break;
+            default: Add("Athletics", 30); Add("OneHanded", 20); Add("Polearm", 10); break;
+        }
+        int rank = Math.Clamp(c.Accolade?.Rank ?? 0, 0, 6);
+        int acc = AccoladeSkillPerRank * rank;
+        switch (accoladeBaseType)
+        {
+            case "heavy_infantry": Add("OneHanded", acc); Add("TwoHanded", acc / 2); Add("Athletics", acc / 2); break;
+            case "pikemen": Add("Polearm", acc); Add("Athletics", acc / 2); break;
+            case "archers": Add("Bow", acc); break;
+            case "skirmishers": Add("Throwing", acc); Add("Athletics", acc / 2); break;
+            case "light_cavalry" or "camel_cavalry" or "elephant_cavalry": Add("Riding", acc); Add("OneHanded", acc / 2); break;
+            case "heavy_cavalry": Add("Polearm", acc); Add("Riding", acc / 2); break;
+            case "archer_cavalry": Add("Bow", acc); Add("Riding", acc / 2); break;
+            case "gunpowder": Add("Crossbow", acc); break;
+        }
+        var skills = new Dictionary<string, int>(StringComparer.Ordinal);
+        foreach (var s in new[] { "OneHanded", "TwoHanded", "Polearm", "Bow", "Crossbow", "Throwing", "Riding", "Athletics" })
+        {
+            int v = up.TryGetValue(s, out int add) ? weapon + add : weapon - OffSkill;
+            skills[s] = Math.Clamp(v, 10, SkillMax);
+        }
+        skills["Tactics"] = command;
+        skills["Leadership"] = Math.Clamp(5 * c.Martial + 5 * c.Diplomacy, 0, 300);
+        skills["Steward"] = Math.Clamp(10 * c.Stewardship, 0, 300);
+        skills["Charm"] = Math.Clamp(10 * c.Diplomacy, 0, 300);
+        skills["Roguery"] = Math.Clamp(10 * c.Intrigue, 0, 300);
+        return skills;
+    }
+
     /// <summary>Weapon skill from CK3 prowess: 60 + 8 per point to 330 (prowess 34), then 1 per point to 400.</summary>
     public static int WeaponSkill(int prowess)
     {
@@ -298,11 +349,7 @@ public sealed class HeroPlanner
             Formation = formation,
             Captain = true,
             Equipment = equipment,
-            Skills = new Dictionary<string, int>
-            {
-                ["OneHanded"] = weapon, ["TwoHanded"] = weapon, ["Polearm"] = weapon, ["Bow"] = weapon, ["Crossbow"] = weapon,
-                ["Throwing"] = weapon, ["Riding"] = weapon, ["Athletics"] = weapon, ["Tactics"] = command, ["Leadership"] = command,
-            },
+            Skills = HeroSkills(c, formation, battle.KnightFactsLogged ? AccoladeBaseType(c) : null, weapon, command),
             // Health pool: prowess (1 + P/25, 1..5) x CK3 character health. Damage: prowess.
             HealthMultiplier = (float)Math.Clamp(ProwessHealth(c.Prowess) * HealthFactor(c.Health), 0.5, CK3xBL.Mapping.Buffs.KnightBuffPlanner.HeroDurabilityCap),
             DamageMultiplier = StatBalance(c) ? (float)ProwessDamage(c.Prowess) : 1f,

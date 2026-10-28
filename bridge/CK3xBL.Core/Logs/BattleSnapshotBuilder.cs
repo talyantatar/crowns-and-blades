@@ -273,6 +273,7 @@ public sealed class BattleSnapshotBuilder
         {
             reg.RegimentId = print.Id;
             reg.MaaKey = print.MaaKey ?? "";
+            reg.Name = print.Name != reg.MaaKey ? print.Name : "";
             reg.RegimentType = print.RegimentType ?? "unknown";
         }
         if (reg.MaaKey.Length == 0) _warn($"{r.Raw}: regiment {reg.RegimentId} without a MaA type");
@@ -311,6 +312,9 @@ public sealed class BattleSnapshotBuilder
                 Female = d.GetBool("ck3xbl_c_female"),
                 Prowess = d.GetInt("ck3xbl_c_prowess") ?? 0,
                 Martial = d.GetInt("ck3xbl_c_martial") ?? 0,
+                Stewardship = d.GetInt("ck3xbl_c_stewardship") ?? 0,
+                Diplomacy = d.GetInt("ck3xbl_c_diplomacy") ?? 0,
+                Intrigue = d.GetInt("ck3xbl_c_intrigue") ?? 0,
                 Health = d.GetDouble("ck3xbl_c_health"),
                 Weight = d.GetInt("ck3xbl_c_weight") ?? 0,
                 Tier = d.GetInt("ck3xbl_c_tier") ?? 0,

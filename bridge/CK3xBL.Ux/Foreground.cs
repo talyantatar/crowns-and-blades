@@ -44,6 +44,19 @@ public static class Foreground
     /// <paramref name="force"/> skips that check (use only on explicit user request); a held modifier key still stops rungs 2-4.
     /// Returns true when <paramref name="target"/> is the foreground window.
     /// </summary>
+    /// <summary>The foreground window and the process that owns it (0, 0 when there is none).</summary>
+    public static (IntPtr Hwnd, int ProcessId) Current()
+    {
+        nint hwnd = GetForegroundWindow();
+        return (hwnd, hwnd == 0 ? 0 : ProcessIdOf(hwnd));
+    }
+
+    /// <summary>Puts a window at the bottom of the z-order without activating anything (a booting game that came to the front).</summary>
+    public static void SendToBack(IntPtr hwnd)
+    {
+        if (hwnd != IntPtr.Zero) SetWindowPos(hwnd, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+    }
+
     public static bool Activate(IntPtr target, Func<int, bool>? isTrustedProcess = null, bool force = false)
     {
         if (target == 0 || !IsWindow(target)) { UxLog.Write($"foreground: target 0x{target:X} is not a window"); return false; }

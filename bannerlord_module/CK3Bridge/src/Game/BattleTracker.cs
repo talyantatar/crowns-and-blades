@@ -39,6 +39,7 @@ namespace CK3Bridge
         private readonly BattleArmies _armies;
         private readonly BattleAccounting _accounting;
         private readonly CK3Costumes _costumes;
+        private readonly CK3TroopNames _names;
         private readonly Dictionary<Agent, AgentRecord> _records = new Dictionary<Agent, AgentRecord>();
         private readonly HashSet<string> _unrequestedLogged = new HashSet<string>();
         private MissionResult _missionResult;
@@ -64,6 +65,7 @@ namespace CK3Bridge
             _armies = session.Armies;
             _accounting = session.Armies.Accounting;
             _costumes = new CK3Costumes(session.Request);
+            _names = new CK3TroopNames(session.Request);
         }
 
         public override void AfterStart()
@@ -209,9 +211,18 @@ namespace CK3Bridge
             else if (_armies.Ledger.TryTake((engineSide, agent.Character), out string group))
             {
                 record.Group = group;
+                _names.Apply(agent, side, group);
                 if (_costumes.HasLook(side, group)) _toDress.Enqueue((agent, side, group));   // dressed after the build (see _toDress)
                 GroupBuffs buffs = CK3BuffRegistry.TagAgentGroup(agent, engineSide, group);
                 if (buffs != null) ApplyGroupBuffs(agent, buffs);
+                // PROTOCOL §49: a captain's stewardship gives the troops he leads a larger health pool.
+                AuraSpec aura = CK3BuffRegistry.AuraOf(agent);
+                if (aura != null && aura.HealthMult != 1f)
+                {
+                    agent.BaseHealthLimit *= aura.HealthMult;
+                    agent.HealthLimit *= aura.HealthMult;
+                    agent.Health = agent.HealthLimit;
+                }
             }
             else if (_unrequestedLogged.Add(agent.Character.StringId))
             {

@@ -161,3 +161,15 @@ ck3xbl_on_player_character_change = {
 	}
 	effect = { ck3xbl_st_force_rearm_effect = yes }
 }
+
+# Root = a playable (ruler) character, every quarter. A named warhorse becomes a horse artifact, purple once grown (PROTOCOL 50).
+quarterly_playable_pulse = {
+	on_actions = { ck3xbl_quarterly_warhorse_pulse }
+}
+
+ck3xbl_quarterly_warhorse_pulse = {
+	effect = {
+		ck3xbl_warhorse_check_effect = yes
+		every_knight = { ck3xbl_warhorse_check_effect = yes }
+	}
+}

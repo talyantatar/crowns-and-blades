@@ -32,14 +32,17 @@ ck3xbl_st_clear_carried_scopes_effect = {
 	if = { limit = { exists = scope:ck3xbl_c_absent } clear_saved_scope = ck3xbl_c_absent }
 	if = { limit = { exists = scope:ck3xbl_c_age } clear_saved_scope = ck3xbl_c_age }
 	if = { limit = { exists = scope:ck3xbl_c_army } clear_saved_scope = ck3xbl_c_army }
+	if = { limit = { exists = scope:ck3xbl_c_diplomacy } clear_saved_scope = ck3xbl_c_diplomacy }
 	if = { limit = { exists = scope:ck3xbl_c_female } clear_saved_scope = ck3xbl_c_female }
 	if = { limit = { exists = scope:ck3xbl_c_has_house } clear_saved_scope = ck3xbl_c_has_house }
 	if = { limit = { exists = scope:ck3xbl_c_has_title } clear_saved_scope = ck3xbl_c_has_title }
 	if = { limit = { exists = scope:ck3xbl_c_health } clear_saved_scope = ck3xbl_c_health }
 	if = { limit = { exists = scope:ck3xbl_c_house } clear_saved_scope = ck3xbl_c_house }
+	if = { limit = { exists = scope:ck3xbl_c_intrigue } clear_saved_scope = ck3xbl_c_intrigue }
 	if = { limit = { exists = scope:ck3xbl_c_is_player } clear_saved_scope = ck3xbl_c_is_player }
 	if = { limit = { exists = scope:ck3xbl_c_martial } clear_saved_scope = ck3xbl_c_martial }
 	if = { limit = { exists = scope:ck3xbl_c_prowess } clear_saved_scope = ck3xbl_c_prowess }
+	if = { limit = { exists = scope:ck3xbl_c_stewardship } clear_saved_scope = ck3xbl_c_stewardship }
 	if = { limit = { exists = scope:ck3xbl_c_tag } clear_saved_scope = ck3xbl_c_tag }
 	if = { limit = { exists = scope:ck3xbl_c_tier } clear_saved_scope = ck3xbl_c_tier }
 	if = { limit = { exists = scope:ck3xbl_c_title } clear_saved_scope = ck3xbl_c_title }
@@ -85,6 +88,8 @@ ck3xbl_st_clear_carried_scopes_effect = {
 	if = { limit = { exists = scope:ck3xbl_ft_terrain } clear_saved_scope = ck3xbl_ft_terrain }
 	if = { limit = { exists = scope:ck3xbl_ft_veteran } clear_saved_scope = ck3xbl_ft_veteran }
 	if = { limit = { exists = scope:ck3xbl_ft_winter } clear_saved_scope = ck3xbl_ft_winter }
+	if = { limit = { exists = scope:ck3xbl_horse_grown } clear_saved_scope = ck3xbl_horse_grown }
+	if = { limit = { exists = scope:ck3xbl_horse_owner } clear_saved_scope = ck3xbl_horse_owner }
 	if = { limit = { exists = scope:ck3xbl_in_count } clear_saved_scope = ck3xbl_in_count }
 	if = { limit = { exists = scope:ck3xbl_in_maxver } clear_saved_scope = ck3xbl_in_maxver }
 	if = { limit = { exists = scope:ck3xbl_in_sum } clear_saved_scope = ck3xbl_in_sum }

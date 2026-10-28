@@ -8,6 +8,7 @@
 // recreated) and goes backwards when an older save is loaded. In both cases the session key is renewed, which keeps every request
 // id (and its archive folder) unique.
 using System.Security.Cryptography;
+using CK3xBL.Core.Ck3;
 
 namespace CK3xBL.Core.Logs;
 
@@ -16,12 +17,15 @@ public sealed class Ck3EventDecoder
     private readonly Action<Ck3Event> _sink;
     private readonly Action<string> _warn;
     private readonly BattleSnapshotBuilder _builder;
+    private readonly Ck3Names? _names;
     private int _highestBid;
     private TimeSpan _joinTime;
 
-    public Ck3EventDecoder(Action<Ck3Event> sink, Action<string>? warn = null, string? sessionKey = null)
+    /// <param name="names">Shows character names in the game language (Ck3Names); null keeps them as printed.</param>
+    public Ck3EventDecoder(Action<Ck3Event> sink, Action<string>? warn = null, string? sessionKey = null, Ck3Names? names = null)
     {
         _sink = sink;
+        _names = names;
         _warn = warn ?? (_ => { });
         _builder = new BattleSnapshotBuilder(_warn);
         SessionKey = sessionKey ?? NewSessionKey();
@@ -65,7 +69,10 @@ public sealed class Ck3EventDecoder
         if (BattleSnapshotBuilder.IsSnapshotRecord(r.Type))
         {
             if (_builder.Accept(r, SessionKey) is { } snapshot)
+            {
+                _names?.Localize(snapshot);
                 _sink(new SnapshotCompleted(snapshot) { LogTime = r.Time });
+            }
             return;
         }
 
@@ -81,8 +88,13 @@ public sealed class Ck3EventDecoder
 
     private void EmitJoin()
     {
-        if (_builder.TakeJoin() is { } join)
-            _sink(new ArmyJoined(join.Bid, join.Side, join.Army, join.Characters) { LogTime = _joinTime, SteerRole = join.SteerRole });
+        if (_builder.TakeJoin() is not { } join) return;
+        if (_names is not null)
+        {
+            _names.Localize(join.Army);
+            foreach (var c in join.Characters) _names.Localize(c.Ref);
+        }
+        _sink(new ArmyJoined(join.Bid, join.Side, join.Army, join.Characters) { LogTime = _joinTime, SteerRole = join.SteerRole });
     }
 
     private void Choice(Ck3Record r)

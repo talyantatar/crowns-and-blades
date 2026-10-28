@@ -29,6 +29,8 @@ public sealed class PlannedGroup
     public string? LadderSource { get; init; }
     /// <summary>The costume look of the group's agents (PROTOCOL §21, CostumePlanner.Key).</summary>
     public string? Look { get; init; }
+    /// <summary>The name the group's agents show in battle: a regiment's CK3 name; null = named by kind and role (BattleMapper).</summary>
+    public string? TroopName { get; init; }
     public int Agents { get; set; }
 }
 
@@ -156,7 +158,7 @@ public sealed class ForcePlanner
         var list = new List<TroopRequest>();
         foreach (var g in side.Groups.Concat(side.Retinues))
             foreach (var (troop, count) in Split(g.Troops, g.Agents))
-                list.Add(new TroopRequest { Id = troop, Count = count, Group = g.Id, Look = g.Look });
+                list.Add(new TroopRequest { Id = troop, Count = count, Group = g.Id, Look = g.Look, Name = g.TroopName });
         return list;
     }
 
@@ -234,6 +236,7 @@ public sealed class ForcePlanner
                     PowerOverflow = maa.AgentMultiplier, StatDamage = statDamage, StatHealth = statHealth, LadderSource = maa.LadderSource,
                     Look = CostumePlanner.Key(CostumePlanner.LookOf(_t.Costumes, reg.MaaKey, regCulture.Profile), regCulture.Era,
                         CostumePlanner.RoleOf(_t.Mapping.MaaTier.GetValueOrDefault(reg.MaaKey)?.BaseType ?? baseHint)),
+                    TroopName = string.IsNullOrWhiteSpace(reg.Name) ? null : reg.Name.Trim(),
                 });
             }
         }

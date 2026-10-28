@@ -441,6 +441,10 @@ ck3xbl_save_char_values_effect = {
 	}
 	save_scope_value_as = { name = ck3xbl_c_prowess value = prowess }
 	save_scope_value_as = { name = ck3xbl_c_martial value = martial }
+	# A captain's other skills (PROTOCOL 49): stewardship, diplomacy and intrigue shape the troops he leads.
+	save_scope_value_as = { name = ck3xbl_c_stewardship value = stewardship }
+	save_scope_value_as = { name = ck3xbl_c_diplomacy value = diplomacy }
+	save_scope_value_as = { name = ck3xbl_c_intrigue value = intrigue }
 	save_scope_value_as = { name = ck3xbl_c_health value = health }
 	save_scope_value_as = { name = ck3xbl_c_weight value = current_weight }
 	save_scope_value_as = { name = ck3xbl_c_tier value = highest_held_title_tier }

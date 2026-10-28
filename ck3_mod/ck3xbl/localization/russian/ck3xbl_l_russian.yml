@@ -182,3 +182,5 @@
  ck3xbl_sea.won.desc:0 "Вражеские корабли взяты или потоплены."
  ck3xbl_sea.lost:0 "Поражение на море"
  ck3xbl_sea.lost.desc:0 "Наши корабли разбиты, и многие из прыгнувших за борт так и не добрались до берега."
+ ck3xbl_warhorse_name:0 "[ck3xbl_horse_owner.Custom('WarhorseStoryName')]"
+ ck3xbl_warhorse_desc:0 "Боевой конь, которого вырастил и выездил [ck3xbl_horse_owner.GetTitledFirstName]. Он несёт хозяина в бой в Bannerlord."

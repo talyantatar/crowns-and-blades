@@ -77,10 +77,10 @@ public sealed class Ck3LogMonitor : Ck3EventHub, IDisposable
     private readonly IJournal _journal;
     private readonly object _feedGate = new();
 
-    public Ck3LogMonitor(string logPath, IJournal journal, LogTailerOptions? options = null)
+    public Ck3LogMonitor(string logPath, IJournal journal, LogTailerOptions? options = null, CK3xBL.Core.Ck3.Ck3Names? names = null)
     {
         _journal = journal;
-        _decoder = new Ck3EventDecoder(Publish, w => journal.Warn("ck3log", w));
+        _decoder = new Ck3EventDecoder(Publish, w => journal.Warn("ck3log", w), names: names);
         _parser = new Ck3RecordParser(r =>
         {
             journal.Debug("ck3log", r.ToString());

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CK3xBL.Protocol;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
 namespace CK3Bridge
@@ -79,7 +80,11 @@ namespace CK3Bridge
             string sides = Sides.Count == 0 ? "none" : string.Join(" + ", Sides.Keys.Select(s => s == BattleSideEnum.Attacker ? "attacker" : "defender"));
             string auras = AurasByKnight.Count == 0 ? "none" : string.Join(", ", AurasByKnight.Values.Select(a =>
                 $"{a.Key} -> {a.Formation} (melee x{a.Aura.MeleeDamageMult:0.###}, ranged x{a.Aura.RangedDamageMult:0.###}, charge x{a.Aura.ChargeDamageMult:0.###}, " +
-                $"taken x{a.Aura.DamageTakenMult:0.###}, aim x{a.Aura.RangedInaccuracyMult:0.###}, morale +{a.Aura.InitialMoraleAdd:0})"));
+                $"taken x{a.Aura.DamageTakenMult:0.###}, aim x{a.Aura.RangedInaccuracyMult:0.###}, morale +{a.Aura.InitialMoraleAdd:0}, " +
+                $"1h x{a.Aura.OneHandedMult:0.###}, 2h x{a.Aura.TwoHandedMult:0.###}, polearm x{a.Aura.PolearmMult:0.###}, bow x{a.Aura.BowMult:0.###}, " +
+                $"crossbow x{a.Aura.CrossbowMult:0.###}, throwing x{a.Aura.ThrowingMult:0.###}, vs horse x{a.Aura.VsCavalryMult:0.###}, " +
+                $"flank x{a.Aura.FlankDamageMult:0.###}, shield x{a.Aura.ShieldDamageTakenMult:0.###}, speed x{a.Aura.SpeedMult:0.###}, " +
+                $"health x{a.Aura.HealthMult:0.###}, morale loss x{a.Aura.MoraleLossMult:0.###})"));
             BridgeIo.Log($"{request.Id}: combat buffs: side buffs {sides}, {GroupsByKey.Count} group(s), {heroesBuffed} hero(es) buffed, " +
                          "captains: " + (captains.Count == 0 ? "stock" : string.Join(", ", captains)) + "; knights' auras: " + auras);
         }
@@ -228,13 +233,83 @@ namespace CK3Bridge
                 Agent victim = attackInformation.VictimAgent;
                 bool missile = collisionData.IsMissile;
                 bool charge = collisionData.IsHorseCharge || (!missile && attacker != null && attacker.HasMount);
-                return damage * BuffMath.HitMultiplier(CK3BuffRegistry.For(attacker), CK3BuffRegistry.For(victim), missile, charge,
-                    victimIsHero: victim != null && victim.IsHero);
+                AgentBuffs attackerBuffs = CK3BuffRegistry.For(attacker);
+                // A captain's weapon, anti-cavalry and flank buffs (PROTOCOL.md §49) only matter when the attacker has an aura.
+                WeaponKind weapon = WeaponKind.None;
+                bool flank = false;
+                if (attackerBuffs.Aura != null && !collisionData.IsHorseCharge)
+                {
+                    weapon = KindOf(attackInformation.AttackerWeapon.CurrentUsageItem);
+                    flank = victim != null && FromFlank(attackInformation.AttackerAgentPosition, attackInformation.VictimAgentPosition, victim.LookDirection);
+                }
+                return damage * BuffMath.HitMultiplier(attackerBuffs, CK3BuffRegistry.For(victim), missile, charge,
+                    victimIsHero: victim != null && victim.IsHero, weapon: weapon, victimMounted: attackInformation.DoesVictimHaveMountAgent, fromFlank: flank);
             }
             catch (Exception e)
             {
                 CK3BuffRegistry.Report(nameof(GeneralDamage), e);
                 return damage;
+            }
+        }
+
+        /// <summary>The weapon kind of a hit's weapon (the missile itself for a shot).</summary>
+        private static WeaponKind KindOf(WeaponComponentData weapon)
+        {
+            if (weapon == null) return WeaponKind.None;
+            switch (weapon.WeaponClass)
+            {
+                case WeaponClass.OneHandedSword: case WeaponClass.OneHandedAxe: case WeaponClass.Mace: case WeaponClass.Dagger: case WeaponClass.Pick:
+                    return WeaponKind.OneHanded;
+                case WeaponClass.TwoHandedSword: case WeaponClass.TwoHandedAxe: case WeaponClass.TwoHandedMace:
+                    return WeaponKind.TwoHanded;
+                case WeaponClass.OneHandedPolearm: case WeaponClass.TwoHandedPolearm: case WeaponClass.LowGripPolearm:
+                    return WeaponKind.Polearm;
+                case WeaponClass.Arrow: case WeaponClass.Bow:
+                    return WeaponKind.Bow;
+                case WeaponClass.Bolt: case WeaponClass.Crossbow:
+                    return WeaponKind.Crossbow;
+                case WeaponClass.Javelin: case WeaponClass.ThrowingAxe: case WeaponClass.ThrowingKnife: case WeaponClass.Stone:
+                    return WeaponKind.Throwing;
+                default:
+                    return WeaponKind.None;
+            }
+        }
+
+        /// <summary>The blow comes from more than 90 degrees off the victim's facing: his flank or back.</summary>
+        private static bool FromFlank(Vec3 attacker, Vec3 victim, Vec3 look)
+        {
+            float dx = attacker.x - victim.x, dy = attacker.y - victim.y;
+            return dx * look.x + dy * look.y < 0f;
+        }
+
+        /// <summary>Shield damage times the defender's captain's shieldDamageTakenMult (PROTOCOL.md §49).</summary>
+        public static float ShieldDamage(float damage, in AttackInformation attackInformation)
+        {
+            if (!CK3BuffRegistry.Active) return damage;
+            try
+            {
+                AuraSpec aura = CK3BuffRegistry.AuraOf(attackInformation.VictimAgent);
+                return aura != null ? damage * aura.ShieldDamageTakenMult : damage;
+            }
+            catch (Exception e)
+            {
+                CK3BuffRegistry.Report(nameof(ShieldDamage), e);
+                return damage;
+            }
+        }
+
+        /// <summary>A troop's morale loss as comrades fall, times its captain's moraleLossMult (PROTOCOL.md §49).</summary>
+        public static float MoraleChange(float change, Agent agent)
+        {
+            if (!CK3BuffRegistry.Active || change >= 0f) return change;
+            try
+            {
+                return BuffMath.MoraleChange(change, CK3BuffRegistry.AuraOf(agent));
+            }
+            catch (Exception e)
+            {
+                CK3BuffRegistry.Report(nameof(MoraleChange), e);
+                return change;
             }
         }
 
@@ -286,7 +361,19 @@ namespace CK3Bridge
             try
             {
                 HeroBuffs hero = CK3BuffRegistry.Hero(agent)?.Buffs;
-                if (hero == null) return;
+                if (hero == null)
+                {
+                    // PROTOCOL §49: the captain's speed buff moves his troops' feet, or their horses.
+                    AuraSpec aura = agent.IsMount ? CK3BuffRegistry.AuraOf(agent.RiderAgent) : CK3BuffRegistry.AuraOf(agent);
+                    if (aura == null || aura.SpeedMult == 1f) return;
+                    if (agent.IsMount) agentDrivenProperties.MountSpeed *= aura.SpeedMult;
+                    else
+                    {
+                        agentDrivenProperties.MaxSpeedMultiplier *= aura.SpeedMult;
+                        agentDrivenProperties.CombatMaxSpeedMultiplier *= aura.SpeedMult;
+                    }
+                    return;
+                }
                 agentDrivenProperties.MaxSpeedMultiplier *= hero.SpeedMult;
                 agentDrivenProperties.CombatMaxSpeedMultiplier *= hero.SpeedMult;
                 agentDrivenProperties.SwingSpeedMultiplier *= hero.SwingSpeedMult;
@@ -380,6 +467,9 @@ namespace CK3Bridge
             in MissionWeapon attackerWeapon, bool isCrushThrough) =>
             CK3CombatHooks.RemainingMomentum(base.CalculateRemainingMomentum(originalMomentum, in b, in collisionData, attacker, victim, in attackerWeapon, isCrushThrough),
                 originalMomentum, attacker, victim, in collisionData);
+
+        public override float CalculateShieldDamage(in AttackInformation attackInformation, float baseDamage) =>
+            CK3CombatHooks.ShieldDamage(base.CalculateShieldDamage(in attackInformation, baseDamage), in attackInformation);
     }
 
     /// <summary>The CK3 combat effects on the custom battle agent-stat model (<see cref="CK3CombatHooks"/>).</summary>
@@ -414,6 +504,9 @@ namespace CK3Bridge
             float morale = base.GetEffectiveInitialMorale(agent, baseMorale);
             return CK3BuffRegistry.Active ? BuffMath.InitialMorale(morale, CK3BuffRegistry.For(agent)) : morale;
         }
+
+        public override float CalculateMoraleChangeToCharacter(Agent agent, float maxMoraleChange) =>
+            CK3CombatHooks.MoraleChange(base.CalculateMoraleChangeToCharacter(agent, maxMoraleChange), agent);
 
         public override bool CanPanicDueToMorale(Agent agent)
         {

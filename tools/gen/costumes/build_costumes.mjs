@@ -75,6 +75,8 @@ export function isBanned(item) {
 const COLD = set('fur furred pelt bearskin wolfskin wolf bear snow cold boarskin');
 const HOT = set('desert turban turbaned keffiyeh headwrap headscarf tuareg bedouin thawb bisht');
 const NORTH = { avoid: HOT };
+/** Steppe, nomad and cold-weather wear: never on a Japanese soldier. */
+const STEPPE = set('fur furred pelt bearskin wolfskin wolf bear snow cold boarskin steppe nomad nomadic khan durkhan poncho cap hood hooded tunic trousers robe turban');
 const SOUTH = { avoid: COLD };
 
 /**
@@ -102,7 +104,9 @@ export const LOOKS = {
   hungarian: { cultures: { khuzait: 0.6, vlandia: 0.4 }, prefer: 'steppe' },
   tibetan: { cultures: { khuzait: 0.8, aserai: 0.2 } },
   east_asian: { cultures: { khuzait: 1 }, prefer: 'lamellar', avoid: COLD },
-  japanese: { cultures: { khuzait: 1 }, prefer: 'lamellar', avoid: COLD },
+  // No Japanese armour exists for Bannerlord in the packs we load: the eastern lamellar and plated pieces come closest, steppe
+  // and nomad wear never (the user's choice, 2026-10-28).
+  japanese: { cultures: { khuzait: 1 }, prefer: 'lamellar plated eastern splint facemask', avoid: STEPPE, preferFactor: 4 },
   emishi: { cultures: { khuzait: 0.7, battania: 0.3 } },
   siberian: { cultures: { khuzait: 0.5, sturgia: 0.5 }, prefer: 'fur furred pelt', ...NORTH },
   indian: { cultures: { aserai: 1 }, ...SOUTH },
@@ -154,7 +158,7 @@ export const UNIQUE_LOOKS = {
   steppe_raiders: { cultures: { khuzait: 1 }, prefer: 'steppe nomad raider', ...ELITE },
   nomadic_riders: { cultures: { khuzait: 1 }, prefer: 'steppe nomad', ...ELITE },
   nomad_lancers: { cultures: { khuzait: 1 }, prefer: 'lancer steppe', ...ELITE },
-  samurai: { cultures: { khuzait: 1 }, prefer: 'lamellar', avoid: COLD, ...ELITE },
+  samurai: { cultures: { khuzait: 1 }, prefer: 'lamellar plated eastern splint facemask heavy', avoid: STEPPE, ...ELITE },
   warrior_monks: { cultures: { khuzait: 1 }, prefer: 'robe', avoid: COLD, ...ELITE },
   palace_guards: { cultures: { khuzait: 0.5, empire: 0.5 }, prefer: 'guard lamellar', avoid: COLD, ...ELITE },
 };

@@ -41,7 +41,7 @@ public sealed class KnightBuffPlanner
     public const double AcclaimedHarmFactor = 0.8;          // an active acclaimed knight's wounded/maimed/killed weights
     public const double AcclaimedKnightCaptureFactor = 0.1, AcclaimedCommanderCaptureFactor = 0.167;
     public const double DeathChanceBase = 0.3, DeathChanceMax = 0.9;
-    public const double MartialArmyBonusPerPoint = 0.01, MartialArmyBonusMax = 0.30;    // commander's martial: +1 % damage and health per point, at most +30 %
+    public const double MartialArmyBonusPerPoint = 0.003, MartialArmyBonusMax = 0.08;   // commander's martial: +0.3 % damage per point, at most +8 % (PROTOCOL §49)
     public const double MartialMoralePerPoint = 0.5;                                    // ... and +0.5 initial morale per point
     public const int AgeSlowFrom = 50;                                                  // heroes older than this lose speed
     public const double AgeSlowPerYear = 0.005, AgeSpeedFloor = 0.85;
@@ -337,10 +337,9 @@ public sealed class KnightBuffPlanner
             }
             if (_sides[side].Commander is { } general && general.Martial > 0 && HeroPlanner.StatBalance(general))
             {
-                // The side commander's martial skill steadies his whole army.
+                // The side commander's martial skill steadies his whole army; his captains' auras do the rest (PROTOCOL §49).
                 double martial = 1 + Math.Min(MartialArmyBonusMax, MartialArmyBonusPerPoint * general.Martial);
                 dealt *= martial;
-                health *= martial;
                 morale += MartialMoralePerPoint * general.Martial;
             }
             var b = new GroupBuffs
@@ -406,9 +405,7 @@ public sealed class KnightBuffPlanner
         }
     }
 
-    /// <summary>Strength of a knight's aura per accolade rank (PROTOCOL §42): 2.5 % a rank, 15 % at rank 6, as Bannerlord's captain
-    /// perks; morale +2 a rank while he stands, −2 a rank (at least 5) when he falls.</summary>
-    public const double AuraPerRank = 0.025;
+    /// <summary>Morale an accolade gives the formation its knight leads, a rank (PROTOCOL §42), and takes when he falls (at least 5).</summary>
     public const int AuraMoralePerRank = 2;
 
     /// <summary>The formation a men-at-arms base type fights in, in Bannerlord.</summary>
@@ -422,50 +419,23 @@ public sealed class KnightBuffPlanner
     };
 
     /// <summary>
-    /// PROTOCOL §42: an acclaimed knight whose (primary, else strongest) attribute leads a men-at-arms type leads every troop of
-    /// his side in that type's formation, like a Bannerlord captain, for as long as he is on the field: shooters shoot harder and
-    /// straighter, foot hits harder and holds, horse hits and charges harder.
+    /// PROTOCOL §49 (was §42, acclaimed knights only): every commander and knight leads one formation of his side, like a Bannerlord
+    /// captain, for as long as he is on the field. An acclaimed knight leads the formation of the men-at-arms type his (primary, else
+    /// strongest) attribute leads; everyone else the formation he fights in. What he gives it comes from his skills, traits and accolade
+    /// (CaptainAura).
     /// </summary>
     private AuraSpec? AuraFor(PlannedHero h)
     {
         var acc = _sides[h.Side].Accolades.FirstOrDefault(a => ReferenceEquals(a.Character, h.Character));
-        if (acc is null || acc.Rank <= 0) return null;
-        var linked = acc.Levels.Where(x => x.Level >= 1 && CaptainOf(x.Type) is { Rule: "linked_maa", LinkedBaseType: not null })
-            .OrderByDescending(x => x.Type == h.Character.Accolade!.Primary).ThenByDescending(x => x.Level).ThenBy(x => x.Type, StringComparer.Ordinal)
-            .Select(x => CaptainOf(x.Type)!.LinkedBaseType!).ToList();
-        string? baseType = linked.FirstOrDefault(b => AuraFormation(b) is not null);
-        if (baseType is null) return null;
-        float s = (float)(AuraPerRank * Math.Clamp(acc.Rank, 1, 6));
-        var aura = new AuraSpec
+        string? baseType = null;
+        if (acc is not null && acc.Rank > 0)
         {
-            Formation = AuraFormation(baseType),
-            InitialMoraleAdd = AuraMoralePerRank * acc.Rank,
-            MoraleLoss = Math.Max(5, AuraMoralePerRank * acc.Rank),
-        };
-        switch (baseType)
-        {
-            case "archers" or "gunpowder" or "archer_cavalry":
-                aura.RangedDamageMult = 1 + s;
-                aura.RangedInaccuracyMult = 1 - s;
-                break;
-            case "skirmishers":
-                aura.RangedDamageMult = 1 + s;
-                aura.MeleeDamageMult = 1 + s / 2;
-                break;
-            case "pikemen" or "heavy_infantry":
-                aura.MeleeDamageMult = 1 + s;
-                aura.DamageTakenMult = 1 - s / 2;
-                break;
-            case "heavy_cavalry":
-                aura.MeleeDamageMult = 1 + s;
-                aura.ChargeDamageMult = 1 + 1.5f * s;
-                break;
-            default:                                  // light, camel and elephant cavalry
-                aura.MeleeDamageMult = 1 + s;
-                aura.ChargeDamageMult = 1 + s;
-                break;
+            baseType = acc.Levels.Where(x => x.Level >= 1 && CaptainOf(x.Type) is { Rule: "linked_maa", LinkedBaseType: not null })
+                .OrderByDescending(x => x.Type == h.Character.Accolade!.Primary).ThenByDescending(x => x.Level).ThenBy(x => x.Type, StringComparer.Ordinal)
+                .Select(x => CaptainOf(x.Type)!.LinkedBaseType!).FirstOrDefault(b => AuraFormation(b) is not null);
         }
-        return aura;
+        string formation = baseType is not null ? AuraFormation(baseType)! : h.Spec.Formation;
+        return CaptainAura.For(h.Character, formation, baseType, baseType is not null ? acc!.Rank : 0);
     }
 
     /// <summary>

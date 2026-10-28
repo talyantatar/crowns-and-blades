@@ -44,7 +44,8 @@ internal sealed class BridgeHost : IAsyncDisposable
         var injector = new Win32KeyInjector();
         var desktop = new Win32Desktop(injector, _inputGuards);
         _monitor = new Ck3LogMonitor(Path.Combine(ck3Logs, config.Ck3.LogFile), journal,
-            new LogTailerOptions { PollInterval = TimeSpan.FromMilliseconds(Math.Clamp(config.Ck3.LogPollMilliseconds, 20, 500)) });
+            new LogTailerOptions { PollInterval = TimeSpan.FromMilliseconds(Math.Clamp(config.Ck3.LogPollMilliseconds, 20, 500)) },
+            new Ck3Names(config.Ck3.GameDir, () => Ck3Language.Resolve(config.Battle.Language, config.Ck3.UserDir)));
         _ck3 = new Ck3Locator();
         // Attaches silently to what the file already holds (an earlier CK3 session's toggles are never replayed), PROTOCOL §15.
         _pause = new PauseStateReader(Path.Combine(ck3Logs, "dedicated_server.log"), Ck3Locator.IsRunning);
@@ -209,8 +210,89 @@ internal sealed class BridgeHost : IAsyncDisposable
         _monitor.Start();
         _pause.Start();
         _orchestrator.Start();
-        if (_config.Bannerlord.PreloadOnStart) await _bannerlord.StartAsync(CancellationToken.None);
+        // The soft start: Bannerlord loads only once CK3 has, so the two never load at once and its boot window never greets the player.
+        if (_config.Bannerlord.PreloadOnStart) _ = Task.Run(() => PreloadWhenCk3ReadyAsync(_lifetime.Token));
         _journal.Info("app", $"ready (mode {_mode}, OUT channel {_monitor.LogPath}, session {_monitor.SessionKey})");
+    }
+
+    private readonly CancellationTokenSource _lifetime = new();
+    /// <summary>CK3 counts as loaded this long after its window appeared even when debug.log never shows the mod's GUI.</summary>
+    private static readonly TimeSpan Ck3LoadFallback = TimeSpan.FromMinutes(2);
+    /// <summary>After CK3 has loaded, its main menu settles before Bannerlord starts loading beside it.</summary>
+    private static readonly TimeSpan Ck3Settle = TimeSpan.FromSeconds(10);
+    /// <summary>How long a booting Bannerlord is kept from taking the foreground (the module cloaks its window once it is up).</summary>
+    private static readonly TimeSpan BootFocusGuard = TimeSpan.FromMinutes(3);
+
+    /// <summary>
+    /// Preloads Bannerlord once CK3 runs and has loaded the mod (its keypad GUI in debug.log), or two minutes after CK3's window
+    /// appeared. A battle that comes first starts Bannerlord itself, and then there is nothing left to do.
+    /// </summary>
+    private async Task PreloadWhenCk3ReadyAsync(CancellationToken ct)
+    {
+        try
+        {
+            string log = Path.Combine(_config.Ck3.UserDir, "logs", "debug.log");
+            DateTime? ck3Since = null;
+            bool waitLogged = false;
+            while (true)
+            {
+                if (_bannerlord.IsRunning) return;
+                if (_ck3.Find() is null) ck3Since = null;
+                else
+                {
+                    ck3Since ??= DateTime.UtcNow;
+                    if (DateTime.UtcNow - ck3Since > Ck3LoadFallback || Ck3ModLoaded(log, ck3Since.Value)) break;
+                }
+                if (!waitLogged)
+                {
+                    _journal.Info("bannerlord", "preload waits until CK3 has loaded");
+                    waitLogged = true;
+                }
+                await Task.Delay(2000, ct);
+            }
+            await Task.Delay(Ck3Settle, ct);
+            if (_bannerlord.IsRunning) return;
+            _journal.Info("bannerlord", "CK3 has loaded: preloading Bannerlord in the background");
+            await _bannerlord.StartAsync(ct);
+            await GuardBootFocusAsync(ct);
+        }
+        catch (OperationCanceledException) { }
+        catch (Exception e) { _journal.Error("bannerlord", "preload failed", e); }
+    }
+
+    /// <summary>debug.log, written since CK3 started, shows the mod's keypad GUI loaded (the last of the mod's interface).</summary>
+    private static bool Ck3ModLoaded(string log, DateTime ck3SinceUtc)
+    {
+        try
+        {
+            if (!File.Exists(log) || File.GetLastWriteTimeUtc(log) < ck3SinceUtc.AddSeconds(-30)) return false;
+            using var s = new FileStream(log, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+            using var r = new StreamReader(s);
+            return r.ReadToEnd().Contains("ck3xbl_keypad.gui\" is complete", StringComparison.Ordinal);
+        }
+        catch (IOException) { return false; }
+    }
+
+    /// <summary>
+    /// While Bannerlord boots, its window must not take the player's foreground: whenever it comes to the front outside a battle it
+    /// goes to the back and CK3 (else the window that had the foreground before the launch) gets it again. Ends when the module is
+    /// up (its first heartbeat; from then on it keeps its window cloaked) or after three minutes.
+    /// </summary>
+    private async Task GuardBootFocusAsync(CancellationToken ct)
+    {
+        var until = DateTime.UtcNow + BootFocusGuard;
+        while (DateTime.UtcNow < until && _bannerlord.IsRunning && _bannerlord.Status is null)
+        {
+            var (fg, pid) = Foreground.Current();
+            if (fg != 0 && pid == _bannerlord.ProcessId && _orchestrator.Phase == BattlePhase.Idle)
+            {
+                Foreground.SendToBack(fg);
+                nint back = _ck3.Find()?.Hwnd ?? _bannerlord.ForegroundBeforeLaunch;
+                if (back != 0) Foreground.Activate(back, p => p == _bannerlord.ProcessId);
+                _journal.Info("bannerlord", "the booting game came to the front: sent back");
+            }
+            await Task.Delay(500, ct);
+        }
     }
 
     /// <summary>The last launch failed because ck3.exe may only run as administrator.</summary>
@@ -243,6 +325,7 @@ internal sealed class BridgeHost : IAsyncDisposable
     public async ValueTask DisposeAsync()
     {
         _journal.Info("app", "shutting down");
+        _lifetime.Cancel();
         await _orchestrator.DisposeAsync();
         _monitor.Dispose();
         _pause.Dispose();

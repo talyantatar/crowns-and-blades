@@ -118,9 +118,27 @@ internal static class CoreTests
         r.Add("core.orchestrator.steering_ck3_restart_clears", SteeringCk3RestartClears);
         r.Add("core.orchestrator.steering_follows_the_clock_fixture", SteeringFollowsTheClockFixture);
         r.Add("core.orchestrator.steering_watchdog", SteeringWatchdog);
+        r.Add("core.names.game_language", NamesGameLanguage);
     }
 
     // ===================================================================================================== scope prints & parser
+
+    private static void NamesGameLanguage()
+    {
+        var names = new Ck3Names(new Dictionary<string, string> { ["Kin_tsuna"] = "Кинцуна", ["Kamokutaynu"] = "Камокутайну" });
+        Expect.Equal("Кинцуна Токудайдзи", names.Localize("Kin_tsuna Токудайдзи"));
+        Expect.Equal("Камокутайну", names.Localize("Kamokutaynu Худородность"));
+        Expect.Equal("Камокутайну", names.Localize("Kamokutaynu Lowborn"));
+        Expect.Equal("Gunda Kakatiya", names.Localize("Gunda Kakatiya"));      // no key: kept as printed
+        Expect.Equal("", names.Localize(""));
+
+        var s = new BattleSnapshot();
+        s.Defender.Characters.Add(new CharacterSnapshot { Ref = new CharacterRef { Name = "Kin_tsuna Токудайдзи" } });
+        s.Attacker.Armies.Add(new ArmySnapshot { Commander = new CharacterRef { Name = "Kamokutaynu Худородность" } });
+        names.Localize(s);
+        Expect.Equal("Кинцуна Токудайдзи", s.Defender.Characters[0].Ref.Name);
+        Expect.Equal("Камокутайну", s.Attacker.Armies[0].Commander!.Name);
+    }
 
     private static void ScopePrintFormats()
     {

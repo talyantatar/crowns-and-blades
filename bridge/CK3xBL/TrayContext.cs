@@ -156,7 +156,9 @@ internal sealed class TrayContext : ApplicationContext, INotifier
             }
             catch (Exception e) { _journal.Warn("ck3", $"mod descriptor not written: {e.Message}"); }
             var test = MeltyTest.Find(_startup.MeltyTestSlug, _host, _journal);
-            if ((_startup.LaunchCk3 || test is not null) && _host.Ck3ModInstalled && !_host.Ck3ModEnabled && !_host.Ck3Running)
+            // The soft start: the shortcut starts CK3 too (Ck3.LaunchOnStart), as Melty's Play does, and Bannerlord loads after it.
+            bool launchCk3 = _startup.LaunchCk3 || _config.Ck3.LaunchOnStart;
+            if ((launchCk3 || test is not null) && _host.Ck3ModInstalled && !_host.Ck3ModEnabled && !_host.Ck3Running)
                 _host.EnableCk3Mod();
             var checks = await Task.Run(_host.CheckInstall);
             foreach (var item in checks)
@@ -176,7 +178,7 @@ internal sealed class TrayContext : ApplicationContext, INotifier
             }
             if (configProblem is not null) Notify("Settings problem", configProblem, NoticeKind.Warning);
             if (test is not null) _ = Task.Run(test.RunAsync);
-            else if (_startup.LaunchCk3 && !_host.Ck3Running)
+            else if (launchCk3 && !_host.Ck3Running)
             {
                 _ck3LaunchedByTray = DateTime.UtcNow;
                 if (_host.LaunchCk3(_host.Mode) is { } problem) Post(() => ShowLaunchProblem(problem));

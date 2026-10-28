@@ -105,6 +105,7 @@ public sealed class RegimentSnapshot
 {
     public long RegimentId;
     public string MaaKey = "";                        // CK3 MaA type key
+    public string Name = "";                          // the MaA type as CK3 shows it ("Конные самураи"); "" = not printed
     public int Current, Max;
     public bool Hired;
     public string RegimentType = "personal";          // personal | title | unknown
@@ -130,6 +131,7 @@ public sealed class CharacterSnapshot
     public int Age;
     public bool Female;
     public int Prowess, Martial;
+    public int Stewardship, Diplomacy, Intrigue;      // PROTOCOL §49: a captain's other skills (0 = not logged, older mod)
     public double? Health;                            // ck3xbl_c_health (CK3 character health, base 5); null = not logged (older mod: the stat balance below stays off)
     public int Weight;                                // current_weight -100..100
     public int Tier;                                  // highest_held_title_tier 0..6

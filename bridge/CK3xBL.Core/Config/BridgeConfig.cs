@@ -59,6 +59,8 @@ public sealed class Ck3Settings
     public string UserDir = "";
     /// <summary>Add -continuelastsave when the tray launches CK3.</summary>
     public bool ContinueLastSave;
+    /// <summary>The soft start (2026-10-28): starting the bridge (its shortcut) also starts CK3 when it is not running, as Melty's Play does.</summary>
+    public bool LaunchOnStart = true;
     /// <summary>The OUT channel file in logs/: game.log (info_log, PROTOCOL §1) or debug.log.</summary>
     public string LogFile = "game.log";
     public int LogPollMilliseconds = 75;

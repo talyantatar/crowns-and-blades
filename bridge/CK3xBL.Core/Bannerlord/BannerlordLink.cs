@@ -74,6 +74,8 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
 
     /// <summary>Set in the game's environment at launch (value: the bridge's pid); the module stays passive without it (or a lease).</summary>
     public const string HostVariable = "CK3XBL_HOST";
+    /// <summary>Bannerlord's Steam app id.</summary>
+    public const string SteamAppId = "261550";
     /// <summary>Launch lease in the shared folder: {"pid": bridge pid, "t": unix ms}. The module accepts a fresh one when its
     /// environment lacks <see cref="HostVariable"/> (a store launcher restarted the game). Removed at the first heartbeat.</summary>
     public const string LaunchLeaseFile = "bannerlord_launch.json";
@@ -367,6 +369,11 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
                 UseShellExecute = false,
             };
             psi.Environment[HostVariable] = Environment.ProcessId.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            // A Steam Bannerlord started outside Steam asks Steam to restart it (SteamAPI_RestartAppIfNecessary) and exits with code 1
+            // before the module loads: players' reports of 2026-10-27/28. Steam's own launch sets these, which tells the game it is
+            // already Steam's; installs with a steam_appid.txt never restarted, which is why it never showed here.
+            psi.Environment["SteamAppId"] = SteamAppId;
+            psi.Environment["SteamGameId"] = SteamAppId;
             WriteLaunchLease();
             ForegroundBeforeLaunch = Win32.GetForegroundWindow();
             try

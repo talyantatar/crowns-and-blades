@@ -17,6 +17,18 @@ namespace CK3Bridge
         HorseArcher = 3,
     }
 
+    /// <summary>The kind of weapon a hit is dealt with, for a captain's weapon buffs (PROTOCOL.md §49); None = unknown or a charge.</summary>
+    public enum WeaponKind
+    {
+        None = 0,
+        OneHanded,
+        TwoHanded,
+        Polearm,
+        Bow,
+        Crossbow,
+        Throwing,
+    }
+
     /// <summary>
     /// What one agent carries into a hit or a spawn: its side's buffs, and its hero's or group's when it has them. A null
     /// member is neutral. The default value is an unbuffed agent.
@@ -162,7 +174,8 @@ namespace CK3Bridge
         /// side, hero and group taken; the product clamped to 0.25..3. <paramref name="charge"/> = a horse charge or a melee hit
         /// by a mounted agent. The caller skips falls, friendly fire and hits on mounts.
         /// </summary>
-        public static float HitMultiplier(in AgentBuffs attacker, in AgentBuffs victim, bool missile, bool charge, bool victimIsHero)
+        public static float HitMultiplier(in AgentBuffs attacker, in AgentBuffs victim, bool missile, bool charge, bool victimIsHero,
+            WeaponKind weapon = WeaponKind.None, bool victimMounted = false, bool fromFlank = false)
         {
             float mult = 1f;
             if (attacker.Side != null)
@@ -182,6 +195,9 @@ namespace CK3Bridge
             {
                 mult *= missile ? attacker.Aura.RangedDamageMult : attacker.Aura.MeleeDamageMult;
                 if (charge) mult *= attacker.Aura.ChargeDamageMult;
+                mult *= AuraWeaponMult(attacker.Aura, weapon);
+                if (victimMounted) mult *= attacker.Aura.VsCavalryMult;
+                if (fromFlank) mult *= attacker.Aura.FlankDamageMult;
             }
             if (victim.Side != null) mult *= victim.Side.DamageTakenMult;
             if (victim.Hero != null) mult *= victim.Hero.DamageTakenMult;
@@ -189,6 +205,26 @@ namespace CK3Bridge
             if (victim.Aura != null) mult *= victim.Aura.DamageTakenMult;
             return Safe(mult, MinHitMultiplier, MaxHitMultiplier, 1f);
         }
+
+        /// <summary>A captain's buff for the weapon a hit is dealt with (PROTOCOL.md §49); 1 for none.</summary>
+        public static float AuraWeaponMult(AuraSpec aura, WeaponKind weapon)
+        {
+            if (aura == null) return 1f;
+            switch (weapon)
+            {
+                case WeaponKind.OneHanded: return aura.OneHandedMult;
+                case WeaponKind.TwoHanded: return aura.TwoHandedMult;
+                case WeaponKind.Polearm: return aura.PolearmMult;
+                case WeaponKind.Bow: return aura.BowMult;
+                case WeaponKind.Crossbow: return aura.CrossbowMult;
+                case WeaponKind.Throwing: return aura.ThrowingMult;
+                default: return 1f;
+            }
+        }
+
+        /// <summary>A morale change of a troop: losses times its captain's moraleLossMult (PROTOCOL.md §49), gains as they are.</summary>
+        public static float MoraleChange(float change, AuraSpec aura) =>
+            aura == null || change >= 0f ? change : change * aura.MoraleLossMult;
 
         /// <summary>Initial morale before Bannerlord's own 15..100 clamp: + side, hero and aura initialMoraleAdd.</summary>
         public static float InitialMorale(float morale, in AgentBuffs agent) =>
@@ -208,6 +244,18 @@ namespace CK3Bridge
                 RangedInaccuracyMult = Mult(aura.RangedInaccuracyMult),
                 InitialMoraleAdd = MoraleAdd(aura.InitialMoraleAdd),
                 MoraleLoss = Safe(aura.MoraleLoss, 0f, MaxMoraleAdd, 0f),
+                OneHandedMult = Mult(aura.OneHandedMult),
+                TwoHandedMult = Mult(aura.TwoHandedMult),
+                PolearmMult = Mult(aura.PolearmMult),
+                BowMult = Mult(aura.BowMult),
+                CrossbowMult = Mult(aura.CrossbowMult),
+                ThrowingMult = Mult(aura.ThrowingMult),
+                VsCavalryMult = Mult(aura.VsCavalryMult),
+                FlankDamageMult = Mult(aura.FlankDamageMult),
+                ShieldDamageTakenMult = Mult(aura.ShieldDamageTakenMult),
+                SpeedMult = Mult(aura.SpeedMult),
+                HealthMult = Mult(aura.HealthMult),
+                MoraleLossMult = Safe(aura.MoraleLossMult, 0f, 1f, 1f),
             };
         }
 
@@ -228,6 +276,10 @@ namespace CK3Bridge
                         Formation = a.Formation, MeleeDamageMult = a.MeleeDamageMult, RangedDamageMult = a.RangedDamageMult,
                         ChargeDamageMult = a.ChargeDamageMult, DamageTakenMult = a.DamageTakenMult, RangedInaccuracyMult = a.RangedInaccuracyMult,
                         InitialMoraleAdd = a.InitialMoraleAdd, MoraleLoss = a.MoraleLoss,
+                        OneHandedMult = a.OneHandedMult, TwoHandedMult = a.TwoHandedMult, PolearmMult = a.PolearmMult, BowMult = a.BowMult,
+                        CrossbowMult = a.CrossbowMult, ThrowingMult = a.ThrowingMult, VsCavalryMult = a.VsCavalryMult,
+                        FlankDamageMult = a.FlankDamageMult, ShieldDamageTakenMult = a.ShieldDamageTakenMult, SpeedMult = a.SpeedMult,
+                        HealthMult = a.HealthMult, MoraleLossMult = a.MoraleLossMult,
                     };
                     continue;
                 }
@@ -238,6 +290,18 @@ namespace CK3Bridge
                 best.RangedInaccuracyMult = Math.Min(best.RangedInaccuracyMult, a.RangedInaccuracyMult);
                 best.InitialMoraleAdd = Math.Max(best.InitialMoraleAdd, a.InitialMoraleAdd);
                 best.MoraleLoss = Math.Max(best.MoraleLoss, a.MoraleLoss);
+                best.OneHandedMult = Math.Max(best.OneHandedMult, a.OneHandedMult);
+                best.TwoHandedMult = Math.Max(best.TwoHandedMult, a.TwoHandedMult);
+                best.PolearmMult = Math.Max(best.PolearmMult, a.PolearmMult);
+                best.BowMult = Math.Max(best.BowMult, a.BowMult);
+                best.CrossbowMult = Math.Max(best.CrossbowMult, a.CrossbowMult);
+                best.ThrowingMult = Math.Max(best.ThrowingMult, a.ThrowingMult);
+                best.VsCavalryMult = Math.Max(best.VsCavalryMult, a.VsCavalryMult);
+                best.FlankDamageMult = Math.Max(best.FlankDamageMult, a.FlankDamageMult);
+                best.ShieldDamageTakenMult = Math.Min(best.ShieldDamageTakenMult, a.ShieldDamageTakenMult);
+                best.SpeedMult = Math.Max(best.SpeedMult, a.SpeedMult);
+                best.HealthMult = Math.Max(best.HealthMult, a.HealthMult);
+                best.MoraleLossMult = Math.Min(best.MoraleLossMult, a.MoraleLossMult);
             }
             return best;
         }

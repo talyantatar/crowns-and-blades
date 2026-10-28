@@ -5,6 +5,26 @@ versions follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed in 0.9.2-beta (2026-10-28)
+
+- **Soft start.** The Crowns & Blades shortcut also starts CK3 (setting `ck3.launchOnStart`), and Bannerlord loads in the background
+  only once CK3 has loaded. A booting Bannerlord that comes to the front is sent back, and CK3 gets the focus again.
+- **Bannerlord from Steam** no longer exits with code 1 at its first start: the bridge starts it as Steam would (`SteamAppId`).
+- **Names in the game language.** Characters show their CK3 names ("Кинцуна Токудайдзи", "Kin'tsuna"), and the lowborn
+  lose the "Lowborn" house. Soldiers are named after their CK3 regiment, levies and retainers by their role.
+- **Landings** fit both sides to the three landing ships: when the attackers outnumber their crews, the defenders shrink by the
+  same share, so the field keeps CK3's odds (a landing of 18310 against 6740 had landed as 96 against 270).
+- **Heroes' skills** differ: their formation and accolade raise their weapons and riding, Leadership follows martial and
+  diplomacy, and Steward, Charm and Roguery their CK3 skills.
+- **Japanese armies** wear eastern lamellar and plated armour, never steppe or fur.
+- **Captains.** Every commander and knight leads a formation, and what he gives it comes from his CK3 skills (prowess, stewardship,
+  diplomacy, intrigue), traits (blademaster, hunter, tourney horseman, strategist, organizer, reckless, cautious leader,
+  unyielding defender, aggressive attacker, flexible leader) and accolade: weapon damage by kind, shields, speed, health, aim,
+  morale, charge, flank hits and hits on horsemen, each capped at 25 %. A commander's martial now gives his army +0.3 % damage
+  per point (up to +8 %).
+- **Warhorse.** The warhorse of CK3's warfare lifestyle becomes a famed horse artifact bearing its name, illustrious once the
+  horse has grown, ridden in Bannerlord.
+
 ### Added
 
 - **Russian text** for the CK3 mod (`localization/russian`): the call to arms, battle results, combat summaries and steering modifiers.

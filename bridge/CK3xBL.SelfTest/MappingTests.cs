@@ -762,7 +762,8 @@ internal static partial class MappingTests
         var duke = req.Attacker.Heroes.Single(h => h.IsPlayer);
         Expect.Equal("vla_bat_template_heavy", duke.Equipment.Roster);
         Expect.Equal("Cavalry", duke.Formation);
-        Expect.Equal(Math.Clamp(60 + 8 * 14, 60, 330), duke.Skills["OneHanded"]);
+        Expect.Equal(Math.Clamp(60 + 8 * 14, 60, 330) + 10, duke.Skills["OneHanded"], "a rider: his sword a little above his band");
+        Expect.True(duke.Skills["Riding"] > duke.Skills["Bow"], "a knight rides better than he shoots");
         Expect.Equal(160, duke.Skills["Tactics"]);
         // Two "Bernard" knights on the two sides get told apart by their titles.
         var names = req.Attacker.Heroes.Concat(req.Defender.Heroes).Select(h => h.Name).ToList();

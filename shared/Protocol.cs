@@ -182,6 +182,8 @@ namespace CK3xBL.Protocol
         public string Look;                              // PROTOCOL §21: key of BattleRequest.Looks; null = stock armour
         public string Mount;                             // PROTOCOL §43: the horse item every man of the group rides (an elephant); null = the troop's own
         public string MountHarness;                      // its harness; null = none
+        public string Name;                              // the name every man of the group shows in battle, in CK3's language (a
+                                                         // regiment's CK3 name, "Levy archer"...); null = the troop's own name
     }
 
     public class HeroSpec
@@ -232,6 +234,20 @@ namespace CK3xBL.Protocol
         public float RangedInaccuracyMult = 1f;          // below 1 = straighter shots
         public float InitialMoraleAdd;                   // troops that take the field while he stands
         public float MoraleLoss;                         // taken from the formation's troops when he falls
+
+        // PROTOCOL §49: a captain's skills, traits and accolade (2026-10-28). Neutral values = no effect.
+        public float OneHandedMult = 1f;                 // hits with one-handed swords, axes, maces and daggers
+        public float TwoHandedMult = 1f;
+        public float PolearmMult = 1f;                   // spears, lances, glaives
+        public float BowMult = 1f;
+        public float CrossbowMult = 1f;
+        public float ThrowingMult = 1f;                  // javelins, throwing axes and knives, stones
+        public float VsCavalryMult = 1f;                 // hits on mounted men
+        public float FlankDamageMult = 1f;               // hits from the victim's flank or back
+        public float ShieldDamageTakenMult = 1f;         // damage the troops' shields take (below 1 = sturdier shields)
+        public float SpeedMult = 1f;                     // foot speed; a rider's horse speed
+        public float HealthMult = 1f;                    // spawn health of troops built while he leads them
+        public float MoraleLossMult = 1f;                // morale the troops lose as comrades fall (below 1 = steadier)
     }
 
     /// <summary>PROTOCOL §13.4: personal effects of one hero (CK3 combat traits). Neutral values = no effect.</summary>

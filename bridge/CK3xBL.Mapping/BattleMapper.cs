@@ -350,6 +350,7 @@ public sealed class BattleMapper : IBattleMapper
             NavalPlanner.Tradition(s?.Culture, side.Armies.OrderByDescending(a => a.Size).FirstOrDefault()?.OwnerCulture.Heritage);
         string att = TraditionOf(request.Attacker, battle.Attacker), def = TraditionOf(request.Defender, battle.Defender);
         var attackerShips = NavalPlanner.Fleet(att, Agents(request.Attacker), shallowOnly: raid);
+        if (raid) FitLanding(request, attackerShips.Sum(h => NavalPlanner.Hulls[h].Crew));
         var defenderShips = NavalPlanner.Fleet(def, Agents(request.Defender), shallowOnly: false);
         bool openSea = battle.IsSeaBattle && battle.Location.Coastal == false;
         request.FallbackScene = request.Scene;
@@ -360,6 +361,37 @@ public sealed class BattleMapper : IBattleMapper
         string place = PresentationWriter.PlaceName(battle, w);
         if (raid) p.Title = w.Landing(place);
         else p.Title = w.SeaBattle(place);
+    }
+
+    /// <summary>
+    /// A landing puts ashore only what its few shallow ships carry (NavalPlanner.RaidMaxShips); War Sails drops the rest. When the
+    /// attackers outnumber their crews, both sides shrink by the same share, so the field keeps CK3's odds (the user's choice,
+    /// 2026-10-28; live b10_6394: 18310 against 6740 landed as 96 against 270). Every man stands for more CK3 soldiers instead.
+    /// </summary>
+    public static void FitLanding(BattleRequest request, int crew)
+    {
+        int heroes = request.Attacker.Heroes?.Count ?? 0;
+        int troops = request.Attacker.Troops.Sum(t => t.Count);
+        int room = Math.Max(1, crew - heroes);
+        if (troops <= room) return;
+        double share = room / (double)troops;
+        Shrink(request.Attacker, share);
+        Shrink(request.Defender, share);
+        if (request.Scale is { } scale) scale.MenPerAgent = (float)JsCompat.R2(scale.MenPerAgent / share);
+    }
+
+    /// <summary>Every troop request of a side times <paramref name="share"/> (largest remainder). Each keeps at least one man, so every CK3
+    /// group still fights and takes its losses.</summary>
+    private static void Shrink(SideRequest side, double share)
+    {
+        var troops = side.Troops;
+        int total = troops.Sum(t => t.Count);
+        int target = Math.Max(1, (int)Math.Round(total * share));
+        var exact = troops.Select(t => t.Count * share).ToList();
+        var counts = exact.Select(e => (int)Math.Floor(e)).ToArray();
+        int left = target - counts.Sum();
+        foreach (int i in Enumerable.Range(0, troops.Count).OrderByDescending(i => exact[i] - counts[i]).ThenBy(i => i).Take(Math.Max(0, left))) counts[i]++;
+        for (int i = 0; i < troops.Count; i++) troops[i].Count = Math.Max(1, counts[i]);
     }
 
     public const string ReliefDefend = "defend", ReliefCamp = "camp";
@@ -430,7 +462,7 @@ public sealed class BattleMapper : IBattleMapper
         var like = mine.Troops.FirstOrDefault(t => t.Group?.StartsWith("levy", StringComparison.Ordinal) == true) ?? mine.Troops.FirstOrDefault();
         if (battle.SiegeGarrison <= 0 || like is null) return;
         int agents = Math.Max(1, JsCompat.RoundToInt(battle.SiegeGarrison / Math.Max(1.0, request.Scale.MenPerAgent)));
-        mine.Troops.Add(new TroopRequest { Id = like.Id, Count = agents, Group = GarrisonGroup(battle.Bid), Look = like.Look });
+        mine.Troops.Add(new TroopRequest { Id = like.Id, Count = agents, Group = GarrisonGroup(battle.Bid), Look = like.Look, Name = like.Name });
     }
 
     /// <summary>A skirmish on the road (PROTOCOL §20): its own titles, deployed at once (a handful of men).</summary>
@@ -502,6 +534,7 @@ public sealed class BattleMapper : IBattleMapper
         string culture = side.DominantCulture(tables.Mapping.DefaultCulture);
         var general = heroes.General(side.Key);
         var troopRequests = ForcePlanner.Troops(side);
+        NameTroops(tables, troopRequests, words);
         return new SideRequest
         {
             Name = PresentationWriter.SideName(side.Snapshot, words),
@@ -512,6 +545,25 @@ public sealed class BattleMapper : IBattleMapper
             Buffs = knights?.SideBuffsFor(side.Key),
             GroupBuffs = WithMaaStats(side, knights?.GroupBuffsFor(side.Key, troopRequests.Select(t => t.Group!)) ?? new Dictionary<string, GroupBuffs>()),
         };
+    }
+
+    /// <summary>Names the soldiers in the game language instead of the Bannerlord troop's own name ("Khuzait Spearman", or an English
+    /// name a module never translated): a regiment keeps its CK3 name, levies and retinues are named by their formation.</summary>
+    internal static void NameTroops(MappingTables tables, List<TroopRequest> troops, Words words)
+    {
+        foreach (var t in troops)
+        {
+            if (!string.IsNullOrEmpty(t.Name)) continue;
+            var bl = tables.Troops.GetValueOrDefault(t.Id);
+            string formation = bl?.FormationFromGear ?? bl?.Formation ?? "Infantry";
+            if (!GroupKey.TryParse(t.Group, out var key)) continue;
+            t.Name = key.Kind switch
+            {
+                GroupKind.Retinue => words.RetinueTroop(formation),
+                GroupKind.Levy => words.LevyTroop(formation),
+                _ => null,
+            };
+        }
     }
 
     /// <summary>Multiplies each MaA group's CK3 damage and toughness factors (PlannedGroup.StatDamage/StatHealth) into its buffs,

@@ -49,6 +49,7 @@ internal static partial class MappingTests
         r.Add("mapping.siege.progress_decides_the_siege_works", SiegeProgressAndWorks);
         r.Add("mapping.siege.relief_at_the_walls_or_the_camp", ReliefAtTheWalls);
         r.Add("mapping.knights.accolade_knight_leads_his_formation", KnightAuras);
+        r.Add("mapping.knights.captain_aura_sources", CaptainAuraSources);
         r.Add("mapping.elephants.elephant_regiments_ride_elephants", ElephantsRide);
         r.Add("core.bannerlord.elephant_module_and_armory_prep", ElephantModuleAndArmoryPrep);
         r.Add("mapping.naval.fleets_of_their_tradition", NavalFleets);
@@ -937,9 +938,10 @@ internal static partial class MappingTests
         Expect.Near(1.25, mb.DamageDealtVsHeroMult, 1e-6);
         Expect.Near(1, mb.DamageDealtRangedMult, 1e-6);
         int weapon = Math.Clamp(60 + 8 * 12, 60, 330);
-        Expect.Equal(weapon + 10 + 10, me.Skills["Bow"], "tourney bow track level 2");
-        Expect.Equal(weapon + 10 + 10, me.Skills["Crossbow"]);
-        Expect.Equal(weapon, me.Skills["OneHanded"]);
+        var plain = HeroPlanner.HeroSkills(new CharacterSnapshot(), me.Formation, null, weapon, 0);
+        Expect.Equal(plain["Bow"] + 10 + 10, me.Skills["Bow"], "tourney bow track level 2");
+        Expect.Equal(plain["Crossbow"] + 10 + 10, me.Skills["Crossbow"]);
+        Expect.Equal(plain["OneHanded"], me.Skills["OneHanded"]);
 
         // The general gets his side commander's Tactics (reckless L0: -15 + 5).
         Expect.Equal(100 - 10, HeroOf(req, 1).Skills["Tactics"]);

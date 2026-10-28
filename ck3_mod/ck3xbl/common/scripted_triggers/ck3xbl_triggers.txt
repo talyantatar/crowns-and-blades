@@ -332,3 +332,12 @@ ck3xbl_child_open_trigger = {
 		}
 	}
 }
+
+# this = a character. It still owns the warhorse artifact it was given (PROTOCOL 50).
+ck3xbl_warhorse_owned_trigger = {
+	exists = var:ck3xbl_warhorse
+	var:ck3xbl_warhorse = {
+		exists = artifact_owner
+		artifact_owner = prev
+	}
+}
