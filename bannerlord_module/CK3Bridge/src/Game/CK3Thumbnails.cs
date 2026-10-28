@@ -15,8 +15,7 @@ namespace CK3Bridge
     /// The "thumbnails" command (a build step of the CK3 mod's artifact icons, tools/gen/equipment/item_icons.mjs): renders every item
     /// listed in %LOCALAPPDATA%\ck3xbl\thumbs\items.txt (one id per line) with the inventory's own thumbnail renderer and saves it as
     /// thumbs\&lt;id&gt;.png; thumbs\done.txt then says how many were written and which ids failed. A few requests at a time, ticked
-    /// from the controller; never during a battle. A line "banner:&lt;icon id&gt;" renders that banner icon, black on white, as
-    /// thumbsanner_&lt;id&gt;.png (labelling bridge/data/ck3_emblem_to_bl_icon.json: the game's icons have no names).
+    /// from the controller; never during a battle.
     /// </summary>
     internal sealed class CK3Thumbnails
     {
@@ -69,7 +68,6 @@ namespace CK3Bridge
 
         private void Request(string id)
         {
-            if (id.StartsWith("banner:", StringComparison.Ordinal)) { RequestBanner(id); return; }
             ItemObject item = MBObjectManager.Instance.GetObject<ItemObject>(id);
             if (item == null) { _failed.Add(id + " (unknown item)"); return; }
             string path = Path.Combine(_folder, id + ".png");
@@ -90,36 +88,6 @@ namespace CK3Bridge
                     _failed.Add(id + " (cancelled)");
                     _pending.Remove(id);
                 }));
-            }
-            catch (Exception e)
-            {
-                _pending.Remove(id);
-                _failed.Add($"{id} ({e.Message})");
-            }
-        }
-
-        private void RequestBanner(string id)
-        {
-            string icon = id.Substring("banner:".Length);
-            string path = Path.Combine(_folder, "banner_" + icon + ".png");
-            _pending[id] = DateTime.UtcNow;
-            try
-            {
-                var banner = new Banner($"11.110.110.1528.1528.764.764.0.0.0.{icon}.149.149.461.461.764.764.0.0.0");
-                ThumbnailCacheManager.Current.CreateTexture(new BannerThumbnailCreationData(banner, texture =>
-                {
-                    try
-                    {
-                        texture.SaveToFile(path, false);
-                        _written++;
-                    }
-                    catch (Exception e) { _failed.Add($"{id} ({e.Message})"); }
-                    _pending.Remove(id);
-                }, () =>
-                {
-                    _failed.Add(id + " (cancelled)");
-                    _pending.Remove(id);
-                }, default, true, false));
             }
             catch (Exception e)
             {
