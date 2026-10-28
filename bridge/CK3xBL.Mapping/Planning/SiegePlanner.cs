@@ -22,11 +22,12 @@ public static class SiegePlanner
     /// <summary>Most ranged engines the besiegers deploy (the stock custom battle's slots).</summary>
     public const int MaxRangedEngines = 4;
 
-    /// <summary>CK3 siege men-at-arms -> the Bannerlord engine one regiment brings, and its CK3 siege tier.</summary>
+    /// <summary>CK3 siege men-at-arms -> the Bannerlord engine one regiment brings, and its CK3 siege tier. Besiegers' engines only:
+    /// Bannerlord's Catapult is the defenders' mangonel, and an attacker's one crashed the siege deployment (live b8_9de2, 2026-10-28).</summary>
     public static readonly IReadOnlyDictionary<string, (string Engine, int Tier)> SiegeMaa = new Dictionary<string, (string, int)>(StringComparer.Ordinal)
     {
         ["onager"] = ("Onager", 1),
-        ["mangonel"] = ("Catapult", 2),
+        ["mangonel"] = ("FireOnager", 2),
         ["trebuchet"] = ("Trebuchet", 3),
         ["bombard"] = ("FireTrebuchet", 4),
         ["cannon"] = ("FireTrebuchet", 5),

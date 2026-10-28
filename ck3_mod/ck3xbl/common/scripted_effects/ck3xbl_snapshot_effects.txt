@@ -430,7 +430,8 @@ ck3xbl_save_char_values_effect = {
 		limit = { ck3xbl_bid_is_pending_trigger = yes }
 		set_variable = { name = ck3xbl_fside value = scope:ck3xbl_side_code }
 	}
-	save_scope_value_as = { name = ck3xbl_c_tag value = var:ck3xbl_tag }
+	# Guarded: CK3 also walks this for tooltips, before the tag above is set (hundreds of "Value of wrong type" a snapshot).
+	save_scope_value_as = { name = ck3xbl_c_tag value = { if = { limit = { has_variable = ck3xbl_tag } value = var:ck3xbl_tag } } }
 	save_scope_value_as = { name = ck3xbl_c_age value = age }
 	if = {
 		limit = { is_female = yes }

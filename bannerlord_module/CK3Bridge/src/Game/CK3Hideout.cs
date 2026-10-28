@@ -111,10 +111,26 @@ namespace CK3Bridge
                     }
                 }
             }
-            // Until the alarm everyone holds: the band at its fires, the party behind the player.
+            // Until the alarm the band holds at its fires and the party follows the player, who commands it (2026-10-28: the party stood
+            // still and took no orders, since the player was nobody's general here).
+            Team partyTeam = _playerSide == BattleSideEnum.Attacker ? Mission.AttackerTeam : Mission.DefenderTeam;
+            Agent leader = Mission.MainAgent;
+            if (partyTeam != null && leader != null && leader.Team == partyTeam)
+            {
+                partyTeam.SetPlayerRole(isPlayerGeneral: true, isPlayerSergeant: false);
+                partyTeam.GeneralAgent = leader;
+            }
             foreach (Team team in new[] { Mission.AttackerTeam, Mission.DefenderTeam })
                 foreach (Formation formation in team.FormationsIncludingEmpty)
-                    if (formation.CountOfUnits > 0) formation.SetMovementOrder(MovementOrder.MovementOrderStop);
+                {
+                    if (formation.CountOfUnits <= 0) continue;
+                    if (team == partyTeam && leader != null && leader.Team == partyTeam)
+                    {
+                        formation.PlayerOwner = leader;
+                        formation.SetMovementOrder(MovementOrder.MovementOrderFollow(leader));
+                    }
+                    else formation.SetMovementOrder(MovementOrder.MovementOrderStop);
+                }
             Mission.SetMissionMode(MissionMode.Battle, true);
             if (!Mission.IsDeploymentFinished) Mission.OnDeploymentFinished();
             _start = Mission.CurrentTime;

@@ -176,9 +176,7 @@ ck3xbl_tourney_apply_effect = {
 			set_variable = { name = progress_to_victory value = 0 }
 		}
 	}
-	else_if = {
-		# A bout of the recording scenes (ck3xbl_debug_tourney_effect) has no tournament to go on with.
-		limit = { exists = scope:activity }
+	else = {
 		if = {
 			limit = { scope:ck3xbl_res_outcome <= 2 }
 			ck3xbl_tourney_keep_score_effect = yes

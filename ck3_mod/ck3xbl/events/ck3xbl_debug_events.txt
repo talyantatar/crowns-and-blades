@@ -1,4 +1,4 @@
-﻿# Scenes for recording (2026-10-28): every Bannerlord scene of the mod on demand, in CK3's debug mode only. The console command
+﻿# Scenes for recording (2026-10-28): duels, skirmishes and a cause for war on demand (tournaments are hosted for real), in CK3's debug mode only. The console command
 # "event ck3xbl_debug.0001" opens the menu; outside debug mode the event does not fire. Each option starts the scene the way the
 # game would (the same snapshot, the same Bannerlord battle), with a foe found or made for it.
 #   0001 the menu      0010 a single combat is over (the follow-up of the debug duels)
@@ -49,18 +49,6 @@ ck3xbl_debug.0001 = {
 			OUTPUT_EVENT = ck3xbl_debug.0010
 			INVALIDATION_EVENT = ck3xbl_debug.0010
 		}
-	}
-	option = {	# Tournament bouts without a tournament: single combat (1), wrestling (2), joust (4).
-		name = ck3xbl_debug.0001.tourney_sword
-		ck3xbl_debug_tourney_effect = { CODE = 1 }
-	}
-	option = {
-		name = ck3xbl_debug.0001.tourney_joust
-		ck3xbl_debug_tourney_effect = { CODE = 4 }
-	}
-	option = {
-		name = ck3xbl_debug.0001.tourney_wrestling
-		ck3xbl_debug_tourney_effect = { CODE = 2 }
 	}
 	option = {	# Skirmishes on the road: bandits (a hideout where the terrain has one), soldiers (a field in the woods).
 		name = ck3xbl_debug.0001.skirmish_bandits

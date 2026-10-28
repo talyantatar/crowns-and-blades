@@ -71,9 +71,14 @@ public sealed class RunFileDelivery : ICk3Delivery
                 var warnings = new List<string>();
                 var payload = KeypadPayload.Encode(outcome, _maaIndex, warnings);
                 foreach (var w in warnings) _journal.Warn("runfile", w);
-                AtomicFile.WriteAllText(RunFilePath, RunFileRenderer.Render(payload), withBom: true);
+                // A result its waiting event applies (a duel, a skirmish, an assault, a battle at sea) is only committed here: the generic
+                // apply knows none of their scopes, and the player's click on that event applies it (2026-10-28: dev-mode duels and
+                // skirmishes went unapplied). IN|OK acknowledges those.
+                bool byEvent = outcome.AppliedByEvent;
+                AtomicFile.WriteAllText(RunFilePath, RunFileRenderer.Render(payload, apply: !byEvent), withBom: true);
 
                 using var applied = _events.Expect<ResultTrace>(r => r.Bid == outcome.Bid && r.Stage == "END");
+                using var committed = _events.Expect<InputAck>(a => a.Bid == outcome.Bid && a.Ok);
                 using var rejected = _events.Expect<InputAck>(a => a.Bid == outcome.Bid && !a.Ok);
 
                 if (!await WaitForReleasedKeysAsync(ct).ConfigureAwait(false))
@@ -83,15 +88,18 @@ public sealed class RunFileDelivery : ICk3Delivery
                 }
                 if (await TypeAsync(ck3, $"run {RunFileRenderer.FileName}", ct).ConfigureAwait(false) is { } stopped) return stopped;
 
-                // Whichever comes first: RES|END (applied) or IN|BAD (the mod rejected the checksum, the bid or the version).
-                var appliedTask = applied.WaitAsync(_options.AckTimeout, ct);
+                // Whichever comes first: RES|END (applied; IN|OK for a result its event applies) or IN|BAD (the mod rejected the checksum,
+                // the bid or the version).
+                Task done = byEvent ? committed.WaitAsync(_options.AckTimeout, ct) : applied.WaitAsync(_options.AckTimeout, ct);
                 var rejectedTask = rejected.WaitAsync(_options.AckTimeout, ct);
-                await Task.WhenAny(appliedTask, rejectedTask).ConfigureAwait(false);
+                await Task.WhenAny(done, rejectedTask).ConfigureAwait(false);
                 ct.ThrowIfCancellationRequested();
-                bool ok = appliedTask.IsCompletedSuccessfully && appliedTask.Result is not null;
+                bool ok = byEvent
+                    ? done is Task<InputAck?> c && c.IsCompletedSuccessfully && c.Result is not null
+                    : done is Task<ResultTrace?> a && a.IsCompletedSuccessfully && a.Result is not null;
                 bool oldMod = !ok && rejectedTask.IsCompletedSuccessfully && rejectedTask.Result is { } bad && payload.RefusedByOldMod(bad);
                 _journal.Write(ok ? JournalLevel.Info : JournalLevel.Warn, "runfile",
-                    ok ? $"battle {outcome.Bid}: RES|END (payload v{payload.Version})"
+                    ok ? $"battle {outcome.Bid}: {(byEvent ? "IN|OK, its event applies it" : "RES|END")} (payload v{payload.Version})"
                     : oldMod ? $"battle {outcome.Bid}: CK3's mod does not accept payload version 4 (IN|BAD without ck3xbl_in_maxver, checksum " +
                                "intact); running it again as version 3, the result is applied at once (no battle clock until the bridge restarts)"
                     : $"battle {outcome.Bid}: no RES|END (rejected or timed out)");

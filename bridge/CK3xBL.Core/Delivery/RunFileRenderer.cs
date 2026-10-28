@@ -17,7 +17,8 @@ public static class RunFileRenderer
     public static readonly IReadOnlyList<string> CalledEffects =
         new[] { "ck3xbl_keypad_reset_effect", "ck3xbl_commit_effect", "ck3xbl_apply_effect" };
 
-    public static string Render(KeypadPayload payload)
+    /// <param name="apply">False for a result its waiting event applies (Ck3Outcome.AppliedByEvent): the file only commits it.</param>
+    public static string Render(KeypadPayload payload, bool apply = true)
     {
         var sb = new StringBuilder();
         sb.Append("hidden_effect = {\n");
@@ -26,7 +27,7 @@ public static class RunFileRenderer
             sb.Append("\tset_variable = { name = ck3xbl_r").Append(index.ToString(CultureInfo.InvariantCulture))
               .Append(" value = ").Append(value.ToString(CultureInfo.InvariantCulture)).Append(" }\n");
         sb.Append('\t').Append(CalledEffects[1]).Append(" = yes\n");
-        sb.Append('\t').Append(CalledEffects[2]).Append(" = yes\n");
+        if (apply) sb.Append('\t').Append(CalledEffects[2]).Append(" = yes\n");
         sb.Append("}\n");
         return sb.ToString();
     }

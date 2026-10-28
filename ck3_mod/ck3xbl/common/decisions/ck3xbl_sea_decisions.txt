@@ -1,6 +1,7 @@
 ﻿# Attack an enemy fleet in Bannerlord (docs/PROTOCOL.md 44): open while the player's army is at sea and an enemy army sails in the
 # same sea province or a neighbouring one. The enemy may slip away first (its commander's martial against the player's).
 ck3xbl_sea_battle_decision = {
+	decision_group_type = ck3xbl	# important: CK3 alerts when it can be taken
 	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
 	desc = ck3xbl_sea_battle_decision_desc
 	selection_tooltip = ck3xbl_sea_battle_decision_tooltip

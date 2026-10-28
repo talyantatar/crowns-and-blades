@@ -99,7 +99,11 @@ public sealed class OutcomeBuilder
     {
         int code = OutcomeCode(_result);
         var playerSide = _request.PlayerSide == "attacker" ? SideKey.Attacker : SideKey.Defender;
-        var outcome = new Ck3Outcome { Bid = _battle.Bid, ProvinceId = _battle.Location.ProvinceId, OutcomeCode = code };
+        var outcome = new Ck3Outcome
+        {
+            Bid = _battle.Bid, ProvinceId = _battle.Location.ProvinceId, OutcomeCode = code,
+            AppliedByEvent = _battle.IsDuel || _battle.IsSkirmish || _battle.IsSiege || _battle.IsSeaBattle,
+        };
         if (_battle.IsDuel) return DuelOutcome(outcome, code, playerSide);
         var clock = _options.BattleClock;
         // A skirmish on the road (PROTOCOL §20), an assault (§39) and a battle at sea (§44) have no CK3 combat to steer: payload 3,

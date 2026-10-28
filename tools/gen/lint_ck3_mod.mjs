@@ -821,6 +821,9 @@ export function lintMod({ modDir = DEFAULT_MOD, overrides = {} } = {}) {
           }
         }
       }
+    } else if (r.startsWith('common/decision_group_types/')) {
+      // The mod's decision group: plain data; its name is localized as decision_group_type_<key>.
+      for (const def of nodes) needLoc(`decision_group_type_${def.key}`, file, def.line);
     } else if (r.startsWith('common/artifacts/')) {
       // Slots, types and visuals: plain data; a slot and a type need their names.
       if (r.startsWith('common/artifacts/slots/')) for (const def of nodes) needLoc(def.key, file, def.line);

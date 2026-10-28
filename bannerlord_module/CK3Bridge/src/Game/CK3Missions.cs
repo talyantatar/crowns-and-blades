@@ -192,7 +192,7 @@ namespace CK3Bridge
 
             float[] walls = siege.WallHitpointPercentages != null && siege.WallHitpointPercentages.Length > 0
                 ? siege.WallHitpointPercentages : new[] { 1f, 1f };
-            List<MissionSiegeWeapon> attackerWeapons = SiegeWeapons(siege.AttackerMachines);
+            List<MissionSiegeWeapon> attackerWeapons = SiegeWeapons(AttackerEngines(siege.AttackerMachines));
             List<MissionSiegeWeapon> defenderWeapons = SiegeWeapons(siege.DefenderMachines);
             int level = Math.Max(1, Math.Min(3, siege.SceneUpgradeLevel));
             var record = new MissionInitializerRecord(setup.Scene)
@@ -253,6 +253,24 @@ namespace CK3Bridge
             });
             mission.SetPlayerCanTakeControlOfAnotherAgentWhenDead();
             return mission;
+        }
+
+        /// <summary>
+        /// The besiegers' engines as the attackers' deployment points take them: Catapult and FireCatapult are the defenders' mangonels,
+        /// which an attacker's point deploys as an onager, and MissionSiegeWeaponsController then fails to find the deployed type in the
+        /// side's list (ArgumentOutOfRangeException in OnWeaponDeployed, a crash; live b8_9de2, 2026-10-28). They become onagers.
+        /// </summary>
+        private static List<string> AttackerEngines(List<string> names)
+        {
+            var list = new List<string>();
+            if (names == null) return list;
+            foreach (string name in names)
+            {
+                string fixedName = name == "Catapult" ? "Onager" : name == "FireCatapult" ? "FireOnager" : name;
+                if (fixedName != name) BridgeIo.Log($"siege engine '{name}' is a defenders' engine; the besiegers bring '{fixedName}'");
+                list.Add(fixedName);
+            }
+            return list;
         }
 
         /// <summary>Bannerlord siege engines by DefaultSiegeEngineTypes property name (SiegeTower, Ram, Onager, Catapult, Trebuchet,

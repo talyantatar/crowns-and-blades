@@ -114,6 +114,10 @@ public sealed class Ck3Outcome
     public int Clash = 1;                             // 1 = first clash, 2 = first reinforcement clash, ...
     public List<GroupLoss> GroupLosses = new();       // CK3 dead per Bannerlord troop group in this clash (caps a later clash)
 
+    /// <summary>A duel, tournament bout, skirmish, assault or battle at sea: its waiting event applies the result when the player
+    /// clicks it (it holds the scopes the apply needs), so the dev-mode run file only commits it and IN|OK acknowledges it.</summary>
+    public bool AppliedByEvent;
+
     // Single combat (PROTOCOL §18): payload 3 with r2 = the winner and r8 = 1 when the loser was killed in Bannerlord.
     public bool IsDuel;
     public bool DuelLoserKilled;

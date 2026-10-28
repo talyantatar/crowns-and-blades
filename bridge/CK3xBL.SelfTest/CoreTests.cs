@@ -745,6 +745,9 @@ internal static class CoreTests
         int commit = Array.IndexOf(lines, "\tck3xbl_commit_effect = yes");
         int apply = Array.IndexOf(lines, "\tck3xbl_apply_effect = yes");
         Expect.True(commit > 0 && apply == commit + 1, "commit, then apply");
+        // A duel, skirmish, assault or sea battle: its waiting event applies it, the file only commits (2026-10-28).
+        var commitOnly = RunFileRenderer.Render(payload, apply: false);
+        Expect.True(commitOnly.Contains("\tck3xbl_commit_effect = yes\n") && !commitOnly.Contains("ck3xbl_apply_effect"), "commit only");
         Expect.Equal("}", lines[^1]);
         // Same body as the mod's reference encoder (tools/gen/keypad_payload.mjs prints it without the final newline).
         Expect.True(text.StartsWith("hidden_effect = {\n\tck3xbl_keypad_reset_effect = yes\n\tset_variable = { name = ck3xbl_r0 value = 3 }\n" +

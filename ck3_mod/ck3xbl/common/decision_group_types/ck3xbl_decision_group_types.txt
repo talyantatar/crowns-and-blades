@@ -1,0 +1,7 @@
+﻿# Crowns & Blades decisions (storming the walls, attacking a fleet): important by default, so CK3 raises an alert the moment one
+# can be taken (the player can still switch it off per decision). The armory stays in the ordinary list: it is open all the time.
+ck3xbl = {
+	sort_order = 190
+	gui_tags = { big_button }
+	important_decision_group = yes
+}

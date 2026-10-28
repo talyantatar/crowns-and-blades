@@ -54,7 +54,6 @@ ck3xbl_st_clear_carried_scopes_effect = {
 	if = { limit = { exists = scope:ck3xbl_county } clear_saved_scope = ck3xbl_county }
 	if = { limit = { exists = scope:ck3xbl_d_fatality } clear_saved_scope = ck3xbl_d_fatality }
 	if = { limit = { exists = scope:ck3xbl_d_noble } clear_saved_scope = ck3xbl_d_noble }
-	if = { limit = { exists = scope:ck3xbl_d_tourney } clear_saved_scope = ck3xbl_d_tourney }
 	if = { limit = { exists = scope:ck3xbl_day } clear_saved_scope = ck3xbl_day }
 	if = { limit = { exists = scope:ck3xbl_dbg_county } clear_saved_scope = ck3xbl_dbg_county }
 	if = { limit = { exists = scope:ck3xbl_dbg_foe } clear_saved_scope = ck3xbl_dbg_foe }
@@ -268,6 +267,5 @@ ck3xbl_st_clear_carried_scopes_effect = {
 	if = { limit = { exists = scope:sc_attacker } clear_saved_scope = sc_attacker }
 	if = { limit = { exists = scope:sc_defender } clear_saved_scope = sc_defender }
 	if = { limit = { exists = scope:sc_initiator } clear_saved_scope = sc_initiator }
-	if = { limit = { exists = scope:versus_contestant } clear_saved_scope = versus_contestant }
 	if = { limit = { exists = scope:wipe } clear_saved_scope = wipe }
 }
