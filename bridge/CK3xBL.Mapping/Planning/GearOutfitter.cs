@@ -106,7 +106,7 @@ public sealed class GearOutfitter
     private int Tier(string id) => _items.TryGetValue(id, out var it) ? it.Tier ?? 0 : 0;
 
     /// <summary>The kit's own ammunition of that type if it has some, else the catalog's best of a tier not above the launcher's.</summary>
-    private string? BestAmmo(string type, int tier, IReadOnlyDictionary<string, string> kitItems)
+    public string? BestAmmo(string type, int tier, IReadOnlyDictionary<string, string> kitItems)
     {
         foreach (var s in WeaponSlots)
             if (kitItems.TryGetValue(s, out var id) && _items.GetValueOrDefault(id)?.Type == type) return id;

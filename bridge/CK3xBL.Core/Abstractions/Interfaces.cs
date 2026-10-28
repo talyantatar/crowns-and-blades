@@ -81,6 +81,8 @@ public sealed class MapperOptions
     public bool Elephants;
     // PROTOCOL §44: Bannerlord loads War Sails and CK3Bridge.Naval; landings and battles at sea are fought on ships.
     public bool Naval;
+    // PROTOCOL §51: the Arsenal's loadouts by CK3 character id (slot -> item id); the player wears his where the items are still his.
+    public IReadOnlyDictionary<long, Dictionary<string, string>> Loadouts = new Dictionary<long, Dictionary<string, string>>();
 }
 
 /// <summary>The battle clock (PROTOCOL §14): CK3's own combat inflicts the Bannerlord result.</summary>

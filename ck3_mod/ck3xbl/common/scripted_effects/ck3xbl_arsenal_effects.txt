@@ -1,0 +1,70 @@
+﻿# The Arsenal (docs/PROTOCOL.md 51, the user's design of 2026-10-28): the player picks his Bannerlord loadout in Bannerlord itself,
+# from what he owns in CK3 (his battle gear artifacts, equipped or not, CX|gear and CX|stash) and his rank's kit. It is logged like
+# a duel (ck3xbl_kind = 6): the player against a sparring partner on an arena, the field taken at once; the bridge keeps the chosen
+# loadout and dresses him in it in every later battle. Nothing in CK3 changes.
+
+# root = the player. B|BEGIN, L, S + C per side, B|END; the waiting event opens.
+ck3xbl_arsenal_begin_effect = {
+	ck3xbl_bump_global_counter_effect = { NAME = ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_bid value = global_var:ck3xbl_seq }
+	save_scope_value_as = { name = ck3xbl_parent_bid value = 0 }
+	save_scope_value_as = { name = ck3xbl_clash value = 1 }
+	save_scope_value_as = { name = ck3xbl_kind value = 6 }
+	save_scope_value_as = { name = ck3xbl_year value = current_year }
+	save_scope_value_as = { name = ck3xbl_month value = current_month }
+	save_scope_value_as = { name = ck3xbl_day value = current_day }
+	save_scope_as = ck3xbl_player
+	# The sparring partner: his best knight, else a courtier, else a fighter where he is.
+	ordered_knight = {
+		limit = { is_alive = yes NOT = { this = root } }
+		order_by = prowess
+		save_scope_as = ck3xbl_ars_partner
+	}
+	if = {
+		limit = { NOT = { exists = scope:ck3xbl_ars_partner } }
+		random_courtier = {
+			limit = { is_adult = yes }
+			save_scope_as = ck3xbl_ars_partner
+		}
+	}
+	if = {
+		limit = { NOT = { exists = scope:ck3xbl_ars_partner } }
+		ck3xbl_debug_lowborn_foe_effect = yes
+		scope:ck3xbl_dbg_foe = { save_scope_as = ck3xbl_ars_partner }
+	}
+	root = { save_scope_as = sc_attacker }
+	scope:ck3xbl_ars_partner = { save_scope_as = sc_defender }
+	scope:ck3xbl_ars_partner = { save_scope_as = ck3xbl_enemy_leader }
+	save_scope_value_as = { name = ck3xbl_my_side_code value = 1 }
+	save_scope_value_as = { name = ck3xbl_player_present value = 1 }
+	root = { save_scope_as = ck3xbl_att_primary }
+	scope:ck3xbl_ars_partner = { save_scope_as = ck3xbl_def_primary }
+	location = {
+		save_scope_as = ck3xbl_prov
+		county ?= { save_scope_as = ck3xbl_county }
+		barony ?= { save_scope_as = ck3xbl_barony }
+	}
+	# Practice on an arena: nobody can die, the field is a noble's.
+	save_scope_value_as = { name = ck3xbl_d_fatality value = 4 }
+	save_scope_value_as = { name = ck3xbl_d_noble value = 1 }
+	info_log = "CK3XBL|B|BEGIN"
+	info_log_scopes = yes
+	scope:ck3xbl_prov = { ck3xbl_emit_location_effect = yes }
+	ck3xbl_duel_emit_side_effect = { CODE = 1 DUELIST = root }
+	ck3xbl_duel_emit_side_effect = { CODE = 2 DUELIST = scope:ck3xbl_ars_partner }
+	info_log = "CK3XBL|B|END"
+	info_log_scopes = yes
+	ck3xbl_choose_field_effect = yes
+	trigger_event = ck3xbl_arsenal.0002
+}
+
+# root = the player, event ck3xbl_arsenal.0004: the visit is over (its result carries no winner). It is closed like a battle.
+ck3xbl_arsenal_apply_effect = {
+	save_scope_value_as = { name = ck3xbl_bid value = var:ck3xbl_r1 }
+	save_scope_value_as = { name = ck3xbl_res_outcome value = var:ck3xbl_r2 }
+	info_log = "CK3XBL|RES|BEGIN"
+	info_log_scopes = yes
+	info_log = "CK3XBL|RES|END"
+	info_log_scopes = yes
+	ck3xbl_finish_battle_effect = yes
+}

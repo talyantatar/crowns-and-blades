@@ -284,7 +284,7 @@ const RECORD = new RegExp('^CK3XBL\\|(?:' + [
   // equipped artifacts (tools/gen/knights/emit_artifacts.mjs, not imported: its --lint imports this file)
   'CX\\|artifact\\|(?:primary_armament|armor|helmet)\\|[A-Za-z0-9_]+\\|(?:common|masterwork|famed|illustrious)', 'CX\\|artifact_helmet\\|[A-Za-z0-9_]+',
   // battle gear (tools/gen/equipment/equipment.mjs, docs/PROTOCOL.md 16.2)
-  'CX\\|gear\\|ck3xbl_(?:main|gear|head|body|hands|legs|cape|horse)\\|[A-Za-z0-9_]+',
+  'CX\\|(?:gear|stash)\\|ck3xbl_(?:main|gear|head|body|hands|legs|cape|horse)\\|[A-Za-z0-9_]+',
   'AX\\|besieging\\|(?:yes|no)', 'AX\\|territory\\|(?:own|hostile|other)', 'AX\\|(?:otrait|ocparam|ofparam)\\|[A-Za-z0-9_]+',
   'CHOICE\\|(?:FIELD(?:_DEFEND|_CAMP)?|AUTO|ABANDON)', 'J\\|(?:att|def)', 'IN\\|(?:OK|BAD)', 'RES\\|(?:BEGIN|LIVE|GONE|A|AW|FEATS|END)', 'END\\|(?:winner|loser)',
   // battle clock (docs/PROTOCOL.md 14.5)

@@ -113,6 +113,7 @@ public sealed class BattleMapper : IBattleMapper
         var knights = battle.KnightFactsLogged
             ? new KnightBuffPlanner(tables, battle, facts, heroes.Ck3Commander(SideKey.Attacker), heroes.Ck3Commander(SideKey.Defender))
             : null;
+        if (knights is not null) knights.Loadouts = options.Loadouts;
         knights?.ShapeHeroes(heroes, attacker, defender, forcePlanner);
         // Costumes (PROTOCOL §21): a hero's kit armour takes the look of their own culture and era; CK3 gear and artifacts stay.
         foreach (var h in heroes.Heroes)
@@ -163,6 +164,7 @@ public sealed class BattleMapper : IBattleMapper
         else if (AtSea(battle, options)) ShapeNaval(request, battle, words);
         if (options.Elephants) ElephantPlanner.Mount(request, tables);
         CostumePlanner.Dress(request, tables, options.Costumes);
+        if (battle.IsArsenal) ShapeArsenal(request, heroes, knights, words);
         return new BattlePlan
         {
             Request = request, Battlefield = field, Location = facts, Attacker = attacker, Defender = defender, Heroes = heroes,
@@ -226,6 +228,21 @@ public sealed class BattleMapper : IBattleMapper
             request.TourneyPar = ArcheryPar(rival?.Prowess ?? 8);
             p.Objective = w.HitTargets(request.TourneyPar, ArcheryTargets);
         }
+    }
+
+    /// <summary>
+    /// The Arsenal (PROTOCOL §51): a practice bout in the arena where the player tries on what he may carry, slot by slot; what he
+    /// wears at the end is his loadout for the battles after it. He wears his own look only (what he sees is what he picks).
+    /// </summary>
+    private static void ShapeArsenal(BattleRequest request, HeroAssignment heroes, KnightBuffPlanner? knights, Words w)
+    {
+        if (heroes.Avatar is not { } me || knights is null) return;
+        var p = request.Presentation ??= new Presentation();
+        p.Title = w.Arsenal;
+        p.Subtitle = me.Spec.Name;
+        p.Objective = w.ArsenalObjective;
+        me.Spec.Look = null;
+        request.Arsenal = new ArsenalSpec { Hero = me.Spec.Key, Items = knights.ArsenalItems(me), Current = knights.DressedNow(me) };
     }
 
     /// <summary>In a single combat or a tournament bout the duelist with more CK3 prowess hits 1 % harder and takes 1 % less per point

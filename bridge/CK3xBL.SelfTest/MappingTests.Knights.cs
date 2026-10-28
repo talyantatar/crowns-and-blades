@@ -31,6 +31,9 @@ internal static partial class MappingTests
         r.Add("mapping.gear.table_is_consistent", GearTable);
         r.Add("mapping.gear.outfitter_rules", GearOutfitterRules);
         r.Add("mapping.gear.hero_carries_exactly_his_gear", GearOnHero);
+        r.Add("mapping.arsenal.request_offers_gear_stash_and_kit", ArsenalRequest);
+        r.Add("mapping.arsenal.loadout_dresses_the_player", ArsenalLoadout);
+        r.Add("core.arsenal.loadout_store_round_trip", LoadoutStoreRoundTrip);
         r.Add("mapping.balance.strength_matches_ck3", BalanceMatchesCk3);
         r.Add("mapping.levy.development_moves_the_era", LevyByDevelopment);
         r.Add("mapping.skirmish.fifty_at_most", SkirmishPlan);
@@ -432,6 +435,77 @@ internal static partial class MappingTests
         // The same knight without gear keeps his kit.
         var plain = HeroOf(Mapper.BuildRequest(KnightsBattle(), new MapperOptions()), 2);
         Expect.False(plain.Equipment.Overrides.GetValueOrDefault("Item0") == "lowland_yew_bow");
+    }
+
+    /// <summary>The Arsenal (PROTOCOL §51): the player is offered his battle gear, equipped or not, his kit and ammunition.</summary>
+    private static void ArsenalRequest()
+    {
+        var battle = DuelBattle(fatality: 4);
+        battle.IsArsenal = true;
+        battle.DuelNoble = true;
+        var me = battle.Defender.Characters[0];
+        me.Gear.Add(new GearSnapshot { Slot = "ck3xbl_main", ItemId = "lowland_yew_bow" });
+        me.Stash.Add(new GearSnapshot { Slot = "ck3xbl_gear", ItemId = "vlandia_noble_sword_1_t5" });
+        me.Stash.Add(new GearSnapshot { Slot = "ck3xbl_head", ItemId = "visored_helmet_over_mail_coif" });
+        var req = Mapper.Plan(battle, new MapperOptions()).Request;
+        Expect.True(req.Arsenal is not null, "an Arsenal request");
+        Expect.Equal(req.Defender.Heroes[0].Key, req.Arsenal!.Hero);
+        Expect.Equal("The Arsenal", req.Presentation.Title);
+        Expect.Equal("arena", req.Kind);
+        var items = req.Arsenal.Items.ToDictionary(i => i.Id);
+        Expect.Equal("artifact", items["lowland_yew_bow"].Source);
+        Expect.Equal("Weapon", items["vlandia_noble_sword_1_t5"].Slot);
+        Expect.Equal("Head", items["visored_helmet_over_mail_coif"].Slot);
+        Expect.True(items["visored_helmet_over_mail_coif"].Quality is not null, "an artifact has its quality");
+        Expect.True(req.Arsenal.Items.Any(i => i.Source == "kit"), "the kit is offered");
+        Expect.True(req.Arsenal.Items.Any(i => Tables.Items.GetValueOrDefault(i.Id)?.Type == "Arrows"), "arrows for the bow");
+        Expect.Equal("lowland_yew_bow", req.Arsenal.Current["Item0"]);
+        Expect.False(req.Arsenal.Current.ContainsKey("HorseHarness"), "the harness follows the horse");
+        Expect.Null(Mapper.Plan(DuelBattle(fatality: 4), new MapperOptions()).Request.Arsenal, "a plain duel has none");
+    }
+
+    /// <summary>The saved loadout dresses the player wherever he still owns the item; an item he lost is skipped.</summary>
+    private static void ArsenalLoadout()
+    {
+        var battle = DuelBattle(fatality: 1);
+        var me = battle.Defender.Characters[0];
+        me.Gear.Add(new GearSnapshot { Slot = "ck3xbl_main", ItemId = "lowland_yew_bow" });
+        me.Stash.Add(new GearSnapshot { Slot = "ck3xbl_gear", ItemId = "vlandia_noble_sword_1_t5" });
+        var loadout = new Dictionary<string, string> { ["Item0"] = "vlandia_noble_sword_1_t5", ["Item1"] = "", ["Head"] = "no_such_item", ["Horse"] = "" };
+        var options = new MapperOptions { Loadouts = new Dictionary<long, Dictionary<string, string>> { [me.Ref.Ck3Id] = loadout } };
+        var h = Mapper.Plan(battle, options).Request.Defender.Heroes[0];
+        var ov = h.Equipment.Overrides;
+        Expect.Equal("vlandia_noble_sword_1_t5", ov["Item0"]);
+        Expect.Equal("", ov["Item1"]);
+        Expect.False(ov.GetValueOrDefault("Head") == "no_such_item", "an item he does not own is not worn");
+        Expect.Equal("", ov["Horse"]);
+        Expect.Equal("", ov["HorseHarness"]);
+        Expect.True(h.Equipment.Qualities.ContainsKey("Item0"), "the stash sword keeps its quality");
+        Expect.Equal("Infantry", h.Formation);
+        // Another character's loadout does not touch the foe.
+        var foe = Mapper.Plan(battle, options).Request.Attacker.Heroes[0];
+        Expect.False(foe.Equipment.Overrides.GetValueOrDefault("Item0") == "vlandia_noble_sword_1_t5");
+    }
+
+    private static void LoadoutStoreRoundTrip()
+    {
+        string dir = Path.Combine(Path.GetTempPath(), "ck3xbl_loadouts_" + Guid.NewGuid().ToString("N"));
+        try
+        {
+            var store = new CK3xBL.Core.Orchestration.LoadoutStore(dir);
+            Expect.Equal(0, store.Load().Count, "nothing saved yet");
+            store.Save(42, new Dictionary<string, string> { ["Item0"] = "sword", ["Horse"] = "" });
+            store.Save(7, new Dictionary<string, string> { ["Head"] = "helmet" });
+            store.Save(42, new Dictionary<string, string> { ["Item0"] = "axe" });
+            var all = new CK3xBL.Core.Orchestration.LoadoutStore(dir).Load();
+            Expect.Equal(2, all.Count);
+            Expect.Equal("axe", all[42]["Item0"]);
+            Expect.False(all[42].ContainsKey("Horse"), "a new loadout replaces the old one");
+            Expect.Equal("helmet", all[7]["Head"]);
+            File.WriteAllText(Path.Combine(dir, "loadouts.json"), "{ not json");
+            Expect.Equal(0, store.Load().Count, "a broken file reads as none");
+        }
+        finally { try { Directory.Delete(dir, true); } catch (IOException) { } }
     }
 
     /// <summary>

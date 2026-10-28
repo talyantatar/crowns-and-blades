@@ -381,7 +381,7 @@ public sealed class KnightBuffPlanner
             bool general = ReferenceEquals(heroes.General(h.Side), h);
             // The player's side deploys with Order of Battle, where the player picks the captains.
             if (h.Side != heroes.PlayerSide && !spec.IsPlayer && !general) AssignCaptaincy(h, troops[h.Side]);
-            if (c.Artifacts.Count > 0 || c.Gear.Count > 0) Outfit(h, outfitter, h.Side == SideKey.Attacker ? attacker : defender, forces);
+            if (c.Artifacts.Count > 0 || c.Gear.Count > 0 || LoadoutOf(h) is not null) Outfit(h, outfitter, h.Side == SideKey.Attacker ? attacker : defender, forces);
             spec.Aura = AuraFor(h);
             if (c.IsKnight && !c.IsCommander)
             {
@@ -489,20 +489,112 @@ public sealed class KnightBuffPlanner
         if (h.Character.Artifacts.Count > 0)
             foreach (var (slot, id) in outfitter.Resolve(ArtifactOutfitter.KitItems(kit), culture, mounted, h.Character.Tier, h.Character.Artifacts))
                 spec.Equipment.Overrides[slot] = id;
-        if (h.Character.Gear.Count == 0) return;
 
         // Battle gear (PROTOCOL §16.3) on top: the kit as dressed so far, then exactly the CK3 items.
+        if (h.Character.Gear.Count > 0)
+        {
+            var outfit = new GearOutfitter(_t).Resolve(Dressed(spec, kit), h.Character.Gear);
+            foreach (var (slot, id) in outfit.Overrides) spec.Equipment.Overrides[slot] = id;
+            foreach (var (slot, quality) in outfit.Qualities) spec.Equipment.Qualities[slot] = quality;
+            if (outfit.Mounted && spec.Formation is not ("Cavalry" or "HorseArcher"))
+            {
+                // Any weapon slot takes any weapon: a horse archer carries a bow or crossbow and no melee main weapon beside it.
+                var mains = h.Character.Gear.Where(g => g.Slot == "ck3xbl_main").Select(g => _t.Items.GetValueOrDefault(g.ItemId)?.Type).ToList();
+                spec.Formation = mains.Count > 0 && mains.All(t => t is "Bow" or "Crossbow") ? "HorseArcher" : "Cavalry";
+            }
+        }
+        if (LoadoutOf(h) is { } loadout) ApplyLoadout(h, kit, loadout);
+    }
+
+    // ---- the Arsenal (PROTOCOL §51) -----------------------------------------------------------------------------------
+
+    /// <summary>The loadouts the player chose in the Arsenal, by CK3 character id (MapperOptions.Loadouts).</summary>
+    public IReadOnlyDictionary<long, Dictionary<string, string>> Loadouts { get; set; } = new Dictionary<long, Dictionary<string, string>>();
+
+    private static readonly Dictionary<string, string> ArsenalSlots = new(StringComparer.Ordinal)
+    {
+        ["ck3xbl_main"] = "Weapon", ["ck3xbl_gear"] = "Weapon", ["ck3xbl_weapon"] = "Weapon", ["ck3xbl_head"] = "Head", ["ck3xbl_body"] = "Body",
+        ["ck3xbl_hands"] = "Gloves", ["ck3xbl_legs"] = "Leg", ["ck3xbl_cape"] = "Cape", ["ck3xbl_horse"] = "Horse",
+    };
+
+    /// <summary>The player's own saved loadout; only the player hero carries one.</summary>
+    private Dictionary<string, string>? LoadoutOf(PlannedHero h) =>
+        h.Spec.IsPlayer && Loadouts.TryGetValue(h.Character.Ref.Ck3Id, out var l) && l.Count > 0 ? l : null;
+
+    /// <summary>The hero's first set as dressed so far: his kit with the overrides on it.</summary>
+    private static Dictionary<string, string> Dressed(HeroSpec spec, RulerKit kit)
+    {
         var current = ArtifactOutfitter.KitItems(kit);
         foreach (var (slot, id) in spec.Equipment.Overrides) current[slot] = id;
-        var outfit = new GearOutfitter(_t).Resolve(current, h.Character.Gear);
-        foreach (var (slot, id) in outfit.Overrides) spec.Equipment.Overrides[slot] = id;
-        foreach (var (slot, quality) in outfit.Qualities) spec.Equipment.Qualities[slot] = quality;
-        if (outfit.Mounted && spec.Formation is not ("Cavalry" or "HorseArcher"))
+        return current;
+    }
+
+    /// <summary>What the hero wears now (slot -> item id, "" = empty), the harness left out; empty when his kit is unknown.</summary>
+    public Dictionary<string, string> DressedNow(PlannedHero h)
+    {
+        if (!_t.Kits.TryGetValue(h.Spec.Equipment.Roster, out var kit)) return new Dictionary<string, string>(StringComparer.Ordinal);
+        var dressed = Dressed(h.Spec, kit);
+        dressed.Remove("HorseHarness");
+        return dressed;
+    }
+
+    /// <summary>
+    /// What the hero may carry in the Arsenal: his CK3 battle gear, equipped or not (artifacts, with their quality), what he wears now
+    /// and his kit (kit), and ammunition for every bow and crossbow among them. Empty when his kit is unknown.
+    /// </summary>
+    public List<ArsenalItem> ArsenalItems(PlannedHero h)
+    {
+        var items = new List<ArsenalItem>();
+        if (!_t.Kits.TryGetValue(h.Spec.Equipment.Roster, out var kit)) return items;
+        var seen = new HashSet<string>(StringComparer.Ordinal);
+        void Add(string? id, string slot, string source, string? quality)
         {
-            // Any weapon slot takes any weapon: a horse archer carries a bow or crossbow and no melee main weapon beside it.
-            var mains = h.Character.Gear.Where(g => g.Slot == "ck3xbl_main").Select(g => _t.Items.GetValueOrDefault(g.ItemId)?.Type).ToList();
-            spec.Formation = mains.Count > 0 && mains.All(t => t is "Bow" or "Crossbow") ? "HorseArcher" : "Cavalry";
+            if (string.IsNullOrEmpty(id) || !_t.Items.ContainsKey(id) || !seen.Add(id)) return;
+            items.Add(new ArsenalItem { Id = id, Slot = slot, Source = source, Quality = quality });
         }
+        foreach (var g in h.Character.Gear.Concat(h.Character.Stash))
+            if (ArsenalSlots.TryGetValue(g.Slot, out var slot)) Add(g.ItemId, slot, "artifact", GearOutfitter.QualityOf(_t.Gear.GetValueOrDefault(g.ItemId)?.Quality ?? 0));
+        var dressed = Dressed(h.Spec, kit);
+        foreach (var kitItems in new[] { dressed, ArtifactOutfitter.KitItems(kit) })
+            foreach (var (slot, id) in kitItems)
+                if (slot != "HorseHarness") Add(id, slot.StartsWith("Item", StringComparison.Ordinal) ? "Weapon" : slot, "kit", null);
+        var outfitter = new GearOutfitter(_t);
+        foreach (var (launcher, ammo) in new[] { ("Bow", "Arrows"), ("Crossbow", "Bolts") })
+        {
+            int tier = items.Select(i => _t.Items[i.Id]).Where(i => i.Type == launcher).Select(i => i.Tier ?? 0).DefaultIfEmpty(-1).Max();
+            if (tier >= 0) Add(outfitter.BestAmmo(ammo, tier, dressed), "Weapon", "kit", null);
+        }
+        return items;
+    }
+
+    /// <summary>
+    /// Dresses the player in his Arsenal loadout: every slot whose item he still has (ArsenalItems) or leaves empty takes it; an item
+    /// he no longer owns keeps what CK3 and his kit give. Artifacts keep their quality, the harness follows the horse, and the hero
+    /// rides exactly when his loadout has a horse.
+    /// </summary>
+    private void ApplyLoadout(PlannedHero h, RulerKit kit, IReadOnlyDictionary<string, string> loadout)
+    {
+        var spec = h.Spec;
+        var owned = ArsenalItems(h).ToDictionary(i => i.Id, StringComparer.Ordinal);
+        bool changed = false;
+        foreach (var (slot, id) in loadout)
+        {
+            if (slot == "HorseHarness" || !(slot is "Item0" or "Item1" or "Item2" or "Item3" or "Head" or "Body" or "Gloves" or "Leg" or "Cape" or "Horse")) continue;
+            if (id.Length > 0 && !owned.ContainsKey(id)) continue;
+            spec.Equipment.Overrides[slot] = id;
+            changed = true;
+        }
+        if (!changed) return;
+        var dressed = Dressed(spec, kit);
+        string horse = dressed.GetValueOrDefault("Horse") ?? "";
+        if (loadout.ContainsKey("Horse"))
+            spec.Equipment.Overrides["HorseHarness"] = horse.Length == 0 ? ""
+                : _t.Gear.GetValueOrDefault(horse)?.Harness ?? (ArtifactOutfitter.KitItems(kit).GetValueOrDefault("Horse") == horse ? ArtifactOutfitter.KitItems(kit).GetValueOrDefault("HorseHarness") ?? "" : "");
+        spec.Equipment.Qualities.Clear();
+        foreach (var (slot, id) in Dressed(spec, kit))
+            if (slot != "HorseHarness" && owned.TryGetValue(id, out var item) && item.Quality is { } q) spec.Equipment.Qualities[slot] = q;
+        bool ranged = _t.Items.GetValueOrDefault(dressed.GetValueOrDefault("Item0") ?? "")?.Type is "Bow" or "Crossbow";
+        spec.Formation = horse.Length > 0 ? ranged ? "HorseArcher" : "Cavalry" : ranged ? "Ranged" : "Infantry";
     }
 
     /// <summary>Personal trait effects: hero buffs, skill adds and the presentation death chance.</summary>

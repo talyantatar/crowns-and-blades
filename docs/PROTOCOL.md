@@ -1848,3 +1848,18 @@ and ranged damage and 1 % less damage taken per point of the gap, at most 50 %, 
   The default stays 1000.
 - **Sieges (§46).** A first-day assault (ladders only) lost 191 men to the garrison's 12 in eight minutes; after a long siege (two
   towers, a ram) the besiegers took the walls in seven minutes for 197 men against 178.
+
+## 51. The Arsenal: the player picks his loadout in Bannerlord
+
+- **CK3.** The decision `ck3xbl_arsenal_decision` (group `ck3xbl`) starts a practice bout, `ck3xbl_kind = 6`, logged as a single
+  combat (`d_fatality` 4, `d_noble` 1: an arena) against the player's best knight, else a courtier, else the debug lowborn foe. The
+  player's C dump adds `CX|stash|<slot>|<item>` for every battle gear artifact he owns but has not equipped (`is_equipped = no`).
+- **Request.** `arsenal = { hero, items[], current }`: `items` are his battle gear, equipped or not (`source` artifact, with its
+  `quality`), what he wears and his kit (`source` kit), and ammunition for every bow and crossbow among them; `slot` is Weapon, Head,
+  Body, Gloves, Leg, Cape or Horse. `current` is what he wears now (slot -> item id, `""` empty, the harness left out).
+- **Module.** `CK3Arsenal`: nobody can be hurt and the partner stands still. The slot menu opens at the start and on I (a slot, then
+  its item, with Bannerlord's picture and numbers); the player is re-dressed at once, a horse only in the next battle. "Done" ends the
+  mission; `result.loadout` is the full loadout (every slot, `""` empty), sent with every result of the mission.
+- **Bridge.** `LoadoutStore` keeps it in `loadouts.json` (shared folder) by CK3 character id. In every later battle the mapper dresses
+  the player in it (`KnightBuffPlanner.ApplyLoadout`) wherever he still has the item; an item he lost keeps what CK3 and his kit give.
+  Artifacts keep their quality, the harness follows the horse, and the formation follows the horse and the first weapon.

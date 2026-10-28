@@ -87,6 +87,9 @@ public class Words
     public virtual string Joins(string who, string host) => $"{who} joins the {host}";
 
     public virtual string SingleCombat => "Single Combat";
+    /// <summary>The Arsenal (PROTOCOL §51): the player tries his gear on in the arena.</summary>
+    public virtual string Arsenal => "The Arsenal";
+    public virtual string ArsenalObjective => "Choose what you carry into battle (I: the arsenal menu)";
     /// <summary>The title of a tournament bout (PROTOCOL §29): 1 single combat, 2 wrestling, 3 grand melee.</summary>
     public virtual string Tourney(int kind) => kind switch { 2 => "Tournament: Wrestling", 3 => "Tournament: Grand Melee", 4 => "Tournament: Joust", 5 => "Tournament: Archery", _ => "Tournament: Single Combat" };
     public virtual string HitTargets(int par, int total) => $"Hit {par} of the {total} targets";
@@ -239,6 +242,8 @@ public sealed class RussianWords : Words
     public override string Joins(string who, string host) => $"{who} вступает в бой — {host}";
 
     public override string SingleCombat => "Поединок";
+    public override string Arsenal => "Арсенал";
+    public override string ArsenalObjective => "Выберите, с чем пойдёте в бой (I — меню арсенала)";
     public override string Tourney(int kind) => kind switch { 2 => "Турнир: борьба", 3 => "Турнир: общая схватка", 4 => "Турнир: джауст", 5 => "Турнир: стрельба из лука", _ => "Турнир: поединок" };
     public override string HitTargets(int par, int total) => $"Поразите {par} мишеней из {total}";
     public override string WinTheMelee => "Повергните команду соперников";

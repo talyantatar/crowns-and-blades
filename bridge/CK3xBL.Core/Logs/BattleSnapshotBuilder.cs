@@ -127,7 +127,9 @@ public sealed class BattleSnapshotBuilder
             s.ParentBid = Math.Max(0, d.GetInt("ck3xbl_parent_bid") ?? 0);
             s.Clash = Math.Max(1, d.GetInt("ck3xbl_clash") ?? 1);
             // A single combat (PROTOCOL §18): two characters, no armies.
-            s.IsDuel = d.GetInt("ck3xbl_kind") == 2;
+            // The Arsenal (PROTOCOL §51) is logged like a single combat: the player and a sparring partner.
+            s.IsArsenal = d.GetInt("ck3xbl_kind") == 6;
+            s.IsDuel = d.GetInt("ck3xbl_kind") == 2 || s.IsArsenal;
             s.DuelFatality = Math.Clamp(d.GetInt("ck3xbl_d_fatality") ?? 0, 0, 4);
             s.DuelNoble = s.IsDuel && d.GetInt("ck3xbl_d_noble") is { } noble ? noble != 0 : null;
             s.DuelTourney = s.IsDuel ? Math.Clamp(d.GetInt("ck3xbl_d_tourney") ?? 0, 0, 5) : 0;
@@ -372,6 +374,12 @@ public sealed class BattleSnapshotBuilder
             case "gear":
                 if (r.Args.Length == 3 && r.Args[1].StartsWith("ck3xbl_", StringComparison.Ordinal) && r.Args[2].Length > 0)
                     c.Gear.Add(new GearSnapshot { Slot = r.Args[1], ItemId = r.Args[2] });
+                else Malformed(r);
+                break;
+            case "stash":
+                // The player's battle gear he has not equipped (PROTOCOL §51): what his Arsenal loadout may use.
+                if (r.Args.Length == 3 && r.Args[1].StartsWith("ck3xbl_", StringComparison.Ordinal) && r.Args[2].Length > 0)
+                    c.Stash.Add(new GearSnapshot { Slot = r.Args[1], ItemId = r.Args[2] });
                 else Malformed(r);
                 break;
             case "artifact_helmet":

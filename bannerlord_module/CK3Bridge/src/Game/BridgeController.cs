@@ -110,7 +110,14 @@ namespace CK3Bridge
         {
             BattleSession session = BattleSession.Current;
             if (session == null || !session.Owns(mission)) return;
-            mission.AddMissionBehavior(new BattleTracker(session));
+            var tracker = new BattleTracker(session);
+            mission.AddMissionBehavior(tracker);
+            // PROTOCOL §51: the Arsenal; what the player wears when it ends goes back in the result.
+            if (session.Request.Arsenal != null)
+            {
+                tracker.Arsenal = new CK3Arsenal(session.Request.Arsenal, session.Request.Presentation?.Language);
+                mission.AddMissionBehavior(tracker.Arsenal);
+            }
             mission.AddMissionBehavior(new CK3FaceGuard(session.Armies.HeroByCharacter));
             BridgeIo.Log($"CK3 logics attached to {mission.SceneName}");
         }

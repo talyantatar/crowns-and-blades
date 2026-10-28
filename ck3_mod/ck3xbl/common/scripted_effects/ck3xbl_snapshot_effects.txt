@@ -408,6 +408,11 @@ ck3xbl_emit_cx_effect = {
 	ck3xbl_emit_accolade_effect = yes
 	ck3xbl_emit_cx_artifacts_effect = yes
 	ck3xbl_emit_cx_gear_effect = yes
+	# The player's unequipped gear too: his Arsenal loadout may use it (PROTOCOL 51).
+	if = {
+		limit = { is_ai = no }
+		ck3xbl_emit_cx_stash_effect = yes
+	}
 }
 
 # this = character; needs scope:ck3xbl_bid and scope:ck3xbl_side_code. Tags the character (stable ck3xbl_tag),

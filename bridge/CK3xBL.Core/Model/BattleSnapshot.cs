@@ -23,6 +23,7 @@ public sealed class BattleSnapshot
     public int ParentBid;                             // B|BEGIN ck3xbl_parent_bid: the steering bid a reinforcement clash continues
                                                       // (PROTOCOL §14.6); 0 = first clash
     public int Clash = 1;                             // B|BEGIN ck3xbl_clash: 1 = first clash, 2 = first reinforcement clash, ...
+    public bool IsArsenal;                            // B|BEGIN ck3xbl_kind = 6: the Arsenal (PROTOCOL §51), logged as a single combat (IsDuel too)
     public bool IsDuel;                               // B|BEGIN ck3xbl_kind = 2: a CK3 single combat (PROTOCOL §18), one character per side
     public int DuelFatality;                          // B|BEGIN ck3xbl_d_fatality: 0 no, 1 possible, 2 always, 3 default, 4 practice
     public bool? DuelNoble;                           // B|BEGIN ck3xbl_d_noble: the foe is of noble birth (an arena, PROTOCOL §27);
@@ -148,6 +149,7 @@ public sealed class CharacterSnapshot
     public List<string> FaithParams = new();          // CX|fparam
     public AccoladeSnapshot? Accolade;                // CX|acc_* (null = not acclaimed / not logged)
     public List<ArtifactSnapshot> Artifacts = new();  // CX|artifact (+ CX|artifact_helmet)
+    public List<GearSnapshot> Stash = new();          // CX|stash: battle gear he owns but has not equipped (the player only, PROTOCOL §51)
     public List<GearSnapshot> Gear = new();           // CX|gear, in the order CK3 lists the equipped artifacts
 }
 

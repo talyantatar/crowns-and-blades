@@ -22,6 +22,7 @@ ck3xbl_st_clear_carried_scopes_effect = {
 	if = { limit = { exists = scope:ck3xbl_ai_gold } clear_saved_scope = ck3xbl_ai_gold }
 	if = { limit = { exists = scope:ck3xbl_ai_need_gold } clear_saved_scope = ck3xbl_ai_need_gold }
 	if = { limit = { exists = scope:ck3xbl_ai_need_prestige } clear_saved_scope = ck3xbl_ai_need_prestige }
+	if = { limit = { exists = scope:ck3xbl_ars_partner } clear_saved_scope = ck3xbl_ars_partner }
 	if = { limit = { exists = scope:ck3xbl_att_primary } clear_saved_scope = ck3xbl_att_primary }
 	if = { limit = { exists = scope:ck3xbl_att_side } clear_saved_scope = ck3xbl_att_side }
 	if = { limit = { exists = scope:ck3xbl_aw_tag } clear_saved_scope = ck3xbl_aw_tag }

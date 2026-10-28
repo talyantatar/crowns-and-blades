@@ -404,6 +404,11 @@ export function effectsText(items) {
   L.push(`\t\tlimit = { OR = { ${SLOT_FLAGS.map((f) => `artifact_slot_type = ${f}`).join(' ')} } }`);
   items.forEach((it, i) => L.push(`\t\t${i === 0 ? 'if' : 'else_if'} = { limit = { has_artifact_modifier = ${mod(it)} } info_log = "CK3XBL|CX|gear|${it.slot}|${it.id}" }`));
   L.push('\t}', '}', '');
+  L.push('# this = character. One CX|stash line per battle gear artifact he owns but has not equipped: what the Arsenal (PROTOCOL 51) offers.');
+  L.push('ck3xbl_emit_cx_stash_effect = {', '\tevery_character_artifact = {');
+  L.push(`\t\tlimit = { is_equipped = no OR = { ${SLOT_FLAGS.map((f) => `artifact_slot_type = ${f}`).join(' ')} } }`);
+  items.forEach((it, i) => L.push(`\t\t${i === 0 ? 'if' : 'else_if'} = { limit = { has_artifact_modifier = ${mod(it)} } info_log = "CK3XBL|CX|stash|${it.slot}|${it.id}" }`));
+  L.push('\t}', '}', '');
 
   // Pools: own culture (with neutral items) per Bannerlord culture, and any culture.
   const pools = ['main', 'gear', 'armor', 'horse', 'all', 'weapon', 'bow'];

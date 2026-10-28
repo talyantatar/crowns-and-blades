@@ -95,6 +95,7 @@ internal sealed class BridgeHost : IAsyncDisposable
         _ux.OverlayAutoHidden += reason => journal.Info("ux", $"overlay removed by a safety valve: {reason}");
         _appearance = new AppearanceProvider { DataDirectory = paths.DataDir, HeroArms = config.Battle.HeroArms };
 
+        var loadouts = new LoadoutStore(paths.SharedDir);
         _orchestrator = new BattleOrchestrator(new OrchestratorServices
         {
             Mapper = new BattleMapper(),
@@ -114,11 +115,13 @@ internal sealed class BridgeHost : IAsyncDisposable
                 // 2026-10-19: without Burning Empires' own packages they did not, and the first elephant crashed Bannerlord).
                 options.Elephants = _bannerlord.LoadsElephants && ElephantModule.Complete;
                 options.Naval = _bannerlord.LoadsNaval;   // PROTOCOL §44
+                options.Loadouts = loadouts.Load();       // PROTOCOL §51
                 return options;
             },
             GameProcessSeen = _ux.RegisterGameProcess,
             ShowHint = _ux.ShowHintAsync,
             Ck3Paused = () => _pause.IsPaused,
+            Loadouts = loadouts,
         }, new OrchestratorOptions
         {
             OfferTimeout = TimeSpan.FromMinutes(Math.Max(1, config.Battle.OfferTimeoutMinutes)),

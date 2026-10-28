@@ -158,6 +158,8 @@ public sealed class OrchestratorServices
     public required Func<MapperOptions> MapperOptions;
     /// <summary>Optional: whether CK3 is paused (null = unknown), for the stall warning of a steered battle.</summary>
     public Func<bool?>? Ck3Paused;
+    /// <summary>PROTOCOL §51: where the Arsenal's loadouts are kept; null = an Arsenal's choice is not kept.</summary>
+    public LoadoutStore? Loadouts;
     /// <summary>Optional: tells the presentation layer which processes are the games (their windows may hold the foreground
     /// while a card is up; any other foreground app makes the overlay step aside).</summary>
     public Action<int>? GameProcessSeen;
@@ -1165,6 +1167,21 @@ public sealed class BattleOrchestrator : IAsyncDisposable
         Notify("The dispatch has arrived", $"Return to Crusader Kings III and click '{Ck3Texts.DustSettlesOption}' to receive the outcome.");
     }
 
+    /// <summary>PROTOCOL §51: what the player chose in the Arsenal is what he carries into his later battles.</summary>
+    private void KeepLoadout(Battle b, BattleResult result)
+    {
+        if (!b.Snapshot.IsArsenal || result.Loadout is not { Count: > 0 } loadout || b.Snapshot.PlayerCk3Id <= 0 || _s.Loadouts is not { } store) return;
+        try
+        {
+            store.Save(b.Snapshot.PlayerCk3Id, loadout);
+            _s.Journal.Info(Area, $"{b.Id}: Arsenal loadout kept for {b.Snapshot.PlayerCk3Id}: {string.Join(", ", loadout.Select(p => $"{p.Key}={p.Value}"))}");
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            _s.Journal.Warn(Area, $"{b.Id}: Arsenal loadout not kept: {e.Message}");
+        }
+    }
+
     /// <summary>PROTOCOL §32: the player's deeds of a decided clash go into the feat ledger; the feats they earn ride in r7.</summary>
     private void CountFeats(Battle b, Ck3Outcome outcome)
     {
@@ -1365,6 +1382,7 @@ public sealed class BattleOrchestrator : IAsyncDisposable
         if (result is null || result.Status is "started" or "cancelled" or "error")
             throw new InvalidOperationException($"no usable result.json for {b.Id} (status {result?.Status ?? "missing"})");
         b.Result = result;
+        KeepLoadout(b, result);
 
         // After a version 3 fallback (an old mod) every later outcome is built as version 3 from the start, and its card says so.
         var options = _s.MapperOptions();

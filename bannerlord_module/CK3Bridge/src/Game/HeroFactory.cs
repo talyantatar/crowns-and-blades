@@ -202,7 +202,7 @@ namespace CK3Bridge
         }
 
         /// <summary>The item's modifier of that quality, else of the best quality below it down to Fine; null without a group.</summary>
-        private static ItemModifier ModifierOf(ItemObject item, ItemQuality wanted)
+        internal static ItemModifier ModifierOf(ItemObject item, ItemQuality wanted)
         {
             ItemModifierGroup group = item?.ItemComponent?.ItemModifierGroup;
             if (group == null) return null;

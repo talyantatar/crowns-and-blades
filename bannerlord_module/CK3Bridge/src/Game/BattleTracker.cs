@@ -59,6 +59,9 @@ namespace CK3Bridge
         private readonly Queue<(Agent Agent, BattleSide Side, string Group)> _toDress = new Queue<(Agent, BattleSide, string)>();
         public const int DressPerTick = 40;
 
+        /// <summary>PROTOCOL §51: the Arsenal of this mission, or null; its loadout rides in every result.</summary>
+        internal CK3Arsenal Arsenal;
+
         public BattleTracker(BattleSession session)
         {
             _session = session;
@@ -282,7 +285,9 @@ namespace CK3Bridge
                     _accounting.SetHeroHealth(kv.Value.HeroKey, kv.Key.Health / kv.Key.HealthLimit);
             float end = _resultTime >= 0f ? _resultTime : Mission.CurrentTime;
             float start = _fightStart >= 0f ? _fightStart : 0f;
-            return _accounting.Snapshot(status, winner, _retreated && !_resultReady, end - start, null);
+            BattleResult result = _accounting.Snapshot(status, winner, _retreated && !_resultReady, end - start, null);
+            if (Arsenal != null) result.Loadout = Arsenal.Loadout();
+            return result;
         }
 
         private static bool TrySide(Agent agent, out BattleSide side, out BattleSideEnum engineSide)

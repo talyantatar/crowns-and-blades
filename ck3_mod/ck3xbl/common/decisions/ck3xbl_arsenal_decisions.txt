@@ -1,0 +1,20 @@
+﻿# The Arsenal (docs/PROTOCOL.md 51): pick the gear you carry in Bannerlord, in Bannerlord. Open whenever no battle is pending.
+ck3xbl_arsenal_decision = {
+	decision_group_type = ck3xbl
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_smith.dds" }
+	desc = ck3xbl_arsenal_decision_desc
+	selection_tooltip = ck3xbl_arsenal_decision_tooltip
+	is_shown = {
+		is_ai = no
+	}
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		ck3xbl_skirmish_available_trigger = yes
+	}
+	effect = {
+		custom_tooltip = ck3xbl_arsenal_decision_effect_tt
+		hidden_effect = { trigger_event = ck3xbl_arsenal.0001 }
+	}
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}

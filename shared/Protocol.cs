@@ -39,6 +39,7 @@ namespace CK3xBL.Protocol
         public SideRequest Defender;
         public SiegeInfo Siege;                          // only for kind = siege
         public NavalInfo Naval;                          // only for kind = naval (PROTOCOL §44)
+        public ArsenalSpec Arsenal;                      // PROTOCOL §51: this arena is the Arsenal (the player picks his loadout); null = a duel
         public BalanceInfo Balance;                      // bridge-side record of the strength balance (PROTOCOL §17); the module ignores it
         // PROTOCOL §21. Costumes by TroopRequest.Look key; null = stock troop armour (as before).
         public Dictionary<string, LookSpec> Looks;
@@ -313,6 +314,23 @@ namespace CK3xBL.Protocol
         public SideResult Defender = new SideResult();
         public List<HeroResult> Heroes = new List<HeroResult>();
         public string Error;
+        public Dictionary<string, string> Loadout;      // PROTOCOL §51: the Arsenal's chosen loadout (slot -> item id, "" = empty); null = none chosen
+    }
+
+    /// <summary>PROTOCOL §51: what the player may carry, and what he carries now. The module offers the items slot by slot.</summary>
+    public class ArsenalSpec
+    {
+        public string Hero;                              // the player's HeroSpec.Key
+        public List<ArsenalItem> Items = new List<ArsenalItem>();
+        public Dictionary<string, string> Current = new Dictionary<string, string>();   // slot -> item id the hero wears now
+    }
+
+    public class ArsenalItem
+    {
+        public string Id;                                // Bannerlord item id
+        public string Slot;                              // Weapon (any of Item0..Item3), Head, Body, Gloves, Leg, Cape, Horse
+        public string Source;                            // artifact (CK3 battle gear he owns) | kit (his rank's kit)
+        public string Quality;                           // an artifact's modifier quality (Fine | Masterwork | Legendary); null = none
     }
 
     public class SideResult
