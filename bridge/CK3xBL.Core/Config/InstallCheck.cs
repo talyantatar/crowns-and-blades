@@ -82,7 +82,11 @@ public static class InstallCheck
         string? version = GameInstall.BannerlordVersion(t.BannerlordDir);
         var edition = GameInstall.BannerlordEdition(t.BannerlordDir);
         items.Add(new("bl.found", InstallSeverity.Ok, $"Bannerlord {version ?? "(version unknown)"} ({Describe(edition)})", t.BannerlordDir));
-        if (!GameInstall.IsTargetBannerlord(version))
+        if (GameInstall.IsOlderBannerlord(version))
+            items.Add(new("bl.version", InstallSeverity.Warning, $"Bannerlord {version} is too old",
+                $"This release needs Bannerlord {BridgeVersion.BannerlordTarget}: the bridge module cannot load in an older Bannerlord. Update the game.",
+                InstallFix.UpdateGame));
+        else if (!GameInstall.IsTargetBannerlord(version))
             items.Add(new("bl.version", InstallSeverity.Warning, $"Bannerlord {version} is untested",
                 $"This release was built for Bannerlord {BridgeVersion.BannerlordTarget}. Battles may fail; check for a Crowns & Blades update.",
                 InstallFix.UpdateGame));

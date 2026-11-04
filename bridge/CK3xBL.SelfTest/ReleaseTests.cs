@@ -122,6 +122,10 @@ internal static class ReleaseTests
         Expect.False(GameInstall.IsTargetCk3("1.21.0") || GameInstall.IsTargetCk3("1.200.1"));
         Expect.True(GameInstall.IsTargetBannerlord("v1.4.8") && GameInstall.IsTargetBannerlord("v1.4.9") && GameInstall.IsTargetBannerlord(null));
         Expect.False(GameInstall.IsTargetBannerlord("v1.5.0") || GameInstall.IsTargetBannerlord("v1.40.0"));
+        // An older series is never started (a player's v1.2.11 from GOG crashed loading the module, 2026-11-03); newer and unknown are.
+        Expect.True(GameInstall.IsOlderBannerlord("v1.2.11") && GameInstall.IsOlderBannerlord("v1.3.9") && GameInstall.IsOlderBannerlord("e1.8.0"));
+        Expect.False(GameInstall.IsOlderBannerlord("v1.4.8") || GameInstall.IsOlderBannerlord("v1.4.0") || GameInstall.IsOlderBannerlord("v1.5.0")
+            || GameInstall.IsOlderBannerlord("v1.40.0") || GameInstall.IsOlderBannerlord(null) || GameInstall.IsOlderBannerlord("garbage"));
 
         string bl = FakeBannerlord(t, "bl", "v1.4.8");
         Expect.Equal("v1.4.8", GameInstall.BannerlordVersion(bl));

@@ -332,6 +332,11 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
                 return;
             }
             if (!SetModuleMissing(!GameInstall.HasBannerlordModule(_o.GameDir))) return;
+            if (GameInstall.BannerlordVersion(_o.GameDir) is { } version && GameInstall.IsOlderBannerlord(version))
+            {
+                ReportOutdated(version);
+                return;
+            }
             var modules = fallback ? _o.FallbackModules : _o.Modules;
             // The arenas of noble single combats live in SandBox (PROTOCOL §27), which needs only Native and SandBoxCore.
             if (_o.ArenaModule && File.Exists(Path.Combine(_o.GameDir, "Modules", ArenaModule, "SubModule.xml")))
@@ -446,6 +451,17 @@ public sealed class BannerlordLink : IBannerlordLink, IDisposable
             ? "Start Bannerlord once from its own launcher to see what stops it (an update to finish, a dialog, a broken mod in Modules); Bannerlord's own log is in the bridge log."
             : $"{(installed is not null ? $"Bannerlord {installed}" : "This Bannerlord version")} may not be supported (this release was built for {BridgeVersion.BannerlordTarget}).";
         string text = $"Bannerlord could not start the CK3 bridge module ({why}). {hint}";
+        _journal.Error("bannerlord", text);
+        BootFailed?.Invoke(text);
+    }
+
+    /// <summary>An older Bannerlord is never started: the module would crash it while loading (and the fallback list again). Told once.</summary>
+    private void ReportOutdated(string version)
+    {
+        if (_bootFailureReported) return;
+        _bootFailureReported = true;
+        string text = $"Bannerlord {version} is too old for Crowns & Blades: update Bannerlord to {BridgeVersion.BannerlordTarget} " +
+                      "(Steam or GOG Galaxy: let the game update, then start Crowns & Blades again). Until then CK3 fights its battles itself.";
         _journal.Error("bannerlord", text);
         BootFailed?.Invoke(text);
     }

@@ -172,6 +172,23 @@ public static class GameInstall
     public static bool IsTargetBannerlord(string? version) =>
         version is null || version.StartsWith(BridgeVersion.BannerlordTargetSeries, StringComparison.OrdinalIgnoreCase);
 
+    /// <summary>
+    /// Whether a Bannerlord version is of an older series than the one this release targets ("v1.2.11" against "v1.4."): the module
+    /// is built against that series' API and crashes an older game while it loads (a player's v1.2.11 from GOG, 2026-11-03). Unknown
+    /// and newer versions are not older.
+    /// </summary>
+    public static bool IsOlderBannerlord(string? version)
+    {
+        // "e1.8.0" is an early-access build, older than any v1.x whatever its numbers.
+        if (version is { Length: > 1 } && (version[0] is 'e' or 'E') && char.IsDigit(version[1])) return true;
+        static (int, int)? Series(string? v)
+        {
+            var parts = (v ?? "").TrimStart('v', 'V').Split('.');
+            return parts.Length >= 2 && int.TryParse(parts[0], out int major) && int.TryParse(parts[1], out int minor) ? (major, minor) : null;
+        }
+        return Series(version) is { } have && Series(BridgeVersion.BannerlordTarget) is { } want && have.CompareTo(want) < 0;
+    }
+
     /// <summary>The CK3Bridge module's two essential files in &lt;Bannerlord&gt;/Modules/CK3Bridge.</summary>
     public static bool HasBannerlordModule(string? blDir) =>
         !string.IsNullOrWhiteSpace(blDir) && File.Exists(Path.Combine(BannerlordModuleDir(blDir), "SubModule.xml")) &&
