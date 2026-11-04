@@ -5,6 +5,12 @@ versions follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed in 0.9.4-beta (2026-11-04)
+
+- **An older Bannerlord is not started.** Bannerlord older than v1.4 (a player's v1.2.11 from GOG) crashed while loading the
+  bridge module, and the bridge started it again. Now it is never started: the player is told once to update the game, and CK3
+  fights its battles itself until then.
+
 ### Changed in 0.9.3-beta (2026-10-28)
 
 - **Heartbeat.** A battle is given up only after 15 s without an answer from Bannerlord (was 5 s); stalls are logged with their

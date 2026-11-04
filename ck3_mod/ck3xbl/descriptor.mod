@@ -1,4 +1,4 @@
-version="0.9.3-beta"
+version="0.9.4-beta"
 tags={
 	"Gameplay"
 	"Warfare"
